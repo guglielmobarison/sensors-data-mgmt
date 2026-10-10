@@ -422,6 +422,182 @@ ICG / NIR Dyes & Near-Infrared & $790\text{ nm}$ & $820\text{ nm}$ & $366\text{ 
 
 In quantitative biological microscopy, electromagnetic radiation spans the ultraviolet, visible, and near-infrared domains, mapped continuously in Figure~\ref{fig:bioimaging_spectrum}. Optical fluorophores are chosen so that their absorption and emission spectra align with specific laser excitation lines and narrow optical filter windows, as detailed in Table~\ref{tab:bioimaging_dyes}. Wavelength and frequency are inversely related via $\nu = c/\lambda$; shorter wavelengths (such as DAPI emitting at $460\text{ nm}$) correspond to higher optical frequencies ($652\text{ THz}$), whereas longer wavelengths (such as indocyanine green emitting at $820\text{ nm}$) correspond to lower frequencies ($366\text{ THz}$).
 
+A fundamental physical dimension characterizes the qualitative nature of a physical quantity, whereas a unit represents an arbitrary, standardized reference scale selected to quantify that dimension. For instance, velocity has the intrinsic physical dimension of length divided by time ($\text{L}\text{T}^{-1}$), irrespective of whether it is measured in metres per second ($\text{m}\cdot\text{s}^{-1}$), kilometres per hour ($\text{km}\cdot\text{h}^{-1}$), or miles per hour. Physical quantities possessing identical physical dimensions are termed homogeneous quantities.
+
+Derived units in the SI are formed coherently through algebraic products and integer powers of the seven fundamental base units. The physical dimension of any arbitrary derived quantity $Q$ is expressed as a dimensional product of the seven base dimensions:
+\begin{equation}
+\dim Q = \text{T}^\alpha\,\text{L}^\beta\,\text{M}^\gamma\,\text{I}^\delta\,\Theta^\epsilon\,\text{N}^\zeta\,\text{J}^\eta.
+\label{eq:dimensional_product}
+\end{equation}
+In Equation~\eqref{eq:dimensional_product}, the exponents $\alpha, \beta, \gamma, \delta, \epsilon, \zeta$, and $\eta$ are referred to as dimensional exponents. These exponents are integers that may take positive, negative, or zero values. When all dimensional exponents equal zero, the quantity is dimensionless and has the dimension of one.
+
+\begin{table}[!htbp]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\caption{Selected coherent SI derived quantities, their special units, equivalent base formulations, and physical dimensions.}
+\label{tab:derived_units}
+\begin{tabular}{llll}
+\toprule
+Physical Quantity & SI Unit [Symbol] & Equivalent Base Expression & Dimension \\
+\midrule
+Velocity $v$ & $\text{m}\cdot\text{s}^{-1}$ & $\text{m}\cdot\text{s}^{-1}$ & $\text{L}\text{T}^{-1}$ \\
+Acceleration $a$ & $\text{m}\cdot\text{s}^{-2}$ & $\text{m}\cdot\text{s}^{-2}$ & $\text{L}\text{T}^{-2}$ \\
+Force $F$ & newton [$\text{N}$] & $\text{kg}\cdot\text{m}\cdot\text{s}^{-2}$ & $\text{M}\text{L}\text{T}^{-2}$ \\
+Pressure $p$ & pascal [$\text{Pa}$] & $\text{N}\cdot\text{m}^{-2} = \text{kg}\cdot\text{m}^{-1}\cdot\text{s}^{-2}$ & $\text{M}\text{L}^{-1}\text{T}^{-2}$ \\
+Energy $E$ & joule [$\text{J}$] & $\text{N}\cdot\text{m} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2}$ & $\text{M}\text{L}^2\text{T}^{-2}$ \\
+Power $P$ & watt [$\text{W}$] & $\text{J}\cdot\text{s}^{-1} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-3}$ & $\text{M}\text{L}^2\text{T}^{-3}$ \\
+Electric charge $Q$ & coulomb [$\text{C}$] & $\text{A}\cdot\text{s}$ & $\text{I}\text{T}$ \\
+Electric potential $V$ & volt [$\text{V}$] & $\text{kg}\cdot\text{m}^2\cdot\text{s}^{-3}\cdot\text{A}^{-1} = \text{J}\cdot\text{C}^{-1}$ & $\text{M}\text{L}^2\text{T}^{-3}\text{I}^{-1}$ \\
+Magnetic field $B$ & tesla [$\text{T}$] & $\text{kg}\cdot\text{s}^{-2}\cdot\text{A}^{-1} = \text{Wb}\cdot\text{m}^{-2}$ & $\text{M}\text{T}^{-2}\text{I}^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+While an infinite number of coherent derived units can be mathematically synthesized from the base units, exactly twenty-two have been assigned special names and symbols by the CGPM, as summarized in Table~\ref{tab:derived_units}.
+
+A notable class of physical quantities exhibits a dimensional product where all exponents vanish, yielding $\dim Q = 1$. These quantities are numbers of entities or represent dimensionless ratios of two homogeneous quantities possessing identical dimensions. The unit one is the neutral identity element of any system of units, existing inherently without requiring formal diplomatic ratification.
+
+The plane angle $\theta$ is defined as the ratio between the subtended circular arc length $l$ and the radius of curvature $r$:
+\begin{equation}
+\theta = \frac{l}{r}.
+\label{eq:plane_angle}
+\end{equation}
+Because Equation~\eqref{eq:plane_angle} represents the quotient of two lengths ($\text{L}/\text{L}$), the plane angle is dimensionally unitless ($\dim \theta = 1$). However, within the SI, the special name radian ($\text{rad}$) is retained to distinguish angular displacements from pure scalar ratios The maximum subtended arc length of a circle equals its circumference, $l_{\text{max}} = 2\pi r$, which establishes the maximum angle of a complete single revolution as $\alpha_{\text{max}} = 2\pi\text{ rad}$. Similarly, the solid angle $\Omega$ is defined as the ratio of subtended spherical surface area $A$ to the square of the sphere radius $r^2$:
+\begin{equation}
+\Omega = \frac{A}{r^2}.
+\label{eq:solid_angle}
+\end{equation}
+The solid angle is also dimensionless ($\text{L}^2/\text{L}^2 = 1$), but is assigned the special symbol steradian ($\text{sr}$). Over a closed spherical surface where $A_{\text{total}} = 4\pi r^2$, the total solid angle equals $4\pi\text{ sr}$
+
+The selection of the radian rather than the degree ($^\circ$) as the coherent SI unit for plane angle is mathematically essential[. Radians provide an isometric mapping between real numbers and arc lengths on the unit circle, ensuring that trigonometric derivatives remain compact. When calculating the time derivative of a harmonic signal $x(t) = A\cos(\omega t + \phi)$, the derivative assumes the standard form:
+\begin{equation}
+\frac{d}{dt}\cos(\omega t) = -\omega\sin(\omega t),
+\label{eq:trig_derivative}
+\end{equation}
+only when the phase argument $\omega t$ is evaluated in radians. If the phase were expressed in degrees, an extraneous conversion factor of $\pi/180$ would appear in every differential and integral operation. Furthermore, Euler's formula connecting complex exponentials to trigonometric functions:
+\begin{equation}
+e^{i\theta} = \cos\theta + i\sin\theta,
+\label{eq:euler_formula}
+\end{equation}
+holds strictly for $\theta$ expressed in radians. A quarter-turn rotation in the complex plane corresponds to $e^{i\pi/2} = i$, whereas attempting to insert degrees directly into the exponential ($e^{i90}$) fails unless non-standard scaling factors are introduced.
+
+Beyond angles, numerous physical parameters are dimensionless ratios of homogeneous quantities. These dimensionless parameters serve as fundamental scaling invariants in optical, mechanical, and biological systems.
+
+Dimensional analysis is a formal procedure that verifies the physical consistency of mathematical expressions by confirming that both sides of an equation possess identical dimensional representations. Under the principle of dimensional homogeneity, physical laws must remain invariant under changes of measurement units, and terms linked by addition, subtraction, or equality must have identical physical dimensions. The utility of dimensional analysis is demonstrated below through four biological and optical models.
+
+In cellular physiology, the transport rate of solute molecules traversing a semi-permeable membrane can be described by the linear mass transfer equation:
+\begin{equation}
+R = P\,A\,\Delta c.
+\label{eq:membrane_transport}
+\end{equation}
+In Equation~\eqref{eq:membrane_transport}, $R$ represents the rate of substance transferred per unit time, $P$ is the membrane permeability coefficient, $A$ is the functional membrane surface area, and $\Delta c$ is the transmembrane solute concentration gradient. The dimensions of these parameters are $[P] = \text{L}\text{T}^{-1}$, $[A] = \text{L}^2$, and $[\Delta c] = \text{N}\text{L}^{-3}$, where $\text{N}$ denotes the dimension of amount of substance. Multiplying the right-hand side yields:
+\begin{equation}
+[P\,A\,\Delta c] = (\text{L}\text{T}^{-1})\,(\text{L}^2)\,(\text{N}\text{L}^{-3}) = \text{N}\text{T}^{-1},
+\label{eq:membrane_dimensional_check}
+\end{equation}
+which matches the dimension of amount of substance per unit time ($[R] = \text{N}\text{T}^{-1}$), confirming dimensional consistency.
+
+In quantum optics and fluorescence imaging, the energy $E$ carried by a single photon of wavelength $\lambda$ is modeled by the Planck-Einstein relation:
+\begin{equation}
+E = \frac{h\,c}{\lambda}.
+\label{eq:photon_energy}
+\end{equation}
+In Equation~\eqref{eq:photon_energy}, $h$ is the Planck constant with dimension $[h] = \text{M}\text{L}^2\text{T}^{-1}$, $c$ is the speed of light with dimension $[c] = \text{L}\text{T}^{-1}$, and $\lambda$ is the photon wavelength with dimension $[\lambda] = \text{L}$. Evaluating the dimensional quotient gives:
+\begin{equation}
+\left[\frac{h\,c}{\lambda}\right] = \frac{(\text{M}\text{L}^2\text{T}^{-1})\,(\text{L}\text{T}^{-1})}{\text{L}} = \text{M}\text{L}^2\text{T}^{-2},
+\label{eq:photon_dimensional_check}
+\end{equation}
+which is the dimension of mechanical energy, confirming the dimensional validity of the relationship.
+
+In fluorescence recovery and single-molecule tracking, the characteristic Brownian diffusion displacement $d$ traversed by a fluorophore during a camera detector exposure interval $t$ is approximated by the random walk expression:
+\begin{equation}
+d = \sqrt{2\,D\,t},
+\label{eq:diffusion_length}
+\end{equation}
+where $D$ represents the macroscopic translational diffusion coefficient possessing dimension $[D] = \text{L}^2\text{T}^{-1}$, $t$ represents time with dimension $[t] = \text{T}$, and the factor 2 is a dimensionless geometric constant. Evaluating the dimensional product inside the square root yields $[D\,t] = (\text{L}^2\text{T}^{-1})\,(\text{T}) = \text{L}^2$, whose square root is $[\sqrt{2Dt}] = \text{L}$, confirming that $d$ has the dimension of length.
+
+In quantitative fluorescence microscopy, an imaging system is assembled using a camera sensor array containing $N_x \times N_y$ discrete pixels, where each physical pixel has a square side dimension $p$, and the microscope objective provides a total optical magnification $M$. The calibrated lateral fields of view in the specimen plane along the orthogonal axes are given by $\text{FOV}_x = N_x p / M$ and $\text{FOV}_y = N_y p / M$, resulting in a total imaged specimen area $A_{\text{FOV}}$ expressed as:
+\begin{equation}
+A_{\text{FOV}} = \frac{N_x\,N_y\,p^2}{M^2}.
+\label{eq:microscope_fov}
+\end{equation}
+Because the pixel counts $N_x, N_y$ and the magnification factor $M$ are dimensionless ratios ($[N_x] = [N_y] = [M] = 1$), while the individual physical pixel pitch has the dimension of length ($[p] = \text{L}$), the dimensional product evaluates to:
+\begin{equation}
+[A_{\text{FOV}}] = \frac{(1)\,(1)\,(\text{L}^2)}{(1)^2} = \text{L}^2,
+\label{eq:fov_dimensional_check}
+\end{equation}
+confirming that the calculated quantity has the dimension of an area.
+
+Scientific notation provides an unambiguous framework for representing numerical magnitudes across wide dynamic ranges. A real number is formulated in scientific notation through the normalized expression:
+\begin{equation}
+x = a \times 10^n.
+\label{eq:scientific_notation}
+\end{equation}
+In Equation~\eqref{eq:scientific_notation}, the coefficient $a$ is termed the mantissa, which must be a non-zero real value bounded by $1 \le |a| < 10$, and $n$ is an integer exponent ($n \in \mathbb{Z}$) that dictates the position of the decimal point. Writing numerical data in normalized scientific notation eliminates ambiguity regarding the precision of experimental records, particularly concerning the status of trailing zero digits.
+
+A significant figure is a digit that conveys verified empirical information regarding the resolution of a measurement. Standard rules determine the significance of digits in reported values:
+
+All non-zero digits are significant. For example, the quantity $123$ contains three significant digits.
+
+Zeros situated between non-zero digits are significant. For example, the value $1002$ contains four significant digits.
+
+Leading zeros preceding the first non-zero digit serve exclusively as scale locators and are never significant. For example, $0.0045$ contains only two significant digits, which is made clear by writing it as $4.5 \times 10^{-3}$. Similarly, the value $0.00042$ possesses two significant digits and is rendered as $4.2 \times 10^{-4}$.
+
+Trailing zeros situated to the right of an explicit decimal point are significant, as they reflect genuine measurement resolution. Thus, $2.500$ possesses four significant figures, $0.00810$ possesses three significant figures (written as $8.10 \times 10^{-3}$), and $56.0 \times 10^{-6}$ possesses three significant figures (properly normalized as $5.60 \times 10^{-5}$).
+
+Trailing zeros in an unformatted integer without a decimal point are inherently ambiguous. A value recorded as $1500$ may indicate two, three, or four significant figures depending on the instrument resolution. Standard scientific notation eliminates this ambiguity: writing $1.5 \times 10^3$ explicitly specifies two significant figures, while writing $1.500 \times 10^3$ indicates four significant figures.
+
+A central rule of experimental metrology requires that the significant figures of a reported measurand be consistent with its associated experimental uncertainty. The least significant digit of the reported value must terminate at the same decimal position as the leading digit of the uncertainty. Consequently, expressing a measurement as $(2.50 \pm 0.03)\text{ mm}$ is metrologically sound because both the estimate and the uncertainty share identical resolution at the hundredths place. Conversely, reporting an experimental result as $(2.503746 \pm 0.03)\text{ mm}$ is invalid, because quoting digits beyond the scale of the uncertainty implies unwarranted experimental precision. Excess trailing digits must be rounded to match the uncertainty.
+
+An order of magnitude represents the power of ten closest to a given numerical value, providing an intuitive logarithmic scale for rapid estimation and sanity checks. When evaluating a number expressed as $a \times 10^n$, if the mantissa $a$ is less than approximately $\sqrt{10} \approx 3.16$ (or rounded below 5), the order of magnitude is $10^n$; if $a$ exceeds this threshold, it rounds to $10^{n+1}$. For example, $2.4 \times 10^5$ has an order of magnitude of $10^5$, whereas $8.2 \times 10^5$ is closer to $10^6$, exhibiting a difference of nearly one order of magnitude.
+
+Order-of-magnitude analysis allows rapid verification of complex mathematical expressions and helps identify unit conversion errors. Consider the composite arithmetic expression:
+\begin{equation}
+Y = \frac{(138.4)\,(37900)}{0.002345}.
+\label{eq:order_practice}
+\end{equation}
+Converting each factor into normalized scientific notation yields:
+\begin{equation}
+Y = \frac{(1.384 \times 10^2)\,(3.790 \times 10^4)}{2.345 \times 10^{-3}} \approx \frac{(10^2)\,(10^4)}{10^{-3}} = 10^{2+4-(-3)} = 10^9.
+\label{eq:order_solution}
+\end{equation}
+Through inspection, the order of magnitude of the result is estimated to be $10^9$. Similarly, comparing the values $138.4$ and $37900$ reveals an offset of approximately two orders of magnitude ($\approx 10^{-2}$), while comparing $138.4$ against $0.002345$ reveals an offset of five orders of magnitude ($\approx 10^5$).
+
+\begin{table}[!htbp]
+\centering
+\caption{Standard SI multiplication prefixes, symbols, and decimal factors.}
+\label{tab:si_prefixes}
+\begin{tabular}{lllclll}
+\toprule
+Prefix & Symbol & Factor & \hspace{0.5cm} & Prefix & Symbol & Factor \\
+\midrule
+tera & $\text{T}$ & $10^{12}$ & & deci & $\text{d}$ & $10^{-1}$ \\
+giga & $\text{G}$ & $10^9$ & & centi & $\text{c}$ & $10^{-2}$ \\
+mega & $\text{M}$ & $10^6$ & & milli & $\text{m}$ & $10^{-3}$ \\
+kilo & $\text{k}$ & $10^3$ & & micro & $\mu$ & $10^{-6}$ \\
+hecto & $\text{h}$ & $10^2$ & & nano & $\text{n}$ & $10^{-9}$ \\
+deca & $\text{da}$ & $10^1$ & & pico & $\text{p}$ & $10^{-12}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+To navigate physical regimes without manipulating cumbersome powers of ten, the SI defines twenty-four standard decimal prefixes, a representative selection of which is compiled in Table~\ref{tab:si_prefixes}. These conversion factors allow physical phenomena to be expressed on convenient numerical scales. In biological systems, temporal dynamics span multiple scales: human development occurs over gigaseconds ($1\text{ Gs} = 10^9\text{ s}$), neuronal action potentials depolarize over milliseconds ($1\text{ ms} = 10^{-3}\text{ s}$), and organic fluorophore lifetimes decay over nanoseconds ($1\text{ ns} = 10^{-9}\text{ s}$).
+
+Similarly, spatial dimensions span wide dynamic ranges. Macroscopic organs and anatomical tissues occupy the centimetre to millimetre scale ($10^{-2}\text{ m}$ to $10^{-1}\text{ m}$); human height is around one to two metres ($10^0\text{ m}$); the width of a human hair is roughly one hundred micrometres ($10^{-4}\text{ m}$); single mammalian cells measure approximately ten to twenty micrometres ($10^{-5}\text{ m}$); unicellular bacteria span one to two micrometres ($10^{-6}\text{ m}$); sub-micron viral pathogens measure between ten and one hundred nanometres ($10^{-8}\text{ m}$ to $10^{-7}\text{ m}$); globular proteins measure five nanometres ($5 \times 10^{-9}\text{ m}$); and the double-helix diameter of DNA is approximately two nanometres ($2 \times 10^{-9}\text{ m}$). Because human visual perception is bounded by the resolving limit of the eye at the scale of a hair width ($\sim 10^{-4}\text{ m}$), examining structures below this threshold requires specialized instrumentation, such as optical microscopy, electron microscopy, atomic force microscopy, and spectroscopic analysis.
+
+Converting between prefixed units requires care when handling derived powers. Linear conversions evaluate the difference in exponential orders; for instance, converting $3.2\text{ mm}$ into micrometres proceeds by noting that milli corresponds to $10^{-3}$ and micro to $10^{-6}$, yielding $3.2 \times 10^3\text{ }\mu\text{m} = 3200\text{ }\mu\text{m}$. When converting volumetric or areal powers of units, the scale factor must be raised to the corresponding geometric exponent. For example, converting a volume of $20\text{ cm}^3$ into cubic metres requires expanding the prefix factor:
+\begin{equation}
+20\text{ cm}^3 = 20 \times (10^{-2}\text{ m})^3 = 20 \times 10^{-6}\text{ m}^3 = 2 \times 10^{-5}\text{ m}^3.
+\label{eq:volume_conversion}
+\end{equation}
+
+Adopting the SI framework is necessary, but by itself insufficient, to guarantee the reliability of an experimental measurement]. A measurement becomes meaningful only when it possesses metrological traceability. Metrological traceability is defined as the property of a measurement result whereby the result can be related to a recognized reference standard through a documented, unbroken chain of calibrations, each contributing to the stated measurement uncertainty.
+
+The calibration chain is organized as an unbroken hierarchical pyramid. At the apex reside the defining constants and primary realizations of the SI base units, maintained by international bodies and national metrology institutes. Below this level, national primary standards calibrate reference standards, which are subsequently used to calibrate secondary working standards maintained by calibration laboratories and industrial centers. These working standards are used to calibrate everyday measuring instruments, which finally generate experimental results.
+
+Traceability does not imply that an empirical result is error-free. Every calibration step introduces an additional source of uncertainty that must be quantified and propagated. An experimental result is traceable when it is linked to authoritative standards through an unbroken chain of documented calibrations, using validated procedures and specified calibration intervals. Ultimately, a scientific measurement is defined not merely by a numerical reading, but by the complete framework of its standardized unit, documented calibration path, and quantified uncertainty.
+
 %\backmatter
 
 \end{document}
