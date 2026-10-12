@@ -1,7 +1,5 @@
 \documentclass[letterpaper,11pt,leqno]{book}
 \usepackage{../../shared/common}
-\usepackage{subcaption}
-\usepackage{booktabs}
 
 % Book title to populate PDF metadata:
 \hypersetup{pdftitle={Sensors, Measurement Errors Data Management (Mod. B) - Lecture Notes}}
@@ -22,82 +20,160 @@
 \end{titlepage}
 
 \frontmatter
+\tableofcontents
 
 \mainmatter
 
-\chapter*{Sensors, Measurement Errors Data Management (Mod. B)}
+% =============================================================================
+% CHAPTER 1: FUNDAMENTAL PRINCIPLES OF METROLOGY
+% =============================================================================
+\chapter{Fundamental Principles of Metrology}
 
-Metrology constitutes the formal scientific framework dedicated to the theory and practice of measurement, establishing a universally agreed language of units, standards, and evaluation protocols. In empirical science, a physical quantity is defined as an operational property of a material body, physical system, or phenomenon that can be characterized quantitatively through direct or indirect evaluation. While direct evaluation entails the immediate comparison of a phenomenon with an established reference standard, many physical quantities cannot be observed in isolation. Subatomic constituents such as quarks, for example, cannot be isolated for direct interrogation; their quantitative properties are inferred indirectly through the measurable perturbations they induce within their surrounding environment.
+Metrology constitutes the formal scientific discipline dedicated to the theory and practice of measurement, establishing an internationally harmonized framework of units, standards, and evaluation protocols. In empirical science, an experimental observation acquires quantitative meaning only when interpreted through a rigorous measurement architecture. 
+
+\section{Physical Quantities and the Measurement Process}
+
+A \textbf{physical quantity} is formally defined as an operational property of a material body, physical system, or phenomenon that can be distinguished qualitatively and determined quantitatively. In laboratory practice, physical quantities are evaluated through either direct or indirect comparison:
+\begin{itemize}
+    \item \textbf{Direct measurement}: The unknown quantity is directly compared with a reference standard of the same nature (e.g., assessing length with a calibrated graduated scale).
+    \item \textbf{Indirect measurement}: The quantity of interest cannot be accessed directly in isolation and must be inferred through its deterministic coupling with other measurable physical variables.
+\end{itemize}
+\clearpage
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[page = 1,width=0.7\linewidth, keepaspectratio]{\pdf}
-\caption{The generalized metrological measurement chain.}
+\includegraphics[page = 1, width=0.7\linewidth, keepaspectratio]{\pdf}
+\caption{The generalized metrological measurement chain relating the measurand to the documented result.}
 \label{fig:metrology_chain}
 \end{figure}
 
-The relationship between the objective state of nature and the empirical output of an experiment is formalized through the target quantity, the measurement procedure, and the final reported result, as illustrated in Figure~\ref{fig:metrology_chain}. The target quantity, or measurand, represents the specific physical property intended to be determined, addressing the fundamental question of what is being investigated. The measurement represents the complete experimental sequence designed to extract quantitative information regarding the measurand, addressing how that value is ascertained. Crucially, an experimental outcome is never a standalone number; the result must be reported as a coherent ensemble consisting of a numerical value, an agreed unit of measurement, and an explicitly quantified uncertainty.
+The relationship between the objective state of nature and the empirical output of an experiment is structured through the measurement chain depicted in Figure~\ref{fig:metrology_chain}. The target quantity, or \textbf{measurand}, designates the specific physical property intended to be quantified. The \textbf{measurement procedure} represents the complete physical and analytical pipeline implemented to evaluate the measurand. Crucially, a measurement outcome is never an isolated scalar; a valid \textbf{measurement result} must always be reported as a triad comprising:
+\begin{equation}
+\text{Result} = \{ \text{Numerical Value}, \; \text{Standard Unit}, \; \text{Quantified Uncertainty} \}.
+\label{eq:measurement_result_triad}
+\end{equation}
 
-\begin{figure}[!htbp]
+\subsection{Indirect Measurements: The Bioimaging Calcium Archetype}
+
+A canonical archetype of an indirect measurement in modern biophysics is the quantification of intracellular free calcium concentration ($[\text{Ca}^{2+}]$) during neuronal signaling, illustrated in Figure~\ref{fig:calcium_measurement}. Intact living neurons do not permit direct non-invasive electrochemical probing of nanoscopic cytosolic domains without disrupting physiological membrane integrity.
+
+\begin{figure}[h]
 \centering
-\includegraphics[page=2, width=0.85\linewidth, keepaspectratio]{\pdf}
-\caption{Schematic representation of an indirect measurement chain in biological systems, exemplified by intracellular calcium concentration ($[\text{Ca}^{2+}]$) imaging. Neuronal activation promotes calcium influx through membrane channels, causing free ions to bind to a fluorescent indicator. The conformational change alters the fluorophore emission intensity, which is collected by an objective lens and digitized by a camera sensor. The recorded pixel intensity is subsequently converted via calibration curves into an absolute concentration value.}
+\includegraphics[page=2, width=0.6\linewidth, keepaspectratio]{\pdf}
+\caption{Schematic representation of an indirect measurement chain in biological systems, exemplified by intracellular calcium concentration ($[\text{Ca}^{2+}]$) imaging. Neuronal activation promotes calcium influx through membrane channels, causing free ions to bind to a fluorescent indicator. The conformational change alters fluorophore emission intensity, which is collected by an objective lens and digitized by a camera sensor. Recorded pixel values are subsequently converted via calibration curves into an absolute concentration value.}
 \label{fig:calcium_measurement}
 \end{figure}
 
-A foundational archetype of an indirect measurement is the quantification of intracellular calcium dynamics in neuronal physiology, depicted in Figure~\ref{fig:calcium_measurement}. During neuronal excitation, calcium ions ($\text{Ca}^{2+}$) enter the cytoplasmic space. Direct electrochemical quantification of the free intracellular calcium concentration is technically prohibitive in intact living specimens; consequently, researchers introduce a exogenous or genetically encoded fluorescent indicator that selectively binds $\text{Ca}^{2+}$. This binding event alters the optical quantum yield or fluorescence emission spectra of the dye[cite: 13]. Photons emitted by the indicator are focused through a fluorescence microscope objective and registered by an imaging detector, which digitizes the incident photon flux into spatial arrays of numerical pixel values. In this experimental sequence, the measurand is the intracellular calcium concentration $[\text{Ca}^{2+}]$, the intermediate optical signal is the fluorescence intensity or intensity ratio, the measurement apparatus encompasses the indicator chemistry combined with the optical microscope detector, and the final result is an estimated concentration, such as $250\text{ nM}$, accompanied by its experimental uncertainty. The calcium concentration itself is never directly touched; it is reconstructed through mathematical models, optical calibration, and detector characterization.
+To circumvent this limitation, investigators introduce synthetic or genetically encoded fluorescent indicators into the cytosol. The measurement proceeds through a cascade of physical transductions:
+\begin{itemize}
+    \item \textbf{Biochemical transduction}: Free $\text{Ca}^{2+}$ ions bind selectively to the indicator binding domain, inducing conformational rearrangements that modulate the fluorophore quantum yield or spectral emission.
+    \item \textbf{Optical collection and digitization}: Emitted photons are collected by an objective lens, spectrally isolated by optical filters, and focused onto an array detector (such as an sCMOS or EMCCD camera), which digitizes the incident photon flux into spatial arrays of digital counts.
+    \item \textbf{Analytical reconstruction}: Empirical pixel intensities are converted into an absolute chemical concentration ($[\text{Ca}^{2+}] \approx 250\text{ nM}$) by applying calibrated binding isotherms and background subtraction algorithms.
+\end{itemize}
+In this pipeline, the measurand is $[\text{Ca}^{2+}]$, the intermediate observable is a digitized photon flux, and the final reported value depends entirely on detector calibration and mathematical modeling.
 
-To transform an experimental observation into a reliable quantitative measurement, three interdependent metrological criteria must be fulfilled. First, the scientific community requires an unambiguous measurement language, providing standardized units, symbols, conventions, and reference procedures that permit observations performed in disparate geographic locations to be mutually intelligible and reproducible. Second, the measurement procedure must be rigorously documented, operating through calibrated instruments under systematically monitored environmental conditions. Third, an uncertainty evaluation must be executed to identify every potential source of variability and quantify its analytical influence on the final result. Measurement is fundamentally an operation of comparison against an accepted reference standard, and metrology provides the scaffolding that makes such comparisons universally valid.
+\subsection{Essential Metrological Criteria}
 
-A measurement standard is an authoritative physical realization or operational reference that serves to define, realize, conserve, or reproduce the value of a physical quantity, acting as the ultimate benchmark for comparison. Measurement standards exist within an organized institutional hierarchy structured into international standards, national standards, and working standards. International standards provide the highest level of worldwide reference, establishing the global framework necessary to ensure international comparability. National metrology institutes physically realize and preserve primary measurement standards within each sovereign state, translating international definitions into physical laboratory custody. Working standards represent the calibrated devices routinely employed in industrial environments, analytical laboratories, healthcare facilities, and academic institutions to verify everyday measurement apparatus.
+Transforming an empirical observation into a reliable, scientifically valid datum requires fulfilling three interdependent metrological criteria:
+\begin{itemize}
+    \item \textbf{Standardized measurement language}: A globally ratified vocabulary of units, symbols, and conventions ensuring that experimental results obtained across independent laboratories are mutually intelligible.
+    \item \textbf{Documented measurement procedure}: Comprehensive specification of the instrument calibration state, operating environmental conditions (temperature, pressure, humidity), and analytical conversion models.
+    \item \textbf{Uncertainty evaluation}: Explicit identification of all random and systematic sources of experimental dispersion, providing a quantitative measure of confidence in the reported result.
+\end{itemize}
 
-The governance of international measurement rests upon an institutional triad created under the diplomatic framework of the Metre Convention. The General Conference on Weights and Measures (\emph{Conférence Générale des Poids et Mesures}, CGPM) constitutes the supreme policy-making body, bringing together diplomatic delegates from all member states to ratify major structural modifications to the International System of Units (SI). The International Committee for Weights and Measures (\emph{Comité International des Poids et Mesures}, CIPM) operates under the authority of the CGPM, executing scientific coordination, supervising metrological advances, and formulating recommendations. The International Bureau of Weights and Measures (\emph{Bureau International des Poids et Mesures}, BIPM) functions as the permanent scientific and administrative headquarters located in Sèvres, France, serving as the technical center for global measurement comparability. These central bodies do not calibrate individual laboratory sensors directly; instead, they maintain the international legal and physical framework that guarantees equivalence among national measurement systems.
+\section{Hierarchy of Standards and Global Governance}
 
-Dissemination below the global apex is mediated by Regional Metrology Organizations, such as the European Association of National Metrology Institutes (EURAMET), the Inter-American Metrology System (SIM), the Asia Pacific Metrology Programme (APMP), and the Intra-Africa Metrology System (AFRIMETS). EURAMET coordinates national metrology institutes across Europe, organizing rigorous interlaboratory comparisons to confirm that national realizations of physical units maintain mutual equivalence. Within individual nations, dedicated institutes maintain and disseminate these references, exemplified by the National Institute of Standards and Technology (NIST) in the United States and the \emph{Istituto Nazionale di Ricerca Metrologica} (INRIM) in Italy. The preservation of this global structure is vital because an empirical measurement possesses utility only when external observers can interpret, reproduce, and compare it. Disparate records, such as room temperature readings of $23.4^\circ\text{C}$, $296.6\text{ K}$, and $23^\circ\text{C}$ reported by different research groups, cannot be reconciled unless units, operational conditions, and uncertainty bounds are rigorously aligned.
+A \textbf{measurement standard} is an authoritative physical realization or operational reference established to define, realize, conserve, or reproduce the value of a physical quantity. Standards exist within an unbroken operational hierarchy that guarantees traceability worldwide.
 
-The International System of Units provides a metric framework designed for the quantitative comparison of homogeneous physical quantities. The system is built upon four structural components: seven fundamental base units, twenty-two derived units possessing special names and symbols, seven defining physical constants assigned exact numerical values, and twenty-four metric multiplication factors employed as standard prefixes. Historically, the selection of physical units was governed by the availability of immediate reference standards and the experimental precision with which homogeneous quantities could be directly compared. Early human civilizations relied upon anatomical references, such as the Egyptian cubit, the foot, and the thumb width. While anatomically derived references possessed the advantage of immediate accessibility, they suffered from significant intrinsic variability from individual to individual.
+\subsection{The Metrological Pyramid}
 
-To eliminate subjective variability, metrologists transitioned toward artificial material standards. The meter was originally defined as one forty-millionth of the length of the Earth's meridian passing through Paris, a definition later materialized into a physical standard bar constructed from a highly stable platinum-iridium alloy and conserved under controlled conditions. Similarly, the unit of mass was preserved for over a century by the International Prototype of the Kilogram, an artefact cylinder kept in a subterranean vault in France. Nevertheless, physical artefacts exhibit unavoidable long-term limitations; they are susceptible to surface contamination, physical damage, environmental degradation, and subtle microscopic mass drift over decadal timescales.
+The dissemination of measurement standards is organized into three distinct tiers:
+\begin{itemize}
+    \item \textbf{International standards}: The highest reference tier globally, ratified by international diplomatic treaty to ensure worldwide equivalence among sovereign states.
+    \item \textbf{National standards}: Primary physical realizations maintained within National Metrology Institutes (NMIs), translating international definitions into physical custody.
+    \item \textbf{Working standards}: Calibrated reference instruments maintained in analytical, industrial, and academic laboratories, used for routine calibration of experimental apparatus.
+\end{itemize}
+
+\subsection{International Governance and Regional Infrastructure}
+
+Global metrological comparability is governed by an institutional triad established under the diplomatic framework of the \textbf{Metre Convention}:
+\begin{itemize}
+    \item \textbf{General Conference on Weights and Measures (\emph{CGPM})}: The supreme diplomatic decision-making body, composed of governmental delegates from all member states, which ratifies structural revisions to the International System of Units.
+    \item \textbf{International Committee for Weights and Measures (\emph{CIPM})}: An executive committee of scientific experts that executes coordination, supervises metrological research, and drafts formal resolutions for the CGPM.
+    \item \textbf{International Bureau of Weights and Measures (\emph{BIPM})}: The permanent scientific headquarters located in Sèvres, France, serving as the international center for physical metrology and interlaboratory comparisons.
+\end{itemize}
+
+These international organs do not calibrate commercial sensors directly; instead, they maintain the legal and physical framework ensuring equivalence across \textbf{Regional Metrology Organizations} (such as EURAMET in Europe, SIM in the Americas, and APMP in Asia-Pacific). Within national borders, dedicated institutes maintain primary standards, such as the National Institute of Standards and Technology (\textbf{NIST}) in the United States and the \emph{Istituto Nazionale di Ricerca Metrologica} (\textbf{INRIM}) in Italy. These institutes provide primary data, such as atomic transition databases and reference materials, ensuring rigorous reproducibility.
+
+The necessity of this global structure is illustrated by considering four research groups reporting laboratory ambient temperatures as $23.4^\circ\text{C}$, $296.6\text{ K}$, $23^\circ\text{C}$, and $(23.4 \pm 0.1)^\circ\text{C}$. Without standardized units, documented calibrations, and explicit uncertainty intervals, these observations cannot be quantitatively compared, undermining scientific and commercial reliability.
+
+% =============================================================================
+% CHAPTER 2: THE REVISED INTERNATIONAL SYSTEM OF UNITS (SI)
+% =============================================================================
+\chapter{The Revised International System of Units (SI)}
+
+The \textbf{International System of Units} (SI) provides the foundational metric architecture designed for the quantitative comparison of homogeneous physical quantities. It is structured upon four operational components: seven defining physical constants, seven fundamental base units, twenty-two derived units with special names, and twenty-four decimal multiplication prefixes.
+
+\section{The 2019 Paradigm Shift: Defining Constants}
+
+Historically, measurement units relied upon human anatomical references (such as the cubit, foot, and thumb width). While readily accessible, these standards suffered from extreme individual variability. Metrology subsequently transitioned toward macroscopic physical artefacts:
+\begin{itemize}
+    \item The \textbf{metre} was initially defined as one forty-millionth of the Earth's meridian passing through Paris, and later materialized as a platinum-iridium prototype bar.
+    \item The \textbf{kilogram} was defined for over 130 years by the International Prototype of the Kilogram (\emph{IPK}), a platinum-iridium cylinder stored in a subterranean vault at the BIPM.
+\end{itemize}
+Physical artefacts exhibit fundamental limitations: they are vulnerable to surface contamination, physical wear, environmental degradation, and drift over decadal timescales.
 \clearpage
 
-\begin{table}[h]
-\caption{The seven defining constants of the revised International System of Units, their assigned exact numerical values, associated units, and the base units they define.}
-\begin{tabular*}{\textwidth}[]{p{4.2cm}@{\extracolsep\fill}cccc}
+\begin{table}[!htbp]
+\centering
+\caption{The seven defining constants of the revised SI, their exact fixed numerical values, units, and the base units they define.}
+\label{tab:si_constants}
+\begin{tabular*}{\textwidth}{p{4.4cm}@{\extracolsep\fill}cccc}
 \toprule
-& \multicolumn{2}{c}{Constant Specification} & \multicolumn{2}{c}{Unit Association} \\
-\cmidrule{2-3}\cmidrule{4-5}
 Defining Constant & Symbol & Numerical Value & SI Unit & Base Unit Defined \\
 \midrule
-Hyperfine transition frequency of $^{133}\text{Cs}$ & $\Delta \nu_{\text{Cs}}$ & $9\,192\,631\,770$ & $\text{Hz} = \text{s}^{-1}$ & Second ($\text{s}$) \\
+Hyperfine transition of $^{133}\text{Cs}$ & $\Delta \nu_{\text{Cs}}$ & $9\,192\,631\,770$ & $\text{Hz} = \text{s}^{-1}$ & Second ($\text{s}$) \\
 Speed of light in vacuum & $c$ & $299\,792\,458$ & $\text{m}\cdot\text{s}^{-1}$ & Metre ($\text{m}$) \\
-Planck constant & $h$ & $6.626\,070\,15 \times 10^{-34}$ & $\text{J}\cdot\text{s} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-1}$ & Kilogram ($\text{kg}$) \\
+Planck constant & $h$ & $6.626\,070\,15 \times 10^{-34}$ & $\text{J}\cdot\text{s}$ & Kilogram ($\text{kg}$) \\
 Elementary charge & $e$ & $1.602\,176\,634 \times 10^{-19}$ & $\text{C} = \text{A}\cdot\text{s}$ & Ampere ($\text{A}$) \\
-Boltzmann constant & $k_{\text{B}}$ & $1.380\,649 \times 10^{-23}$ & $\text{J}\cdot\text{K}^{-1} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2}\cdot\text{K}^{-1}$ & Kelvin ($\text{K}$) \\
+Boltzmann constant & $k_{\text{B}}$ & $1.380\,649 \times 10^{-23}$ & $\text{J}\cdot\text{K}^{-1}$ & Kelvin ($\text{K}$) \\
 Avogadro constant & $N_{\text{A}}$ & $6.022\,140\,76 \times 10^{23}$ & $\text{mol}^{-1}$ & Mole ($\text{mol}$) \\
-Luminous efficacy at $540\times 10^{12}\text{ Hz}$ & $K_{\text{cd}}$ & $683$ & $\text{lm}\cdot\text{W}^{-1} = \text{cd}\cdot\text{sr}\cdot\text{kg}^{-1}\cdot\text{m}^{-2}\cdot\text{s}^{3}$ & Candela ($\text{cd}$) \\
+Luminous efficacy at $540\text{ THz}$ & $K_{\text{cd}}$ & $683$ & $\text{lm}\cdot\text{W}^{-1}$ & Candela ($\text{cd}$) \\
 \bottomrule
 \end{tabular*}
-\note{Values and unit definitions reflect the 2019 SI redefinition.}
-\label{tab:si_constants}
+\note{Numerical values reflect the 2019 SI redefinition ratified by the 26th CGPM.}
 \end{table}
 
-The landmark 2019 revision of the SI fundamentally resolved the instabilities inherent to physical artefacts by inverting the relationship between units and physical constants. Rather than using material objects or specific macroscopic phenomena to define the units and subsequently measuring fundamental constants with an experimental uncertainty, the international community fixed the exact numerical values of seven universal physical constants of nature. Under this paradigm, summarized in Table~\ref{tab:si_constants}, the magnitudes of the base units are established precisely so that these universal constants assume their fixed numerical values without uncertainty.
+The landmark 2019 revision of the SI resolved these artefact instabilities by inverting the relationship between units and fundamental constants. Rather than defining units through material objects and measuring fundamental constants with an associated experimental uncertainty, the international community fixed the exact numerical values of \textbf{seven defining physical constants}, compiled in Table~\ref{tab:si_constants}. Under this architecture, base units are defined operationally so that these universal invariants assume their exact values without uncertainty.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[page=3, width=0.5\linewidth, keepaspectratio]{\pdf}
-\caption{Interdependency network of the SI base units following the 2019 revision. Each base unit is linked to its primary defining constant of nature, with directional arrows tracing the propagation of definitions across the system.}
+\includegraphics[page=3, width=0.55\linewidth, keepaspectratio]{\pdf}
+\caption{Interdependency network of the SI base units following the 2019 revision. Directional arrows illustrate how definitions propagate from fixed fundamental constants across base units.}
 \label{fig:si_dependencies}
 \end{figure}
 
-The modern operational realization of the SI creates a clear hierarchy of unit dependencies, visualized in Figure~\ref{fig:si_dependencies}. The Caesium-133 hyperfine transition frequency fixes the second. Once the second is operational, the exact value of the speed of light fixes the meter. The combination of the second, the meter, and the fixed Planck constant uniquely defines the kilogram. The elementary charge, combined with the second, fixes the ampere. The kelvin is defined by fixing the Boltzmann constant in conjunction with the kilogram, metre, and second. The mole is realized independently through the exact Avogadro constant, while the candela is linked to the watt and steradian via the luminous efficacy constant.
+The modern operational realization generates an interdependent network of unit derivations, illustrated in Figure~\ref{fig:si_dependencies}:
+\begin{itemize}
+    \item The transition frequency $\Delta \nu_{\text{Cs}}$ defines the \textbf{second}.
+    \item The speed of light $c$, combined with the second, defines the \textbf{metre}.
+    \item The Planck constant $h$, combined with the second and the metre, defines the \textbf{kilogram}.
+    \item The elementary charge $e$, combined with the second, defines the \textbf{ampere}.
+    \item The Boltzmann constant $k_{\text{B}}$, combined with the kilogram, metre, and second, defines the \textbf{kelvin}.
+    \item The Avogadro constant $N_{\text{A}}$ defines the \textbf{mole} independently of mass.
+    \item The luminous efficacy $K_{\text{cd}}$ defines the \textbf{candela} through the watt and steradian.
+\end{itemize}
 
-\begin{table}[t]
-\caption{The seven base physical quantities of the SI, their conventional physical dimensions, the corresponding base units, and their standardized symbols.}
-\begin{tabular*}{\textwidth}[]{p{4.5cm}@{\extracolsep\fill}ccc}
+\section{Base Quantities, Dimensions, and Typographic Rules}
+
+The SI recognizes seven base physical quantities, each assigned a conventional physical dimension under ISO/IEC 80000 guidelines, as detailed in Table~\ref{tab:si_base_units}.
+
+\begin{table}[!htbp]
+\centering
+\caption{The seven base physical quantities of the SI, their dimensions, and standardized base units.}
+\label{tab:si_base_units}
+\begin{tabular*}{\textwidth}{p{4.5cm}@{\extracolsep\fill}ccc}
 \toprule
-& \multicolumn{1}{c}{Dimensionality} & \multicolumn{2}{c}{SI Base Unit} \\
-\cmidrule{2-2}\cmidrule{3-4}
 Physical Quantity & Dimension & Base Unit & Unit Symbol \\
 \midrule
 Time & $\text{T}$ & second & $\text{s}$ \\
@@ -109,71 +185,80 @@ Amount of substance & $\text{N}$ & mole & $\text{mol}$ \\
 Luminous intensity & $\text{J}$ & candela & $\text{cd}$ \\
 \bottomrule
 \end{tabular*}
-\note{Base quantities and dimensions follow ISO/IEC 80000 guidelines.}
-\label{tab:si_base_units}
 \end{table}
 
-The primary physical dimensions corresponding to these seven base quantities are summarized in Table~\ref{tab:si_base_units}. In scientific discourse, rigorous typographic rules govern the expression of these quantities. Physical quantity symbols are represented exclusively by italic characters, whereas unit symbols must always remain upright. For instance, in an expression denoting a distance $D = 2.50\text{ mm}$, the quantity identifier $D$ is italicized, the numerical value $2.50$ expresses the measured magnitude, and the unit $\text{mm}$ is written in upright font. A mandatory space must separate the numerical value from the unit symbol, and unit symbols must never be pluralized with an appended letter, meaning five kilograms is strictly rendered as $5\text{ kg}$ rather than $5\text{ kgs}$.
-\clearpage
+Rigorous typographical conventions govern the expression of measurement results:
+\begin{itemize}
+    \item \textbf{Font formatting}: Symbols representing physical quantities are formatted exclusively in italic type ($D, m, t$), whereas symbols for units are formatted strictly in upright (roman) type ($\text{m}, \text{kg}, \text{s}$). The dimensional symbol for luminous intensity is $\text{J}$ (upright sans-serif or roman), which must not be confused with the unit joule ($\text{J}$).
+    \item \textbf{Spacing}: A non-breaking space must separate the numerical value from the unit symbol (e.g., $2.50\text{ mm}$, not $2.50\text{mm}$).
+    \item \textbf{Invariance}: Unit symbols are mathematical entities and must never be pluralized with an appended ``s'' (e.g., $5\text{ kg}$, never $5\text{ kgs}$).
+\end{itemize}
 
-\section*{Realization of the Fundamental Base Units}
+\section{Realization of the Fundamental Base Units}
 
-\subsection*{Second (s)}
+\subsection{The Second: Caesium Hyperfine Resonance}
 
-The SI unit of time, the second ($\text{s}$), is defined by taking the fixed numerical value of the Caesium-133 ground-state hyperfine transition frequency $\Delta \nu_{\text{Cs}}$ to be exactly $9\,192\,631\,770$ when expressed in the coherent unit $\text{Hz}$, which is equivalent to $\text{s}^{-1}$:
+The \textbf{second} ($\text{s}$) is defined by taking the fixed numerical value of the Caesium-133 unperturbed ground-state hyperfine transition frequency $\Delta \nu_{\text{Cs}}$ to be exactly $9\,192\,631\,770$ when expressed in $\text{Hz}$ ($\text{s}^{-1}$):
 \begin{equation}
 \Delta \nu_{\text{Cs}} = 9\,192\,631\,770\text{ s}^{-1}.
-\label{eq:caesium_definition}
+\label{eq:second_def}
 \end{equation}
-In Equation~\eqref{eq:caesium_definition}, $\Delta \nu_{\text{Cs}}$ denotes the transition frequency of unperturbed ground-state $^{133}\text{Cs}$ atoms, possessing the dimension of inverse time ($\text{T}^{-1}$) and the SI unit of hertz ($\text{Hz}$). Consequently, the duration of one second corresponds exactly to the time required for $9\,192\,631\,770$ oscillation periods of the electromagnetic radiation emitted during this specific quantum transition. A single period $T$ of this resonant microwave field corresponds to an interval of approximately $1.09 \times 10^{-10}\text{ s}$, with a free-space wavelength of roughly $3.26\text{ cm}$.
+One second corresponds to the duration of $9\,192\,631\,770$ oscillation periods of the electromagnetic microwave radiation resonant with this quantum transition. The duration of a single microwave oscillation cycle is $T \approx 1.088 \times 10^{-10}\text{ s}$, with a free-space wavelength of $\lambda \approx 3.26\text{ cm}$.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[page=4, width=0.55\linewidth, keepaspectratio]{\pdf}
-\caption{Operational architecture of a Caesium-133 primary atomic clock. An internal microwave oscillator irradiates caesium atoms confined in a high-vacuum chamber. When the microwave frequency approaches the atomic resonance at $9.192\,631\,770\text{ GHz}$, the transition probability between the $F=3$ and $F=4$ hyperfine levels is maximized. A state-selective detector registers transition rates and generates an error signal in a feedback loop, locking the oscillator directly to the atomic resonance. High-speed electronic frequency divider circuits reduce the stabilized microwave oscillations down to an exact $1\text{ Hz}$ output pulse train.}
+\includegraphics[page=4, width=0.58\linewidth, keepaspectratio]{\pdf}
+\caption{Operational architecture of a Caesium-133 primary atomic clock. An internal microwave oscillator probes caesium atoms confined in an ultra-high vacuum chamber. When the oscillator matches the atomic resonance at $9.192\,631\,770\text{ GHz}$, transition probability between the $F=3$ and $F=4$ states is maximized. A state-selective detector generates an error signal in a feedback loop, locking the local oscillator to the atomic transition. A high-speed digital frequency divider synthesizes an exact $1\text{ Hz}$ output pulse train.}
 \label{fig:cesium_clock}
 \end{figure}
 
-Caesium-133 was selected as the universal atomic frequency standard due to specific spectroscopic and atomic properties. First, $^{133}\text{Cs}$ is the sole stable, naturally occurring isotope of caesium, providing an identical physical medium accessible to metrology laboratories worldwide. Second, as an alkali metal possessing a symmetric core of 54 electrons surrounded by a single $6s$ valence electron, its ground electronic state $^{2}\text{S}_{1/2}$ exhibits a well-characterized hyperfine splitting. The nuclear spin of $^{133}\text{Cs}$ is $I = 7/2$, which couples vectorially with the total electronic angular momentum $J = 1/2$ to produce two hyperfine ground states characterized by total angular momentum quantum numbers $F = I + J = 4$ and $F = I - J = 3$. In the absence of an external magnetic field ($B = 0$), the clock transition between the magnetic sub-levels $(F = 3, m_F = 0)$ and $(F = 4, m_F = 0)$ exhibits no first-order Zeeman shift, rendering it exceptionally reproducible and insensitive to stray environmental fields. Third, the transition frequency of approximately $9.19\text{ GHz}$ falls within the microwave spectrum, a regime where electronic synthesizers can scan, stabilize, and lock signals with high precision, as shown in Figure~\ref{fig:cesium_clock}.
+Caesium-133 was selected as the universal primary frequency reference due to well-defined physical characteristics:
+\begin{itemize}
+    \item $^{133}\text{Cs}$ is the sole naturally occurring stable isotope of caesium, providing an identical physical medium worldwide.
+    \item As an alkali metal with a single valence electron ($6s^1$), its ground state $^{2}\text{S}_{1/2}$ exhibits a simple, clean hyperfine structure. The nuclear spin $I = 7/2$ couples with total electronic angular momentum $J = 1/2$, splitting the ground state into two hyperfine levels with total angular momentum quantum numbers $F = 4$ and $F = 3$.
+    \item In the absence of an external magnetic field ($B = 0$), the clock transition between magnetic sublevels $(F=3, m_F=0) \longleftrightarrow (F=4, m_F=0)$ exhibits no first-order Zeeman shift, rendering it insensitive to environmental magnetic perturbations.
+    \item The transition frequency falls within the microwave spectrum ($\approx 9.19\text{ GHz}$), a frequency band that can be readily synthesized, locked, and counted with modern electronic instrumentation, as shown in Figure~\ref{fig:cesium_clock}.
+\end{itemize}
 
-The physical handling of elemental caesium presents significant experimental challenges. Caesium has a density of $1.9\text{ g}\cdot\text{cm}^{-3}$ and a melting point of $28.4^\circ\text{C}$, meaning that it liquefies slightly above standard room temperature, boiling at $671^\circ\text{C}$. It is an exceptionally reactive metal that reacts spontaneously with atmospheric oxygen to form surface oxides, primarily caesium superoxide and suboxides:
+Physical caesium is an alkali metal characterized by extreme chemical reactivity. It has a low melting point ($28.4^\circ\text{C}$), liquefying just above room temperature. Caesium reacts spontaneously with atmospheric oxygen to form surface oxides:
 \begin{equation}
-4\,\text{Cs} + \text{O}_2 \longrightarrow 2\,\text{Cs}_2\text{O}.
-\label{eq:cesium_oxygen}
+4\,\text{Cs} + \text{O}_2 \longrightarrow 2\,\text{Cs}_2\text{O},
+\label{eq:cesium_oxide}
 \end{equation}
-Furthermore, caesium reacts violently with moisture, liberating substantial exothermic heat and gaseous hydrogen:
+and reacts explosively with liquid water and atmospheric moisture:
 \begin{equation}
 2\,\text{Cs} + 2\,\text{H}_2\text{O} \longrightarrow 2\,\text{CsOH} + \text{H}_2\uparrow.
-\label{eq:cesium_water}
+\label{eq:cesium_water_reaction}
 \end{equation}
-The hydrogen produced by Equation~\eqref{eq:cesium_water} can ignite spontaneously due to the extreme heat of the reaction, posing fire and explosion hazards. Consequently, atomic frequency standards must maintain caesium under ultra-high vacuum conditions to eliminate chemical contamination and collisional broadening.
-\clearpage
-\subsection*{Metre (m)}
-The metre ($\text{m}$) is defined by fixing the exact numerical value of the speed of light in vacuum $c$ to be $299\,792\,458$ when expressed in the coherent SI unit $\text{m}\cdot\text{s}^{-1}$:
+Because the liberated hydrogen gas can ignite spontaneously from the reaction exothermicity, atomic clocks must interrogate caesium under ultra-high vacuum conditions to prevent contamination, chemical destruction, and collisional line broadening.
+
+\subsection{The Metre: Speed of Light in Vacuum}
+
+The \textbf{metre} ($\text{m}$) is defined by taking the fixed numerical value of the speed of light in vacuum $c$ to be exactly $299\,792\,458$ when expressed in $\text{m}\cdot\text{s}^{-1}$:
 \begin{equation}
 c = 299\,792\,458\text{ m}\cdot\text{s}^{-1}.
-\label{eq:speed_of_light}
+\label{eq:speed_of_light_def}
 \end{equation}
-In Equation~\eqref{eq:speed_of_light}, $c$ is the universal constant representing the speed of propagation of electromagnetic radiation in vacuum, with physical dimension $\text{L}\text{T}^{-1}$. By fixing $c$, length is formally defined through the transit time of light. Once the temporal duration of the second is fixed by the caesium standard, the metre is realized as the spatial path length traversed by an electromagnetic wave in vacuum during a time interval $\Delta t$ equal to exactly $1 / 299\,792\,458$ of a second, which corresponds to approximately $3.3356\text{ ns}$:
+By defining $c$, length is established directly through the transit time of light. The metre corresponds to the path length traversed by an electromagnetic wave in vacuum during a time interval of $\Delta t = 1 / 299\,792\,458\text{ s} \approx 3.3356\text{ ns}$:
 \begin{equation}
 d = c\,\Delta t = 1\text{ m}.
 \label{eq:metre_realization}
 \end{equation}
-This operational definition enables consistent dimensional scaling across multiple orders of magnitude, ranging from biological nanostructures such as viral particles ($100\text{ nm}$), to individual mammalian cells ($10\text{ }\mu\text{m}$ to $20\text{ }\mu\text{m}$), up to macroscopic geographic ($10^3\text{ m}$) and planetary scales ($10^6\text{ m}$).
 
+\clearpage
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[page=5, width=\linewidth, height=3.5cm, keepaspectratio]{\pdf}
-        \caption{$\text{nm}$, Viruses}
+        \caption{$\text{nm}$, Biological viruses}
         \label{fig:scale_nm}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[page=6, width=\linewidth, height=3.5cm, keepaspectratio]{\pdf}
-        \caption{$\mu\text{m}$, Cell diameter}
+        \caption{$\mu\text{m}$, Mammalian cell diameter}
         \label{fig:scale_um}
     \end{subfigure}
     
@@ -182,67 +267,57 @@ This operational definition enables consistent dimensional scaling across multip
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[page=7, width=\linewidth, height=3.5cm, keepaspectratio]{\pdf}
-        \caption{$\text{km}$, cities}
+        \caption{$\text{km}$, Urban dimensions}
         \label{fig:scale_km}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[page=8, width=\linewidth, height=3.5cm, keepaspectratio]{\pdf}
-        \caption{$\text{Mm}$, planetary}
+        \caption{$\text{Mm}$, Planetary dimensions}
         \label{fig:scale_mm}
     \end{subfigure}
     
-    \caption{Dimensional scaling of the metre across different orders of magnitude, from biological nanostructures to planetary dimensions.}
+    \caption{Dimensional scaling of the metre across physical scales, spanning biological nanostructures to planetary dimensions.}
     \label{fig:dimensional_scaling}
 \end{figure}
 
-\subsection*{Ampere (A)}
-The ampere ($\text{A}$) is the SI base unit of electric current. Prior to the 2019 redefinition, the ampere was defined through the mechanical force generated between two infinitely long, parallel, current-carrying conductors in vacuum separated by a distance $r = 1\text{ m}$. For conductors carrying equal currents $I_1 = I_2 = 1\text{ A}$, the electromagnetic force per unit length $F/L$ was defined by:
+This definition enables consistent dimensional scaling across numerous orders of magnitude, as illustrated in Figure~\ref{fig:dimensional_scaling}, connecting viral capsids ($10^{-8}\text{ m}$ to $10^{-7}\text{ m}$), eukaryotic cell bodies ($10^{-5}\text{ m}$), and macroscopic geographical structures ($10^3\text{ m}$ to $10^6\text{ m}$).
+
+\subsection{The Ampere: Elementary Charge and the Millikan Experiment}
+
+The \textbf{ampere} ($\text{A}$) is the SI base unit of electric current. Historically, the ampere was defined through the mechanical force per unit length $F/L$ exerted between two infinite parallel current-carrying conductors in vacuum separated by $r = 1\text{ m}$:
 \begin{equation}
 \frac{F}{L} = \frac{\mu_0\,I_1\,I_2}{2\pi\,r} = 2 \times 10^{-7}\text{ N}\cdot\text{m}^{-1},
 \label{eq:ampere_historical}
 \end{equation}
-where $\mu_0$ denotes the magnetic permeability of vacuum. This historical formulation fixed the vacuum permeability to an exact analytical value of $\mu_0 = 4\pi \times 10^{-7}\text{ N}\cdot\text{A}^{-2}$, whereas the elementary charge $e$ remained an experimentally measured quantity subject to empirical uncertainty.
+which fixed the vacuum magnetic permeability to an exact analytical value of $\mu_0 = 4\pi \times 10^{-7}\text{ N}\cdot\text{A}^{-2}$, while the elementary charge $e$ remained an experimentally measured quantity with experimental uncertainty.
 
-Since 2019, the ampere is defined by fixing the exact numerical value of the elementary charge $e$ to be $1.602\,176\,634 \times 10^{-19}$ when expressed in coulombs ($\text{C}$), which is equivalent to ampere-seconds ($\text{A}\cdot\text{s}$):
+Under the 2019 SI framework, the ampere is defined by fixing the exact numerical value of the \textbf{elementary charge} $e$ to be $1.602\,176\,634 \times 10^{-19}\text{ C}$ ($\text{A}\cdot\text{s}$):
 \begin{equation}
 e = 1.602\,176\,634 \times 10^{-19}\text{ A}\cdot\text{s}.
-\label{eq:elementary_charge}
+\label{eq:elementary_charge_def}
 \end{equation}
-Electric current represents the time rate of charge transport through a defined boundary, $i = Q/t$. By combining the exact elementary charge with the fixed second, one ampere represents an electric current corresponding to a net flow of $1 / (1.602\,176\,634 \times 10^{-19})$ elementary charges per second. A major consequence of this modern redefinition is that $\mu_0$ is no longer fixed by convention. Instead, it is related to the experimentally determined fine-structure constant $\alpha$ through:
+Electric current represents the time rate of charge transport across a surface ($i = dQ/dt$). One ampere corresponds to a net flux of $1 / (1.602\,176\,634 \times 10^{-19}) \approx 6.2415 \times 10^{18}$ elementary charges per second. Under this redefinition, $\mu_0$ is no longer an invariant by decree; it is related to the experimentally measured fine-structure constant $\alpha$ through:
 \begin{equation}
-\alpha = \frac{\mu_0\,e^2\,c}{2\,h} \implies \mu_0 = \frac{2\,\alpha\,h}{e^2\,c},
+\alpha = \frac{\mu_0\,e^2\,c}{2\,h} \implies \mu_0 = \frac{2\,\alpha\,h}{e^2\,c}.
 \label{eq:mu0_derivation}
 \end{equation}
-where $\alpha$ is dimensionless, $h$ is the Planck constant, $e$ is the elementary charge, and $c$ is the speed of light. Because $h$, $e$, and $c$ are exact constants, any experimental uncertainty in $\mu_0$ now derives directly from the measurement uncertainty of $\alpha$.
+Because $h$, $e$, and $c$ are exact defining constants, the experimental uncertainty in $\mu_0$ is determined entirely by the measurement uncertainty of $\alpha$.
 
-The empirical foundation for the discrete, quantized nature of electric charge was established by Robert Millikan in 1910 through his oil-drop experiment, the overall architecture of which is depicted in Figure~\ref{fig:millikan_complete}. Millikan addressed the fundamental question of whether electric charge constitutes a continuous fluid or is composed of discrete, identical sub-units. As illustrated in the conceptual scheme of Figure~\ref{fig:millikan_idea}, microscopic oil droplets were atomized into an enclosed chamber and subjected to ionizing radiation, causing individual droplets to acquire net electrostatic charges. The droplets were introduced into a region between two parallel conductive plates separated by a fixed distance $d$, across which an adjustable electrical potential difference $V$ could be applied to generate a uniform vertical electric field.
-
-The dynamical state of an individual droplet is governed by the equilibrium of vertical forces detailed in Figure~\ref{fig:millikan_forces}. In the absence of an applied electric field (field off), the droplet falls under the influence of gravity, accelerating until its downward gravitational weight $mg$ is exactly counterbalanced by the upward hydrodynamic drag of air. By measuring the resulting terminal sedimentation velocity and applying Stokes' law for viscous drag, the aerodynamic radius $r$ and effective mass $m$ of the droplet were determined[cite: 46]. Subsequently, with the electric field activated (field on), the applied voltage was tuned until the electrostatic force $F_{\text{e}} = qE$ directly counteracted or reversed the motion of the droplet. Knowing the plate separation $d$ and the applied voltage $V$, the electric field magnitude $E = V/d$ was established, allowing the net charge $q$ carried by the droplet to be extracted according to:
-\begin{equation}
-q = \frac{F_{\text{e}}}{E} = \frac{F_{\text{e}}\,d}{V},
-\label{eq:millikan_balance}
-\end{equation}
-where $q$ represents the net electric charge of the droplet, $F_{\text{e}}$ is the upward electrostatic force required to balance the effective gravitational weight, $E$ is the electric field strength, $V$ is the electrical potential difference applied across the plates, and $d$ is the inter-plate spacing.
-
-Systematic measurements performed across numerous droplets revealed that the acquired charge was never arbitrary or continuously distributed. As demonstrated by the sequential droplet evaluations presented in Figure~\ref{fig:millikan_discrete}, the normalized charge ratio $q/e$ clutters precisely onto discrete integer values such that $q = ne$, where $n \in \{1, 2, 3, \dots\}$. This fundamental discreteness is further highlighted by the cluster frequency histogram in Figure~\ref{fig:millikan_clusters}, where observations group exclusively around integer multiples of the fundamental packet ($2e, 3e, 4e, 5e$)[cite: 48]. These findings provided definitive empirical proof that electric charge is fundamentally quantized, establishing the modern exact constant $e = 1.602\,176\,634 \times 10^{-19}\text{ C}$ that directly anchors the definition of the ampere ($1\text{ A} = 1\text{ C}\cdot\text{s}^{-1}$).
-
-Beyond demonstrating charge quantization, the historical analysis of Millikan's methodology provides two critical lessons in metrological data evaluation. The first lesson concerns the distinction between precision and accuracy in the presence of systematic bias. In his 1917 publication, Millikan reported $e = (1.5924 \pm 0.0007) \times 10^{-19}\text{ C}$, characterized by an exceptionally tight experimental uncertainty interval[cite: 49]. Nevertheless, this value was displaced from the true modern SI value of $1.602\,176\,634 \times 10^{-19}\text{ C}$ due to a systematic error arising from an inaccurate auxiliary value for the dynamic viscosity of air used in his Stokes drag calculations. When corrected for the true viscosity, his original observations became fully consistent with modern standards, underscoring that a high degree of experimental precision does not preclude systematic deviation. The second lesson pertains to the transparency of data rejection. While Millikan presented a subset of 58 droplets as an exhaustive and fully representative data set, subsequent examinations of his laboratory notebooks revealed that numerous runs had been excluded due to incomplete observations, irregular droplet sizes, or excessive Brownian motion. Although data rejection is often scientifically legitimate when addressing unstable experimental conditions, metrological rigor demands that exclusion criteria be defined \emph{a priori} and reported transparently to prevent selective bias.
-
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \centering
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
         \includegraphics[page=9, width=\linewidth, keepaspectratio]{\pdf}
-        \caption{Conceptual diagram of the experimental apparatus: parallel capacitor plates establish a uniform vertical electric field across an ionization chamber where oil droplets are ionized by radiation.}
+        \caption{Apparatus schematic: parallel capacitor plates establish a uniform electric field in an ionization chamber where oil droplets are ionized by radiation.}
         \label{fig:millikan_idea}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
         \includegraphics[page=10, width=0.82\linewidth, keepaspectratio]{\pdf}
-        \caption{Free-body diagram of the forces acting on an individual charged oil droplet: upward electrostatic force $F_{\text{e}}$, downward gravitational weight $mg$, and viscous drag.}
+        \caption{Free-body force diagram acting on an interrogated droplet: upward electrostatic force $F_{\text{e}}$, downward gravity $mg$, and viscous drag.}
         \label{fig:millikan_forces}
     \end{subfigure}
 
@@ -251,64 +326,90 @@ Beyond demonstrating charge quantization, the historical analysis of Millikan's 
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
         \includegraphics[page=11, width=\linewidth, keepaspectratio]{\pdf}
-        \caption{Discrete distribution of normalized charge values $q/e$ evaluated across individual droplets (\#1--\#14), showing clustering at integer multiples $n \in \{2, 3, 4, 5\}$.}
+        \caption{Discrete normalized charge values $q/e$ evaluated across individual droplets (\#1--\#14), clustering at integer multiples $n \in \{2, 3, 4, 5\}$.}
         \label{fig:millikan_discrete}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
         \includegraphics[page=12, width=\linewidth, keepaspectratio]{\pdf}
-        \caption{Frequency distribution showing the number of droplets as a function of net charge $q$, illustrating statistical accumulation at discrete quanta $2e, 3e, 4e, 5e$.}
+        \caption{Histogram of droplet frequency as a function of charge $q$, demonstrating statistical clustering at fundamental quanta $2e, 3e, 4e, 5e$.}
         \label{fig:millikan_clusters}
     \end{subfigure}
 
-    \caption{The Millikan oil-drop experiment: schematic architecture of the parallel-plate ionization chamber (A), free-body dynamical equilibrium of an interrogated droplet (B), and experimental demonstration of charge quantization displayed droplet-by-droplet (C) and as aggregated cluster counts (D).}
+    \caption{The Millikan oil-drop experiment: apparatus schematic (A), force equilibrium (B), and experimental proof of charge quantization displayed droplet-by-droplet (C) and as cluster counts (D).}
     \label{fig:millikan_complete}
 \end{figure}
 
-\clearpage
-\subsection*{Mole (mol)}
-The mole ($\text{mol}$) is the SI base unit representing the amount of substance. Prior to 2019, the mole was tied to a material substance: one mole was defined as the amount of substance containing as many elementary entities as there are atoms in $0.012\text{ kg}$ ($12\text{ g}$) of unbound Carbon-12 ($^{12}\text{C}$) in its ground state. Under that historical framework, the atomic mass unit (or Dalton, $\text{Da}$), defined as one-twelfth of the rest mass of a Carbon-12 atom, maintained an exact equivalence with the Avogadro constant through the relation $1\text{ g} = N_{\text{A}}\,\text{u}$. 
+The physical discreteness of electric charge was established experimentally by Robert Millikan in 1910 through his oil-drop experiment, shown in Figure~\ref{fig:millikan_complete}. As illustrated in Figure~\ref{fig:millikan_idea}, microscopic oil droplets were atomized into an enclosed chamber and ionized by radiation, causing individual droplets to acquire discrete electrostatic charges. The droplets entered a region bounded by two parallel conductive plates separated by distance $d$, across which an adjustable voltage $V$ produced a uniform vertical electric field $E = V/d$.
 
-Under the revised SI, the mole is defined by setting the Avogadro constant $N_{\text{A}}$ to the exact numerical value of $6.022\,140\,76 \times 10^{23}$ when expressed in the coherent unit $\text{mol}^{-1}$:
+The dynamical state of an individual droplet is governed by the vertical force equilibrium shown in Figure~\ref{fig:millikan_forces}:
+\begin{itemize}
+    \item \textbf{Field-off condition}: With the electric field turned off, the droplet falls under gravity, rapidly reaching terminal velocity when downward gravitational weight is balanced by upward Stokes drag and air buoyancy. Measuring terminal velocity yields the aerodynamic radius $r$ and effective droplet mass $m$.
+    \item \textbf{Field-on condition}: The electric field is engaged and tuned until the upward electrostatic force $F_{\text{e}} = qE$ arrests or reverses droplet motion. The net charge $q$ is extracted from the balance condition:
+    \begin{equation}
+    q = \frac{F_{\text{e}}}{E} = \frac{F_{\text{e}}\,d}{V}.
+    \label{eq:millikan_balance}
+    \end{equation}
+\end{itemize}
+Repeated measurements demonstrated that the charge on any droplet was never continuously distributed; instead, charges clustered strictly onto integer multiples of a fundamental quantum, $q = ne$ where $n \in \mathbb{N}^+$, as documented in Figures~\ref{fig:millikan_discrete} and~\ref{fig:millikan_clusters}.
+
+Beyond proving charge quantization, Millikan's experiment provides two critical lessons in metrological data evaluation:
+\begin{itemize}
+    \item \textbf{High precision does not guarantee accuracy}: In his 1917 report, Millikan quoted $e = (1.5924 \pm 0.0007) \times 10^{-19}\text{ C}$, characterized by an extremely narrow experimental uncertainty. However, this value was displaced from the true modern value ($1.602 \times 10^{-19}\text{ C}$) due to a systematic error: an inaccurate auxiliary parameter used for the dynamic viscosity of air in Stokes' drag law. An experiment can be exceptionally reproducible and precise while remaining fundamentally inaccurate due to uncorrected systematic bias.
+    \item \textbf{Transparency in data rejection}: Examination of Millikan's laboratory notebooks revealed that certain experimental runs had been excluded due to droplet instability, non-spherical geometries, or Brownian motion. While discarding unstable data is scientifically justifiable, metrological integrity requires that data rejection criteria be established \emph{a priori} and reported transparently to prevent selective confirmation bias.
+\end{itemize}
+
+\subsection{The Mole: Avogadro Constant and Mass Defect}
+
+The \textbf{mole} ($\text{mol}$) is the SI unit representing the amount of substance. Prior to 2019, the mole was tied to a material artefact: the amount of substance containing as many elementary entities as there are atoms in $0.012\text{ kg}$ ($12\text{ g}$) of unbound Carbon-12 ($^{12}\text{C}$) in its ground state. Under that historical standard, the Dalton ($\text{Da}$, or unified atomic mass unit $\text{u}$) was linked to the Avogadro constant through $1\text{ g} = N_{\text{A}}\,\text{u}$.
+
+Under the revised SI, the mole is defined by fixing the \textbf{Avogadro constant} $N_{\text{A}}$ to be exactly $6.022\,140\,76 \times 10^{23}\text{ mol}^{-1}$:
 \begin{equation}
 N_{\text{A}} = 6.022\,140\,76 \times 10^{23}\text{ mol}^{-1}.
-\label{eq:avogadro_definition}
+\label{eq:avogadro_def}
 \end{equation}
-One mole contains exactly $6.022\,140\,76 \times 10^{23}$ specified elementary entities, which may be atoms, molecules, ions, electrons, or other well-defined particles. Because the definition of the unified atomic mass unit remained unchanged as one-twelfth of the mass of a $^{12}\text{C}$ atom ($1\text{ u} \approx 1.6605 \times 10^{-27}\text{ kg}$), the exact relation $1\text{ g} = N_{\text{A}}\,\text{u}$ no longer holds strictly. Consequently, $12\text{ g}$ of Carbon-12 now contains slightly more than one mole of carbon atoms. The atomic mass of an isotope reflects not only the sum of its constituent protons and neutrons, but also the nuclear binding energy defect and electronic contributions; for instance, Helium-4 has an atomic mass of approximately $4.0026\text{ Da}$, deviating measurably from an integer sum of four nucleon masses.
+One mole contains exactly $6.022\,140\,76 \times 10^{23}$ specified elementary entities (atoms, molecules, ions, or electrons). Because the definition of the Dalton remained unchanged as $1/12$ of the mass of an isolated $^{12}\text{C}$ atom ($1\text{ u} \approx 1.6605 \times 10^{-27}\text{ kg}$), the relation $1\text{ g} = N_{\text{A}}\,\text{u}$ no longer holds strictly.
 
-\subsection*{Kilogram (kg)}
-The kilogram ($\text{kg}$) is the SI unit of mass. Historically defined by the physical platinum-iridium cylinder stored at the BIPM, the kilogram was redefined in 2019 by fixing the Planck constant $h$ to be exactly $6.626\,070\,15 \times 10^{-34}$ when expressed in the SI unit $\text{J}\cdot\text{s}$, which is dimensionally equivalent to $\text{kg}\cdot\text{m}^2\cdot\text{s}^{-1}$:
+The mass of an atomic nucleus deviates from the algebraic sum of its individual nucleon masses due to nuclear binding energy defect and relativistic mass-energy equivalence ($\Delta E = \Delta m\,c^2$). For instance, a Hydrogen-1 atom has an atomic mass of approximately $1.0078\text{ Da}$, and Helium-4 has an atomic mass of $4.0026\text{ Da}$, diverging measurably from simple integer sums of nucleon masses.
+
+\subsection{The Kilogram: Planck Constant and the Kibble Balance}
+
+The \textbf{kilogram} ($\text{kg}$) is the SI unit of mass. Historically preserved by the platinum-iridium prototype kept in Sèvres, the kilogram was redefined in 2019 by fixing the \textbf{Planck constant} $h$ to be exactly $6.626\,070\,15 \times 10^{-34}\text{ J}\cdot\text{s}$ ($\text{kg}\cdot\text{m}^2\cdot\text{s}^{-1}$):
 \begin{equation}
 h = 6.626\,070\,15 \times 10^{-34}\text{ kg}\cdot\text{m}^2\cdot\text{s}^{-1}.
-\label{eq:planck_definition}
+\label{eq:planck_def}
 \end{equation}
-In Equation~\eqref{eq:planck_definition}, $h$ is the fundamental quantum of action with dimension $\text{M}\text{L}^2\text{T}^{-1}$. Max Planck introduced this constant to resolve the classical ultraviolet catastrophe of blackbody radiation, where classical Rayleigh-Jeans electrodynamics erroneously predicted that the spectral radiance emitted by an ideal blackbody would diverge to infinity at short wavelengths. Planck resolved this breakdown by postulating that electromagnetic energy is absorbed and emitted only in discrete packets, or quanta, whose energy $E$ is proportional to the oscillation frequency $\nu$ via $E = h\nu$.
+In Equation~\eqref{eq:planck_def}, $h$ is the fundamental quantum of action with physical dimension $\text{M}\text{L}^2\text{T}^{-1}$. Max Planck introduced this constant to resolve the classical \textbf{ultraviolet catastrophe} of blackbody radiation, where classical Rayleigh-Jeans electrodynamics erroneously predicted that spectral radiance would diverge toward infinity at short wavelengths. Planck resolved this divergence by postulating that electromagnetic energy is emitted and absorbed only in discrete packets, or quanta, with energy proportional to frequency:
+\begin{equation}
+E = h\nu.
+\label{eq:planck_energy_quantum}
+\end{equation}
 
-By defining the metre in terms of $c$ and the second in terms of $\Delta \nu_{\text{Cs}}$, fixing the value of $h$ provides an exact definition of the unit of mass:
+By defining the second through $\Delta \nu_{\text{Cs}}$ and the metre through $c$, fixing $h$ provides an exact operational definition of mass:
 \begin{equation}
 1\text{ kg} = \left( \frac{h}{6.626\,070\,15 \times 10^{-34}} \right) \text{m}^{-2}\cdot\text{s}.
 \label{eq:kilogram_inversion}
 \end{equation}
-Primary physical realizations of the mass scale are achieved through electromechanical instruments such as the Kibble balance, which equates mechanical power to virtual electrical power, establishing a direct connection between macroscopic gravitational force and quantum electrical standards.
+Primary physical realizations of the mass scale are executed using electromechanical \textbf{Kibble balances}, which balance macroscopic gravitational force against virtual electrical power calibrated against quantum Hall and Josephson standards.
 
-\subsection{Kelvin (K)}
+\subsection{The Kelvin: Boltzmann Constant and Microscopic Energy}
 
-The kelvin ($\text{K}$) is the SI unit of thermodynamic temperature. Prior to 2019, the kelvin was defined as the fraction $1/273.16$ of the thermodynamic temperature of the triple point of water ($T_{\text{TPW}}$), while the Boltzmann constant $k_{\text{B}}$ remained an empirically measured quantity. This historic definition suffered from reliance on the isotopic composition of water, meaning microscopic isotopic variations introduced systematic uncertainties into international temperature scales.
+The \textbf{kelvin} ($\text{K}$) is the SI unit of thermodynamic temperature. Prior to 2019, the kelvin was defined as the fraction $1/273.16$ of the thermodynamic temperature of the triple point of water ($T_{\text{TPW}}$). This historical definition depended on the isotopic composition of water, introducing systematic ambiguities between laboratories.
 
-The revised SI defines the kelvin by fixing the exact numerical value of the Boltzmann constant $k_{\text{B}}$ to be $1.380\,649 \times 10^{-23}$ when expressed in the coherent unit $\text{J}\cdot\text{K}^{-1}$, which is equivalent to $\text{kg}\cdot\text{m}^2\cdot\text{s}^{-2}\cdot\text{K}^{-1}$:
+The revised SI defines the kelvin by fixing the \textbf{Boltzmann constant} $k_{\text{B}}$ to be exactly $1.380\,649 \times 10^{-23}\text{ J}\cdot\text{K}^{-1}$ ($\text{kg}\cdot\text{m}^2\cdot\text{s}^{-2}\cdot\text{K}^{-1}$):
 \begin{equation}
 k_{\text{B}} = 1.380\,649 \times 10^{-23}\text{ kg}\cdot\text{m}^2\cdot\text{s}^{-2}\cdot\text{K}^{-1}.
-\label{eq:boltzmann_definition}
+\label{eq:boltzmann_def}
 \end{equation}
-The Boltzmann constant serves as the fundamental physical bridge linking macroscopic thermodynamic temperature to microscopic thermal kinetic energy, establishing that the characteristic thermal energy of a particle scales as $E_{\text{thermal}} \sim k_{\text{B}}T$. In ideal gas systems, this constant connects the microscopic equation of state to the macroscopic ideal gas law:
+The Boltzmann constant provides the physical bridge connecting macroscopic thermodynamic temperature to microscopic thermal kinetic energy, establishing that the characteristic thermal energy of a particle scales as $E_{\text{thermal}} \sim k_{\text{B}}T$. In ideal gases, this relationship connects the microscopic equation of state to macroscopic gas dynamics:
 \begin{equation}
 p\,V = N\,k_{\text{B}}\,T = n\,R\,T,
-\label{eq:gas_laws}
+\label{eq:ideal_gas_laws}
 \end{equation}
-where $p$ represents pressure ($[\text{M}\text{L}^{-1}\text{T}^{-2}]$), $V$ is volume ($[\text{L}^3]$), $N$ is the absolute number of molecules (dimensionless), $n$ is the amount of substance in moles ($[\text{N}]$), and $R$ is the universal molar gas constant. The universal gas constant is defined as $R = N_{\text{A}}k_{\text{B}}$, yielding the exact fixed numerical value of $R = 8.314\,462\,618\,153\,24\text{ J}\cdot\text{K}^{-1}\cdot\text{mol}^{-1}$. Under this definition, the triple point of water is no longer invariant by decree; it has become an experimentally measured thermodynamic state with an empirical uncertainty.
+where $p$ is pressure, $V$ is volume, $N$ is the particle count, $n$ is the amount of substance in moles, and $R$ is the universal molar gas constant. The gas constant is defined as $R = N_{\text{A}}k_{\text{B}}$, yielding the fixed value $R \approx 8.314\,462\,618\text{ J}\cdot\text{K}^{-1}\cdot\text{mol}^{-1}$. Under this formulation, the triple point of water is no longer invariant by decree; it is an experimentally determined thermodynamic state with empirical uncertainty.
 
-Temperature is intimately linked to the spectral characteristics of blackbody thermal emission, giving rise to the concept of colour temperature. An ideal blackbody radiator emits electromagnetic radiation whose spectral distribution depends entirely on temperature: emitters cooler than $4000\text{ K}$ appear reddish, whereas emitters hotter than $7500\text{ K}$ appear bluish. In everyday practice, thermodynamic temperature in kelvin is related to the Celsius scale ($^\circ\text{C}$) and the Fahrenheit scale ($^\circ\text{F}$) through fixed linear transformations:
+Thermodynamic temperature also dictates the spectral emission of blackbody radiators, establishing the physical concept of \textbf{colour temperature}. Thermal emitters at cooler temperatures ($\sim 3000\text{ K}$) appear reddish, whereas hotter emitters ($\sim 7000\text{ K}$) appear bluish. Practical temperature values in kelvin relate to the Celsius scale ($^\circ\text{C}$) and Fahrenheit scale ($^\circ\text{F}$) via:
 \begin{equation}
 T(^\circ\text{C}) = T(\text{K}) - 273.15,
 \label{eq:celsius_conversion}
@@ -317,28 +418,44 @@ T(^\circ\text{C}) = T(\text{K}) - 273.15,
 T(^\circ\text{F}) = T(^\circ\text{C}) \times 1.8 + 32 = T(\text{K}) \times 1.8 - 459.67.
 \label{eq:fahrenheit_conversion}
 \end{equation}
-Key benchmarks across these temperature scales include absolute zero ($0\text{ K}$, $-273.15^\circ\text{C}$, $-459.67^\circ\text{F}$), the boiling point of liquid nitrogen ($77\text{ K}$, $-196^\circ\text{C}$, $-321^\circ\text{F}$), the ice point of water ($273.15\text{ K}$, $0^\circ\text{C}$, $32^\circ\text{F}$), standard room temperature ($\approx 300\text{ K}$, $27^\circ\text{C}$, $80^\circ\text{F}$), the boiling point of water ($373.15\text{ K}$, $100^\circ\text{C}$, $212^\circ\text{F}$), and the boiling point of mercury ($630\text{ K}$, $357^\circ\text{C}$, $674^\circ\text{F}$).
+Key thermodynamic benchmarks include absolute zero ($0\text{ K}$, $-273.15^\circ\text{C}$), the boiling point of liquid nitrogen ($77\text{ K}$, $-196^\circ\text{C}$), the ice point of water ($273.15\text{ K}$, $0^\circ\text{C}$), standard room temperature ($\approx 300\text{ K}$, $\approx 27^\circ\text{C}$), and the boiling point of water ($373.15\text{ K}$, $100^\circ\text{C}$).
 
-\subsection{Candela (cd)}
+\subsection{The Candela: Photopic Luminous Efficacy}
 
-The candela ($\text{cd}$) is the SI base unit of luminous intensity in a given direction. It bridges physical radiant power (measured in watts) to the physiological perception of light by the human eye. The candela is defined by taking the fixed numerical value of the luminous efficacy of monochromatic radiation of frequency $540 \times 10^{12}\text{ Hz}$, denoted $K_{\text{cd}}$, to be exactly $683$ when expressed in the coherent SI unit $\text{lm}\cdot\text{W}^{-1}$, which is equivalent to $\text{cd}\cdot\text{sr}\cdot\text{W}^{-1}$:
+The \textbf{candela} ($\text{cd}$) is the SI base unit of luminous intensity in a specified direction. It links physical radiant power (measured in watts) to the physiological perception of light by the human eye. The candela is defined by fixing the \textbf{luminous efficacy} $K_{\text{cd}}$ of monochromatic radiation at frequency $540 \times 10^{12}\text{ Hz}$ to be exactly $683\text{ lm}\cdot\text{W}^{-1}$ ($\text{cd}\cdot\text{sr}\cdot\text{W}^{-1}$):
 \begin{equation}
 K_{\text{cd}} = 683\text{ cd}\cdot\text{sr}\cdot\text{W}^{-1} \quad \text{at} \quad \nu = 540 \times 10^{12}\text{ Hz}.
-\label{eq:candela_definition}
+\label{eq:candela_def}
 \end{equation}
-The monochromatic frequency of $540\text{ THz}$ corresponds to a free-space wavelength of approximately $555\text{ nm}$ in the green portion of the visible spectrum, which coincides with the peak sensitivity of human photopic vision under bright conditions. Luminous flux is measured in lumens ($\text{lm}$), where one lumen equals one candela steradian ($\text{lm} = \text{cd}\cdot\text{sr}$). At $540\text{ THz}$, an optical source radiating a monochromatic radiant intensity of $1/683\text{ W}\cdot\text{sr}^{-1}$ emits a luminous intensity of exactly one candela. For example, a $25\text{ W}$ compact fluorescent lamp generating an isotropic luminous flux of $1700\text{ lm}$ distributed across a complete solid angle of $4\pi\text{ sr}$ exhibits a luminous intensity $I_v$ calculated as:
+The monochromatic frequency of $540\text{ THz}$ corresponds to a free-space wavelength of $\lambda \approx 555\text{ nm}$ in the green spectrum, matching the peak sensitivity of photopic human vision. Total luminous flux is measured in lumens ($\text{lm} = \text{cd}\cdot\text{sr}$). An optical source radiating an isotropic radiant flux of $1700\text{ lm}$ across a complete solid angle of $4\pi\text{ sr}$ generates a luminous intensity of:
 \begin{equation}
 I_v = \frac{1700\text{ lm}}{4\pi\text{ sr}} \approx 135\text{ cd}.
-\label{eq:candela_example}
+\label{eq:candela_calc_example}
 \end{equation}
+
+% =============================================================================
+% CHAPTER 3: ELECTROMAGNETIC WAVES AND OPTICAL METROLOGY
+% =============================================================================
+\chapter{Electromagnetic Waves and Optical Metrology}
+
+Because optical sensors, laser interferometers, and fluorescence microscopes serve as primary transducers in biological metrology, a rigorous formulation of electromagnetic wave mechanics is essential.
+
+\section{Harmonic Formulation of Electromagnetic Waves}
+
+Light propagates as a transverse electromagnetic wave characterized by mutually perpendicular electric ($\mathbf{E}$) and magnetic ($\mathbf{B}$) fields, both orthogonal to the propagation wavevector $\mathbf{k}$, satisfying:
+\begin{equation}
+\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}.
+\label{eq:orthogonality_condition}
+\end{equation}
+In modern optical bioimaging, light-matter interactions are overwhelmingly dominated by electric dipole coupling; magnetic field interactions are typically negligible. Consequently, optical waves can be analyzed directly through the scalar electric field.
 \clearpage
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.85\linewidth}
         \centering
         \includegraphics[page=13, width=\linewidth, keepaspectratio]{\pdf}
-        \caption{Temporal view at a fixed spatial position ($t$-axis): coupled orthogonal oscillations of the electric field $\mathbf{E}$ (vertical plane) and magnetic field $\mathbf{B}$ (horizontal plane), illustrating the oscillation period $T$.}
+        \caption{Temporal representation at fixed space: orthogonal oscillations of $\mathbf{E}$ (vertical) and $\mathbf{B}$ (horizontal), highlighting oscillation period $T$.}
         \label{fig:em_temporal}
     \end{subfigure}
     
@@ -347,68 +464,81 @@ I_v = \frac{1700\text{ lm}}{4\pi\text{ sr}} \approx 135\text{ cd}.
     \begin{subfigure}[b]{0.85\linewidth}
         \centering
         \includegraphics[page=14, width=\linewidth, keepaspectratio]{\pdf}
-        \caption{Spatial view at a fixed instant in time ($x$-axis): wave profile propagating along $\mathbf{k}$, displaying the spatial wavelength $\lambda$ and satisfying the mutual orthogonality condition $\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}$.}
+        \caption{Spatial representation at a fixed instant in time: field profile propagating along $\mathbf{k}$, displaying wavelength $\lambda$ under $\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}$.}
         \label{fig:em_spatial}
     \end{subfigure}
     
-    \caption{Planar electromagnetic wave propagation in vacuum: temporal periodicity $T$ at fixed space (A) and spatial periodicity $\lambda$ at fixed time with mutually perpendicular field vectors $\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}$ (B).}
+    \caption{Planar electromagnetic wave propagation in vacuum: temporal periodicity $T$ at fixed position (A) and spatial periodicity $\lambda$ at fixed time (B).}
     \label{fig:em_wave_orthogonality}
 \end{figure}
 
-Because optical sensors, laser interferometers, and imaging systems constitute primary detection mechanisms in modern metrology, a rigorous formulation of electromagnetic wave mechanics is essential[cite: 8, 32]. An electromagnetic wave represents the coupled oscillation of an electric field vector $\mathbf{E}$ and a magnetic field vector $\mathbf{B}$ propagating in two mutually perpendicular planes, both orthogonal to the propagation wavevector $\mathbf{k}$, satisfying the fundamental geometric condition $\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}$. 
+As illustrated in Figure~\ref{fig:em_wave_orthogonality}, wave dynamics can be observed from two complementary viewpoints:
+\begin{itemize}
+    \item \textbf{Temporal periodicity}: Observing a fixed spatial coordinate ($x = x_0$) reveals sinusoidal oscillations with temporal period $T$ and frequency $\nu = 1/T$ (Figure~\ref{fig:em_temporal}).
+    \item \textbf{Spatial periodicity}: Observing an instantaneous snapshot ($t = t_0$) reveals spatial oscillations with physical wavelength $\lambda$ along the propagation axis (Figure~\ref{fig:em_spatial}).
+\end{itemize}
 
-As illustrated in Figure~\ref{fig:em_wave_orthogonality}, the wave dynamics can be observed through two complementary representations. When observing a fixed point in space as a function of time, shown in Figure~\ref{fig:em_temporal}, the fields execute periodic harmonic oscillations characterized by the temporal period $T$, which represents the time interval separating consecutive identical phase points. Conversely, evaluating an instantaneous snapshot of the wave along the spatial coordinate $x$ at a fixed instant in time, as depicted in Figure~\ref{fig:em_spatial}, reveals the spatial periodicity governed by the wavelength $\lambda$, which defines the physical peak-to-peak distance along the propagation direction $\mathbf{k}$. In non-magnetic media and biological optical applications, light-matter interactions are overwhelmingly dominated by electric dipole coupling; consequently, electromagnetic waves are typically analyzed through the scalar electric field component.
-
-A monochromatic planar electric field propagating along the spatial coordinate $x$ is described by the harmonic function:
+A monochromatic planar electric field propagating along coordinate $x$ is described analytically by:
 \begin{equation}
 E(x,t) = E_0 \cos(kx - \omega t + \phi),
-\label{eq:wave_equation}
+\label{eq:wave_harmonics}
 \end{equation}
-where $E_0$ represents the electric field amplitude, $k$ is the wavenumber ($[\text{L}^{-1}]$), $\omega$ is the angular frequency ($[\text{T}^{-1}]$), $t$ is time ($[\text{T}]$), and $\phi$ is the initial phase offset[cite: 33]. The spatial periodicity illustrated in Figure~\ref{fig:em_spatial} relates to the wavenumber through:
+where $E_0$ is the electric field amplitude, $\phi$ is the initial phase offset, $k$ is the wavenumber, and $\omega$ is the angular frequency:
 \begin{equation}
-k = \frac{2\pi}{\lambda},
-\label{eq:wavenumber}
+k = \frac{2\pi}{\lambda}, \qquad [\dim k = \text{L}^{-1}],
+\label{eq:wavenumber_eq}
 \end{equation}
-while the temporal periodicity displayed in Figure~\ref{fig:em_temporal} relates to the oscillation frequency $\nu$ and period $T$ via:
 \begin{equation}
-\omega = 2\pi\nu = \frac{2\pi}{T}.
-\label{eq:angular_frequency}
+\omega = 2\pi\nu = \frac{2\pi}{T}, \qquad [\dim \omega = \text{T}^{-1}].
+\label{eq:angular_freq_eq}
 \end{equation}
+The optical intensity $I$ registered by physical imaging detectors is proportional to the cycle-averaged squared electric field amplitude ($I \propto E_0^2$).
 
-In vacuum, electromagnetic waves propagate at the universal speed $c = 299\,792\,458\text{ m}\cdot\text{s}^{-1}$, such that the vacuum wavelength is $\lambda_0 = c/\nu$. When light crosses an interface into a stationary dielectric medium with refractive index $n$, the temporal oscillation frequency $\nu$ remains invariant because boundary conditions require continuous field oscillations across the interface. However, the phase velocity $v_{\text{p}}$ is attenuated according to $v_{\text{p}} = \omega/k = c/n$, causing the internal wavelength to shorten to $\lambda = \lambda_0/n$.
+\section{Propagation in Dielectric Media and Dispersion}
 
+In vacuum, electromagnetic waves propagate at $c = 299\,792\,458\text{ m}\cdot\text{s}^{-1}$, with vacuum wavelength $\lambda_0 = c/\nu$. When an electromagnetic wave enters a dielectric medium with refractive index $n$, boundary conditions require that the temporal oscillation frequency $\nu$ remain invariant. However, the \textbf{phase velocity} $v_{\text{p}}$ is attenuated according to:
+\begin{equation}
+v_{\text{p}} = \frac{\omega}{k} = \frac{c}{n},
+\label{eq:phase_velocity}
+\end{equation}
+which causes the internal wavelength to compress to $\lambda = \lambda_0 / n$.
 
-The propagation of electromagnetic energy in media is governed by the dispersion relation relating the wavenumber to angular frequency:
+The general dispersion relation connecting wavenumber to angular frequency is:
 \begin{equation}
 k(\omega) = \frac{n(\omega)\,\omega}{c}.
 \label{eq:dispersion_general}
 \end{equation}
-In an idealized non-dispersive medium where the refractive index $n$ is constant across frequencies, the relationship is linear ($\omega(k) = (c/n)k$). Under non-dispersive conditions, the group velocity $v_{\text{g}}$, representing the velocity at which the envelope of a wave packet propagates, is identical to the phase velocity:
+In an idealized non-dispersive medium where $n$ is constant across frequencies, the \textbf{group velocity} $v_{\text{g}}$ (the velocity at which a wave packet envelope travels) is identical to the phase velocity:
 \begin{equation}
 v_{\text{g}} = \frac{d\omega}{dk} = \frac{c}{n} = v_{\text{p}}.
-\label{eq:group_velocity_nondispersive}
+\label{eq:group_velocity_nondisp}
 \end{equation}
-Conversely, in physical dispersive media where the refractive index depends explicitly on frequency ($n = n(\omega)$), different spectral components travel at distinct phase velocities. Differentiating Equation~\eqref{eq:dispersion_general} with respect to $k$ yields the general formulation for the group velocity in a dispersive medium:
+In real dispersive media where the refractive index depends explicitly on frequency ($n = n(\omega)$), differentiating Equation~\eqref{eq:dispersion_general} yields:
 \begin{equation}
 v_{\text{g}} = \frac{d\omega}{dk} = \frac{c}{n + \omega \frac{dn}{d\omega}}.
-\label{eq:group_velocity_dispersive}
+\label{eq:group_velocity_disp}
 \end{equation}
-Depending on the sign and magnitude of the chromatic dispersion parameter $dn/d\omega$, the phase velocity can exceed the group velocity ($v_{\text{p}} > v_{\text{g}}$), or the group velocity may approach zero ($v_{\text{g}} = 0$) under resonant conditions.
+Depending on the dispersion parameter $dn/d\omega$, phase velocity can exceed group velocity, leading to pulse broadening in quantitative optical microscopy.
 
-\begin{figure}[!htbp]
+\section{The Bioimaging Spectrum and Fluorophores}
+
+Quantitative fluorescence bioimaging operates across the ultraviolet, visible, and near-infrared domains ($380\text{ nm}$ to $1000\text{ nm}$), as illustrated in Figure~\ref{fig:bioimaging_spectrum}. Optical indicators are chosen so that their absorption and emission spectra align with laser excitation lines and narrow bandpass filter windows.
+\clearpage
+
+\begin{figure}[]
     \centering
     \includegraphics[page=15, width=\linewidth, keepaspectratio]{\pdf}
-    \caption{The electromagnetic spectrum from the visible to the near-infrared domain ($380\text{ nm}$ to $1000\text{ nm}$) used in bioimaging. The coordinate axes delineate increasing wavelength $\lambda$ in nanometres versus decreasing optical frequency $\nu = c/\lambda$ in terahertz, mapping the specific excitation and emission bands of standard fluorophores.}
+    \caption{The electromagnetic spectrum from the visible to the near-infrared domain ($380\text{ nm}$ to $1000\text{ nm}$) used in bioimaging, mapping the specific excitation and emission bands of standard fluorophores.}
     \label{fig:bioimaging_spectrum}
 \end{figure}
 
 \begin{table}[!htbp]
 \centering
-\caption{Spectral characteristics, excitation wavelengths, and emission wavelengths of standard fluorophores employed in quantitative bioimaging.}
+\caption{Spectral properties, excitation wavelengths, emission wavelengths, and optical emission frequencies of fluorophores used in quantitative bioimaging.}
 \label{tab:bioimaging_dyes}
-\begin{tabular}{lllll}
+\begin{tabular*}{\textwidth}{lcccc}
 \toprule
-Fluorophore & Spectral Domain & Excitation $\lambda$ & Emission $\lambda$ & Emission Frequency \\
+Fluorophore & Spectral Domain & Excitation $\lambda$ & Emission $\lambda$ & Emission Frequency ($\nu$) \\
 \midrule
 DAPI / Hoechst & Violet / Blue & $405\text{ nm}$ & $460\text{ nm}$ & $652\text{ THz}$ \\
 GFP / FITC / AF488 & Green & $488\text{ nm}$ & $510\text{ nm}$ & $588\text{ THz}$ \\
@@ -417,27 +547,32 @@ Texas Red & Orange-Red & $590\text{ nm}$ & $615\text{ nm}$ & $487\text{ THz}$ \\
 Cy5 / AF647 & Far-Red & $650\text{ nm}$ & $670\text{ nm}$ & $447\text{ THz}$ \\
 ICG / NIR Dyes & Near-Infrared & $790\text{ nm}$ & $820\text{ nm}$ & $366\text{ THz}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \end{table}
 
-In quantitative biological microscopy, electromagnetic radiation spans the ultraviolet, visible, and near-infrared domains, mapped continuously in Figure~\ref{fig:bioimaging_spectrum}. Optical fluorophores are chosen so that their absorption and emission spectra align with specific laser excitation lines and narrow optical filter windows, as detailed in Table~\ref{tab:bioimaging_dyes}. Wavelength and frequency are inversely related via $\nu = c/\lambda$; shorter wavelengths (such as DAPI emitting at $460\text{ nm}$) correspond to higher optical frequencies ($652\text{ THz}$), whereas longer wavelengths (such as indocyanine green emitting at $820\text{ nm}$) correspond to lower frequencies ($366\text{ THz}$).
+Table~\ref{tab:bioimaging_dyes} summarizes representative indicators across the spectrum. Wavelength and frequency follow the inverse relation $\nu = c/\lambda$: ultraviolet and blue emitters (such as DAPI emitting at $460\text{ nm}$) correspond to higher optical frequencies ($652\text{ THz}$), whereas near-infrared dyes (such as ICG emitting at $820\text{ nm}$) correspond to lower frequencies ($366\text{ THz}$).
 
-A fundamental physical dimension characterizes the qualitative nature of a physical quantity, whereas a unit represents an arbitrary, standardized reference scale selected to quantify that dimension. For instance, velocity has the intrinsic physical dimension of length divided by time ($\text{L}\text{T}^{-1}$), irrespective of whether it is measured in metres per second ($\text{m}\cdot\text{s}^{-1}$), kilometres per hour ($\text{km}\cdot\text{h}^{-1}$), or miles per hour. Physical quantities possessing identical physical dimensions are termed homogeneous quantities.
+% =============================================================================
+% CHAPTER 4: DIMENSIONAL ANALYSIS AND SI DERIVED QUANTITIES
+% =============================================================================
+\chapter{Dimensional Analysis and SI Derived Quantities}
 
-Derived units in the SI are formed coherently through algebraic products and integer powers of the seven fundamental base units. The physical dimension of any arbitrary derived quantity $Q$ is expressed as a dimensional product of the seven base dimensions:
+A \textbf{physical dimension} reflects the qualitative physical nature of a quantity, whereas a \textbf{unit} represents an arbitrary, standardized reference scale chosen to quantify that dimension. For instance, velocity possesses the intrinsic dimension of length divided by time ($\text{L}\text{T}^{-1}$), regardless of whether it is measured in $\text{m}\cdot\text{s}^{-1}$, $\text{km}\cdot\text{h}^{-1}$, or miles per hour. Quantities possessing identical physical dimensions are termed \textbf{homogeneous quantities}.
+
+\section{Physical Dimensions and Coherent Derived Units}
+
+Derived units in the SI are formed coherently through algebraic products and integer powers of the seven fundamental base units. The physical dimension of an arbitrary derived quantity $Q$ is expressed by the dimensional product:
 \begin{equation}
-\dim Q = \text{T}^\alpha\,\text{L}^\beta\,\text{M}^\gamma\,\text{I}^\delta\,\Theta^\epsilon\,\text{N}^\zeta\,\text{J}^\eta.
+\dim Q = \text{T}^\alpha\,\text{L}^\beta\,\text{M}^\gamma\,\text{I}^\delta\,\Theta^\epsilon\,\text{N}^\zeta\,\text{J}^\eta,
 \label{eq:dimensional_product}
 \end{equation}
-In Equation~\eqref{eq:dimensional_product}, the exponents $\alpha, \beta, \gamma, \delta, \epsilon, \zeta$, and $\eta$ are referred to as dimensional exponents. These exponents are integers that may take positive, negative, or zero values. When all dimensional exponents equal zero, the quantity is dimensionless and has the dimension of one.
+where the exponents $\alpha, \beta, \gamma, \delta, \epsilon, \zeta, \eta$ are integers (positive, negative, or zero). Exactly twenty-two derived units have been assigned special names and symbols by the CGPM, a representative subset of which is compiled in Table~\ref{tab:derived_units}.
 
-\begin{table}[!htbp]
+\begin{table}[h]
 \centering
-\small
-\setlength{\tabcolsep}{5pt}
-\caption{Selected coherent SI derived quantities, their special units, equivalent base formulations, and physical dimensions.}
+\caption{Selected coherent SI derived quantities, units, base expressions, and dimensions.}
 \label{tab:derived_units}
-\begin{tabular}{llll}
+\begin{tabular*}{\textwidth}{llll}
 \toprule
 Physical Quantity & SI Unit [Symbol] & Equivalent Base Expression & Dimension \\
 \midrule
@@ -451,126 +586,146 @@ Electric charge $Q$ & coulomb [$\text{C}$] & $\text{A}\cdot\text{s}$ & $\text{I}
 Electric potential $V$ & volt [$\text{V}$] & $\text{kg}\cdot\text{m}^2\cdot\text{s}^{-3}\cdot\text{A}^{-1} = \text{J}\cdot\text{C}^{-1}$ & $\text{M}\text{L}^2\text{T}^{-3}\text{I}^{-1}$ \\
 Magnetic field $B$ & tesla [$\text{T}$] & $\text{kg}\cdot\text{s}^{-2}\cdot\text{A}^{-1} = \text{Wb}\cdot\text{m}^{-2}$ & $\text{M}\text{T}^{-2}\text{I}^{-1}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \end{table}
 
-While an infinite number of coherent derived units can be mathematically synthesized from the base units, exactly twenty-two have been assigned special names and symbols by the CGPM, as summarized in Table~\ref{tab:derived_units}.
+\section{Dimensionless Quantities and Angular Measure}
 
-A notable class of physical quantities exhibits a dimensional product where all exponents vanish, yielding $\dim Q = 1$. These quantities are numbers of entities or represent dimensionless ratios of two homogeneous quantities possessing identical dimensions. The unit one is the neutral identity element of any system of units, existing inherently without requiring formal diplomatic ratification.
+When all exponents in Equation~\eqref{eq:dimensional_product} vanish, the quantity is \textbf{dimensionless} ($\dim Q = 1$). Dimensionless quantities represent pure entity counts or ratios of two homogeneous physical quantities.
 
-The plane angle $\theta$ is defined as the ratio between the subtended circular arc length $l$ and the radius of curvature $r$:
+The plane angle $\theta$ is defined as the ratio of subtended arc length $l$ to radius of curvature $r$:
 \begin{equation}
 \theta = \frac{l}{r}.
-\label{eq:plane_angle}
+\label{eq:plane_angle_def}
 \end{equation}
-Because Equation~\eqref{eq:plane_angle} represents the quotient of two lengths ($\text{L}/\text{L}$), the plane angle is dimensionally unitless ($\dim \theta = 1$). However, within the SI, the special name radian ($\text{rad}$) is retained to distinguish angular displacements from pure scalar ratios The maximum subtended arc length of a circle equals its circumference, $l_{\text{max}} = 2\pi r$, which establishes the maximum angle of a complete single revolution as $\alpha_{\text{max}} = 2\pi\text{ rad}$. Similarly, the solid angle $\Omega$ is defined as the ratio of subtended spherical surface area $A$ to the square of the sphere radius $r^2$:
+Because Equation~\eqref{eq:plane_angle_def} is the quotient of two lengths ($\text{L}/\text{L}$), plane angle is dimensionless ($\dim \theta = 1$). Within the SI, the special name \textbf{radian} ($\text{rad}$) is retained to distinguish angular displacements from pure scalars. The maximum angle of a complete single revolution is $2\pi\text{ rad}$. Similarly, the solid angle $\Omega$ is defined as the ratio of subtended spherical surface area $A$ to the square of the radius $r^2$:
 \begin{equation}
 \Omega = \frac{A}{r^2}.
-\label{eq:solid_angle}
+\label{eq:solid_angle_def}
 \end{equation}
-The solid angle is also dimensionless ($\text{L}^2/\text{L}^2 = 1$), but is assigned the special symbol steradian ($\text{sr}$). Over a closed spherical surface where $A_{\text{total}} = 4\pi r^2$, the total solid angle equals $4\pi\text{ sr}$
+The solid angle is also dimensionless ($\text{L}^2/\text{L}^2 = 1$), but is assigned the special symbol \textbf{steradian} ($\text{sr}$), with a complete sphere subtending $4\pi\text{ sr}$.
 
-The selection of the radian rather than the degree ($^\circ$) as the coherent SI unit for plane angle is mathematically essential[. Radians provide an isometric mapping between real numbers and arc lengths on the unit circle, ensuring that trigonometric derivatives remain compact. When calculating the time derivative of a harmonic signal $x(t) = A\cos(\omega t + \phi)$, the derivative assumes the standard form:
+Using radians rather than degrees ($^\circ$) is mathematically necessary in physical models. Radians establish an isometric mapping with real numbers on the unit circle, ensuring that trigonometric derivatives retain their standard form without extraneous scaling constants:
 \begin{equation}
-\frac{d}{dt}\cos(\omega t) = -\omega\sin(\omega t),
+\frac{d}{dt}\cos(\omega t) = -\omega\sin(\omega t).
 \label{eq:trig_derivative}
 \end{equation}
-only when the phase argument $\omega t$ is evaluated in radians. If the phase were expressed in degrees, an extraneous conversion factor of $\pi/180$ would appear in every differential and integral operation. Furthermore, Euler's formula connecting complex exponentials to trigonometric functions:
+If phase arguments were expressed in degrees, an extraneous factor of $\pi/180$ would appear in every differentiation and integration step. Furthermore, Euler's formula connecting complex exponentials to harmonic waves:
 \begin{equation}
 e^{i\theta} = \cos\theta + i\sin\theta,
-\label{eq:euler_formula}
+\label{eq:euler_identity}
 \end{equation}
-holds strictly for $\theta$ expressed in radians. A quarter-turn rotation in the complex plane corresponds to $e^{i\pi/2} = i$, whereas attempting to insert degrees directly into the exponential ($e^{i90}$) fails unless non-standard scaling factors are introduced.
+holds strictly for $\theta$ expressed in radians.
 
-Beyond angles, numerous physical parameters are dimensionless ratios of homogeneous quantities. These dimensionless parameters serve as fundamental scaling invariants in optical, mechanical, and biological systems.
+\section{Dimensional Homogeneity in Biophysical Systems}
 
-Dimensional analysis is a formal procedure that verifies the physical consistency of mathematical expressions by confirming that both sides of an equation possess identical dimensional representations. Under the principle of dimensional homogeneity, physical laws must remain invariant under changes of measurement units, and terms linked by addition, subtraction, or equality must have identical physical dimensions. The utility of dimensional analysis is demonstrated below through four biological and optical models.
+The \textbf{principle of dimensional homogeneity} dictates that physical laws must remain invariant under changes of measurement units; terms linked by addition, subtraction, or equality must possess identical physical dimensions. This principle provides a foundational tool for verifying mathematical models, illustrated below through four biological and optical systems.
 
-In cellular physiology, the transport rate of solute molecules traversing a semi-permeable membrane can be described by the linear mass transfer equation:
+\subsection{Solute Transport Across Cell Membranes}
+The steady-state mass transport rate $R$ of solute molecules crossing a biological membrane is modeled by:
 \begin{equation}
-R = P\,A\,\Delta c.
-\label{eq:membrane_transport}
+R = P\,A\,\Delta c,
+\label{eq:membrane_transport_model}
 \end{equation}
-In Equation~\eqref{eq:membrane_transport}, $R$ represents the rate of substance transferred per unit time, $P$ is the membrane permeability coefficient, $A$ is the functional membrane surface area, and $\Delta c$ is the transmembrane solute concentration gradient. The dimensions of these parameters are $[P] = \text{L}\text{T}^{-1}$, $[A] = \text{L}^2$, and $[\Delta c] = \text{N}\text{L}^{-3}$, where $\text{N}$ denotes the dimension of amount of substance. Multiplying the right-hand side yields:
+where $P$ is the membrane permeability coefficient ($[P] = \text{L}\text{T}^{-1}$), $A$ is the membrane surface area ($[A] = \text{L}^2$), and $\Delta c$ is the transmembrane concentration gradient ($[\Delta c] = \text{N}\text{L}^{-3}$). Multiplying the dimensions gives:
 \begin{equation}
 [P\,A\,\Delta c] = (\text{L}\text{T}^{-1})\,(\text{L}^2)\,(\text{N}\text{L}^{-3}) = \text{N}\text{T}^{-1},
-\label{eq:membrane_dimensional_check}
+\label{eq:dim_check_transport}
 \end{equation}
-which matches the dimension of amount of substance per unit time ($[R] = \text{N}\text{T}^{-1}$), confirming dimensional consistency.
+which matches the dimension of amount of substance transferred per unit time ($[R] = \text{N}\text{T}^{-1}$).
 
-In quantum optics and fluorescence imaging, the energy $E$ carried by a single photon of wavelength $\lambda$ is modeled by the Planck-Einstein relation:
+\subsection{Single-Photon Energy Quantization}
+The energy $E$ of a single photon of optical wavelength $\lambda$ is described by the Planck-Einstein relation:
 \begin{equation}
-E = \frac{h\,c}{\lambda}.
-\label{eq:photon_energy}
+E = \frac{h\,c}{\lambda},
+\label{eq:photon_energy_model}
 \end{equation}
-In Equation~\eqref{eq:photon_energy}, $h$ is the Planck constant with dimension $[h] = \text{M}\text{L}^2\text{T}^{-1}$, $c$ is the speed of light with dimension $[c] = \text{L}\text{T}^{-1}$, and $\lambda$ is the photon wavelength with dimension $[\lambda] = \text{L}$. Evaluating the dimensional quotient gives:
+where $[h] = \text{M}\text{L}^2\text{T}^{-1}$, $[c] = \text{L}\text{T}^{-1}$, and $[\lambda] = \text{L}$. Evaluating the quotient yields:
 \begin{equation}
 \left[\frac{h\,c}{\lambda}\right] = \frac{(\text{M}\text{L}^2\text{T}^{-1})\,(\text{L}\text{T}^{-1})}{\text{L}} = \text{M}\text{L}^2\text{T}^{-2},
-\label{eq:photon_dimensional_check}
+\label{eq:dim_check_photon}
 \end{equation}
-which is the dimension of mechanical energy, confirming the dimensional validity of the relationship.
+matching the physical dimension of mechanical energy ($[E] = \text{M}\text{L}^2\text{T}^{-2}$).
 
-In fluorescence recovery and single-molecule tracking, the characteristic Brownian diffusion displacement $d$ traversed by a fluorophore during a camera detector exposure interval $t$ is approximated by the random walk expression:
+\subsection{Brownian Diffusion Displacement}
+The root-mean-square displacement $d$ traversed by a diffusing macromolecule during an observation interval $t$ is modeled by:
 \begin{equation}
 d = \sqrt{2\,D\,t},
-\label{eq:diffusion_length}
+\label{eq:diffusion_model}
 \end{equation}
-where $D$ represents the macroscopic translational diffusion coefficient possessing dimension $[D] = \text{L}^2\text{T}^{-1}$, $t$ represents time with dimension $[t] = \text{T}$, and the factor 2 is a dimensionless geometric constant. Evaluating the dimensional product inside the square root yields $[D\,t] = (\text{L}^2\text{T}^{-1})\,(\text{T}) = \text{L}^2$, whose square root is $[\sqrt{2Dt}] = \text{L}$, confirming that $d$ has the dimension of length.
+where $D$ is the translational diffusion coefficient ($[D] = \text{L}^2\text{T}^{-1}$) and $t$ is time ($[t] = \text{T}$). Evaluating the product inside the radical gives:
+\begin{equation}
+[\sqrt{2Dt}] = \sqrt{(\text{L}^2\text{T}^{-1})\,(\text{T})} = \sqrt{\text{L}^2} = \text{L},
+\label{eq:dim_check_diffusion}
+\end{equation}
+confirming that the calculated parameter has the dimension of length.
 
-In quantitative fluorescence microscopy, an imaging system is assembled using a camera sensor array containing $N_x \times N_y$ discrete pixels, where each physical pixel has a square side dimension $p$, and the microscope objective provides a total optical magnification $M$. The calibrated lateral fields of view in the specimen plane along the orthogonal axes are given by $\text{FOV}_x = N_x p / M$ and $\text{FOV}_y = N_y p / M$, resulting in a total imaged specimen area $A_{\text{FOV}}$ expressed as:
+\subsection{Microscope Lateral Field of View}
+In quantitative optical microscopy, an imaging detector array contains $N_x \times N_y$ pixels with physical pixel pitch $p$, coupled to an objective lens providing total magnification $M$. The calibrated field of view area $A_{\text{FOV}}$ in the specimen plane is given by:
 \begin{equation}
 A_{\text{FOV}} = \frac{N_x\,N_y\,p^2}{M^2}.
-\label{eq:microscope_fov}
+\label{eq:fov_model}
 \end{equation}
-Because the pixel counts $N_x, N_y$ and the magnification factor $M$ are dimensionless ratios ($[N_x] = [N_y] = [M] = 1$), while the individual physical pixel pitch has the dimension of length ($[p] = \text{L}$), the dimensional product evaluates to:
+Because pixel counts and magnification are dimensionless ($[N_x] = [N_y] = [M] = 1$), while pixel pitch has dimension $[p] = \text{L}$, the dimensional product evaluates to:
 \begin{equation}
 [A_{\text{FOV}}] = \frac{(1)\,(1)\,(\text{L}^2)}{(1)^2} = \text{L}^2,
-\label{eq:fov_dimensional_check}
+\label{eq:dim_check_fov}
 \end{equation}
-confirming that the calculated quantity has the dimension of an area.
+confirming dimensional consistency with physical surface area.
 
-Scientific notation provides an unambiguous framework for representing numerical magnitudes across wide dynamic ranges. A real number is formulated in scientific notation through the normalized expression:
+% =============================================================================
+% CHAPTER 5: DATA REPRESENTATION, SCALING, AND TRACEABILITY
+% =============================================================================
+\chapter{Data Representation, Scaling, and Traceability}
+
+The integrity of a measurement result depends not only on physical standards and instrument calibration, but also on how numerical data are formatted, scaled, and communicated.
+
+\section{Scientific Notation and Significant Figures}
+
+Scientific notation provides an unambiguous mathematical format for reporting numerical data across broad dynamic ranges:
 \begin{equation}
-x = a \times 10^n.
-\label{eq:scientific_notation}
+x = a \times 10^n, \quad \text{with} \quad 1 \le |a| < 10, \quad n \in \mathbb{Z},
+\label{eq:scientific_notation_def}
 \end{equation}
-In Equation~\eqref{eq:scientific_notation}, the coefficient $a$ is termed the mantissa, which must be a non-zero real value bounded by $1 \le |a| < 10$, and $n$ is an integer exponent ($n \in \mathbb{Z}$) that dictates the position of the decimal point. Writing numerical data in normalized scientific notation eliminates ambiguity regarding the precision of experimental records, particularly concerning the status of trailing zero digits.
+where $a$ is the \textbf{mantissa} and $n$ is the integer \textbf{exponent}. Writing results in normalized scientific notation removes ambiguity regarding experimental precision, particularly the status of zero digits.
 
-A significant figure is a digit that conveys verified empirical information regarding the resolution of a measurement. Standard rules determine the significance of digits in reported values:
+A \textbf{significant figure} is a digit that conveys verified empirical information regarding the resolution of a measurement. The significance of digits is determined by standardized rules:
+\begin{itemize}
+    \item All non-zero digits are significant (e.g., $123$ contains three significant digits).
+    \item Zeros situated between non-zero digits are significant (e.g., $1002$ contains four significant digits).
+    \item Leading zeros preceding the first non-zero digit serve exclusively as decimal scale locators and are never significant (e.g., $0.0042 = 4.2 \times 10^{-4}$ contains two significant digits).
+    \item Trailing zeros situated to the right of an explicit decimal point reflect genuine instrument resolution and are significant (e.g., $2.500$ contains four significant figures, and $8.10 \times 10^{-3}$ contains three).
+    \item Trailing zeros in an integer without an explicit decimal point are ambiguous: $1500$ may indicate two, three, or four significant digits. Writing $1.5 \times 10^3$ explicitly specifies two significant digits, whereas writing $1.500 \times 10^3$ specifies four.
+\end{itemize}
 
-All non-zero digits are significant. For example, the quantity $123$ contains three significant digits.
-
-Zeros situated between non-zero digits are significant. For example, the value $1002$ contains four significant digits.
-
-Leading zeros preceding the first non-zero digit serve exclusively as scale locators and are never significant. For example, $0.0045$ contains only two significant digits, which is made clear by writing it as $4.5 \times 10^{-3}$. Similarly, the value $0.00042$ possesses two significant digits and is rendered as $4.2 \times 10^{-4}$.
-
-Trailing zeros situated to the right of an explicit decimal point are significant, as they reflect genuine measurement resolution. Thus, $2.500$ possesses four significant figures, $0.00810$ possesses three significant figures (written as $8.10 \times 10^{-3}$), and $56.0 \times 10^{-6}$ possesses three significant figures (properly normalized as $5.60 \times 10^{-5}$).
-
-Trailing zeros in an unformatted integer without a decimal point are inherently ambiguous. A value recorded as $1500$ may indicate two, three, or four significant figures depending on the instrument resolution. Standard scientific notation eliminates this ambiguity: writing $1.5 \times 10^3$ explicitly specifies two significant figures, while writing $1.500 \times 10^3$ indicates four significant figures.
-
-A central rule of experimental metrology requires that the significant figures of a reported measurand be consistent with its associated experimental uncertainty. The least significant digit of the reported value must terminate at the same decimal position as the leading digit of the uncertainty. Consequently, expressing a measurement as $(2.50 \pm 0.03)\text{ mm}$ is metrologically sound because both the estimate and the uncertainty share identical resolution at the hundredths place. Conversely, reporting an experimental result as $(2.503746 \pm 0.03)\text{ mm}$ is invalid, because quoting digits beyond the scale of the uncertainty implies unwarranted experimental precision. Excess trailing digits must be rounded to match the uncertainty.
-
-An order of magnitude represents the power of ten closest to a given numerical value, providing an intuitive logarithmic scale for rapid estimation and sanity checks. When evaluating a number expressed as $a \times 10^n$, if the mantissa $a$ is less than approximately $\sqrt{10} \approx 3.16$ (or rounded below 5), the order of magnitude is $10^n$; if $a$ exceeds this threshold, it rounds to $10^{n+1}$. For example, $2.4 \times 10^5$ has an order of magnitude of $10^5$, whereas $8.2 \times 10^5$ is closer to $10^6$, exhibiting a difference of nearly one order of magnitude.
-
-Order-of-magnitude analysis allows rapid verification of complex mathematical expressions and helps identify unit conversion errors. Consider the composite arithmetic expression:
+A central tenet of experimental metrology requires that the significant figures of a reported measurand be consistent with its evaluated uncertainty:
 \begin{equation}
-Y = \frac{(138.4)\,(37900)}{0.002345}.
-\label{eq:order_practice}
+\text{Congruent: } (2.50 \pm 0.03)\text{ mm}, \qquad \text{Incongruent: } (2.503746 \pm 0.03)\text{ mm}.
+\label{eq:sig_fig_congruence}
 \end{equation}
-Converting each factor into normalized scientific notation yields:
+The least significant digit of the measurand must terminate at the same decimal position as the leading digit of the uncertainty. Quoting digits beyond the uncertainty resolution implies unwarranted experimental precision; extraneous trailing digits must be rounded.
+
+\section{Order-of-Magnitude Estimation and Metric Scaling}
+
+An \textbf{order of magnitude} represents the power of ten closest to a given numerical value. When evaluating a number expressed as $a \times 10^n$, if the mantissa $a$ is less than $\sqrt{10} \approx 3.16$ (or rounded below 5), the order of magnitude is $10^n$; if $a$ exceeds this threshold, it rounds up to $10^{n+1}$. For example, $2.4 \times 10^5$ has an order of magnitude of $10^5$, whereas $8.2 \times 10^5$ rounds to $10^6$, exhibiting a difference of nearly one order of magnitude.
+
+Order-of-magnitude estimation enables rapid sanity checks on complex calculations. Consider the arithmetic expression:
 \begin{equation}
-Y = \frac{(1.384 \times 10^2)\,(3.790 \times 10^4)}{2.345 \times 10^{-3}} \approx \frac{(10^2)\,(10^4)}{10^{-3}} = 10^{2+4-(-3)} = 10^9.
-\label{eq:order_solution}
+Y = \frac{(138.4)\,(37900)}{0.002345} = \frac{(1.384 \times 10^2)\,(3.790 \times 10^4)}{2.345 \times 10^{-3}} \approx \frac{(10^2)\,(10^4)}{10^{-3}} = 10^9.
+\label{eq:order_practice_calc}
 \end{equation}
-Through inspection, the order of magnitude of the result is estimated to be $10^9$. Similarly, comparing the values $138.4$ and $37900$ reveals an offset of approximately two orders of magnitude ($\approx 10^{-2}$), while comparing $138.4$ against $0.002345$ reveals an offset of five orders of magnitude ($\approx 10^5$).
+
+By direct inspection, the order of magnitude of the result is estimated to be $10^9$.
+
+\clearpage
 
 \begin{table}[!htbp]
 \centering
-\caption{Standard SI multiplication prefixes, symbols, and decimal factors.}
+\caption{Standard SI multiplication prefixes, symbols, and decimal scaling factors.}
 \label{tab:si_prefixes}
-\begin{tabular}{lllclll}
+\begin{tabular*}{\textwidth}{lllclll}
 \toprule
-Prefix & Symbol & Factor & \hspace{0.5cm} & Prefix & Symbol & Factor \\
+Prefix & Symbol & Factor & \hspace{0.8cm} & Prefix & Symbol & Factor \\
 \midrule
 tera & $\text{T}$ & $10^{12}$ & & deci & $\text{d}$ & $10^{-1}$ \\
 giga & $\text{G}$ & $10^9$ & & centi & $\text{c}$ & $10^{-2}$ \\
@@ -579,24 +734,52 @@ kilo & $\text{k}$ & $10^3$ & & micro & $\mu$ & $10^{-6}$ \\
 hecto & $\text{h}$ & $10^2$ & & nano & $\text{n}$ & $10^{-9}$ \\
 deca & $\text{da}$ & $10^1$ & & pico & $\text{p}$ & $10^{-12}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \end{table}
 
-To navigate physical regimes without manipulating cumbersome powers of ten, the SI defines twenty-four standard decimal prefixes, a representative selection of which is compiled in Table~\ref{tab:si_prefixes}. These conversion factors allow physical phenomena to be expressed on convenient numerical scales. In biological systems, temporal dynamics span multiple scales: human development occurs over gigaseconds ($1\text{ Gs} = 10^9\text{ s}$), neuronal action potentials depolarize over milliseconds ($1\text{ ms} = 10^{-3}\text{ s}$), and organic fluorophore lifetimes decay over nanoseconds ($1\text{ ns} = 10^{-9}\text{ s}$).
+To navigate physical regimes without manipulating cumbersome powers of ten, the SI defines twenty-four standard decimal prefixes, a representative selection of which is compiled in Table~\ref{tab:si_prefixes}. In biological systems, physical scales span broad dynamic ranges:
+\begin{itemize}
+    \item \textbf{Temporal scales}: Organismal development spans gigaseconds ($1\text{ Gs} = 10^9\text{ s}$), neuronal action potentials depolarize over milliseconds ($1\text{ ms} = 10^{-3}\text{ s}$), and organic fluorophore excited-state lifetimes decay over nanoseconds ($1\text{ ns} = 10^{-9}\text{ s}$).
+    \item \textbf{Spatial scales}: Anatomical organs occupy the centimetre to millimetre range ($10^{-2}\text{ m}$ to $10^{-1}\text{ m}$), mammalian cells measure ten to twenty micrometres ($10-20\text{ }\mu\text{m}$), bacteria span one to two micrometres ($1-2\text{ }\mu\text{m}$), viruses measure ten to one hundred nanometres ($10-100\text{ nm}$), and the DNA double-helix diameter is approximately two nanometres ($2\text{ nm}$).
+\end{itemize}
+Because human visual resolution is bounded by the eye resolving limit at approximately one hundred micrometres ($\sim 10^{-4}\text{ m}$), investigating phenomena below this threshold requires specialized optical or electron microscopy.
 
-Similarly, spatial dimensions span wide dynamic ranges. Macroscopic organs and anatomical tissues occupy the centimetre to millimetre scale ($10^{-2}\text{ m}$ to $10^{-1}\text{ m}$); human height is around one to two metres ($10^0\text{ m}$); the width of a human hair is roughly one hundred micrometres ($10^{-4}\text{ m}$); single mammalian cells measure approximately ten to twenty micrometres ($10^{-5}\text{ m}$); unicellular bacteria span one to two micrometres ($10^{-6}\text{ m}$); sub-micron viral pathogens measure between ten and one hundred nanometres ($10^{-8}\text{ m}$ to $10^{-7}\text{ m}$); globular proteins measure five nanometres ($5 \times 10^{-9}\text{ m}$); and the double-helix diameter of DNA is approximately two nanometres ($2 \times 10^{-9}\text{ m}$). Because human visual perception is bounded by the resolving limit of the eye at the scale of a hair width ($\sim 10^{-4}\text{ m}$), examining structures below this threshold requires specialized instrumentation, such as optical microscopy, electron microscopy, atomic force microscopy, and spectroscopic analysis.
-
-Converting between prefixed units requires care when handling derived powers. Linear conversions evaluate the difference in exponential orders; for instance, converting $3.2\text{ mm}$ into micrometres proceeds by noting that milli corresponds to $10^{-3}$ and micro to $10^{-6}$, yielding $3.2 \times 10^3\text{ }\mu\text{m} = 3200\text{ }\mu\text{m}$. When converting volumetric or areal powers of units, the scale factor must be raised to the corresponding geometric exponent. For example, converting a volume of $20\text{ cm}^3$ into cubic metres requires expanding the prefix factor:
+When converting derived powers of prefixed units, the conversion factor must be raised to the corresponding geometric exponent. For example, converting a volume of $20\text{ cm}^3$ into cubic metres requires expanding the prefix exponent:
 \begin{equation}
 20\text{ cm}^3 = 20 \times (10^{-2}\text{ m})^3 = 20 \times 10^{-6}\text{ m}^3 = 2 \times 10^{-5}\text{ m}^3.
-\label{eq:volume_conversion}
+\label{eq:volume_conversion_calc}
 \end{equation}
 
-Adopting the SI framework is necessary, but by itself insufficient, to guarantee the reliability of an experimental measurement]. A measurement becomes meaningful only when it possesses metrological traceability. Metrological traceability is defined as the property of a measurement result whereby the result can be related to a recognized reference standard through a documented, unbroken chain of calibrations, each contributing to the stated measurement uncertainty.
+\section{Metrological Traceability}
 
-The calibration chain is organized as an unbroken hierarchical pyramid. At the apex reside the defining constants and primary realizations of the SI base units, maintained by international bodies and national metrology institutes. Below this level, national primary standards calibrate reference standards, which are subsequently used to calibrate secondary working standards maintained by calibration laboratories and industrial centers. These working standards are used to calibrate everyday measuring instruments, which finally generate experimental results.
+Adopting the SI framework is necessary, but by itself insufficient, to guarantee the reliability of an experimental measurement. A measurement result becomes meaningful only when it possesses \textbf{metrological traceability}: the property of a measurement result whereby the result can be related to a recognized reference standard through a documented, unbroken chain of calibrations, each contributing to the stated measurement uncertainty.
 
-Traceability does not imply that an empirical result is error-free. Every calibration step introduces an additional source of uncertainty that must be quantified and propagated. An experimental result is traceable when it is linked to authoritative standards through an unbroken chain of documented calibrations, using validated procedures and specified calibration intervals. Ultimately, a scientific measurement is defined not merely by a numerical reading, but by the complete framework of its standardized unit, documented calibration path, and quantified uncertainty.
+\begin{figure}[h]
+\centering
+\begin{tabular}{c}
+\toprule
+\textbf{Defining Constants of the SI} \\
+($c, h, e, k_{\text{B}}, N_{\text{A}}, \Delta \nu_{\text{Cs}}, K_{\text{cd}}$) \\
+$\Downarrow$ \\
+\textbf{Primary National Standards} \\
+(Maintained by NMIs: NIST, INRIM, BIPM) \\
+$\Downarrow$ \\
+\textbf{Secondary Reference Standards} \\
+(Accredited Calibration Laboratories) \\
+$\Downarrow$ \\
+\textbf{Working Standards} \\
+(Analytical Facilities and Research Laboratories) \\
+$\Downarrow$ \\
+\textbf{Routine Measuring Instruments and Sensors} \\
+\bottomrule
+\end{tabular}
+\caption{The hierarchical calibration chain establishing metrological traceability from universal defining constants down to laboratory sensors.}
+\label{fig:traceability_pyramid}
+\end{figure}
+
+As depicted in Figure~\ref{fig:traceability_pyramid}, the calibration chain is organized as an unbroken hierarchy. At the apex reside the defining constants of the SI. Primary national standards maintained by NMIs calibrate secondary reference standards, which are subsequently used to calibrate working standards in analytical laboratories. Working standards calibrate routine laboratory sensors.
+
+Traceability does not imply that an empirical result is error-free. Every calibration step introduces an additional source of uncertainty that must be quantified and propagated down the chain. An experimental measurement is traceable when it is linked to authoritative standards through an unbroken chain of documented calibrations, using validated procedures and specified calibration intervals. Ultimately, an empirical measurement is defined not merely by a numerical reading, but by the complete framework of its standardized unit, documented calibration path, and quantified uncertainty.
 
 %\backmatter
 
