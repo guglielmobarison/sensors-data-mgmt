@@ -2,7 +2,7 @@
 \usepackage{../../shared/common}
 
 % Book title to populate PDF metadata:
-\hypersetup{pdftitle={Sensors, Measurement Errors Data Management (Mod. B) - Lecture Notes}}
+\hypersetup{pdftitle={Sensors, Measurement Errors and Data Management (Mod. B) - Lecture Notes}}
 
 % Path to PDF file with figures:
 \newcommand{\pdf}{figures.pdf}
@@ -10,8 +10,8 @@
 \begin{document}
 
 % Title details
-\title{Sensors, Measurement Errors Data Management (Mod. B)}
-\subtitle{M.Sc. Quantitative and Computational Biosciences -- A.Y. 2026/2027}
+\title{Sensors, Measurement Errors and Data Management}
+\subtitle{Module B --- M.Sc. Quantitative and Computational Biology\\A.Y. 2026/2027}
 \author{Prof. Anna Archetti}
 \date{First Semester (2026/2027)}
 
@@ -25,67 +25,78 @@
 \mainmatter
 
 % =============================================================================
-% CHAPTER 1: FUNDAMENTAL PRINCIPLES OF METROLOGY
+% CHAPTER 1: METROLOGY AND THE INTERNATIONAL SYSTEM OF UNITS (SI)
 % =============================================================================
-\chapter{Fundamental Principles of Metrology}
+\chapter{Metrology and the International System of Units (SI)}
 
-Metrology constitutes the formal scientific discipline dedicated to the theory and practice of measurement, establishing an internationally harmonized framework of units, standards, and evaluation protocols. In empirical science, an experimental observation acquires quantitative meaning only when interpreted through a rigorous measurement architecture. 
+Metrology is the science of measurement. In experimental science, an observation is never just about looking at something through an instrument; it acquires quantitative meaning only when placed within a formal framework of units, reference standards, and uncertainty evaluation. Whether we are recording fluorescence under a microscope or tracking ionic currents across a cell membrane, metrology provides the common language that allows measurements performed in different laboratories to be reproduced, compared, and trusted.
 
 \section{Physical Quantities and the Measurement Process}
 
-A \textbf{physical quantity} is formally defined as an operational property of a material body, physical system, or phenomenon that can be distinguished qualitatively and determined quantitatively. In laboratory practice, physical quantities are evaluated through either direct or indirect comparison:
+A \textbf{physical quantity} is any property of a material body, physical system, or phenomenon that can be distinguished qualitatively and determined quantitatively. Physical quantities encompass both directly observable macroscopic features (such as the length of a cell, the volume of a liquid, or the temperature of an incubator) and entities that cannot be seen directly (such as quarks or molecular conformational states), which are investigated indirectly through their interactions with their environment.
+
+\subsection{Target Quantity, Measurement, and Result Triad}
+
+In laboratory practice, it is essential to distinguish between what we intend to measure and the physical process used to evaluate it:
 \begin{itemize}
-    \item \textbf{Direct measurement}: The unknown quantity is directly compared with a reference standard of the same nature (e.g., assessing length with a calibrated graduated scale).
-    \item \textbf{Indirect measurement}: The quantity of interest cannot be accessed directly in isolation and must be inferred through its deterministic coupling with other measurable physical variables.
+    \item \textbf{Target quantity (Measurand)}: The physical quantity intended to be measured. It answers the fundamental question: \emph{``What do I want to know?''}
+    \item \textbf{Measurement procedure}: The set of operations and physical interactions used to determine the value of the measurand. It answers the question: \emph{``How do I determine it?''}
+    \item \textbf{Measurement result}: The final value attributed to the measurand, produced by the measurement procedure.
 \end{itemize}
-\clearpage
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[page = 1, width=0.7\linewidth, keepaspectratio]{\pdf}
-\caption{The generalized metrological measurement chain relating the measurand to the documented result.}
+\includegraphics[page=1, width=0.7\linewidth, keepaspectratio]{\pdf}
+\caption{The generalized metrological measurement chain relating the target quantity (measurand) to the documented result.}
 \label{fig:metrology_chain}
 \end{figure}
 
-The relationship between the objective state of nature and the empirical output of an experiment is structured through the measurement chain depicted in Figure~\ref{fig:metrology_chain}. The target quantity, or \textbf{measurand}, designates the specific physical property intended to be quantified. The \textbf{measurement procedure} represents the complete physical and analytical pipeline implemented to evaluate the measurand. Crucially, a measurement outcome is never an isolated scalar; a valid \textbf{measurement result} must always be reported as a triad comprising:
+The path connecting the physical measurand to the recorded output is structured through the measurement chain shown in Figure~\ref{fig:metrology_chain}. Crucially, a measurement outcome is never just a bare number. To be scientifically valid and interpretable, every \textbf{measurement result} must be reported as a triad comprising:
 \begin{equation}
 \text{Result} = \{ \text{Numerical Value}, \; \text{Standard Unit}, \; \text{Quantified Uncertainty} \}.
 \label{eq:measurement_result_triad}
 \end{equation}
+A statement such as ``the concentration is $250$'' is meaningless without specifying the unit (e.g., $\text{nM}$) and the uncertainty interval reflecting the experimental variability of the instrument.
 
-\subsection{Indirect Measurements: The Bioimaging Calcium Archetype}
+Physical quantities can be evaluated through either direct or indirect measurement:
+\begin{itemize}
+    \item \textbf{Direct measurement}: The unknown quantity is compared directly with an agreed reference standard of the same nature (e.g., assessing length with a calibrated ruler, or measuring mass with a balance against calibrated weights).
+    \item \textbf{Indirect measurement}: The quantity of interest cannot be accessed directly in isolation; instead, it is inferred through physical or mathematical relationships from other measurable variables.
+\end{itemize}
 
-A canonical archetype of an indirect measurement in modern biophysics is the quantification of intracellular free calcium concentration ($[\text{Ca}^{2+}]$) during neuronal signaling, illustrated in Figure~\ref{fig:calcium_measurement}. Intact living neurons do not permit direct non-invasive electrochemical probing of nanoscopic cytosolic domains without disrupting physiological membrane integrity.
+\subsection{Case Study: Intracellular Calcium Imaging}
 
-\begin{figure}[h]
+A classic example of indirect measurement in modern biophysics and neuroscience is the quantification of intracellular free calcium concentration ($[\text{Ca}^{2+}]$) inside living neurons, illustrated in Figure~\ref{fig:calcium_measurement}. Living neurons are fragile: we cannot insert a macroscopic electrochemical probe into a nanoscopic dendritic spine without puncturing the plasma membrane and disrupting physiological function.
+
+\begin{figure}[!htbp]
 \centering
 \includegraphics[page=2, width=0.6\linewidth, keepaspectratio]{\pdf}
 \caption{Schematic representation of an indirect measurement chain in biological systems, exemplified by intracellular calcium concentration ($[\text{Ca}^{2+}]$) imaging. Neuronal activation promotes calcium influx through membrane channels, causing free ions to bind to a fluorescent indicator. The conformational change alters fluorophore emission intensity, which is collected by an objective lens and digitized by a camera sensor. Recorded pixel values are subsequently converted via calibration curves into an absolute concentration value.}
 \label{fig:calcium_measurement}
 \end{figure}
 
-To circumvent this limitation, investigators introduce synthetic or genetically encoded fluorescent indicators into the cytosol. The measurement proceeds through a cascade of physical transductions:
-\begin{itemize}
-    \item \textbf{Biochemical transduction}: Free $\text{Ca}^{2+}$ ions bind selectively to the indicator binding domain, inducing conformational rearrangements that modulate the fluorophore quantum yield or spectral emission.
-    \item \textbf{Optical collection and digitization}: Emitted photons are collected by an objective lens, spectrally isolated by optical filters, and focused onto an array detector (such as an sCMOS or EMCCD camera), which digitizes the incident photon flux into spatial arrays of digital counts.
-    \item \textbf{Analytical reconstruction}: Empirical pixel intensities are converted into an absolute chemical concentration ($[\text{Ca}^{2+}] \approx 250\text{ nM}$) by applying calibrated binding isotherms and background subtraction algorithms.
-\end{itemize}
-In this pipeline, the measurand is $[\text{Ca}^{2+}]$, the intermediate observable is a digitized photon flux, and the final reported value depends entirely on detector calibration and mathematical modeling.
+To bypass this limitation, researchers introduce fluorescent indicators (either synthetic dyes or genetically encoded indicators such as GCaMP) into the cytosol. The measurement proceeds through a sequence of physical transductions:
+\begin{enumerate}
+    \item \textbf{Biochemical sensing}: During neuronal activation, $\text{Ca}^{2+}$ enters the cell through membrane channels and binds to the indicator. This binding induces a conformational change that alters the indicator's fluorescence quantum yield or emission spectrum.
+    \item \textbf{Optical collection and digitization}: A microscope objective collects the emitted fluorescence photons, optical filters isolate the emission band, and an array detector (such as an sCMOS or EMCCD camera) digitizes the photon flux into spatial arrays of pixel intensity counts.
+    \item \textbf{Quantitative calibration}: The recorded pixel intensities are converted into an absolute chemical concentration ($[\text{Ca}^{2+}] \approx 250\text{ nM}$) by applying calibrated binding isotherms (Hill curves) and background subtraction algorithms.
+\end{enumerate}
+In this pipeline, the \textbf{measurand} is the intracellular calcium concentration $[\text{Ca}^{2+}]$, the \textbf{raw signal} recorded by the sensor is an array of digital photon counts, and the \textbf{final result} is reconstructed entirely through sensor calibration and mathematical modeling.
 
-\subsection{Essential Metrological Criteria}
+\subsection{Foundations of a Reliable Measurement}
 
-Transforming an empirical observation into a reliable, scientifically valid datum requires fulfilling three interdependent metrological criteria:
+Transforming an empirical observation into a reliable scientific datum requires fulfilling three interdependent metrological criteria:
 \begin{itemize}
-    \item \textbf{Standardized measurement language}: A globally ratified vocabulary of units, symbols, and conventions ensuring that experimental results obtained across independent laboratories are mutually intelligible.
+    \item \textbf{Standardized measurement language}: A globally agreed vocabulary of units, symbols, and conventions ensuring that experimental results obtained across independent laboratories are mutually intelligible.
     \item \textbf{Documented measurement procedure}: Comprehensive specification of the instrument calibration state, operating environmental conditions (temperature, pressure, humidity), and analytical conversion models.
     \item \textbf{Uncertainty evaluation}: Explicit identification of all random and systematic sources of experimental dispersion, providing a quantitative measure of confidence in the reported result.
 \end{itemize}
 
-\section{Hierarchy of Standards and Global Governance}
+\section{Hierarchy of Standards and Metrological Traceability}
 
-A \textbf{measurement standard} is an authoritative physical realization or operational reference established to define, realize, conserve, or reproduce the value of a physical quantity. Standards exist within an unbroken operational hierarchy that guarantees traceability worldwide.
+A \textbf{measurement standard} is an authoritative physical realization or operational reference established to define, realize, conserve, or reproduce the value of a physical quantity. Standards exist within an unbroken operational hierarchy that guarantees comparability worldwide.
 
-\subsection{The Metrological Pyramid}
+\subsection{The Metrological Pyramid and Global Governance}
 
 The dissemination of measurement standards is organized into three distinct tiers:
 \begin{itemize}
@@ -94,35 +105,60 @@ The dissemination of measurement standards is organized into three distinct tier
     \item \textbf{Working standards}: Calibrated reference instruments maintained in analytical, industrial, and academic laboratories, used for routine calibration of experimental apparatus.
 \end{itemize}
 
-\subsection{International Governance and Regional Infrastructure}
-
-Global metrological comparability is governed by an institutional triad established under the diplomatic framework of the \textbf{Metre Convention}:
+Global metrological comparability is governed by an institutional triad established under the diplomatic framework of the \textbf{Metre Convention} (1875):
 \begin{itemize}
-    \item \textbf{General Conference on Weights and Measures (\emph{CGPM})}: The supreme diplomatic decision-making body, composed of governmental delegates from all member states, which ratifies structural revisions to the International System of Units.
+    \item \textbf{General Conference on Weights and Measures (\emph{CGPM})}: The diplomatic decision-making body, composed of governmental delegates from all member states, which ratifies structural revisions to the International System of Units.
     \item \textbf{International Committee for Weights and Measures (\emph{CIPM})}: An executive committee of scientific experts that executes coordination, supervises metrological research, and drafts formal resolutions for the CGPM.
-    \item \textbf{International Bureau of Weights and Measures (\emph{BIPM})}: The permanent scientific headquarters located in Sèvres, France, serving as the international center for physical metrology and interlaboratory comparisons.
+    \item \textbf{International Bureau of Weights and Measures (\emph{BIPM})}: The permanent scientific headquarters located in S\`evres, France, serving as the international center for physical metrology and interlaboratory comparisons.
 \end{itemize}
 
-These international organs do not calibrate commercial sensors directly; instead, they maintain the legal and physical framework ensuring equivalence across \textbf{Regional Metrology Organizations} (such as EURAMET in Europe, SIM in the Americas, and APMP in Asia-Pacific). Within national borders, dedicated institutes maintain primary standards, such as the National Institute of Standards and Technology (\textbf{NIST}) in the United States and the \emph{Istituto Nazionale di Ricerca Metrologica} (\textbf{INRIM}) in Italy. These institutes provide primary data, such as atomic transition databases and reference materials, ensuring rigorous reproducibility.
+These international bodies do not calibrate individual laboratory sensors directly; instead, they maintain the legal and physical framework ensuring equivalence across \textbf{Regional Metrology Organizations} (such as EURAMET in Europe, SIM in the Americas, and APMP in Asia-Pacific). Within national borders, dedicated institutes maintain primary standards, such as the National Institute of Standards and Technology (\textbf{NIST}) in the United States and the \emph{Istituto Nazionale di Ricerca Metrologica} (\textbf{INRIM}) in Italy. These institutes provide certified reference materials, atomic transition data, and calibration services.
 
-The necessity of this global structure is illustrated by considering four research groups reporting laboratory ambient temperatures as $23.4^\circ\text{C}$, $296.6\text{ K}$, $23^\circ\text{C}$, and $(23.4 \pm 0.1)^\circ\text{C}$. Without standardized units, documented calibrations, and explicit uncertainty intervals, these observations cannot be quantitatively compared, undermining scientific and commercial reliability.
+The necessity of this global structure is readily apparent when comparing laboratory reports. Consider four research groups reporting laboratory ambient temperatures as $23.4^\circ\text{C}$, $296.6\text{ K}$, $23^\circ\text{C}$, and $(23.4 \pm 0.1)^\circ\text{C}$. Without standardized units, documented calibrations, and explicit uncertainty intervals, these observations cannot be quantitatively compared, undermining scientific and commercial reliability.
 
-% =============================================================================
-% CHAPTER 2: THE REVISED INTERNATIONAL SYSTEM OF UNITS (SI)
-% =============================================================================
-\chapter{The Revised International System of Units (SI)}
+\subsection{Metrological Traceability}
 
-The \textbf{International System of Units} (SI) provides the foundational metric architecture designed for the quantitative comparison of homogeneous physical quantities. It is structured upon four operational components: seven defining physical constants, seven fundamental base units, twenty-two derived units with special names, and twenty-four decimal multiplication prefixes.
+Adopting standard units is necessary, but by itself insufficient, to guarantee the reliability of an experimental measurement. A measurement result becomes meaningful only when it possesses \textbf{metrological traceability}: the property of a measurement result whereby the result can be related to a recognized reference standard through a documented, unbroken chain of calibrations, each contributing to the stated measurement uncertainty.
 
-\section{The 2019 Paradigm Shift: Defining Constants}
+\begin{figure}[h]
+\centering
+\begin{tabular}{c}
+\toprule
+\textbf{Defining Constants of the SI} \\
+($c, h, e, k_{\text{B}}, N_{\text{A}}, \Delta \nu_{\text{Cs}}, K_{\text{cd}}$) \\
+$\Downarrow$ \\
+\textbf{Primary National Standards} \\
+(Maintained by NMIs: NIST, INRIM, BIPM) \\
+$\Downarrow$ \\
+\textbf{Secondary Reference Standards} \\
+(Accredited Calibration Laboratories) \\
+$\Downarrow$ \\
+\textbf{Working Standards} \\
+(Analytical Facilities and Research Laboratories) \\
+$\Downarrow$ \\
+\textbf{Routine Measuring Instruments and Sensors} \\
+\bottomrule
+\end{tabular}
+\caption{The hierarchical calibration chain establishing metrological traceability from universal defining constants down to laboratory sensors.}
+\label{fig:traceability_pyramid}
+\end{figure}
+
+As depicted in Figure~\ref{fig:traceability_pyramid}, the calibration chain is organized as an unbroken hierarchy. At the apex reside the defining constants of the SI. Primary national standards maintained by NMIs calibrate secondary reference standards, which are subsequently used to calibrate working standards in analytical laboratories. Working standards in turn calibrate routine laboratory sensors.
+
+Traceability does not imply that an empirical result is error-free. Every calibration step introduces an additional source of uncertainty that must be quantified and propagated down the chain. An experimental measurement is traceable when it is linked to authoritative standards through an unbroken chain of documented calibrations, using validated procedures and specified calibration intervals.
+
+\section{The Revised International System of Units (SI)}
+
+The \textbf{International System of Units} (SI) provides the foundational metric framework designed for the quantitative comparison of physical quantities. It is structured upon four operational components: seven defining physical constants, seven fundamental base units, twenty-two derived units with special names, and standard decimal multiplication prefixes.
+
+\subsection{The 2019 Redefinition: From Artefacts to Defining Constants}
 
 Historically, measurement units relied upon human anatomical references (such as the cubit, foot, and thumb width). While readily accessible, these standards suffered from extreme individual variability. Metrology subsequently transitioned toward macroscopic physical artefacts:
 \begin{itemize}
     \item The \textbf{metre} was initially defined as one forty-millionth of the Earth's meridian passing through Paris, and later materialized as a platinum-iridium prototype bar.
-    \item The \textbf{kilogram} was defined for over 130 years by the International Prototype of the Kilogram (\emph{IPK}), a platinum-iridium cylinder stored in a subterranean vault at the BIPM.
+    \item The \textbf{kilogram} was defined for over 130 years by the International Prototype of the Kilogram (\emph{IPK}), a platinum-iridium cylinder stored in a subterranean vault at the BIPM in S\`evres.
 \end{itemize}
-Physical artefacts exhibit fundamental limitations: they are vulnerable to surface contamination, physical wear, environmental degradation, and drift over decadal timescales.
-\clearpage
+Physical artefacts exhibit fundamental limitations: they are vulnerable to surface contamination, physical wear, environmental degradation, and drift over decadal timescales. Microgram differences were discovered between the IPK and its identical official copies over a single century.
 
 \begin{table}[!htbp]
 \centering
@@ -146,7 +182,9 @@ Luminous efficacy at $540\text{ THz}$ & $K_{\text{cd}}$ & $683$ & $\text{lm}\cdo
 
 The landmark 2019 revision of the SI resolved these artefact instabilities by inverting the relationship between units and fundamental constants. Rather than defining units through material objects and measuring fundamental constants with an associated experimental uncertainty, the international community fixed the exact numerical values of \textbf{seven defining physical constants}, compiled in Table~\ref{tab:si_constants}. Under this architecture, base units are defined operationally so that these universal invariants assume their exact values without uncertainty.
 
-\begin{figure}[!htbp]
+\clearpage
+
+\begin{figure}[h]
 \centering
 \includegraphics[page=3, width=0.55\linewidth, keepaspectratio]{\pdf}
 \caption{Interdependency network of the SI base units following the 2019 revision. Directional arrows illustrate how definitions propagate from fixed fundamental constants across base units.}
@@ -164,11 +202,11 @@ The modern operational realization generates an interdependent network of unit d
     \item The luminous efficacy $K_{\text{cd}}$ defines the \textbf{candela} through the watt and steradian.
 \end{itemize}
 
-\section{Base Quantities, Dimensions, and Typographic Rules}
+\subsection{Base Quantities, Dimensions, and Typographic Rules}
 
 The SI recognizes seven base physical quantities, each assigned a conventional physical dimension under ISO/IEC 80000 guidelines, as detailed in Table~\ref{tab:si_base_units}.
 
-\begin{table}[!htbp]
+\begin{table}[h]
 \centering
 \caption{The seven base physical quantities of the SI, their dimensions, and standardized base units.}
 \label{tab:si_base_units}
@@ -189,7 +227,7 @@ Luminous intensity & $\text{J}$ & candela & $\text{cd}$ \\
 
 Rigorous typographical conventions govern the expression of measurement results:
 \begin{itemize}
-    \item \textbf{Font formatting}: Symbols representing physical quantities are formatted exclusively in italic type ($D, m, t$), whereas symbols for units are formatted strictly in upright (roman) type ($\text{m}, \text{kg}, \text{s}$). The dimensional symbol for luminous intensity is $\text{J}$ (upright sans-serif or roman), which must not be confused with the unit joule ($\text{J}$).
+    \item \textbf{Font formatting}: Symbols representing physical quantities are formatted in italic type ($D, m, t$), whereas symbols for units are formatted strictly in upright (roman) type ($\text{m}, \text{kg}, \text{s}$). The dimensional symbol for luminous intensity is $\text{J}$ (upright sans-serif or roman), which must not be confused with the unit joule ($\text{J}$).
     \item \textbf{Spacing}: A non-breaking space must separate the numerical value from the unit symbol (e.g., $2.50\text{ mm}$, not $2.50\text{mm}$).
     \item \textbf{Invariance}: Unit symbols are mathematical entities and must never be pluralized with an appended ``s'' (e.g., $5\text{ kg}$, never $5\text{ kgs}$).
 \end{itemize}
@@ -205,7 +243,9 @@ The \textbf{second} ($\text{s}$) is defined by taking the fixed numerical value 
 \end{equation}
 One second corresponds to the duration of $9\,192\,631\,770$ oscillation periods of the electromagnetic microwave radiation resonant with this quantum transition. The duration of a single microwave oscillation cycle is $T \approx 1.088 \times 10^{-10}\text{ s}$, with a free-space wavelength of $\lambda \approx 3.26\text{ cm}$.
 
-\begin{figure}[!htbp]
+\clearpage
+
+\begin{figure}[h]
 \centering
 \includegraphics[page=4, width=0.58\linewidth, keepaspectratio]{\pdf}
 \caption{Operational architecture of a Caesium-133 primary atomic clock. An internal microwave oscillator probes caesium atoms confined in an ultra-high vacuum chamber. When the oscillator matches the atomic resonance at $9.192\,631\,770\text{ GHz}$, transition probability between the $F=3$ and $F=4$ states is maximized. A state-selective detector generates an error signal in a feedback loop, locking the local oscillator to the atomic transition. A high-speed digital frequency divider synthesizes an exact $1\text{ Hz}$ output pulse train.}
@@ -246,7 +286,7 @@ d = c\,\Delta t = 1\text{ m}.
 \end{equation}
 
 \clearpage
-\begin{figure}[!htbp]
+\begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -284,6 +324,121 @@ d = c\,\Delta t = 1\text{ m}.
 
 This definition enables consistent dimensional scaling across numerous orders of magnitude, as illustrated in Figure~\ref{fig:dimensional_scaling}, connecting viral capsids ($10^{-8}\text{ m}$ to $10^{-7}\text{ m}$), eukaryotic cell bodies ($10^{-5}\text{ m}$), and macroscopic geographical structures ($10^3\text{ m}$ to $10^6\text{ m}$).
 
+\subsection{Electromagnetic Waves and Optical Metrology}
+
+Because optical sensors, laser interferometers, and fluorescence microscopes serve as primary transducers in biological metrology, a clear understanding of electromagnetic wave mechanics is essential.
+
+Light propagates as a transverse electromagnetic wave characterized by mutually perpendicular electric ($\mathbf{E}$) and magnetic ($\mathbf{B}$) fields, both orthogonal to the propagation wavevector $\mathbf{k}$, satisfying:
+\begin{equation}
+\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}.
+\label{eq:orthogonality_condition}
+\end{equation}
+In modern optical bioimaging, light-matter interactions are overwhelmingly dominated by electric dipole coupling; magnetic field interactions are typically negligible. Consequently, optical waves can be analyzed directly through the scalar electric field.
+
+\clearpage
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.85\linewidth}
+        \centering
+        \includegraphics[page=13, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Temporal representation at fixed space: orthogonal oscillations of $\mathbf{E}$ (vertical) and $\mathbf{B}$ (horizontal), highlighting oscillation period $T$.}
+        \label{fig:em_temporal}
+    \end{subfigure}
+    
+    \vspace{0.35cm}
+    
+    \begin{subfigure}[b]{0.85\linewidth}
+        \centering
+        \includegraphics[page=14, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Spatial representation at a fixed instant in time: field profile propagating along $\mathbf{k}$, displaying wavelength $\lambda$ under $\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}$.}
+        \label{fig:em_spatial}
+    \end{subfigure}
+    
+    \caption{Planar electromagnetic wave propagation in vacuum: temporal periodicity $T$ at fixed position (A) and spatial periodicity $\lambda$ at fixed time (B).}
+    \label{fig:em_wave_orthogonality}
+\end{figure}
+
+As illustrated in Figure~\ref{fig:em_wave_orthogonality}, wave dynamics can be observed from two complementary viewpoints:
+\begin{itemize}
+    \item \textbf{Temporal periodicity}: Observing a fixed spatial coordinate ($x = x_0$) reveals sinusoidal oscillations with temporal period $T$ and frequency $\nu = 1/T$ (Figure~\ref{fig:em_temporal}).
+    \item \textbf{Spatial periodicity}: Observing an instantaneous snapshot ($t = t_0$) reveals spatial oscillations with physical wavelength $\lambda$ along the propagation axis (Figure~\ref{fig:em_spatial}).
+\end{itemize}
+
+A monochromatic planar electric field propagating along coordinate $x$ is described analytically by:
+\begin{equation}
+E(x,t) = E_0 \cos(kx - \omega t + \phi),
+\label{eq:wave_harmonics}
+\end{equation}
+where $E_0$ is the electric field amplitude, $\phi$ is the initial phase offset, $k$ is the wavenumber, and $\omega$ is the angular frequency:
+\begin{equation}
+k = \frac{2\pi}{\lambda}, \qquad [\dim k = \text{L}^{-1}],
+\label{eq:wavenumber_eq}
+\end{equation}
+\begin{equation}
+\omega = 2\pi\nu = \frac{2\pi}{T}, \qquad [\dim \omega = \text{T}^{-1}].
+\label{eq:angular_freq_eq}
+\end{equation}
+The optical intensity $I$ registered by physical imaging detectors is proportional to the cycle-averaged squared electric field amplitude ($I \propto E_0^2$).
+
+\subsection{Propagation in Dielectric Media and Dispersion}
+
+In vacuum, electromagnetic waves propagate at $c = 299\,792\,458\text{ m}\cdot\text{s}^{-1}$, with vacuum wavelength $\lambda_0 = c/\nu$. When an electromagnetic wave enters a dielectric medium with refractive index $n$, boundary conditions require that the temporal oscillation frequency $\nu$ remain invariant. However, the \textbf{phase velocity} $v_{\text{p}}$ is attenuated according to:
+\begin{equation}
+v_{\text{p}} = \frac{\omega}{k} = \frac{c}{n},
+\label{eq:phase_velocity}
+\end{equation}
+which causes the internal wavelength to compress to $\lambda = \lambda_0 / n$.
+
+The general dispersion relation connecting wavenumber to angular frequency is:
+\begin{equation}
+k(\omega) = \frac{n(\omega)\,\omega}{c}.
+\label{eq:dispersion_general}
+\end{equation}
+In an idealized non-dispersive medium where $n$ is constant across frequencies, the \textbf{group velocity} $v_{\text{g}}$ (the velocity at which a wave packet envelope travels) is identical to the phase velocity:
+\begin{equation}
+v_{\text{g}} = \frac{d\omega}{dk} = \frac{c}{n} = v_{\text{p}}.
+\label{eq:group_velocity_nondisp}
+\end{equation}
+In real dispersive media where the refractive index depends explicitly on frequency ($n = n(\omega)$), differentiating Equation~\eqref{eq:dispersion_general} yields:
+\begin{equation}
+v_{\text{g}} = \frac{d\omega}{dk} = \frac{c}{n + \omega \frac{dn}{d\omega}}.
+\label{eq:group_velocity_disp}
+\end{equation}
+Depending on the dispersion parameter $dn/d\omega$, phase velocity can exceed group velocity, leading to pulse broadening in quantitative optical microscopy.
+
+\subsection{The Bioimaging Spectrum and Fluorophores}
+
+Quantitative fluorescence bioimaging operates across the ultraviolet, visible, and near-infrared domains ($380\text{ nm}$ to $1000\text{ nm}$), as illustrated in Figure~\ref{fig:bioimaging_spectrum}. Optical indicators are chosen so that their absorption and emission spectra align with laser excitation lines and narrow bandpass filter windows.
+
+\clearpage
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page=15, width=\linewidth, keepaspectratio]{\pdf}
+    \caption{The electromagnetic spectrum from the visible to the near-infrared domain ($380\text{ nm}$ to $1000\text{ nm}$) used in bioimaging, mapping the specific excitation and emission bands of standard fluorophores.}
+    \label{fig:bioimaging_spectrum}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\caption{Spectral properties, excitation wavelengths, emission wavelengths, and optical emission frequencies of fluorophores used in quantitative bioimaging.}
+\label{tab:bioimaging_dyes}
+\begin{tabular*}{\textwidth}{lcccc}
+\toprule
+Fluorophore & Spectral Domain & Excitation $\lambda$ & Emission $\lambda$ & Emission Frequency ($\nu$) \\
+\midrule
+DAPI / Hoechst & Violet / Blue & $405\text{ nm}$ & $460\text{ nm}$ & $652\text{ THz}$ \\
+GFP / FITC / AF488 & Green & $488\text{ nm}$ & $510\text{ nm}$ & $588\text{ THz}$ \\
+Cy3 / TRITC & Orange & $550\text{ nm}$ & $568\text{ nm}$ & $528\text{ THz}$ \\
+Texas Red & Orange-Red & $590\text{ nm}$ & $615\text{ nm}$ & $487\text{ THz}$ \\
+Cy5 / AF647 & Far-Red & $650\text{ nm}$ & $670\text{ nm}$ & $447\text{ THz}$ \\
+ICG / NIR Dyes & Near-Infrared & $790\text{ nm}$ & $820\text{ nm}$ & $366\text{ THz}$ \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+Table~\ref{tab:bioimaging_dyes} summarizes representative indicators across the spectrum. Wavelength and frequency follow the inverse relation $\nu = c/\lambda$: ultraviolet and blue emitters (such as DAPI emitting at $460\text{ nm}$) correspond to higher optical frequencies ($652\text{ THz}$), whereas near-infrared dyes (such as ICG emitting at $820\text{ nm}$) correspond to lower frequencies ($366\text{ THz}$).
+
 \subsection{The Ampere: Elementary Charge and the Millikan Experiment}
 
 The \textbf{ampere} ($\text{A}$) is the SI base unit of electric current. Historically, the ampere was defined through the mechanical force per unit length $F/L$ exerted between two infinite parallel current-carrying conductors in vacuum separated by $r = 1\text{ m}$:
@@ -305,7 +460,8 @@ Electric current represents the time rate of charge transport across a surface (
 \end{equation}
 Because $h$, $e$, and $c$ are exact defining constants, the experimental uncertainty in $\mu_0$ is determined entirely by the measurement uncertainty of $\alpha$.
 
-\begin{figure}[!htbp]
+\clearpage
+\begin{figure}[h]
     \centering
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
@@ -375,7 +531,7 @@ The mass of an atomic nucleus deviates from the algebraic sum of its individual 
 
 \subsection{The Kilogram: Planck Constant and the Kibble Balance}
 
-The \textbf{kilogram} ($\text{kg}$) is the SI unit of mass. Historically preserved by the platinum-iridium prototype kept in Sèvres, the kilogram was redefined in 2019 by fixing the \textbf{Planck constant} $h$ to be exactly $6.626\,070\,15 \times 10^{-34}\text{ J}\cdot\text{s}$ ($\text{kg}\cdot\text{m}^2\cdot\text{s}^{-1}$):
+The \textbf{kilogram} ($\text{kg}$) is the SI unit of mass. Historically preserved by the platinum-iridium prototype kept in S\`evres, the kilogram was redefined in 2019 by fixing the \textbf{Planck constant} $h$ to be exactly $6.626\,070\,15 \times 10^{-34}\text{ J}\cdot\text{s}$ ($\text{kg}\cdot\text{m}^2\cdot\text{s}^{-1}$):
 \begin{equation}
 h = 6.626\,070\,15 \times 10^{-34}\text{ kg}\cdot\text{m}^2\cdot\text{s}^{-1}.
 \label{eq:planck_def}
@@ -433,133 +589,11 @@ I_v = \frac{1700\text{ lm}}{4\pi\text{ sr}} \approx 135\text{ cd}.
 \label{eq:candela_calc_example}
 \end{equation}
 
-% =============================================================================
-% CHAPTER 3: ELECTROMAGNETIC WAVES AND OPTICAL METROLOGY
-% =============================================================================
-\chapter{Electromagnetic Waves and Optical Metrology}
-
-Because optical sensors, laser interferometers, and fluorescence microscopes serve as primary transducers in biological metrology, a rigorous formulation of electromagnetic wave mechanics is essential.
-
-\section{Harmonic Formulation of Electromagnetic Waves}
-
-Light propagates as a transverse electromagnetic wave characterized by mutually perpendicular electric ($\mathbf{E}$) and magnetic ($\mathbf{B}$) fields, both orthogonal to the propagation wavevector $\mathbf{k}$, satisfying:
-\begin{equation}
-\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}.
-\label{eq:orthogonality_condition}
-\end{equation}
-In modern optical bioimaging, light-matter interactions are overwhelmingly dominated by electric dipole coupling; magnetic field interactions are typically negligible. Consequently, optical waves can be analyzed directly through the scalar electric field.
-\clearpage
-
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}[b]{0.85\linewidth}
-        \centering
-        \includegraphics[page=13, width=\linewidth, keepaspectratio]{\pdf}
-        \caption{Temporal representation at fixed space: orthogonal oscillations of $\mathbf{E}$ (vertical) and $\mathbf{B}$ (horizontal), highlighting oscillation period $T$.}
-        \label{fig:em_temporal}
-    \end{subfigure}
-    
-    \vspace{0.35cm}
-    
-    \begin{subfigure}[b]{0.85\linewidth}
-        \centering
-        \includegraphics[page=14, width=\linewidth, keepaspectratio]{\pdf}
-        \caption{Spatial representation at a fixed instant in time: field profile propagating along $\mathbf{k}$, displaying wavelength $\lambda$ under $\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}$.}
-        \label{fig:em_spatial}
-    \end{subfigure}
-    
-    \caption{Planar electromagnetic wave propagation in vacuum: temporal periodicity $T$ at fixed position (A) and spatial periodicity $\lambda$ at fixed time (B).}
-    \label{fig:em_wave_orthogonality}
-\end{figure}
-
-As illustrated in Figure~\ref{fig:em_wave_orthogonality}, wave dynamics can be observed from two complementary viewpoints:
-\begin{itemize}
-    \item \textbf{Temporal periodicity}: Observing a fixed spatial coordinate ($x = x_0$) reveals sinusoidal oscillations with temporal period $T$ and frequency $\nu = 1/T$ (Figure~\ref{fig:em_temporal}).
-    \item \textbf{Spatial periodicity}: Observing an instantaneous snapshot ($t = t_0$) reveals spatial oscillations with physical wavelength $\lambda$ along the propagation axis (Figure~\ref{fig:em_spatial}).
-\end{itemize}
-
-A monochromatic planar electric field propagating along coordinate $x$ is described analytically by:
-\begin{equation}
-E(x,t) = E_0 \cos(kx - \omega t + \phi),
-\label{eq:wave_harmonics}
-\end{equation}
-where $E_0$ is the electric field amplitude, $\phi$ is the initial phase offset, $k$ is the wavenumber, and $\omega$ is the angular frequency:
-\begin{equation}
-k = \frac{2\pi}{\lambda}, \qquad [\dim k = \text{L}^{-1}],
-\label{eq:wavenumber_eq}
-\end{equation}
-\begin{equation}
-\omega = 2\pi\nu = \frac{2\pi}{T}, \qquad [\dim \omega = \text{T}^{-1}].
-\label{eq:angular_freq_eq}
-\end{equation}
-The optical intensity $I$ registered by physical imaging detectors is proportional to the cycle-averaged squared electric field amplitude ($I \propto E_0^2$).
-
-\section{Propagation in Dielectric Media and Dispersion}
-
-In vacuum, electromagnetic waves propagate at $c = 299\,792\,458\text{ m}\cdot\text{s}^{-1}$, with vacuum wavelength $\lambda_0 = c/\nu$. When an electromagnetic wave enters a dielectric medium with refractive index $n$, boundary conditions require that the temporal oscillation frequency $\nu$ remain invariant. However, the \textbf{phase velocity} $v_{\text{p}}$ is attenuated according to:
-\begin{equation}
-v_{\text{p}} = \frac{\omega}{k} = \frac{c}{n},
-\label{eq:phase_velocity}
-\end{equation}
-which causes the internal wavelength to compress to $\lambda = \lambda_0 / n$.
-
-The general dispersion relation connecting wavenumber to angular frequency is:
-\begin{equation}
-k(\omega) = \frac{n(\omega)\,\omega}{c}.
-\label{eq:dispersion_general}
-\end{equation}
-In an idealized non-dispersive medium where $n$ is constant across frequencies, the \textbf{group velocity} $v_{\text{g}}$ (the velocity at which a wave packet envelope travels) is identical to the phase velocity:
-\begin{equation}
-v_{\text{g}} = \frac{d\omega}{dk} = \frac{c}{n} = v_{\text{p}}.
-\label{eq:group_velocity_nondisp}
-\end{equation}
-In real dispersive media where the refractive index depends explicitly on frequency ($n = n(\omega)$), differentiating Equation~\eqref{eq:dispersion_general} yields:
-\begin{equation}
-v_{\text{g}} = \frac{d\omega}{dk} = \frac{c}{n + \omega \frac{dn}{d\omega}}.
-\label{eq:group_velocity_disp}
-\end{equation}
-Depending on the dispersion parameter $dn/d\omega$, phase velocity can exceed group velocity, leading to pulse broadening in quantitative optical microscopy.
-
-\section{The Bioimaging Spectrum and Fluorophores}
-
-Quantitative fluorescence bioimaging operates across the ultraviolet, visible, and near-infrared domains ($380\text{ nm}$ to $1000\text{ nm}$), as illustrated in Figure~\ref{fig:bioimaging_spectrum}. Optical indicators are chosen so that their absorption and emission spectra align with laser excitation lines and narrow bandpass filter windows.
-\clearpage
-
-\begin{figure}[]
-    \centering
-    \includegraphics[page=15, width=\linewidth, keepaspectratio]{\pdf}
-    \caption{The electromagnetic spectrum from the visible to the near-infrared domain ($380\text{ nm}$ to $1000\text{ nm}$) used in bioimaging, mapping the specific excitation and emission bands of standard fluorophores.}
-    \label{fig:bioimaging_spectrum}
-\end{figure}
-
-\begin{table}[!htbp]
-\centering
-\caption{Spectral properties, excitation wavelengths, emission wavelengths, and optical emission frequencies of fluorophores used in quantitative bioimaging.}
-\label{tab:bioimaging_dyes}
-\begin{tabular*}{\textwidth}{lcccc}
-\toprule
-Fluorophore & Spectral Domain & Excitation $\lambda$ & Emission $\lambda$ & Emission Frequency ($\nu$) \\
-\midrule
-DAPI / Hoechst & Violet / Blue & $405\text{ nm}$ & $460\text{ nm}$ & $652\text{ THz}$ \\
-GFP / FITC / AF488 & Green & $488\text{ nm}$ & $510\text{ nm}$ & $588\text{ THz}$ \\
-Cy3 / TRITC & Orange & $550\text{ nm}$ & $568\text{ nm}$ & $528\text{ THz}$ \\
-Texas Red & Orange-Red & $590\text{ nm}$ & $615\text{ nm}$ & $487\text{ THz}$ \\
-Cy5 / AF647 & Far-Red & $650\text{ nm}$ & $670\text{ nm}$ & $447\text{ THz}$ \\
-ICG / NIR Dyes & Near-Infrared & $790\text{ nm}$ & $820\text{ nm}$ & $366\text{ THz}$ \\
-\bottomrule
-\end{tabular*}
-\end{table}
-
-Table~\ref{tab:bioimaging_dyes} summarizes representative indicators across the spectrum. Wavelength and frequency follow the inverse relation $\nu = c/\lambda$: ultraviolet and blue emitters (such as DAPI emitting at $460\text{ nm}$) correspond to higher optical frequencies ($652\text{ THz}$), whereas near-infrared dyes (such as ICG emitting at $820\text{ nm}$) correspond to lower frequencies ($366\text{ THz}$).
-
-% =============================================================================
-% CHAPTER 4: DIMENSIONAL ANALYSIS AND SI DERIVED QUANTITIES
-% =============================================================================
-\chapter{Dimensional Analysis and SI Derived Quantities}
+\section{Derived Units and Dimensional Analysis}
 
 A \textbf{physical dimension} reflects the qualitative physical nature of a quantity, whereas a \textbf{unit} represents an arbitrary, standardized reference scale chosen to quantify that dimension. For instance, velocity possesses the intrinsic dimension of length divided by time ($\text{L}\text{T}^{-1}$), regardless of whether it is measured in $\text{m}\cdot\text{s}^{-1}$, $\text{km}\cdot\text{h}^{-1}$, or miles per hour. Quantities possessing identical physical dimensions are termed \textbf{homogeneous quantities}.
 
-\section{Physical Dimensions and Coherent Derived Units}
+\subsection{Physical Dimensions and Coherent Derived Units}
 
 Derived units in the SI are formed coherently through algebraic products and integer powers of the seven fundamental base units. The physical dimension of an arbitrary derived quantity $Q$ is expressed by the dimensional product:
 \begin{equation}
@@ -568,7 +602,7 @@ Derived units in the SI are formed coherently through algebraic products and int
 \end{equation}
 where the exponents $\alpha, \beta, \gamma, \delta, \epsilon, \zeta, \eta$ are integers (positive, negative, or zero). Exactly twenty-two derived units have been assigned special names and symbols by the CGPM, a representative subset of which is compiled in Table~\ref{tab:derived_units}.
 
-\begin{table}[h]
+\begin{table}[!htbp]
 \centering
 \caption{Selected coherent SI derived quantities, units, base expressions, and dimensions.}
 \label{tab:derived_units}
@@ -589,7 +623,7 @@ Magnetic field $B$ & tesla [$\text{T}$] & $\text{kg}\cdot\text{s}^{-2}\cdot\text
 \end{tabular*}
 \end{table}
 
-\section{Dimensionless Quantities and Angular Measure}
+\subsection{Dimensionless Quantities and Angular Measure}
 
 When all exponents in Equation~\eqref{eq:dimensional_product} vanish, the quantity is \textbf{dimensionless} ($\dim Q = 1$). Dimensionless quantities represent pure entity counts or ratios of two homogeneous physical quantities.
 
@@ -617,11 +651,11 @@ e^{i\theta} = \cos\theta + i\sin\theta,
 \end{equation}
 holds strictly for $\theta$ expressed in radians.
 
-\section{Dimensional Homogeneity in Biophysical Systems}
+\subsection{Dimensional Homogeneity in Biophysical Systems}
 
 The \textbf{principle of dimensional homogeneity} dictates that physical laws must remain invariant under changes of measurement units; terms linked by addition, subtraction, or equality must possess identical physical dimensions. This principle provides a foundational tool for verifying mathematical models, illustrated below through four biological and optical systems.
 
-\subsection{Solute Transport Across Cell Membranes}
+\subsubsection{Solute Transport Across Cell Membranes}
 The steady-state mass transport rate $R$ of solute molecules crossing a biological membrane is modeled by:
 \begin{equation}
 R = P\,A\,\Delta c,
@@ -634,7 +668,7 @@ where $P$ is the membrane permeability coefficient ($[P] = \text{L}\text{T}^{-1}
 \end{equation}
 which matches the dimension of amount of substance transferred per unit time ($[R] = \text{N}\text{T}^{-1}$).
 
-\subsection{Single-Photon Energy Quantization}
+\subsubsection{Single-Photon Energy Quantization}
 The energy $E$ of a single photon of optical wavelength $\lambda$ is described by the Planck-Einstein relation:
 \begin{equation}
 E = \frac{h\,c}{\lambda},
@@ -647,7 +681,7 @@ where $[h] = \text{M}\text{L}^2\text{T}^{-1}$, $[c] = \text{L}\text{T}^{-1}$, an
 \end{equation}
 matching the physical dimension of mechanical energy ($[E] = \text{M}\text{L}^2\text{T}^{-2}$).
 
-\subsection{Brownian Diffusion Displacement}
+\subsubsection{Brownian Diffusion Displacement}
 The root-mean-square displacement $d$ traversed by a diffusing macromolecule during an observation interval $t$ is modeled by:
 \begin{equation}
 d = \sqrt{2\,D\,t},
@@ -660,7 +694,7 @@ where $D$ is the translational diffusion coefficient ($[D] = \text{L}^2\text{T}^
 \end{equation}
 confirming that the calculated parameter has the dimension of length.
 
-\subsection{Microscope Lateral Field of View}
+\subsubsection{Microscope Lateral Field of View}
 In quantitative optical microscopy, an imaging detector array contains $N_x \times N_y$ pixels with physical pixel pitch $p$, coupled to an objective lens providing total magnification $M$. The calibrated field of view area $A_{\text{FOV}}$ in the specimen plane is given by:
 \begin{equation}
 A_{\text{FOV}} = \frac{N_x\,N_y\,p^2}{M^2}.
@@ -673,14 +707,11 @@ Because pixel counts and magnification are dimensionless ($[N_x] = [N_y] = [M] =
 \end{equation}
 confirming dimensional consistency with physical surface area.
 
-% =============================================================================
-% CHAPTER 5: DATA REPRESENTATION, SCALING, AND TRACEABILITY
-% =============================================================================
-\chapter{Data Representation, Scaling, and Traceability}
+\section{Quantitative Representation: Scientific Notation, Scaling, and Prefixes}
 
 The integrity of a measurement result depends not only on physical standards and instrument calibration, but also on how numerical data are formatted, scaled, and communicated.
 
-\section{Scientific Notation and Significant Figures}
+\subsection{Scientific Notation and Significant Figures}
 
 Scientific notation provides an unambiguous mathematical format for reporting numerical data across broad dynamic ranges:
 \begin{equation}
@@ -693,7 +724,7 @@ A \textbf{significant figure} is a digit that conveys verified empirical informa
 \begin{itemize}
     \item All non-zero digits are significant (e.g., $123$ contains three significant digits).
     \item Zeros situated between non-zero digits are significant (e.g., $1002$ contains four significant digits).
-    \item Leading zeros preceding the first non-zero digit serve exclusively as decimal scale locators and are never significant (e.g., $0.0042 = 4.2 \times 10^{-4}$ contains two significant digits).
+    \item Leading zeros preceding the first non-zero digit serve exclusively as decimal scale locators and are never significant (e.g., $0.0042 = 4.2 \times 10^{-3}$ contains two significant digits).
     \item Trailing zeros situated to the right of an explicit decimal point reflect genuine instrument resolution and are significant (e.g., $2.500$ contains four significant figures, and $8.10 \times 10^{-3}$ contains three).
     \item Trailing zeros in an integer without an explicit decimal point are ambiguous: $1500$ may indicate two, three, or four significant digits. Writing $1.5 \times 10^3$ explicitly specifies two significant digits, whereas writing $1.500 \times 10^3$ specifies four.
 \end{itemize}
@@ -705,7 +736,7 @@ A central tenet of experimental metrology requires that the significant figures 
 \end{equation}
 The least significant digit of the measurand must terminate at the same decimal position as the leading digit of the uncertainty. Quoting digits beyond the uncertainty resolution implies unwarranted experimental precision; extraneous trailing digits must be rounded.
 
-\section{Order-of-Magnitude Estimation and Metric Scaling}
+\subsection{Order-of-Magnitude Estimation and Metric Scaling}
 
 An \textbf{order of magnitude} represents the power of ten closest to a given numerical value. When evaluating a number expressed as $a \times 10^n$, if the mantissa $a$ is less than $\sqrt{10} \approx 3.16$ (or rounded below 5), the order of magnitude is $10^n$; if $a$ exceeds this threshold, it rounds up to $10^{n+1}$. For example, $2.4 \times 10^5$ has an order of magnitude of $10^5$, whereas $8.2 \times 10^5$ rounds to $10^6$, exhibiting a difference of nearly one order of magnitude.
 
@@ -714,12 +745,10 @@ Order-of-magnitude estimation enables rapid sanity checks on complex calculation
 Y = \frac{(138.4)\,(37900)}{0.002345} = \frac{(1.384 \times 10^2)\,(3.790 \times 10^4)}{2.345 \times 10^{-3}} \approx \frac{(10^2)\,(10^4)}{10^{-3}} = 10^9.
 \label{eq:order_practice_calc}
 \end{equation}
-
 By direct inspection, the order of magnitude of the result is estimated to be $10^9$.
 
 \clearpage
-
-\begin{table}[!htbp]
+\begin{table}[h]
 \centering
 \caption{Standard SI multiplication prefixes, symbols, and decimal scaling factors.}
 \label{tab:si_prefixes}
@@ -750,67 +779,40 @@ When converting derived powers of prefixed units, the conversion factor must be 
 \label{eq:volume_conversion_calc}
 \end{equation}
 
-\section{Metrological Traceability}
+% =============================================================================
+% CHAPTER 2: DATASETS, STATISTICAL VISUALIZATION, AND REPLICATION
+% =============================================================================
+\chapter{Datasets, Statistical Visualization, and Replication}
 
-Adopting the SI framework is necessary, but by itself insufficient, to guarantee the reliability of an experimental measurement. A measurement result becomes meaningful only when it possesses \textbf{metrological traceability}: the property of a measurement result whereby the result can be related to a recognized reference standard through a documented, unbroken chain of calibrations, each contributing to the stated measurement uncertainty.
+In empirical research, moving from a single measurement to a full experimental dataset introduces new challenges. While an individual measurement is characterized by its numerical value, unit, and uncertainty, an experimental dataset is an ensemble of structured observations collected across biological specimens, treatments, and time points. Transforming such datasets into scientific knowledge requires clear data architecture, careful recording of metadata, honest graphical representations, and a sound understanding of biological hierarchy and replication.
 
-\begin{figure}[h]
-\centering
-\begin{tabular}{c}
-\toprule
-\textbf{Defining Constants of the SI} \\
-($c, h, e, k_{\text{B}}, N_{\text{A}}, \Delta \nu_{\text{Cs}}, K_{\text{cd}}$) \\
-$\Downarrow$ \\
-\textbf{Primary National Standards} \\
-(Maintained by NMIs: NIST, INRIM, BIPM) \\
-$\Downarrow$ \\
-\textbf{Secondary Reference Standards} \\
-(Accredited Calibration Laboratories) \\
-$\Downarrow$ \\
-\textbf{Working Standards} \\
-(Analytical Facilities and Research Laboratories) \\
-$\Downarrow$ \\
-\textbf{Routine Measuring Instruments and Sensors} \\
-\bottomrule
-\end{tabular}
-\caption{The hierarchical calibration chain establishing metrological traceability from universal defining constants down to laboratory sensors.}
-\label{fig:traceability_pyramid}
-\end{figure}
+\section{From Individual Measurements to Datasets}
 
-As depicted in Figure~\ref{fig:traceability_pyramid}, the calibration chain is organized as an unbroken hierarchy. At the apex reside the defining constants of the SI. Primary national standards maintained by NMIs calibrate secondary reference standards, which are subsequently used to calibrate working standards in analytical laboratories. Working standards calibrate routine laboratory sensors.
-
-Traceability does not imply that an empirical result is error-free. Every calibration step introduces an additional source of uncertainty that must be quantified and propagated down the chain. An experimental measurement is traceable when it is linked to authoritative standards through an unbroken chain of documented calibrations, using validated procedures and specified calibration intervals. Ultimately, an empirical measurement is defined not merely by a numerical reading, but by the complete framework of its standardized unit, documented calibration path, and quantified uncertainty.
-
-\chapter{Dataset Architecture, Statistical Visualization, and Replication}
-
-In empirical scientific research, transitioning from isolated scalar readings to aggregated experimental observations introduces significant metrological complexity. While an individual measurement is completely characterized by its numerical value, standard unit, and evaluated uncertainty, an experimental dataset represents an ensemble of structured observations across experimental units and environmental states. Transforming such datasets into interpretable scientific knowledge requires rigorous data architecture, explicit recording of metadata, honest visual representation, and an accurate treatment of biological hierarchy.
-
-\section{From Single Measurements to Multidimensional Datasets}
-The pathway connecting physical reality to scientific knowledge is modeled as a directional transduction pipeline, illustrated in Figure~\ref{fig:data_to_knowledge_pipeline}. A physical measurand interacts with an experimental apparatus to generate raw analog or digital \textbf{signals}. Repeated executions of the measurement procedure generate an ensemble of readings, which are structured into a formal \textbf{dataset}. Through calibrated graphical and mathematical representations, empirical patterns emerge, transforming data into \textbf{interpretable information} that ultimately substantiates peer-reviewed \textbf{scientific knowledge}.
+The pathway connecting physical reality to scientific knowledge is a progressive transformation pipeline, illustrated in Figure~\ref{fig:data_to_knowledge_pipeline}. A physical measurand interacts with an experimental instrument to generate raw analog or digital \textbf{signals}. Multiple executions of the measurement procedure generate an ensemble of readings, which are organized into a structured \textbf{dataset}. Through calibrated graphical and mathematical representations, empirical patterns emerge, transforming data into \textbf{interpretable information} that ultimately substantiates \textbf{scientific knowledge}.
 
 \clearpage
-
-\begin{figure}[!htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[page=16, width=0.85\linewidth, keepaspectratio]{\pdf}
-\caption{The epistemological transduction chain: propagation from the measurement system and raw signals to structured datasets, graphical representation, contextualized information, and scientific knowledge.}
+\caption{The pathway from physical reality to scientific knowledge: propagation from the measurement system and raw signals to structured datasets, graphical representation, contextualized information, and scientific knowledge.}
 \label{fig:data_to_knowledge_pipeline}
 \end{figure}
 
-Crucially, every transformation step depicted in Figure~\ref{fig:data_to_knowledge_pipeline} introduces experimental assumptions, physical conversions, and potential sources of systematic and random uncertainty:
+Every transformation step depicted in Figure~\ref{fig:data_to_knowledge_pipeline} introduces assumptions, physical conversions, and potential sources of uncertainty:
 \begin{itemize}
-    \item \textbf{Signal transduction}: Physical interactions (e.g., photon absorption, fluorophore emission, fluorophore bleaching) introduce stochastic noise and nonlinear detector responses.
-    \item \textbf{Analytical preprocessing}: Background subtraction, flat-field correction, and thresholding rely on mathematical assumptions that propagate uncertainty into the final values.
-    \item \textbf{Cognitive interpretation}: The choice of graphical representation governs which patterns, subgroup divisions, or anomalies become visible to the investigator.
+    \item \textbf{Signal transduction}: Physical processes (e.g., photon absorption, fluorophore photobleaching, detector thermal noise) introduce stochastic fluctuations and sensor non-linearities.
+    \item \textbf{Analytical preprocessing}: Background subtraction, flat-field correction, and thresholding rely on mathematical assumptions that propagate uncertainty into the extracted numbers.
+    \item \textbf{Cognitive interpretation}: The choice of graphical representation governs which patterns, subpopulations, or anomalies become visible to the researcher.
 \end{itemize}
 
-A scientific plot or chart is never a decorative figure; it constitutes an active, formal component of the experimental result and the scientific argument. Consequently, an empirical visual representation must satisfy four foundational criteria: it must be \textbf{clear} (immediate visual accessibility), \textbf{honest} (disclosing all observations without subjective truncation), \textbf{reproducible} (providing sufficient experimental parameters for independent replication), and \textbf{interpretable} (conveying meaningful biological or physical insight).
+A scientific figure is never mere decoration; it is a formal component of the experimental result and the scientific argument. Consequently, an empirical visual representation must satisfy four foundational criteria: it must be \textbf{clear} (immediate visual accessibility), \textbf{honest} (disclosing all observations without subjective truncation), \textbf{reproducible} (providing sufficient experimental parameters for independent replication), and \textbf{interpretable} (conveying meaningful biological insight).
 
-\section{Anatomy of an Experimental Dataset and the Role of Metadata}
-An experimental dataset is fundamentally distinct from an unstructured table of numbers. To remain scientifically actionable, every dataset must be structured along three interdependent axes:
+\section{Dataset Architecture and the Essential Role of Metadata}
+
+An experimental dataset is fundamentally distinct from an unstructured spreadsheet of numbers. To remain scientifically actionable, every dataset must be structured along three interdependent axes:
 \begin{itemize}
-    \item \textbf{Description of variables}: Explicit identification of the physical quantities or features quantified, such as fluorescence emission intensity, cross-sectional cell area, migration velocity, ionic membrane current, or thermodynamic temperature.
-    \item \textbf{Type of observations}: Complete biological and anatomical specification of the interrogated experimental unit, identifying whether measurements originate from isolated cells, intact tissue slices, whole organisms, or specific genetic backgrounds (e.g., wild-type versus treated cohorts).
+    \item \textbf{Description of variables}: Explicit identification of the physical quantities quantified, such as fluorescence emission intensity, cross-sectional cell area, migration velocity, ionic membrane current, or thermodynamic temperature.
+    \item \textbf{Type of observations}: Biological and anatomical specification of the interrogated experimental unit, identifying whether measurements originate from isolated cells, intact tissue slices, whole organisms, or specific genetic backgrounds (e.g., wild-type versus treated cohorts).
     \item \textbf{Measurement conditions}: Exhaustive specification of the physical instrumentation settings and operational environment required to reproduce the observation.
 \end{itemize}
 
@@ -827,16 +829,16 @@ where $I_{\text{excitation}}$ is the excitation laser irradiance, $\sigma_{\text
 
 If the excitation laser wavelength, illumination power, optical bandpass filter bandwidth, exposure time ($t_{\text{exp}} = 100\text{ ms}$), detector gain ($G = 1$), and optical magnification are omitted from the metadata, a reading of $1\,250\text{ a.u.}$ cannot be quantitatively compared with a measurement of $2\,500\text{ a.u.}$ obtained under different settings. Without documented metadata, quantitative comparability vanishes, rendering the dataset invalid and forcing the complete repetition of the experiment.
 
-\section{Statistical Data Representation and Graphical Paradigms}
+\section{Statistical Data Visualization}
+
 Selecting a graphical paradigm is directly dictated by the specific scientific question under investigation, as summarized in Table~\ref{tab:graphical_paradigms}. Rather than adhering to a rigid default template, the experimentalist must evaluate which representation maximizes the transparency of the underlying physical distribution.
 
 \clearpage
-
-\begin{table}[!htbp]
+\begin{table}[h]
 \centering
 \caption{Taxonomy of primary graphical representations categorized by scientific objective and empirical capacity.}
 \label{tab:graphical_paradigms}
-\begin{tabular*}{\textwidth}{p{4.2cm}@{\extracolsep\fill}p{4.0cm}p{6.8cm}}
+\begin{tabular*}{\textwidth}{p{3.8cm}@{\extracolsep\fill}p{3.8cm}p{6.4cm}}
 \toprule
 Scientific Question / Objective & Recommended Plot Type & Information Revealed \\
 \midrule
@@ -850,9 +852,10 @@ Multivariate structures & Heatmap & High-dimensional patterns, hierarchical grou
 \end{table}
 
 \subsection{Box Plots: The Five-Number Summary and Outlier Diagnostics}
+
 A \textbf{box plot} (or box-and-whisker plot) provides a compact, non-parametric visualization of a continuous variable across experimental cohorts, constructed from the five-number summary depicted in Figure~\ref{fig:boxplot_anatomy}.
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[page=17, width=0.7\linewidth, keepaspectratio]{\pdf}
 \caption{Anatomical architecture of a standard box plot. The central box spans the interquartile range ($\text{IQR} = Q_3 - Q_1$), with the horizontal bar denoting the median ($Q_2$) and the cross marking the arithmetic mean ($\bar{x}$). Whiskers extend to the most extreme observations within $1.5 \times \text{IQR}$, beyond which points are classified and plotted individually as outliers.}
@@ -886,6 +889,7 @@ Whiskers do not terminate at arbitrary values; they extend from the quartiles to
 Box plots immediately expose distribution asymmetry: in a symmetric (Gaussian-like) distribution, the median line bisects the box evenly, and the whiskers have equal lengths. Conversely, in a skewed distribution, the median is displaced toward $Q_1$ or $Q_3$, accompanied by an elongated tail on the opposing side.
 
 \subsection{Histograms: Discrete Binning and Frequency Distribution}
+
 A \textbf{histogram} visualizes the empirical probability distribution of a continuous physical variable through a two-step operational sequence, illustrated in Figure~\ref{fig:histogram_construction}:
 \begin{enumerate}
     \item \textbf{Binning}: The global range of measured values $[x_{\min}, x_{\max}]$ is divided into a contiguous sequence of non-overlapping intervals, designated as \textbf{bins}.
@@ -907,6 +911,7 @@ The vertical height of each rectangular bar corresponds to the absolute frequenc
 Binning parameters must be chosen thoughtfully to reflect the underlying physical scale and measurement resolution of the sensor.
 
 \subsection{Violin Plots: Kernel Density Estimation and Visual Jittering}
+
 While histograms rely on discrete partitioning, a \textbf{violin plot} describes continuous probability density functions by implementing \textbf{Kernel Density Estimation} (KDE), illustrated in Figure~\ref{fig:violin_density}.
 
 \begin{figure}[!htbp]
@@ -998,7 +1003,7 @@ Scatter plots serve as the primary diagnostic tool for evaluating bivariate rela
 
 A central tenet of scientific data analysis must always be respected: \textbf{correlation does not imply causation}. A deterministic linear alignment between two measured variables $x_1$ and $x_2$ demonstrates joint statistical covariance, but cannot establish that variations in $x_1$ physically cause variations in $x_2$, as confounding hidden variables or indirect measurement cascades frequently mediate the apparent coupling.
 
-\subsection{Comparative Analysis: The Pathologies of Summary Bar Charts}
+\subsection{The Pitfalls of Summary Bar Charts}
 
 Selecting an inappropriate graphical representation can systematically obscure vital biological phenomena. 
 
@@ -1011,7 +1016,7 @@ In standard scientific practice, \textbf{bar charts} represent continuous quanti
 
 As a metrological rule, summary bar charts should be avoided when reporting continuous biological measurements with small to moderate sample sizes ($n \le 100$). Investigators should systematically employ box plots, violin plots, or dot plots with superimposed raw data points, ensuring that empirical variability, sample size, and distribution symmetry remain completely accessible.
 
-\section{Uncertainty Evaluation: Descriptive versus Inferential Error Bars}
+\section{Quantifying Dispersion: Standard Deviation vs. Standard Error}
 
 Quantifying experimental dispersion requires distinguishing between the variability of individual observations and the precision of an estimated population parameter. Graphical error bars must never be displayed without explicitly specifying their statistical identity.
 
@@ -1045,20 +1050,20 @@ When the experimental objective is not to report individual variability, but to 
 
 Unlike the standard deviation, the $\text{SEM}$ depends explicitly on the sample size $n$, scaling inversely with $\sqrt{n}$. As $n \to \infty$, $\text{SEM} \to 0$, demonstrating that an arbitrarily large sample size allows the sample mean to estimate the true population mean with unbounded precision.
 
-\subsection{Operational Rules for Error Bar Reporting}
+\subsection{Practical Rules for Error Bar Reporting}
 
 To prevent ambiguity, published plots must adhere to rigorous reporting standards:
 \begin{itemize}
     \item \textbf{Descriptive error bars ($\pm \text{SD}$ or IQR)}: Must be selected when communicating biological heterogeneity, phenotypic diversity, or sensor noise across individual observations.
-    \item \textbf{Inferential error bars ($\pm \text{SEM}$ or Confidence Intervals)}: Must be selected when comparing estimated central tendencies across experimental conditions to establish whether group differences are statistically distinguishable.
+    \item \textbf{Inferential error bars ($\pm \text{SEM}$ or Confidence Intervals)}: Must be selected when comparing group means across experimental conditions to establish whether differences are statistically distinguishable.
     \item \textbf{Mandatory caption documentation}: Figure captions must explicitly declare the exact identity of the plotted bars (e.g., ``Error bars denote mean $\pm \text{SEM}$ ($n = 30$)'') alongside the exact sample size.
 \end{itemize}
 
-\section{Experimental Architecture and Replication in Biological Metrology}
+\section{Experimental Architecture and Replication in Biology}
 
 Biological metrology requires establishing clear distinctions between experimental hierarchy, instrumental repetition, and true biological replication. Failure to define these structures leads to invalid statistical inference.
 
-\subsection{Hierarchical Hierarchy of Experimental Units}
+\subsection{Hierarchy of Experimental Units}
 
 The metrological vocabulary governing biological experimental architecture is structured as follows:
 \begin{itemize}
@@ -1070,7 +1075,7 @@ The metrological vocabulary governing biological experimental architecture is st
     \item \textbf{Repeated measurements}: Longitudinal tracking of the exact same experimental unit across successive time intervals (e.g., measuring the fluorescence trajectory of the same single cell at $t = 0, 2, 4, 6, 8, 10\text{ min}$).
 \end{itemize}
 
-\subsection{The Metrological Fallacy of Pseudoreplication}
+\subsection{The Metrological Trap of Pseudoreplication}
 
 A widespread error in quantitative biological studies is \textbf{pseudoreplication}: the statistical practice of treating non-independent observations as if they represented independent biological replicates.
 
@@ -1083,11 +1088,11 @@ Because all 30 cells shared the identical culture medium, incubator micro-enviro
 
 Treating $n = 30$ artificially inflates the statistical degrees of freedom, compressing the standard error ($\text{SEM} \propto 1/\sqrt{n}$) by a factor of $\sqrt{30} \approx 5.48$ and producing spuriously low $p$-values. Legitimate inference regarding the treatment effect requires treating the well as the experimental unit ($n = 1$), averaging cellular responses within the well, and repeating the experiment across independent biological replicates ($N \ge 3$ independent wells).
 
-\section{Comparative Statistical Testing: Anticipation of Welch's $t$-Test}
+\section{Comparing Experimental Groups: Welch's \texorpdfstring{$t$}{t}-Test}
 
 When comparing a quantitative physical observable across two independent experimental cohorts (e.g., Control versus Treated cohorts), visual inspection must be supported by formal hypothesis testing to evaluate whether the observed difference in sample means is unlikely to have arisen from random sampling variability alone.
 
-\subsection{Hypothesis Formulation and the $t$-Statistic}
+\subsection{Hypothesis Formulation and the $t$-Statistic Intuition}
 
 The comparison between two independent cohorts is structured through the \textbf{null hypothesis} ($H_0$), which posits that the true population means of the two groups are identical:
 \begin{equation}
@@ -1101,7 +1106,9 @@ The evaluation is conducted via a $t$-test, which computes an empirical $t$-stat
 t = \frac{\bar{x}_1 - \bar{x}_2}{\text{SE}_{(\bar{x}_1 - \bar{x}_2)}},
 \label{eq:t_statistic_general}
 \end{equation}
-where $\bar{x}_1 - \bar{x}_2$ is the difference between the sample means and $\text{SE}_{(\bar{x}_1 - \bar{x}_2)}$ is the standard error of that difference. Intuitively, a small $\vert{}t\vert{}$ indicates that the difference between sample means is easily accounted for by random sampling dispersion, whereas a large $\vert{}t\vert{}$ demonstrates that the separation between group means is substantial compared to the observed variability.
+where $\bar{x}_1 - \bar{x}_2$ is the difference between the sample means and $\text{SE}_{(\bar{x}_1 - \bar{x}_2)}$ is the standard error of that difference. Intuitively, a small $|t|$ indicates that the difference between sample means is easily accounted for by random sampling dispersion, whereas a large $|t|$ demonstrates that the separation between group means is substantial compared to the observed variability.
+
+\subsection{Unequal Variances and Welch's Correction}
 
 When the two experimental groups exhibit unequal sample variances ($\sigma_1^2 \neq \sigma_2^2$), the standard Student's $t$-test fails. Metrological rigor requires implementing \textbf{Welch's $t$-test}, which evaluates the standard error of the difference directly from the individual sample variances:
 \begin{equation}
@@ -1111,9 +1118,14 @@ When the two experimental groups exhibit unequal sample variances ($\sigma_1^2 \
 
 If the calculated probability value satisfies $p < 0.05$, the investigator rejects the null hypothesis $H_0$, concluding that the experimental data provide statistically significant evidence of a genuine difference between cohorts.
 
-\chapter{Mathematical Modeling, Functional Approximation, and Scale Transformations}
-While exploratory data visualization organizes and exposes empirical distributions, transforming raw experimental observations into quantitative physical laws requires mathematical abstraction. A biological sensor records discrete, noise-corrupted physical observables; approximating these discrete data pairs with continuous functional models enables parameter extraction, continuous estimation, and the formal inversion of sensor response curves.
-\section{Principles of Empirical Modeling and Functional Approximation}
+% =============================================================================
+% CHAPTER 3: FUNCTIONAL MODELING AND SCALE TRANSFORMATIONS
+% =============================================================================
+\chapter{Functional Modeling and Scale Transformations}
+
+While exploratory data visualization organizes and exposes empirical distributions, transforming raw experimental observations into quantitative physical laws requires mathematical modeling. A biological sensor records discrete, noise-corrupted physical observables; approximating these discrete data pairs with continuous functional models enables parameter extraction, continuous estimation, and the formal inversion of sensor response curves.
+
+\section{Principles of Functional Modeling and Approximation}
 
 In experimental metrology, an empirical dataset typically comprises a discrete collection of paired measurements $\{ (x_i, y_i) \}_{i=1}^N$, where an independent physical input $x$ (such as time, concentration, or optical wavelength) elicits a measured output response $y$ (such as voltage, absorbance, or fluorescence intensity). A \textbf{functional approximation} represents this discrete ensemble through a compact parametric mathematical relationship:
 \begin{equation}
@@ -1121,9 +1133,9 @@ y_{\text{model}} = f(x;\, \theta_1, \theta_2, \dots, \theta_p),
 \label{eq:general_model_form}
 \end{equation}
 where $\theta_1, \theta_2, \dots, \theta_p$ denote the operational parameters that define the physical system.
-\clearpage
 
-\begin{figure}[!htbp]
+\clearpage
+\begin{figure}[h]
 \centering
 \includegraphics[page=26, width=\linewidth, keepaspectratio]{\pdf}
 \caption{The two fundamental objectives of functional approximation: continuous interpolation of an unmeasured state $\hat{y}(x^*)$ within the experimental domain (left), and inverse prediction of an unknown physical input $x$ from a calibrated sensor output $y$ (right).}
@@ -1142,7 +1154,7 @@ As illustrated in Figure~\ref{fig:functional_approximation_concept}, constructin
 
 Inverse prediction represents the foundational operating principle of sensor calibration. For instance, a physical temperature transducer generates an electrical potential difference (in volts); because the investigator cannot directly inspect the thermodynamic state of the specimen, the input temperature is reconstructed by projecting the recorded voltage through the inverse calibration function of the sensor.
 
-\section{Canonical Functional Models and Analytical Inversion}
+\subsection{Canonical Functional Models and Analytical Inversion}
 
 The choice of mathematical function depends on the observed geometrical trajectory of the data and the underlying biophysical hypothesis. When a dataset exhibits an approximately linear trend, the relationship is modeled by the \textbf{linear approximation}:
 \begin{equation}
@@ -1166,7 +1178,7 @@ When empirical observations display non-linear trajectories, alternative element
 \centering
 \caption{Canonical functional models used in empirical approximation, their typical analytical forms, exact inverse functions, and estimated parameters.}
 \label{tab:functional_models}
-\begin{tabular*}{\textwidth}{p{2.6cm}@{\extracolsep\fill}p{3.2cm}p{3.8cm}p{4.6cm}}
+\begin{tabular*}{\textwidth}{p{2.3cm}@{\extracolsep\fill}p{3.0cm}p{3.5cm}p{4.4cm}}
 \toprule
 Model Class & Typical Form $y = f(x)$ & Inverse Form $x = f^{-1}(y)$ & Parameters to Estimate \\
 \midrule
@@ -1178,13 +1190,12 @@ Power law & $y = A + B x^k$ & $x = \left(\dfrac{y - A}{B}\right)^{1/k}$ & $A$: o
 \end{tabular*}
 \end{table}
 
-\clearpage
-
 \subsection{Bijectivity and Geometric Symmetry of Inverse Functions}
 
 Inverting an empirical model is mathematically admissible if and only if the function $f: X \to Y$ is \textbf{bijective} (simultaneously injective and surjective across the domain of interest). Injective mapping guarantees that each recorded output $y$ corresponds to one, and only one, physical state $x$, preventing operational ambiguity during sensor decoding.
 
-\begin{figure}[!htbp]
+\clearpage
+\begin{figure}[h]
 \centering
 \includegraphics[page=27, width=0.62\linewidth, keepaspectratio]{\pdf}
 \caption{Geometric inversion and reflection symmetry. The graph of an invertible function $y = f(x)$ (exemplified by the exponential curve $y = 2^x$) and its inverse $x = f^{-1}(y)$ (the logarithmic curve $y = \log_2 x$) are exact mutual reflections across the bisector line $y = x$.}
@@ -1193,15 +1204,17 @@ Inverting an empirical model is mathematically admissible if and only if the fun
 
 Geometrically, constructing the inverse function $f^{-1}$ corresponds to exchanging the operational roles of the independent and dependent coordinate axes. As illustrated in Figure~\ref{fig:inverse_reflection_symmetry}, the graph of $y = f^{-1}(x)$ is obtained by reflecting the original curve $y = f(x)$ across the diagonal line $y = x$, which represents the bisector of the first and third quadrants of the Cartesian plane.
 
-\section{Local Polynomial Approximation and Taylor Series Expansion}
+\section{Local Polynomial Approximation and Taylor Series}
 
 In experimental biophysics, complex non-linear trends frequently defy representation by simple elementary functions. If an empirical relationship is governed by a sufficiently smooth, infinitely differentiable function $f(x) \in C^\infty$, its local behavior in the neighborhood of a reference point $x_0$ can be approximated through a \textbf{Taylor series expansion}:
-\begin{equation}
-f(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \frac{f^{(3)}(x_0)}{3!}(x - x_0)^3 + \dots = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n.
+\begin{align}
+f(x) &= f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \dots \nonumber \\
+&= \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n.
 \label{eq:taylor_series_expansion}
-\end{equation}
+\end{align}
 
-\begin{figure}[!htbp]
+\clearpage
+\begin{figure}[h]
 \centering
 \includegraphics[page=28, width=0.72\linewidth, keepaspectratio]{\pdf}
 \caption{Local polynomial approximations of a complex experimental curve evaluated around distinct reference coordinates ($x = b$, $x = 0$, and $x = c$) using truncated Taylor series expansions.}
@@ -1221,9 +1234,9 @@ Truncating Equation~\eqref{eq:exponential_series_expansion} to low orders provid
 
 While higher-order polynomials can fit arbitrary trajectories locally (Figure~\ref{fig:taylor_reference_points}), increasing the polynomial degree expands the number of free parameters. This introduces a severe metrological trade-off: an over-parameterized model risks fitting high-frequency experimental noise rather than the underlying physical law, compromising predictive validity.
 
-\section{Foundations of Exponential and Logarithmic Formulations}
+\section{Exponential and Logarithmic Foundations}
 
-\subsection{Euler's Number and Stochastic Asymptotics}
+\subsection{Euler's Number and the Normal Distribution}
 
 The base of natural exponential and logarithmic functions is \textbf{Euler's number} $e \approx 2.71828\dots$, an irrational mathematical constant formally defined through the fundamental limit:
 \begin{equation}
@@ -1360,14 +1373,19 @@ Deciding which mathematical architecture best describes an experimental dataset 
     \end{itemize}
 \end{enumerate}
 
+% =============================================================================
+% CHAPTER 4: GEOMETRIC APPROXIMATIONS, DIFFERENTIAL ANALYSIS, AND MODEL COMPLEXITY
+% =============================================================================
 \chapter{Geometric Approximations, Differential Analysis, and Model Complexity}
+
 While empirical trends can often be described by canonical elementary functions, complex physical and biological profiles require localized geometric descriptors, rate analysis through differential calculus, and careful management of model complexity. This chapter establishes the mathematical principles for modeling dynamic rates, fitting localized geometric arcs, analytically deriving planar curvature, and preventing the empirical failure of overfitting.
 
-\section{Local Geometric Approximation via Conic Arcs}
+\section{Local Geometric Approximations via Conic Arcs}
 
-In biophysical imaging and sensor characterization, empirical profiles often display geometric features—such as cellular membrane invaginations, nanotube curvatures, or optical meniscus boundaries—that are ill-suited to global algebraic modeling. Approximating such boundaries requires localized geometric models derived from canonical conic sections.
+In biophysical imaging and sensor characterization, empirical profiles often display geometric features---such as cellular membrane invaginations, nanotube curvatures, or optical meniscus boundaries---that are ill-suited to global algebraic modeling. Approximating such boundaries requires localized geometric models derived from canonical conic sections.
 
 \subsection{Functional Formulations of Conic Sections}
+
 A complete conic section (such as an ellipse, circle, or hyperbola) is governed by an implicit quadratic equation: 
 \begin{equation} 
 A x^2 + B x y + C y^2 + D x + E y + F = 0. 
@@ -1399,7 +1417,7 @@ y = \sqrt{x^2 - a^2}, \quad \text{Domain: } (-\infty, -a] \cup [a, +\infty), \qu
 \end{equation} 
 \end{itemize}
 
-\subsection{The Failure of Global Polynomials vs. Local Circular Fitting}
+\subsection{Why Global Polynomials Fail: Local Osculating Circle Fitting}
 
 When quantifying local morphology along a complex biological boundary, fitting a high-degree polynomial:
 \begin{equation} 
@@ -1408,13 +1426,13 @@ y(x) = \sum_{k=0}^{n} c_k x^k
 \end{equation} 
 introduces severe metrological shortcomings. The polynomial coefficients $c_k$ possess no direct biophysical interpretation. Furthermore, high-degree polynomial regression suffers from non-local coupling, where a perturbation in a distant data point induces spurious, high-frequency oscillations across the entire evaluated domain.
 
+\clearpage
 \begin{figure}[h] 
 \centering 
-\includegraphics[page=30, width=0.65\linewidth, keepaspectratio]{figures.pdf} 
+\includegraphics[page=30, width=0.65\linewidth, keepaspectratio]{\pdf} 
 \caption{Local geometric approximation of a lipid bilayer invagination using an osculating circle of radius $R$ centered at $(x_c, y_c)$. A sliding window extracts an ordered spatial sequence of curvature radii along the membrane coordinate.} 
 \label{fig:membrane_circle_fitting} 
 \end{figure}
-
 
 These limitations are resolved by substituting global regression with \textbf{local geometric circular fitting}, as illustrated in Figure~\ref{fig:membrane_circle_fitting}. A small spatial window of width $w$ isolates an empirical subset of boundary coordinates centered around a target locus $x_0$. Within this subset, the profile is fitted to the equation of a circle: 
 \begin{equation} 
@@ -1429,11 +1447,11 @@ where the parameters $(x_c, y_c)$ denote the coordinates of the center of curvat
 
 By translating the spatial window along the segmented boundary trajectory, the procedure yields an ordered sequence of radii $\{R_1, R_2, \dots, R_m\}$ and produces a continuous spatial map of curvature $\kappa(s)$. In biological structures such as mitochondrial inner membranes, clathrin-coated pits, or endocytic vesicle necks, this local parameterization identifies constriction sites without introducing unconstrained regression parameters.
 
-\section{Differential Analysis of Sensor Dynamics and Measurement Trends}
+\section{Differential Analysis of Sensor Dynamics}
 
 Static empirical values provide an incomplete description of physical processes; quantifying how rapidly a signal evolves over time or space is necessary to characterize sensor response dynamics, photobleaching, and binding kinetics.
 
-\subsection{The Difference Quotient and the Tangent Operator}
+\subsection{From Difference Quotient to Derivative: The Tangent Line}
 
 Let $y = f(x)$ be a continuous function describing a sensor response over an interval $[a, b]$. Consider a reference coordinate $x_0$ and a displaced coordinate $x_0 + \Delta x$, corresponding to points $A(x_0, f(x_0))$ and $B(x_0 + \Delta x, f(x_0 + \Delta x))$ on the response curve.
 
@@ -1444,9 +1462,9 @@ The \textbf{difference quotient} measures the average rate of change between the
 \end{equation} 
 Geometrically, the difference quotient corresponds to the slope $m_{\text{sec}}$ of the secant line intersecting points $A$ and $B$, which satisfies $m_{\text{sec}} = \tan\theta$, where $\theta$ represents the inclination angle of the secant line relative to the abscissa.
 
-\begin{figure}[h] 
+\begin{figure}[!htbp] 
 \centering 
-\includegraphics[page=31, width=0.62\linewidth, keepaspectratio]{figures.pdf} 
+\includegraphics[page=31, width=0.62\linewidth, keepaspectratio]{\pdf} 
 \caption{Geometric transition from the difference quotient to the first derivative. As $\Delta x \to 0$, the secant line through $A$ and $B$ rotates to converge onto the tangent line at $A(x_0, f(x_0))$ with slope $m = f'(x_0)$.} 
 \label{fig:derivative_secant_to_tangent} 
 \end{figure}
@@ -1484,7 +1502,7 @@ f''(x) \ge 0 \iff f(x) \text{ is convex on } I; \qquad f''(x) \le 0 \iff f(x) \t
 \end{equation} 
 \end{itemize}
 
-\subsection{Stationary Points and Topological Boundary Extrema}
+\subsection{Stationary Points, Singularities, and Boundary Extrema}
 
 A coordinate $x_0$ satisfying $f'(x_0) = 0$ is termed a \textbf{stationary point} (or critical point). At this coordinate, the tangent line is horizontal, assuming the form $y = f(x_0) = k$. Classifying stationary points requires evaluating the sign of the first derivative in a punctured neighborhood of $x_0$: 
 \begin{itemize} 
@@ -1493,13 +1511,13 @@ A coordinate $x_0$ satisfying $f'(x_0) = 0$ is termed a \textbf{stationary point
 \item \textbf{Horizontal inflection point}: The derivative maintains the same sign on both sides of $x_0$ ($+ \to 0 \to +$ or $- \to 0 \to -$). The curve crosses its horizontal tangent, and the second derivative satisfies $f''(x_0) = 0$ with a sign inversion. 
 \end{itemize}
 
-In empirical measurement signals, extrema can occur without a vanishing derivative: 
+In empirical measurement signals, extrema can also occur without a vanishing derivative: 
 \begin{itemize} 
 \item \textbf{Non-differentiable singular points}: At sharp cusps or corner points (such as $y = |x - 1|$ at $x = 1$), the left and right derivatives disagree ($\lim_{\Delta x \to 0^-} \frac{\Delta f}{\Delta x} \neq \lim_{\Delta x \to 0^+} \frac{\Delta f}{\Delta x}$). The function possesses an extremum even though $f'(x_0)$ is undefined.
 \item \textbf{Domain boundary points}: For measurements collected across a closed domain $x \in [a, b]$, absolute extrema frequently coincide with the endpoints $x = a$ or $x = b$. Fermat's theorem ($f'(x_0) = 0$) applies exclusively to interior points; boundary extrema generally exhibit non-zero derivatives ($f'(a) \neq 0, f'(b) \neq 0$). 
 \end{itemize}
 
-\section{Analytical Derivation of Planar Curvature in Biophysical Systems}
+\section{Analytical Derivation of Planar Curvature}
 
 In cellular biomechanics, identifying how biological structures reshape requires evaluating the mathematical curvature of planar profiles extracted from microscopy images.
 
@@ -1514,7 +1532,7 @@ where $\theta$ denotes the inclination angle of the tangent line relative to the
 
 \begin{figure}[!htbp] 
 \centering 
-\includegraphics[page=32, width=\linewidth, keepaspectratio]{figures.pdf} 
+\includegraphics[page=32, width=\linewidth, keepaspectratio]{\pdf} 
 \caption{Differential geometric parameterization of an arbitrary curve $y = f(x)$. The arc length increment $ds$ is formed by displacement elements $dx$ and $dy$, while the tangent orientation angle $\theta$ satisfies $\tan\theta = f'(x)$.} 
 \label{fig:curvature_derivation_geometry} 
 \end{figure}
@@ -1567,7 +1585,7 @@ Combining the denominator exponents yields the formal equation for planar curvat
 \end{equation} 
 Equation~\eqref{eq:curvature_final_formula} shows that curvature depends directly on the second derivative $f''(x)$, scaled by the non-linear velocity metric $\left( 1 + [f'(x)]^2 \right)^{3/2}$.
 
-\subsection{Biophysical Implications: Organellar Remodeling}
+\subsection{Biophysical Application: Membrane Remodeling and Organellar Fission}
 
 In quantitative cell biology, local curvature $\kappa(x)$ governs the energetics of lipid bilayers. According to the Helfrich elastic model, the bending energy density per unit membrane area $e_{\text{bend}}$ is proportional to the square of local mean curvature: 
 \begin{equation} 
@@ -1592,8 +1610,8 @@ In empirical modeling, a mathematical formulation featuring an unconstrained num
 
 \begin{figure}[!htbp] 
 \centering 
-\includegraphics[page=33, width=0.7\linewidth, keepaspectratio]{figures.pdf} 
-\caption{The mechanics of overfitting. A high-degree polynomial (red) passes through every noisy empirical data point, achieving near-zero training error but generating spurious non-physical oscillations. A linear model (green) captures the underlying physical trend and generalises accurately to independent observations.} 
+\includegraphics[page=33, width=0.7\linewidth, keepaspectratio]{\pdf} 
+\caption{The mechanics of overfitting. A high-degree polynomial (red) passes through every noisy empirical data point, achieving near-zero training error but generating spurious non-physical oscillations. A linear model (green) captures the underlying physical trend and generalizes accurately to independent observations.} 
 \label{fig:overfitting_elephant_comparison} 
 \end{figure}
 
@@ -1620,7 +1638,7 @@ where $y_i$ represents the empirically measured response and $\hat{y}_i = f(x_i;
 
 \begin{figure}[!htbp] 
 \centering 
-\includegraphics[page=34, width=0.7\linewidth, keepaspectratio]{figures.pdf} 
+\includegraphics[page=34, width=0.7\linewidth, keepaspectratio]{\pdf} 
 \caption{Evolution of training error ($\text{MSE}_{\text{train}}$, blue) and validation error ($\text{MSE}_{\text{val}}$, orange) as a function of model complexity. As the number of free parameters increases, training error decreases monotonically, whereas validation error reaches a global minimum before diverging upward due to overfitting.} 
 \label{fig:bias_variance_sweet_spot} 
 \end{figure}
@@ -1629,7 +1647,7 @@ The trade-off governing model selection is illustrated in Figure~\ref{fig:bias_v
 \begin{itemize} 
 \item \textbf{Underfitting (High Bias)}: The model possesses too few degrees of freedom to capture the underlying physical mechanism (e.g., fitting a linear equation to a bi-exponential decay). Both $\text{MSE}_{\text{train}}$ and $\text{MSE}_{\text{val}}$ remain high. 
 \item \textbf{Optimal Complexity}: The model captures the underlying physical relationship while ignoring random experimental fluctuations. At this operating point, $\text{MSE}_{\text{val}}$ reaches its global minimum. 
-\item \textbf{Overfitting (High Variance)}: Increasing the number of free parameters causes $\text{MSE}_{\text{train}}$ to decrease monotonically toward zero. However, the model begins fitting stochastic noise, causing $\text{MSE}_{\text{val}}$ to diverge upward.
+\item \textbf{Overfitting (High Variance)}: Increasing the parameter count causes $\text{MSE}_{\text{train}}$ to decrease toward zero. However, the model begins fitting stochastic noise, causing $\text{MSE}_{\text{val}}$ to diverge upward.
 \end{itemize}
 
 \subsection{Cross-Validation Protocol for Experimental Datasets}
@@ -1646,13 +1664,13 @@ To identify optimal model complexity and prevent overfitting in laboratory datas
 \item \textbf{Model selection}: Average validation errors $\langle \text{MSE}_{\text{val}} \rangle$ are compared across candidate models. The architecture yielding the lowest $\langle \text{MSE}_{\text{val}} \rangle$ is selected, ensuring that the final model describes the underlying physical process rather than experimental noise. 
 \end{enumerate}
 
-\section{Computational Implementations and Analytical Protocols}
+\section{Applied Modeling and Numerical Protocols}
 
-Empirical modeling frequently requires calibrating sensor offsets and evaluating first-order elimination kinetics.
+Empirical modeling frequently requires calibrating sensor offsets, evaluating elimination kinetics, and fitting discrete boundaries in computational environments.
 
 \subsection{Single-Compartment Kinetic Clearance and Half-Life}
 
-Consider a biological sensor or pharmacological compound undergoing single-compartment first-order elimination. The instantaneous rate of clearance is proportional to the remaining concentration:
+Consider a biological sensor or drug compound undergoing single-compartment first-order elimination. The instantaneous rate of clearance is proportional to the remaining concentration:
 \begin{equation} 
 \frac{dC(t)}{dt} = -k \, C(t), 
 \label{eq:first_order_ode} 
@@ -1747,6 +1765,616 @@ R = \sqrt{C + x_c^2 + y_c^2}.
 
 What distinguishes an informative functional fit from an arbitrary mathematical curve is not whether it achieves zero training residual, but whether its parameters correspond to physical invariants and generalize consistently to independent measurements.
 
-%\backmatter
+
+% =============================================================================
+% CHAPTER 5: SENSORS, MEASUREMENT SYSTEMS, AND DYNAMIC RESPONSE
+% =============================================================================
+\chapter{Sensors, Measurement Systems, and Dynamic Response}
+
+Every experimental observation in quantitative biology relies on an apparatus that converts an inaccessible physical or chemical stimulus into an interpretable, calibrated signal. Whether recording photon emission from single fluorophores, registering picoampere currents across membrane ion channels, or measuring mechanical traction forces exerted by migrating cells, the physical interface between nature and observer is governed by the principles of sensing and transduction. This chapter develops the physical architecture of measurement chains, establishes the mathematical frameworks governing static and dynamic sensor responses, formalizes metrological operational limits, and establishes the formal taxonomy of experimental errors.
+
+\section{Fundamental Architecture of Measurement Systems}
+
+In metrological literature, the terms \textit{instrument}, \textit{transducer}, and \textit{sensor} are frequently conflated. Precision in experimental design requires adhering to standardized metrological taxonomies (such as the International Vocabulary of Metrology, VIM).
+
+\subsection{Stimulus, Transducers, Sensors, and Actuators}
+
+A measurement begins with a physical interaction involving the \textbf{Quantity Under Measurement (QUM)}, designated as the \textbf{measurand} or \textbf{stimulus} $x$. In biological and biomedical instrumentation, common stimuli include light intensity (photon flux), temperature, mechanical pressure, displacement, electrical potential, and ionic concentration.
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=35, width=\linewidth, keepaspectratio]{\pdf} 
+\caption{Conceptual taxonomy of transduction. A transducer establishes a deterministic relationship between input and output energy domains. A \textbf{sensor} acts as an input device converting a physical stimulus into an electrical signal (e.g., acoustic pressure into voltage in a microphone), whereas an \textbf{actuator} operates in reverse, converting electrical commands into mechanical motion or physical action (e.g., driving a loudspeaker diaphragm).} 
+\label{fig:transducer_sensor_actuator} 
+\end{figure}
+
+The conversion between distinct physical domains is performed by generalized components, as illustrated in Figure~\ref{fig:transducer_sensor_actuator}:
+\begin{itemize}
+    \item \textbf{Transducer}: Any physical device that establishes a specified, deterministic relation between input and output quantities, typically converting energy from one physical domain into another.
+    \item \textbf{Sensor}: An input transducer that responds specifically to a physical stimulus (QUM) and produces a correlated output signal—most frequently an electrical quantity such as voltage, current, charge, or resistance change. A biological cell expressing voltage-sensitive fluorescent proteins acts fundamentally as a biochemical sensor.
+    \item \textbf{Actuator}: An output transducer operating in reverse, converting an electrical command signal into physical action, such as mechanical displacement, acoustic pressure, or fluidic pumping (e.g., piezo-positioners in atomic force microscopy, acoustic loudspeakers, or microfluidic syringe drives).
+\end{itemize}
+
+Sensors are further classified by their energetic operational principle:
+\begin{enumerate}
+    \item \textbf{Passive (Modulating) Sensors}: Require an external auxiliary power supply to generate an output. The physical stimulus modulates an intrinsic parameter of the sensor (such as electrical resistance, capacitance, or inductance). Examples include Resistance Temperature Detectors (Pt100 RTDs), strain gauges, and photoconductive cells.
+    \item \textbf{Active (Self-Generating) Sensors}: Convert physical energy directly into an electrical signal without requiring external electrical excitation. Examples include thermocouples (generating Seebeck thermoelectric voltage), piezoelectric force transducers, and photovoltaic cells.
+\end{enumerate}
+
+\subsection{The Generalized Measurement Chain}
+
+A modern measurement instrument is rarely a standalone sensing element; rather, it constitutes an integrated \textbf{measurement chain} (or measurement system) through which information flows unidirectionally from the physical measurand to the final human or digital interface.
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=36, width=\linewidth, keepaspectratio]{\pdf} 
+\caption{The functional sequence of stages constituting a generalized measurement chain (adapted from Kock). Information flows from the physical measurement object through sensing, analog signal conditioning, digitization via analog-to-digital conversion (ADC), microprocessing, and final human visualization or storage.} 
+\label{fig:measurement_chain_sequence} 
+\end{figure}
+
+As depicted in Figure~\ref{fig:measurement_chain_sequence}, the functional architecture comprises five canonical stages:
+\begin{enumerate}
+    \item \textbf{Primary Sensing Stage}: Interacts directly with the measurand. The physical stimulus $x$ is converted into a raw, typically low-amplitude electrical signal (e.g., microvolts, picoamperes, or fractional resistance variations).
+    \item \textbf{Analog Signal Conditioning}: Modifies the raw signal to optimize compatibility with subsequent digitization. Conditioning operations include:
+    \begin{itemize}
+        \item \textit{Preamplification}: Boosting signal amplitude to match ADC dynamic range.
+        \item \textit{Analog filtering}: Low-pass anti-aliasing filtering to suppress out-of-band high-frequency noise prior to sampling.
+        \item \textit{Impedance matching}: Buffering high-impedance biological probes (such as patch-clamp glass microelectrodes) to prevent circuit loading.
+    \end{itemize}
+    \item \textbf{Analog-to-Digital Conversion (ADC)}: Discretizes the continuous analog signal in time (sampling at rate $f_s$) and amplitude (quantization into $2^B$ discrete levels, where $B$ is bit depth).
+    \item \textbf{Digital Processing Unit (Microprocessor / DSP)}: Executes real-time numerical processing, including calibration equation inversion, digital baseline filtering, linearization, averaging, and mathematical model evaluation.
+    \item \textbf{Display, Output, and Archival Interface}: Presents the final quantitative result. Crucially, a valid measurement result requires three indispensable elements: a numerical value, a standardized SI unit, and an evaluated measurement uncertainty:
+    \begin{equation}
+        \text{Measurement Result} = \left( \text{Value} \pm \text{Uncertainty} \right) \, [\text{Unit}].
+        \label{eq:measurement_chain_result_triad}
+    \end{equation}
+\end{enumerate}
+
+\section{Static Sensor Characteristics and Calibration}
+
+When stimulus variations occur on time scales substantially slower than the internal relaxation dynamics of the sensor, the relationship between input and output is governed by its \textbf{static transfer function}.
+
+\subsection{Static Transfer Function and Curve Inversion}
+
+The static response of a sensor is represented as a single-valued mapping:
+\begin{equation}
+    y = f(x),
+    \label{eq:static_transfer_function}
+\end{equation}
+where $x$ is the input stimulus and $y$ is the steady-state sensor output. To extract an unknown experimental stimulus from an instrument reading, the transfer function must be strictly monotonic, permitting analytical or numerical inversion:
+\begin{equation}
+    \hat{x} = f^{-1}(y).
+    \label{eq:inverse_transfer_function}
+\end{equation}
+
+\noindent\textbf{Worked Example (Pt100 Resistance Temperature Detector):} Consider a platinum resistance thermometer whose resistance $R$ varies linearly with temperature $T$ across a moderate operational range:
+\begin{equation}
+    R(T) = R_0 \left[ 1 + \alpha (T - T_0) \right],
+    \label{eq:pt100_linear_model}
+\end{equation}
+where $R_0 = 100.00\,\Omega$ is the nominal reference resistance at $T_0 = 0.0^\circ\text{C}$, and $\alpha \approx 3.9083 \times 10^{-3}\;^\circ\text{C}^{-1}$ is the temperature coefficient of resistance for platinum. 
+
+To determine an unknown temperature from an observed resistance $R_{\text{meas}} = 119.54\,\Omega$, Equation~\eqref{eq:pt100_linear_model} is inverted algebraically:
+\begin{equation}
+    \frac{R(T)}{R_0} = 1 + \alpha (T - T_0) \implies \alpha (T - T_0) = \frac{R(T) - R_0}{R_0},
+\end{equation}
+yielding the explicit inverse estimator:
+\begin{equation}
+    T = T_0 + \frac{R(T) - R_0}{\alpha R_0}.
+    \label{eq:pt100_inversion}
+\end{equation}
+Substituting the experimental values:
+\begin{equation}
+    T = 0.0 + \frac{119.54\,\Omega - 100.00\,\Omega}{(3.9083 \times 10^{-3}\;^\circ\text{C}^{-1})(100.00\,\Omega)} = \frac{19.54}{0.39083}\;^\circ\text{C} \approx 50.00\;^\circ\text{C}.
+\end{equation}
+In practical instruments, this resistance variation is subsequently converted into an electrical voltage using a balanced Wheatstone bridge or a four-wire constant-current source to eliminate lead-wire resistance artifacts.
+
+\subsection{Local Linear Approximation and Static Sensitivity}
+
+Non-linear sensor transfer functions are frequently linearized locally using a first-order Taylor expansion around a reference operating point $x_0$:
+\begin{equation}
+    y(x) \approx f(x_0) + \left. \frac{df}{dx} \right|_{x_0} (x - x_0) = A + B (x - x_0),
+    \label{eq:taylor_linearization}
+\end{equation}
+where $A = f(x_0)$ is the baseline offset, and the slope $B$ corresponds to the \textbf{static sensitivity} $S$:
+\begin{equation}
+    S(x_0) \equiv \left. \frac{dy}{dx} \right|_{x_0}.
+    \label{eq:sensitivity_definition}
+\end{equation}
+For a strictly linear sensor ($y = A + Bx$), sensitivity is constant across the entire operating range ($S = B$). For non-linear sensors (such as exponential thermistors or logarithmic optical photodetectors), sensitivity is a dynamic function of the operating point ($S = S(x)$), requiring piecewise calibration tables.
+
+\subsection{Calibration Curves and Parameter Uncertainty Propagation}
+
+Determining the empirical parameters of a transfer function requires \textbf{sensor calibration}: subjecting the sensor to a sequence of known, traceable reference inputs $s_1, s_2, \dots, s_N$ and recording the corresponding steady-state electrical outputs $y_1, y_2, \dots, y_N$.
+
+\clearpage
+\begin{figure}[h] 
+\centering 
+\includegraphics[page=38, width=0.62\linewidth, keepaspectratio]{\pdf} 
+\caption{Propagation of calibration errors into the estimated transfer function (adapted from Fraden). An experimental measurement error $\Delta$ occurring at reference calibration point $s_2$ distorts both the fitted slope (sensitivity) and the intercept, propagating systematic deviations into all subsequent measurements of unknown inputs.} 
+\label{fig:calibration_error_propagation} 
+\end{figure}
+
+The estimated calibration curve is inherently subject to metrological uncertainty. As illustrated in Figure~\ref{fig:calibration_error_propagation}, consider a linear calibration based on two reference points $(s_1, y_1)$ and $(s_2, y_2)$. If the second measurement is corrupted by an output error $\Delta$ such that the observed value is $y_2 - \Delta$, the estimated sensitivity slope $m$ deviates from the true physical slope $m_{\text{true}}$:
+\begin{equation}
+    m_{\text{est}} = \frac{(y_2 - \Delta) - y_1}{s_2 - s_1} = \frac{y_2 - y_1}{s_2 - s_1} - \frac{\Delta}{s_2 - s_1} = m_{\text{true}} + \Delta m.
+    \label{eq:calibration_slope_deviation}
+\end{equation}
+The resulting slope error:
+\begin{equation}
+    \Delta m = -\frac{\Delta}{s_2 - s_1}
+    \label{eq:delta_m_error}
+\end{equation}
+scales inversely with the span between reference calibration points ($s_2 - s_1$). Calibration errors distort both the sensitivity and zero-intercept, systematically corrupting all subsequent inferences of unknown measurands.
+
+\section{Dynamic Modeling of Linear and Time-Invariant (LTI) Sensors}
+
+All physical sensors possess finite response times dictated by internal energy-storage mechanisms (such as thermal capacity, electrical capacitance, mechanical mass, or chemical diffusion). When the stimulus varies rapidly in time ($x = x(t)$), static transfer functions fail, and the system must be modeled dynamically.
+
+\subsection{Linearity and Time-Invariance Principles}
+
+A dynamic sensor is modeled as an operator $\mathcal{T}$ transforming a continuous input stimulus $x(t)$ into a continuous output response $y(t)$:
+\begin{equation}
+    y(t) = \mathcal{T}\{x(t)\}.
+\end{equation}
+A sensor is designated as a \textbf{Linear and Time-Invariant (LTI)} system if and only if it satisfies two fundamental mathematical axioms:
+\begin{enumerate}
+    \item \textbf{Linearity (Superposition and Homogeneity)}: For arbitrary stimulus signals $x_1(t), x_2(t)$ and scalar constants $\alpha, \beta \in \mathbb{R}$:
+    \begin{equation}
+        \mathcal{T}\{\alpha x_1(t) + \beta x_2(t)\} = \alpha \mathcal{T}\{x_1(t)\} + \beta \mathcal{T}\{x_2(t)\}.
+        \label{eq:lti_linearity}
+    \end{equation}
+    \item \textbf{Time-Invariance}: A temporal delay in the input stimulus produces an identical temporal delay in the output without altering the signal morphology:
+    \begin{equation}
+        \text{If } y(t) = \mathcal{T}\{x(t)\}, \quad \text{then } \mathcal{T}\{x(t - t_0)\} = y(t - t_0), \quad \forall t_0 \in \mathbb{R}.
+        \label{eq:lti_time_invariance}
+    \end{equation}
+\end{enumerate}
+
+An LTI system is governed by an ordinary linear differential equation with constant physical coefficients:
+\begin{equation}
+    a_n \frac{d^n y(t)}{dt^n} + a_{n-1} \frac{d^{n-1} y(t)}{dt^{n-1}} + \dots + a_0 y(t) = b_m \frac{d^m x(t)}{dt^m} + \dots + b_0 x(t).
+    \label{eq:general_lti_ode}
+\end{equation}
+The order of the differential equation $n$ defines the dynamic order of the sensor.
+
+\subsection{Zero-Order and First-Order Sensor Systems}
+
+\clearpage
+\begin{figure}[h] 
+\centering 
+\includegraphics[page=39, width=\linewidth, keepaspectratio]{\pdf} 
+\caption{Dynamic classification of sensors: zero-order versus first-order responses. A zero-order sensor follows stimulus variations instantaneously through an algebraic gain $A y(t) = x(t)$, whereas a first-order sensor incorporates a finite relaxation lag governed by a differential time constant $B \frac{dy}{dt} + A y(t) = x(t)$.} 
+\label{fig:zero_vs_first_order} 
+\end{figure}
+
+The physical behavior of dynamic sensors depends fundamentally on system order, as contrasted in Figure~\ref{fig:zero_vs_first_order}:
+\begin{itemize}
+    \item \textbf{Zero-Order Sensor ($n = 0$)}: Governed purely by an algebraic equation:
+    \begin{equation}
+        a_0 y(t) = b_0 x(t) \iff y(t) = K x(t),
+        \label{eq:zero_order_sensor}
+    \end{equation}
+    where $K = b_0/a_0$ is the static gain. A zero-order sensor represents an ideal instrument with zero response time, reproducing arbitrary input waveforms instantaneously without amplitude attenuation or phase lag (e.g., an ideal strain-gauge resistance bridge).
+    \item \textbf{First-Order Sensor ($n = 1$)}: Characterized by a single energy-storage mechanism and an internal dissipation process, governed by:
+    \begin{equation}
+        a_1 \frac{dy(t)}{dt} + a_0 y(t) = b_0 x(t).
+        \label{eq:first_order_sensor_ode}
+    \end{equation}
+    Dividing by $a_0$ reformulates the system in standard canonical parameters:
+    \begin{equation}
+        \tau \frac{dy(t)}{dt} + y(t) = K x(t),
+        \label{eq:first_order_canonical_ode}
+    \end{equation}
+    where $\tau \equiv a_1/a_0$ is the \textbf{characteristic time constant} ($[\tau] = \text{T}$), and $K \equiv b_0/a_0$ is the static sensitivity.
+\end{itemize}
+
+\subsection{Why Laplace Transforms? Resolving Dynamic Responses}
+
+While periodic signals can be expanded into Fourier series:
+\begin{equation}
+    x(t) = \frac{a_0}{2} + \sum_{k=1}^{\infty} \left[ a_k \cos(k\omega_0 t) + b_k \sin(k\omega_0 t) \right],
+    \label{eq:fourier_series_expansion}
+\end{equation}
+practical sensor characterization requires evaluating transient responses to non-periodic inputs, such as instantaneous pulses, steps, or switches. Standard Fourier transforms:
+\begin{equation}
+    \mathcal{F}\{x(t)\} = \int_{-\infty}^{+\infty} x(t) e^{-i\omega t} \, dt
+    \label{eq:fourier_transform_integral}
+\end{equation}
+fail to converge for elementary excitation signals (such as the Heaviside step $u(t)$) because the integrand is not absolutely integrable over $\mathbb{R}$.
+
+To resolve general transient dynamics, we map the differential equations into the complex frequency domain via the \textbf{unilateral Laplace transform}:
+\begin{equation}
+    \mathcal{L}\{f(t)\} \equiv F(s) = \int_{0}^{\infty} f(t) e^{-st} \, dt, \quad s = \sigma + i\omega \in \mathbb{C}.
+    \label{eq:laplace_transform_def}
+\end{equation}
+Applying the differentiation property $\mathcal{L}\left\{ \frac{df}{dt} \right\} = s F(s) - f(0)$ under quiescent initial conditions ($f(0) = 0$) converts ordinary differential equations into linear algebraic relationships.
+
+The \textbf{transfer function} $H(s)$ of an LTI system is defined as the ratio of the Laplace transform of the output $Y(s)$ to the Laplace transform of the input $X(s)$:
+\begin{equation}
+    H(s) \equiv \frac{Y(s)}{X(s)}.
+    \label{eq:transfer_function_definition}
+\end{equation}
+For a first-order canonical sensor, transforming Equation~\eqref{eq:first_order_canonical_ode}:
+\begin{equation}
+    \tau s Y(s) + Y(s) = K X(s) \implies Y(s)(\tau s + 1) = K X(s),
+\end{equation}
+yielding the canonical first-order transfer function:
+\begin{equation}
+    H(s) = \frac{K}{1 + \tau s} = \frac{K/\tau}{s + 1/\tau}.
+    \label{eq:first_order_transfer_function}
+\end{equation}
+
+\clearpage
+\subsection{Transient Analysis: Impulse and Step Responses}
+\begin{figure}[h] 
+\centering 
+\includegraphics[page=40, width=\linewidth, keepaspectratio]{\pdf} 
+\caption{Transient responses of a first-order LTI sensor to canonical inputs. (Top) A Dirac delta impulse $\delta(t)$ produces an instantaneous jump followed by exponential decay $h(t) = \frac{K}{\tau} e^{-t/\tau}$. (Bottom) A Heaviside step input $\Delta x \, u(t)$ produces a smooth exponential relaxation $y(t) = K \Delta x (1 - e^{-t/\tau})$, achieving $63.2\%$ of full scale at $t = \tau$ and settling ($>99\%$) after $5\tau$.} 
+\label{fig:first_order_transient_responses} 
+\end{figure}
+
+The transient dynamics of a first-order sensor under canonical excitation functions are summarized in Figure~\ref{fig:first_order_transient_responses}:
+
+\subsubsection{Impulse Response}
+When the sensor is excited by a unit Dirac delta impulse $x(t) = \delta(t)$, for which $X(s) = 1$:
+\begin{equation}
+    Y(s) = H(s) \cdot 1 = \frac{K/\tau}{s + 1/\tau}.
+\end{equation}
+Taking the inverse Laplace transform via the standard pair $\mathcal{L}^{-1}\left\{ \frac{1}{s + a} \right\} = e^{-at} u(t)$ yields the \textbf{impulse response} $h(t)$:
+\begin{equation}
+    h(t) = \mathcal{L}^{-1}\{H(s)\} = \frac{K}{\tau} e^{-t/\tau} u(t).
+    \label{eq:impulse_response_first_order}
+\end{equation}
+
+\subsubsection{Step Response}
+When subjected to a sudden step stimulus of magnitude $\Delta x$ at $t = 0$:
+\begin{equation}
+    x(t) = \Delta x \, u(t) \iff X(s) = \frac{\Delta x}{s},
+    \label{eq:step_input_laplace}
+\end{equation}
+the output in the Laplace domain evaluates to:
+\begin{equation}
+    Y(s) = H(s) X(s) = \frac{K}{1 + \tau s} \frac{\Delta x}{s} = \frac{K \Delta x}{s(1 + \tau s)}.
+    \label{eq:step_output_laplace}
+\end{equation}
+Expanding into partial fractions:
+\begin{equation}
+    \frac{1}{s(1 + \tau s)} = \frac{A}{s} + \frac{B}{1 + \tau s} \implies 1 = A(1 + \tau s) + B s.
+\end{equation}
+Evaluating at $s = 0$ yields $A = 1$; evaluating at $s = -1/\tau$ yields $B = -\tau$:
+\begin{equation}
+    \frac{1}{s(1 + \tau s)} = \frac{1}{s} - \frac{\tau}{1 + \tau s} = \frac{1}{s} - \frac{1}{s + 1/\tau}.
+\end{equation}
+Substituting back into Equation~\eqref{eq:step_output_laplace}:
+\begin{equation}
+    Y(s) = K \Delta x \left( \frac{1}{s} - \frac{1}{s + 1/\tau} \right).
+    \label{eq:step_partial_fraction_expansion}
+\end{equation}
+Inverting back to the continuous time domain yields the classical \textbf{step response}:
+\begin{equation}
+    y(t) = K \Delta x \left( 1 - e^{-t/\tau} \right) u(t).
+    \label{eq:first_order_step_response}
+\end{equation}
+
+Equation~\eqref{eq:first_order_step_response} governs the relaxation of first-order instruments, establishing crucial operational milestones:
+\begin{itemize}
+    \item At $t = \tau$: $y(\tau) = K \Delta x (1 - e^{-1}) \approx 0.6321 \, K \Delta x$ ($63.2\%$ of final steady state).
+    \item At $t = 2\tau$: $y(2\tau) = K \Delta x (1 - e^{-2}) \approx 0.8647 \, K \Delta x$ ($86.5\%$).
+    \item At $t = 3\tau$: $y(3\tau) = K \Delta x (1 - e^{-3}) \approx 0.9502 \, K \Delta x$ ($95.0\%$).
+    \item At $t = 5\tau$: $y(5\tau) = K \Delta x (1 - e^{-5}) \approx 0.9933 \, K \Delta x$ ($99.3\%$, defining the practical \textbf{settling time} $t_s$).
+\end{itemize}
+
+\subsection{Second-Order Dynamic Systems: Mechanical Force Transducers}
+
+When a sensor incorporates two distinct reactive energy-storage mechanisms (such as kinetic energy in an inertial mass and potential energy in an elastic spring, or inductance and capacitance in an electrical circuit), the system exhibits second-order dynamics governed by a second-degree differential equation.
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=41, width=\linewidth, keepaspectratio]{\pdf} 
+\caption{Dynamic response regimes of a second-order sensor (illustrated for a mass-spring-damper mechanical force transducer). The discriminant $\Delta = d^2 - 4mk$ governs the characteristic roots $s_{1,2}$, partitioning the step response into: (1) \textbf{underdamped} oscillations ($d^2 < 4mk$), (2) \textbf{critically damped} rapid approach to steady state without overshoot ($d^2 = 4mk$), and (3) \textbf{overdamped} sluggish relaxation ($d^2 > 4mk$).} 
+\label{fig:second_order_dynamics} 
+\end{figure}
+
+Consider a canonical mechanical force sensor (e.g., an accelerometer, atomic force microscope cantilever, or load cell) comprising a seismic mass $m$, a viscous damping dashpot with constant $d$, and an elastic suspension spring with stiffness $k$. When subjected to an applied external force $F(t)$, Newton's second law dictates the equation of motion:
+\begin{equation}
+    m \frac{d^2 x(t)}{dt^2} + d \frac{dx(t)}{dt} + k x(t) = F(t),
+    \label{eq:mass_spring_damper_ode}
+\end{equation}
+where $x(t)$ represents the resulting displacement. 
+
+Transforming Equation~\eqref{eq:mass_spring_damper_ode} into the Laplace domain with zero initial conditions:
+\begin{equation}
+    m s^2 X(s) + d s X(s) + k X(s) = F(s) \iff \left( m s^2 + d s + k \right) X(s) = F(s).
+\end{equation}
+The transfer function relating output displacement to input force is:
+\begin{equation}
+    H(s) = \frac{X(s)}{F(s)} = \frac{1}{m s^2 + d s + k}.
+    \label{eq:second_order_tf}
+\end{equation}
+
+The dynamic behavior of the sensor is dictated by the roots of the \textbf{characteristic equation}:
+\begin{equation}
+    m s^2 + d s + k = 0 \implies s_{1,2} = \frac{-d \pm \sqrt{d^2 - 4mk}}{2m}.
+    \label{eq:characteristic_roots_second_order}
+\end{equation}
+The nature of the discriminant $\Delta = d^2 - 4mk$ partitions the dynamic response into three distinct physical regimes, as illustrated in Figure~\ref{fig:second_order_dynamics}:
+\begin{enumerate}
+    \item \textbf{Underdamped Regime ($d^2 < 4mk$)}: The discriminant is negative ($\Delta < 0$), yielding a pair of complex conjugate roots:
+    \begin{equation}
+        s_{1,2} = -\alpha \pm i \omega_d, \quad \text{where } \alpha = \frac{d}{2m}, \quad \omega_d = \frac{\sqrt{4mk - d^2}}{2m}.
+    \end{equation}
+    The sensor's step response displays decaying sinusoidal oscillations with substantial overshoot and ringing before settling at steady state. If damping is too low, ringing introduces severe dynamic distortion.
+    \item \textbf{Critically Damped Regime ($d^2 = 4mk$)}: The discriminant vanishes ($\Delta = 0$), yielding a degenerate negative real root:
+    \begin{equation}
+        s_{1,2} = -\frac{d}{2m}.
+    \end{equation}
+    Critical damping represents the ideal operational regime for most measurement systems: it achieves the \textbf{fastest possible transition} to the steady-state reading without any overshoot or non-physical ringing.
+    \item \textbf{Overdamped Regime ($d^2 > 4mk$)}: The discriminant is strictly positive ($\Delta > 0$), producing two distinct negative real roots. The response is completely non-oscillatory but excessively sluggish, requiring an extended settling time to reach the true measurement value.
+\end{enumerate}
+
+\subsection{Frequency Response and Low-Pass Filtering}
+
+When a stable LTI sensor is excited by a permanent sinusoidal stimulus of frequency $\omega = 2\pi f$:
+\begin{equation}
+    x(t) = X_0 \cos(\omega t),
+    \label{eq:sinusoidal_stimulus}
+\end{equation}
+the steady-state output is guaranteed to be a sinusoid of the exact same frequency $\omega$, modulated in amplitude by $|H(i\omega)|$ and shifted in phase by $\phi(\omega)$:
+\begin{equation}
+    y_{\text{ss}}(t) = Y_0 \cos(\omega t + \phi), \quad \text{with } Y_0 = X_0 |H(i\omega)|, \quad \phi = \arg\{H(i\omega)\}.
+    \label{eq:steady_state_sinusoidal_response}
+\end{equation}
+The complex \textbf{frequency response function} $H(i\omega)$ is evaluated directly by substituting the imaginary frequency $s = i\omega$ into the Laplace transfer function:
+\begin{equation}
+    H(i\omega) = \left. H(s) \right|_{s = i\omega}.
+    \label{eq:freq_resp_sub}
+\end{equation}
+
+\clearpage
+\begin{figure}[h] 
+\centering 
+\includegraphics[page=42, width=0.72\linewidth, keepaspectratio]{\pdf} 
+\caption{Dynamic frequency response of a first-order sensor (Bode plots). (Top) Amplitude ratio $|H(i\omega)|$ behaves as a low-pass filter, transmitting quasi-static signals at nominal gain $K$ while attenuating high frequencies beyond the cut-off frequency $f_c = \frac{1}{2\pi\tau}$, where gain drops by $-3\text{ dB}$ ($70.7\%$). (Bottom) Phase angle $\phi(\omega)$ exhibits a progressive phase lag, reaching $-45^\circ$ at $f = f_c$ and asymptotic delay of $-90^\circ$ at extreme frequencies.} 
+\label{fig:bode_frequency_response} 
+\end{figure}
+
+For a canonical first-order sensor ($H(s) = \frac{K}{1 + \tau s}$):
+\begin{equation}
+    H(i\omega) = \frac{K}{1 + i\omega\tau} = \frac{K(1 - i\omega\tau)}{1 + (\omega\tau)^2}.
+    \label{eq:freq_resp_first_order_complex}
+\end{equation}
+The amplitude attenuation and phase shift evaluate to:
+\begin{equation}
+    |H(i\omega)| = \frac{K}{\sqrt{1 + (\omega\tau)^2}}, \qquad \phi(\omega) = -\arctan(\omega\tau).
+    \label{eq:magnitude_and_phase_first_order}
+\end{equation}
+
+As illustrated in the Bode plots of Figure~\ref{fig:bode_frequency_response}:
+\begin{itemize}
+    \item \textbf{Low-frequency regime ($\omega \ll 1/\tau$)}: $|H(i\omega)| \approx K$ and $\phi(\omega) \approx 0$. The sensor behaves quasi-statically, reproducing input signals faithfully without attenuation or delay.
+    \item \textbf{Cut-off frequency ($\omega_c = 1/\tau \iff f_c = \frac{1}{2\pi\tau}$)}: The amplitude ratio drops to:
+    \begin{equation}
+        |H(i\omega_c)| = \frac{K}{\sqrt{1 + 1^2}} = \frac{K}{\sqrt{2}} \approx 0.7071 \, K.
+        \label{eq:cutoff_magnitude}
+    \end{equation}
+    Expressed in decibels, this defines the classical \textbf{$-3\text{ dB}$ bandwidth}:
+    \begin{equation}
+        20 \log_{10}\left( \frac{1}{\sqrt{2}} \right) = 20 (-0.1505) \approx -3.01\text{ dB}.
+        \label{eq:minus_3db_derivation}
+    \end{equation}
+    The phase lag at the cut-off frequency is exactly $\phi(\omega_c) = -\arctan(1) = -45^\circ$.
+    \item \textbf{High-frequency regime ($\omega \gg 1/\tau$)}: Amplitude rolls off as $|H(i\omega)| \propto \frac{1}{\omega}$ ($-20\text{ dB/decade}$), while phase asymptotically approaches $-90^\circ$.
+\end{itemize}
+
+\noindent\textbf{Critical Metrological Remark (Static vs. Dynamic Bias):} If an investigator attempts to analyze a dynamic biological signal oscillating near the cut-off frequency using only the sensor's static calibration gain $y = Kx$, the observed amplitude will underestimate the true physical fluctuation by:
+\begin{equation}
+    \text{Relative Error} = \frac{K - K/\sqrt{2}}{K} = 1 - \frac{1}{\sqrt{2}} \approx 29.3\% \approx 30\% \text{ to } 40\%,
+\end{equation}
+introducing severe systematic attenuation into physiological inferences.
+
+\section{Metrological Specifications and Operating Limits}
+
+Standardized instrument datasheets report performance envelopes across five foundational operational parameters: range, non-linear thresholds, sensitivity, resolution, and inaccuracy.
+
+\subsection{Range, Span, and Full-Scale Output (FSO)}
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=43, width=0.65\linewidth, keepaspectratio]{\pdf} 
+\caption{Standard definitions of sensor range and full scale. The \textbf{input range} $[x_{\min}, x_{\max}]$ defines the linear operational domain, whose extent constitutes the \textbf{input span}. The corresponding change in sensor reading defines the \textbf{Full-Scale Output (FSO)}.} 
+\label{fig:range_span_fso} 
+\end{figure}
+
+As defined in Figure~\ref{fig:range_span_fso}:
+\begin{itemize}
+    \item \textbf{Input Operating Range}: The domain $[x_{\min}, x_{\max}]$ of physical stimuli over which the sensor guarantees its specified calibration accuracy.
+    \item \textbf{Input Span}: The scalar difference between upper and lower operational limits:
+    \begin{equation}
+        \text{Input Span} = x_{\max} - x_{\min}.
+        \label{eq:input_span_def}
+    \end{equation}
+    \item \textbf{Full-Scale Output (FSO)}: The algebraic difference between output values corresponding to maximum and minimum specified inputs:
+    \begin{equation}
+        \text{FSO} = y(x_{\max}) - y(x_{\min}).
+        \label{eq:fso_def}
+    \end{equation}
+    \item \textbf{Dynamic Range (DR) in Decibels}: For instruments spanning multiple orders of magnitude (such as optical photodetectors measuring optical power from $1\,\text{nW}$ to $1\,\text{mW}$), the input range ratio is parameterized logarithmically:
+    \begin{equation}
+        \text{DR} = 10 \log_{10}\left( \frac{P_{\max}}{P_{\min}} \right) = 10 \log_{10}\left( \frac{10^{-3}\,\text{W}}{10^{-9}\,\text{W}} \right) = 10 \log_{10}(10^6) = 60\text{ dB}.
+        \label{eq:dynamic_range_db_calc}
+    \end{equation}
+\end{itemize}
+
+\subsection{Threshold, Dead-Band, and Saturation}
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=44, width=0.8\linewidth, keepaspectratio]{\pdf} 
+\caption{Non-linear operating boundaries. At low stimulus levels, the sensor exhibits a \textbf{threshold} and a non-responsive \textbf{dead-band}. At excessive input levels, physical limits cause \textbf{saturation}, truncating the output signal.} 
+\label{fig:saturation_and_deadband} 
+\end{figure}
+
+Real-world sensors cannot deliver linear responses across unbounded input domains, as illustrated in Figure~\ref{fig:saturation_and_deadband}:
+\begin{itemize}
+    \item \textbf{Threshold}: The minimal non-zero input stimulus necessary to evoke a detectable, statistically significant change in sensor output above baseline electronic noise.
+    \item \textbf{Dead-Band (Dead-Zone)}: An input interval $[-\Delta x_d, +\Delta x_d]$ around a given operating point within which large stimulus variations evoke negligible or zero change in output, frequently caused by mechanical backlash or friction.
+    \item \textbf{Saturation}: The regime in which further increases in input stimulus produce no corresponding increase in output signal. In optical imaging (such as CMOS and CCD cameras), saturation occurs when potential wells reach their full electron capacity (pixel well depth), clipping fluorescence peaks.
+\end{itemize}
+
+\subsection{Sensitivity versus Resolution and Quantization Uncertainty}
+
+A critical distinction exists between how strongly a sensor responds to an input and the smallest stimulus increment it can resolve.
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=45, width=\linewidth, keepaspectratio]{\pdf} 
+\caption{Sensitivity versus resolution. Sensitivity represents the derivative $S = \frac{dy}{dx}$ (curve slope). Resolution $\Delta x_{\text{res}}$ represents the minimum input increment required to transition across a digital quantization step $\Delta y_{\text{LSB}}$. High sensitivity does not imply high resolution if electronic noise or coarse digitization dominates.} 
+\label{fig:sensitivity_vs_resolution} 
+\end{figure}
+
+As contrasted in Figure~\ref{fig:sensitivity_vs_resolution}:
+\begin{itemize}
+    \item \textbf{Sensitivity ($S$)}: The differential gain of the transfer function, $S(x) = \frac{dy}{dx}$. A sensor may possess extraordinarily high sensitivity (e.g., generating $100\,\text{V}/\mu\text{m}$), yet remain incapable of resolving sub-micron displacements if corrupted by $10\,\text{V}$ of intrinsic noise.
+    \item \textbf{Resolution ($\Delta x_{\text{res}}$)}: The smallest incremental change in the input measurand that produces a detectable change in the output signal. In digital instrumentation, resolution is constrained by the ADC Least Significant Bit ($\Delta y_{\text{LSB}}$):
+    \begin{equation}
+        \Delta x_{\text{res}} \approx \frac{\Delta y_{\text{LSB}}}{S}.
+        \label{eq:resolution_lsb_formula}
+    \end{equation}
+\end{itemize}
+
+\subsubsection{Quantization Uncertainty Evaluation}
+When an analog signal is digitized by rounding to the nearest discrete quantization level of width $\Delta x_{\text{res}}$, the deterministic quantization error $e_q$ is strictly bounded:
+\begin{equation}
+    -\frac{\Delta x_{\text{res}}}{2} \leq e_q \leq +\frac{\Delta x_{\text{res}}}{2}.
+    \label{eq:quantization_bounds}
+\end{equation}
+In the absence of prior knowledge regarding the sub-quantum signal phase, $e_q$ is modeled as a continuous random variable uniformly distributed over the interval $\left[ -\frac{\Delta x_{\text{res}}}{2}, +\frac{\Delta x_{\text{res}}}{2} \right]$ with constant probability density:
+\begin{equation}
+    p(e_q) = \frac{1}{\Delta x_{\text{res}}}.
+    \label{eq:uniform_density_quantization}
+\end{equation}
+The expected standard uncertainty $u_{\text{res}}$ is derived from the variance of this uniform distribution:
+\begin{align}
+    u_{\text{res}}^2 &= \int_{-\Delta x_{\text{res}}/2}^{+\Delta x_{\text{res}}/2} e_q^2 \, p(e_q) \, de_q = \frac{1}{\Delta x_{\text{res}}} \left[ \frac{e_q^3}{3} \right]_{-\Delta x_{\text{res}}/2}^{+\Delta x_{\text{res}}/2} \nonumber \\
+    &= \frac{1}{\Delta x_{\text{res}}} \left( \frac{\Delta x_{\text{res}}^3}{24} - \left(-\frac{\Delta x_{\text{res}}^3}{24}\right) \right) = \frac{\Delta x_{\text{res}}^2}{12}.
+    \label{eq:variance_uniform_proof}
+\end{align}
+Taking the square root yields the canonical metrological relationship:
+\begin{equation}
+    u_{\text{res}} = \frac{\Delta x_{\text{res}}}{\sqrt{12}} = \frac{\Delta y_{\text{LSB}}}{S \sqrt{12}}.
+    \label{eq:standard_uncertainty_resolution_sqrt12}
+\end{equation}
+
+\subsection{Sensor Inaccuracy, Tolerance Envelopes, and Hysteresis}
+
+Colloquially termed ``sensor accuracy'', metrological standards formalize this property as \textbf{inaccuracy}.
+\clearpage
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=46, width=0.5\linewidth, keepaspectratio]{\pdf} 
+\caption{Sensor inaccuracy $\delta$ and manufacturing tolerance band $\Delta$ (adapted from Fraden). The discrepancy $\delta$ between the calibrated curve and the true physical transfer function must remain within the manufacturer's permissible limits $\pm \Delta$. Individual calibration eliminates systematic inaccuracies.} 
+\label{fig:sensor_inaccuracy_envelope} 
+\end{figure}
+
+As illustrated in Figure~\ref{fig:sensor_inaccuracy_envelope}:
+\begin{itemize}
+    \item \textbf{Inaccuracy ($\delta$)}: The maximum deviation observed between the input value inferred from the calibrated curve and the true physical stimulus over the operational span.
+    \item \textbf{Permissive Tolerance Limits ($\Delta$)}: The manufacturing tolerance envelope within which the transfer function of any randomly sampled unit from a commercial batch is guaranteed to reside.
+    \item \textbf{Individual Calibration}: In mass-produced sensor arrays (such as multi-pixel sCMOS cameras or microelectrode arrays), manufacturing variations produce unit-to-unit discrepancies bounded by $\Delta$. Performing individual pixel-by-pixel calibration eliminates this batch uncertainty, reducing residual error to the calibration standard uncertainty $u_{\text{cal}}$.
+\end{itemize}
+
+When combining uncorrelated uncertainty contributions (resolution uncertainty $u_{\text{res}}$, calibration uncertainty $u_{\text{cal}}$, and experimental repeatability $u_A$), the \textbf{combined standard uncertainty} $u_c$ is evaluated via quadrature summation:
+\begin{equation}
+    u_c = \sqrt{u_{\text{res}}^2 + u_{\text{cal}}^2 + u_A^2 + \dots}.
+    \label{eq:combined_uncertainty_quadrature}
+\end{equation}
+
+\clearpage
+\begin{figure}[h] 
+\centering 
+\includegraphics[page=47, width=0.5\linewidth, keepaspectratio]{\pdf} 
+\caption{Sensor hysteresis loop (adapted from Fraden). The output response differs depending on whether the input stimulus is approached along an ascending trajectory (bottom curve) or a descending trajectory (top curve).} 
+\label{fig:sensor_hysteresis_loop} 
+\end{figure}
+
+Finally, as shown in Figure~\ref{fig:sensor_hysteresis_loop}, \textbf{hysteresis} designates the phenomenon where sensor output depends on the historical trajectory of the stimulus, yielding distinct calibration branches for ascending ($x \uparrow$) and descending ($x \downarrow$) stimuli. Hysteresis commonly arises from magnetic domain pinning, dielectric polarization, or mechanical friction.
+
+\section{Measurement Quality and Classification of Experimental Errors}
+
+The final stage of experimental modeling requires establishing the rigorous formal framework of measurement taxonomy, metrological quality, and error classification.
+
+\subsection{Direct versus Indirect Measurements}
+
+Scientific measurements are fundamentally divided into two operational methodologies:
+\begin{enumerate}
+    \item \textbf{Direct Measurements}: The unknown measurand is obtained by immediate comparison against a calibrated reference standard of the same physical dimension. Examples include determining length using an optical graduated scale, reading mass from a calibrated analytical balance, or recording electrical potential using a calibrated voltmeter.
+    \item \textbf{Indirect Measurements}: The measurand $Y$ cannot be directly sensed; instead, it is computed through a known physical-mathematical model relating $Y$ to an array of $N$ directly measured input quantities $X_1, X_2, \dots, X_N$:
+    \begin{equation}
+        Y = f(X_1, X_2, \dots, X_N).
+        \label{eq:indirect_measurement_model}
+    \end{equation}
+    Examples include determining mean cellular velocity by dividing displacement by elapsed time ($v = s/t$), estimating protein molecular density from mass and cell volume ($\rho = m/V$), or measuring membrane resistance via Ohm's law ($R = V/I$).
+\end{enumerate}
+The distinction is fundamental: direct measurements are corrupted by single-instrument uncertainties, whereas indirect measurements require formal multivariate uncertainty propagation.
+
+\subsection{The Metrological Triad: Precision, Trueness, and Accuracy}
+
+Historically, the terms \textit{precision} and \textit{accuracy} were used interchangeably. Modern international metrology (ISO 5725 and the VIM) partitions measurement quality into three mathematically decoupled descriptors:
+
+\begin{figure}[h] 
+\centering 
+\includegraphics[page=48, width=0.6\linewidth, keepaspectratio]{\pdf} 
+\caption{The metrological triad: Precision, Trueness, and Accuracy illustrated on canonical target bullseyes. (a) High precision, low trueness: tight cluster suffering from large systematic bias. (b) High precision, high trueness: tight cluster centered at the true value (high accuracy). (c) Low precision, low trueness: large random dispersion corrupted by systematic offset. (d) Low precision, high trueness: wide random dispersion whose sample mean accurately aligns with the true value.} 
+\label{fig:target_bullseye_metrology} 
+\end{figure}
+
+\begin{enumerate}
+    \item \textbf{Precision}: The closeness of agreement between independent experimental measurements of the same measurand obtained under stipulated conditions. Precision depends solely on the distribution of \textbf{random errors} and is quantified by the sample standard deviation $s$ (or variance $s^2$). High precision implies low dispersion (tight clustering), regardless of whether the cluster is centered on the true value.
+    \item \textbf{Trueness}: The closeness of agreement between the expectation value (mean $\mu$ of an infinitely large series of repeated measurements) and the accepted true reference value $x_{\text{true}}$. Trueness is governed purely by \textbf{systematic errors}. A measurement method has high trueness if its systematic bias $b = \mu - x_{\text{true}}$ is negligible.
+    \item \textbf{Accuracy}: The closeness of agreement between an individual measured quantity value and the true reference value. Accuracy is a synthetic property: an experimental observation achieves high accuracy \textbf{if and only if} it simultaneously exhibits both high precision (low random dispersion) and high trueness (near-zero systematic bias), as summarized in Figure~\ref{fig:target_bullseye_metrology}(b).
+\end{enumerate}
+
+\subsection{The Six Canonical Sources of Systematic Errors}
+
+Systematic errors are reproducible, non-random deviations that shift experimental readings in a consistent direction. In experimental instrumentation, six canonical sources must be identified and eliminated:
+\begin{enumerate}
+    \item \textbf{Instrument Imperfections and Zero Offsets}: Intrinsic hardware imperfections, including uncorrected zero-point drifts, mechanical backlash in micromanipulators, or aging voltage references. An un-zeroed analytical balance introduces a constant additive mass offset across every reading.
+    \item \textbf{Environmental Operating Conditions}: Discrepancies between ambient laboratory parameters (temperature, atmospheric pressure, relative humidity) and specified calibration standards. Operating an optical spectrometer calibrated at $20^\circ\text{C}$ in a room at $30^\circ\text{C}$ alters diffraction grating spacing and thermal focal lengths.
+    \item \textbf{Human Handling and Parallax Errors}: Operator-dependent biases, exemplified by classical \textbf{parallax}: viewing an analog dial or meniscus boundary at an oblique angle rather than strictly perpendicular to the graduation line shifts the perceived value.
+    \item \textbf{External Environmental Disturbances}: Dynamic ambient perturbations that inject deterministic noise into sensitive setups. Examples include mechanical vibrations from urban traffic or subway lines coupling into nanoscale AFM cantilevers, acoustic vibrations modulating laser interferometers, or $50/60\,\text{Hz}$ electromagnetic powerline pickup.
+    \item \textbf{Instrument-Sample Interaction (Loading Effects)}: Non-negligible physical coupling between probe and specimen. Applying excessive mechanical contact force when measuring cell elasticity deforms the specimen, yielding underestimated heights; connecting a voltmeter with insufficient input impedance loads the source circuit, attenuating the measured potential.
+    \item \textbf{Calibration Errors and Model Approximations}: Errors in the primary reference standards utilized during calibration, or enforcing an incorrect mathematical model (e.g., assuming a strictly linear sensor response $y = mx$ across a non-linear operational domain).
+\end{enumerate}
+
+\subsection{Systematic Error Morphologies versus Random Error Properties}
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=49, width=0.88\linewidth, keepaspectratio]{\pdf} 
+\caption{Classification of measurement errors. (a) Morphologies of systematic errors: constant offset bias $y = x + c$, scale-factor (gain) error $y = Kx$, and non-linear systematic distortion. (b) Fundamental property of random errors: stochastic fluctuations governed by a continuous probability density $p(e)$ exhibiting a \textbf{zero mean expectation value} ($\mu_e = 0$).} 
+\label{fig:error_morphologies_and_random} 
+\end{figure}
+
+As illustrated in Figure~\ref{fig:error_morphologies_and_random}, systematic and random errors display fundamentally distinct mathematical structures:
+
+\subsubsection{Systematic Error Morphologies}
+Systematic errors are deterministic functions of the operating state, manifesting in three canonical geometries:
+\begin{itemize}
+    \item \textbf{Constant Offset Bias}: $y = x + c$. The calibration curve is rigidly shifted by a constant displacement $c$, independent of stimulus magnitude.
+    \item \textbf{Scale Factor (Gain) Error}: $y = K x$, with $K \neq 1$. The sensitivity slope deviates from unity, producing measurement errors proportional to stimulus magnitude.
+    \item \textbf{Non-Linear Systematic Error}: $y = f_{\text{model}}(x) + \Delta_{\text{nonlin}}(x)$. Higher-order physical non-linearities create structured residual curvature.
+\end{itemize}
+
+\subsubsection{Random Error Properties and Bridge to Probability}
+In contrast, \textbf{random errors} originate from an ensemble of microscopic, uncontrollable stochastic fluctuations (thermal Johnson-Nyquist noise in resistors, photon shot noise in photodetectors, Brownian motion of suspended nanoparticles). 
+
+Random errors satisfy a defining metrological invariant:
+\begin{equation}
+    \mathbb{E}[e_{\text{rand}}] = \int_{-\infty}^{+\infty} e \, p(e) \, de = 0.
+    \label{eq:random_error_zero_mean}
+\end{equation}
+The probability density function $p(e)$ is symmetric and centered strictly at zero ($\mu_e = 0$). While random errors cannot be corrected by simple arithmetic calibration subtraction, their impact on experimental inferences can be suppressed through statistical replication, where the uncertainty of the sample mean scales as $\sigma / \sqrt{N}$—establishing the formal foundation of statistical metrology and probability distributions.
+
 
 \end{document}
