@@ -1360,6 +1360,392 @@ Deciding which mathematical architecture best describes an experimental dataset 
     \end{itemize}
 \end{enumerate}
 
+\chapter{Geometric Approximations, Differential Analysis, and Model Complexity}
+While empirical trends can often be described by canonical elementary functions, complex physical and biological profiles require localized geometric descriptors, rate analysis through differential calculus, and careful management of model complexity. This chapter establishes the mathematical principles for modeling dynamic rates, fitting localized geometric arcs, analytically deriving planar curvature, and preventing the empirical failure of overfitting.
+
+\section{Local Geometric Approximation via Conic Arcs}
+
+In biophysical imaging and sensor characterization, empirical profiles often display geometric features—such as cellular membrane invaginations, nanotube curvatures, or optical meniscus boundaries—that are ill-suited to global algebraic modeling. Approximating such boundaries requires localized geometric models derived from canonical conic sections.
+
+\subsection{Functional Formulations of Conic Sections}
+A complete conic section (such as an ellipse, circle, or hyperbola) is governed by an implicit quadratic equation: 
+\begin{equation} 
+A x^2 + B x y + C y^2 + D x + E y + F = 0. 
+\label{eq:general_conic_implicit} 
+\end{equation} 
+A complete conic section fails the \textbf{vertical line test}: a single abscissa $x$ generally corresponds to two distinct ordinate values $y$. Consequently, a complete conic section cannot serve directly as a mathematical function $y = f(x)$.
+
+To deploy conic geometries as empirical fitting models, one must isolate a single-valued branch by restricting both the parameter space and the functional domain: 
+\begin{itemize} 
+\item \textbf{Parabolic arc}: Derived from the parabola $y^2 = ax + b$ with $a \neq 0$: 
+\begin{equation} 
+y = \sqrt{ax + b}, \quad \text{with} \quad \begin{cases} \text{Domain: } \left[-\frac{b}{a}, +\infty\right), & a > 0, \\ \text{Domain: } \left(-\infty, -\frac{b}{a}\right], & a < 0, \end{cases} \quad \text{Range: } [0, +\infty). 
+\label{eq:parabolic_arc} 
+\end{equation} 
+\item \textbf{Semicircumference}: Isolated from the central circle $x^2 + y^2 = a^2$ with radius $a > 0$:
+\begin{equation} 
+y = \sqrt{a^2 - x^2}, \quad \text{Domain: } [-a, a], \quad \text{Range: } [0, a].
+\label{eq:semicircumference} 
+\end{equation} 
+\item \textbf{Hyperbola branch (orthogonal to vertical axis)}: Isolated from $x^2 - y^2 = -a^2$: 
+\begin{equation} 
+y = \sqrt{a^2 + x^2}, \quad \text{Domain: } \mathbb{R}, \quad \text{Range: } [a, +\infty). 
+\label{eq:hyperbola_branch_vert} 
+\end{equation} 
+\item \textbf{Positive branch of an equilateral hyperbola}: Isolated from $x^2 - y^2 = a^2$: 
+\begin{equation} 
+y = \sqrt{x^2 - a^2}, \quad \text{Domain: } (-\infty, -a] \cup [a, +\infty), \quad \text{Range: } [0, +\infty). 
+\label{eq:hyperbola_branch_horiz} 
+\end{equation} 
+\end{itemize}
+
+\subsection{The Failure of Global Polynomials vs. Local Circular Fitting}
+
+When quantifying local morphology along a complex biological boundary, fitting a high-degree polynomial:
+\begin{equation} 
+y(x) = \sum_{k=0}^{n} c_k x^k 
+\label{eq:global_polynomial_failure} 
+\end{equation} 
+introduces severe metrological shortcomings. The polynomial coefficients $c_k$ possess no direct biophysical interpretation. Furthermore, high-degree polynomial regression suffers from non-local coupling, where a perturbation in a distant data point induces spurious, high-frequency oscillations across the entire evaluated domain.
+
+\begin{figure}[h] 
+\centering 
+\includegraphics[page=30, width=0.65\linewidth, keepaspectratio]{figures.pdf} 
+\caption{Local geometric approximation of a lipid bilayer invagination using an osculating circle of radius $R$ centered at $(x_c, y_c)$. A sliding window extracts an ordered spatial sequence of curvature radii along the membrane coordinate.} 
+\label{fig:membrane_circle_fitting} 
+\end{figure}
+
+
+These limitations are resolved by substituting global regression with \textbf{local geometric circular fitting}, as illustrated in Figure~\ref{fig:membrane_circle_fitting}. A small spatial window of width $w$ isolates an empirical subset of boundary coordinates centered around a target locus $x_0$. Within this subset, the profile is fitted to the equation of a circle: 
+\begin{equation} 
+(x - x_c)^2 + (y - y_c)^2 = R^2, 
+\label{eq:circle_equation} 
+\end{equation} 
+where the parameters $(x_c, y_c)$ denote the coordinates of the center of curvature and $R$ represents the local \textbf{radius of curvature}. The local scalar \textbf{curvature} $\kappa$ is defined directly by the inverse of the radius: 
+\begin{equation} 
+\kappa = \frac{1}{R}. 
+\label{eq:curvature_radius_relation} 
+\end{equation}
+
+By translating the spatial window along the segmented boundary trajectory, the procedure yields an ordered sequence of radii $\{R_1, R_2, \dots, R_m\}$ and produces a continuous spatial map of curvature $\kappa(s)$. In biological structures such as mitochondrial inner membranes, clathrin-coated pits, or endocytic vesicle necks, this local parameterization identifies constriction sites without introducing unconstrained regression parameters.
+
+\section{Differential Analysis of Sensor Dynamics and Measurement Trends}
+
+Static empirical values provide an incomplete description of physical processes; quantifying how rapidly a signal evolves over time or space is necessary to characterize sensor response dynamics, photobleaching, and binding kinetics.
+
+\subsection{The Difference Quotient and the Tangent Operator}
+
+Let $y = f(x)$ be a continuous function describing a sensor response over an interval $[a, b]$. Consider a reference coordinate $x_0$ and a displaced coordinate $x_0 + \Delta x$, corresponding to points $A(x_0, f(x_0))$ and $B(x_0 + \Delta x, f(x_0 + \Delta x))$ on the response curve.
+
+The \textbf{difference quotient} measures the average rate of change between these coordinates:
+\begin{equation} 
+\frac{\Delta f}{\Delta x} = \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}.
+\label{eq:difference_quotient} 
+\end{equation} 
+Geometrically, the difference quotient corresponds to the slope $m_{\text{sec}}$ of the secant line intersecting points $A$ and $B$, which satisfies $m_{\text{sec}} = \tan\theta$, where $\theta$ represents the inclination angle of the secant line relative to the abscissa.
+
+\begin{figure}[h] 
+\centering 
+\includegraphics[page=31, width=0.62\linewidth, keepaspectratio]{figures.pdf} 
+\caption{Geometric transition from the difference quotient to the first derivative. As $\Delta x \to 0$, the secant line through $A$ and $B$ rotates to converge onto the tangent line at $A(x_0, f(x_0))$ with slope $m = f'(x_0)$.} 
+\label{fig:derivative_secant_to_tangent} 
+\end{figure}
+
+The \textbf{first derivative} of $f$ at $x_0$, denoted by $f'(x_0)$, $\frac{df}{dx}\big|_{x_0}$, or $D f(x_0)$, is defined as the infinitesimal limit of the difference quotient as $\Delta x$ approaches zero: 
+\begin{equation} 
+f'(x_0) = \lim_{\Delta x \to 0} \frac{\Delta f}{\Delta x} = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}. 
+\label{eq:derivative_definition} 
+\end{equation} 
+As $\Delta x \to 0$, point $B$ traverses the curve toward point $A$, causing the secant line to rotate and reach its limiting orientation as the \textbf{tangent line} to the curve at $x_0$ (Figure~\ref{fig:derivative_secant_to_tangent}). The slope of this tangent line is given by $m = f'(x_0)$. Consequently, the point-slope equation of the tangent line is: 
+\begin{equation} 
+y - f(x_0) = f'(x_0)(x - x_0). 
+\label{eq:tangent_line_equation} 
+\end{equation}
+
+\subsection{Monotonicity and Convexity Diagnostics}
+
+Evaluating the signs of the first and second derivatives provides immediate criteria for characterizing functional trajectories: 
+\begin{itemize} 
+\item \textbf{Monotonicity}: If $f'(x) \ge 0$ across an interval $I$, the tangent slopes are non-negative, and the function is monotonically increasing on $I$. If $f'(x) \le 0$, the tangent slopes are non-positive, and the function is monotonically decreasing on $I$. 
+\item \textbf{Convexity via tangent support}: A differentiable function $f(x)$ is defined as \textbf{convex} on an interval $I$ if and only if its graph lies strictly above its tangent line for all $x \neq x_0$: 
+\begin{equation} 
+f(x) > f(x_0) + f'(x_0)(x - x_0), \quad \forall x, x_0 \in I, x \neq x_0. 
+\label{eq:convexity_tangent_def} 
+\end{equation} 
+Conversely, $f(x)$ is \textbf{concave} on $I$ if its graph lies strictly below its tangent line: 
+\begin{equation} 
+f(x) < f(x_0) + f'(x_0)(x - x_0), \quad \forall x, x_0 \in I, x \neq x_0. 
+\label{eq:concavity_tangent_def} 
+\end{equation} 
+\item \textbf{Second-derivative criterion}: For a twice-differentiable function $f(x) \in C^2(I)$: 
+\begin{equation} 
+f''(x) \ge 0 \iff f(x) \text{ is convex on } I; \qquad f''(x) \le 0 \iff f(x) \text{ is concave on } I. 
+\label{eq:second_derivative_convexity} 
+\end{equation} 
+\end{itemize}
+
+\subsection{Stationary Points and Topological Boundary Extrema}
+
+A coordinate $x_0$ satisfying $f'(x_0) = 0$ is termed a \textbf{stationary point} (or critical point). At this coordinate, the tangent line is horizontal, assuming the form $y = f(x_0) = k$. Classifying stationary points requires evaluating the sign of the first derivative in a punctured neighborhood of $x_0$: 
+\begin{itemize} 
+\item \textbf{Local minimum}: The derivative transitions from negative to positive ($- \to 0 \to +$), indicating that the function decreases to the left and increases to the right of $x_0$. 
+\item \textbf{Local maximum}: The derivative transitions from positive to negative ($+ \to 0 \to -$), indicating that the function increases to the left and decreases to the right of $x_0$. 
+\item \textbf{Horizontal inflection point}: The derivative maintains the same sign on both sides of $x_0$ ($+ \to 0 \to +$ or $- \to 0 \to -$). The curve crosses its horizontal tangent, and the second derivative satisfies $f''(x_0) = 0$ with a sign inversion. 
+\end{itemize}
+
+In empirical measurement signals, extrema can occur without a vanishing derivative: 
+\begin{itemize} 
+\item \textbf{Non-differentiable singular points}: At sharp cusps or corner points (such as $y = |x - 1|$ at $x = 1$), the left and right derivatives disagree ($\lim_{\Delta x \to 0^-} \frac{\Delta f}{\Delta x} \neq \lim_{\Delta x \to 0^+} \frac{\Delta f}{\Delta x}$). The function possesses an extremum even though $f'(x_0)$ is undefined.
+\item \textbf{Domain boundary points}: For measurements collected across a closed domain $x \in [a, b]$, absolute extrema frequently coincide with the endpoints $x = a$ or $x = b$. Fermat's theorem ($f'(x_0) = 0$) applies exclusively to interior points; boundary extrema generally exhibit non-zero derivatives ($f'(a) \neq 0, f'(b) \neq 0$). 
+\end{itemize}
+
+\section{Analytical Derivation of Planar Curvature in Biophysical Systems}
+
+In cellular biomechanics, identifying how biological structures reshape requires evaluating the mathematical curvature of planar profiles extracted from microscopy images.
+
+\subsection{Differential Geometry Formulation}
+
+Let a biological profile be represented by a sufficiently smooth curve $y = f(x)$ parameterized by the arc length $s$. The \textbf{curvature} $\kappa$ quantifies the rate of rotation of the unit tangent vector per unit of arc length traversed along the profile: 
+\begin{equation} 
+\kappa = \frac{d\theta}{ds},
+\label{eq:curvature_fundamental_def} 
+\end{equation} 
+where $\theta$ denotes the inclination angle of the tangent line relative to the horizontal axis. The magnitude $|\kappa|$ is inversely proportional to the radius $R$ of the local osculating circle ($|\kappa| = 1/R$).
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=32, width=\linewidth, keepaspectratio]{figures.pdf} 
+\caption{Differential geometric parameterization of an arbitrary curve $y = f(x)$. The arc length increment $ds$ is formed by displacement elements $dx$ and $dy$, while the tangent orientation angle $\theta$ satisfies $\tan\theta = f'(x)$.} 
+\label{fig:curvature_derivation_geometry} 
+\end{figure}
+
+The relationship between the Cartesian formulation $y = f(x)$ and the intrinsic definition $\kappa = \frac{d\theta}{ds}$ is derived through a four-step sequence, as shown in Figure~\ref{fig:curvature_derivation_geometry}:
+
+\textbf{Step 1: Expressing the tangent angle via the first derivative.} The slope of the tangent line to $f(x)$ at coordinate $x$ is given by: 
+\begin{equation} 
+f'(x) = \tan\theta \iff \theta(x) = \arctan\left( f'(x) \right).
+\label{eq:theta_arctan} 
+\end{equation}
+
+\textbf{Step 2: Differentiating the angle with respect to the Cartesian coordinate $x$.} Applying the chain rule to Equation~\eqref{eq:theta_arctan}, using the standard derivative identity $\frac{d}{du}\arctan(u) = \frac{1}{1 + u^2}$ with $u(x) = f'(x)$: 
+\begin{equation} 
+\frac{d\theta}{dx} = \frac{d}{dx} \left[ \arctan\left( f'(x) \right) \right] = \frac{1}{1 + \left[ f'(x) \right]^2} \cdot \frac{d}{dx}\left[ f'(x) \right] = \frac{f''(x)}{1 + \left[ f'(x) \right]^2}.
+\label{eq:dtheta_dx} 
+\end{equation}
+
+\textbf{Step 3: Formulating the differential arc length $ds$.} By the Pythagorean theorem, the differential Euclidean arc length element $ds$ satisfies: 
+\begin{equation} 
+ds = \sqrt{dx^2 + dy^2}. 
+\label{eq:ds_pythagoras} 
+\end{equation} 
+Factoring out $dx$ and substituting the differential relation $dy = f'(x)\,dx$: 
+\begin{equation} 
+ds = \sqrt{dx^2 + \left[ f'(x)\,dx \right]^2} = \sqrt{1 + \left[ f'(x) \right]^2}\,dx. 
+\label{eq:ds_expansion} 
+\end{equation} 
+Dividing by $dx$ yields the rate of arc length accumulation per unit horizontal coordinate: 
+\begin{equation} 
+\frac{ds}{dx} = \sqrt{1 + \left[ f'(x) \right]^2}. 
+\label{eq:ds_dx} 
+\end{equation}
+
+\textbf{Step 4: Combining rates via the chain rule.} Curvature is evaluated by expanding the derivative $\frac{d\theta}{ds}$ through the intermediate coordinate $x$: 
+\begin{equation} 
+\kappa(x) = \frac{d\theta}{ds} = \frac{\dfrac{d\theta}{dx}}{\dfrac{ds}{dx}}. 
+\label{eq:curvature_quotient_chain} 
+\end{equation} 
+Substituting the expressions derived in Equations~\eqref{eq:dtheta_dx} and~\eqref{eq:ds_dx}: 
+\begin{equation} 
+\kappa(x) = \frac{\dfrac{f''(x)}{1 + \left[ f'(x) \right]^2}}{\sqrt{1 + \left[ f'(x) \right]^2}} = \frac{f''(x)}{\left( 1 + \left[ f'(x) \right]^2 \right) \left( 1 + \left[ f'(x) \right]^2 \right)^{1/2}}. 
+\label{eq:curvature_algebraic_steps} 
+\end{equation}
+
+Combining the denominator exponents yields the formal equation for planar curvature: 
+\begin{equation} 
+\kappa(x) = \frac{\left| f''(x) \right|}{\left( 1 + \left[ f'(x) \right]^2 \right)^{3/2}}. 
+\label{eq:curvature_final_formula} 
+\end{equation} 
+Equation~\eqref{eq:curvature_final_formula} shows that curvature depends directly on the second derivative $f''(x)$, scaled by the non-linear velocity metric $\left( 1 + [f'(x)]^2 \right)^{3/2}$.
+
+\subsection{Biophysical Implications: Organellar Remodeling}
+
+In quantitative cell biology, local curvature $\kappa(x)$ governs the energetics of lipid bilayers. According to the Helfrich elastic model, the bending energy density per unit membrane area $e_{\text{bend}}$ is proportional to the square of local mean curvature: 
+\begin{equation} 
+e_{\text{bend}} = \frac{\kappa_b}{2} \left( 2H - c_0 \right)^2, 
+\label{eq:helfrich_energy} 
+\end{equation} 
+where $\kappa_b$ represents the bending rigidity modulus, $H = \frac{1}{2}(\kappa_1 + \kappa_2)$ is the mean curvature, and $c_0$ is the spontaneous curvature.
+
+During mitochondrial fission, dynamin-related GTPases (such as Drp1) assemble into helical rings around the mitochondrial outer membrane. These mechanochemical proteins require a threshold local curvature ($\kappa \ge \kappa_{\text{threshold}}$, corresponding to an outer radius $R \le 50\text{ nm}$) to trigger constriction and induce membrane scission. Measuring local curvature along segmented microscopy profiles provides the quantitative criterion determining whether a membrane constriction site has reached the mechanical threshold for division.
+
+\section{Model Complexity and Overfitting Control}
+
+Selecting an empirical mathematical model involves balancing goodness-of-fit against model complexity. An excessively parameterized model can reproduce experimental training observations while failing to generalize to new measurements.
+
+\subsection{The Parsimony Principle: Von Neumann's Elephant}
+
+The mathematical hazard of over-parameterization is captured by John von Neumann's classic aphorism:
+\begin{quote} 
+``With four parameters I can fit an elephant, and with five I can make him wiggle his trunk.'' 
+\end{quote} 
+In empirical modeling, a mathematical formulation featuring an unconstrained number of free parameters can match any arbitrary training dataset. However, such a model is fundamentally unscientific: because it can accommodate any arbitrary configuration of noise, it cannot be falsified, violating the core criterion of empirical metrology.
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=33, width=0.7\linewidth, keepaspectratio]{figures.pdf} 
+\caption{The mechanics of overfitting. A high-degree polynomial (red) passes through every noisy empirical data point, achieving near-zero training error but generating spurious non-physical oscillations. A linear model (green) captures the underlying physical trend and generalises accurately to independent observations.} 
+\label{fig:overfitting_elephant_comparison} 
+\end{figure}
+
+As illustrated in Figure~\ref{fig:overfitting_elephant_comparison}, fitting noisy measurements with a high-degree polynomial achieves near-zero error on the training points. However, the fitted curve incorporates high-frequency experimental noise, producing severe, non-physical oscillations between adjacent measurements. This empirical failure is designated as \textbf{overfitting}: the model accurately reproduces its specific calibration set, but fails to extract the underlying physical law, yielding unreliable predictions for independent experimental observations.
+
+\subsection{Quantitative Metrics: Training versus Validation Error}
+
+To assess model performance, the empirical dataset is divided into two decoupled partitions: 
+\begin{itemize} 
+\item \textbf{Training dataset ($\mathcal{D}_{\text{train}}$)}: An ensemble of $N_{\text{train}}$ observations used exclusively to estimate the free parameters $\boldsymbol{\theta}$ of the model. 
+\item \textbf{Validation dataset ($\mathcal{D}_{\text{val}}$)}: An ensemble of $N_{\text{val}}$ held-out observations that were excluded during parameter estimation, used to evaluate predictive generalization. 
+\end{itemize}
+
+Model performance is evaluated by computing the \textbf{Mean Squared Error} (MSE) across both datasets:
+\begin{equation} 
+\text{MSE}_{\text{train}} = \frac{1}{N_{\text{train}}} \sum_{i=1}^{N_{\text{train}}} \left( y_i - \hat{y}_i \right)^2, 
+\label{eq:mse_training} 
+\end{equation} 
+\begin{equation} 
+\text{MSE}_{\text{val}} = \frac{1}{N_{\text{val}}} \sum_{i=1}^{N_{\text{val}}} \left( y_i - \hat{y}_i \right)^2, 
+\label{eq:mse_validation} 
+\end{equation} 
+where $y_i$ represents the empirically measured response and $\hat{y}_i = f(x_i; \hat{\boldsymbol{\theta}})$ is the value predicted by the fitted model.
+
+\begin{figure}[!htbp] 
+\centering 
+\includegraphics[page=34, width=0.7\linewidth, keepaspectratio]{figures.pdf} 
+\caption{Evolution of training error ($\text{MSE}_{\text{train}}$, blue) and validation error ($\text{MSE}_{\text{val}}$, orange) as a function of model complexity. As the number of free parameters increases, training error decreases monotonically, whereas validation error reaches a global minimum before diverging upward due to overfitting.} 
+\label{fig:bias_variance_sweet_spot} 
+\end{figure}
+
+The trade-off governing model selection is illustrated in Figure~\ref{fig:bias_variance_sweet_spot}:
+\begin{itemize} 
+\item \textbf{Underfitting (High Bias)}: The model possesses too few degrees of freedom to capture the underlying physical mechanism (e.g., fitting a linear equation to a bi-exponential decay). Both $\text{MSE}_{\text{train}}$ and $\text{MSE}_{\text{val}}$ remain high. 
+\item \textbf{Optimal Complexity}: The model captures the underlying physical relationship while ignoring random experimental fluctuations. At this operating point, $\text{MSE}_{\text{val}}$ reaches its global minimum. 
+\item \textbf{Overfitting (High Variance)}: Increasing the number of free parameters causes $\text{MSE}_{\text{train}}$ to decrease monotonically toward zero. However, the model begins fitting stochastic noise, causing $\text{MSE}_{\text{val}}$ to diverge upward.
+\end{itemize}
+
+\subsection{Cross-Validation Protocol for Experimental Datasets}
+
+To identify optimal model complexity and prevent overfitting in laboratory datasets, investigators execute a structured \textbf{cross-validation protocol}: 
+\begin{enumerate} 
+\item \textbf{Partitioning}: The complete set of $N$ experimental observations is partitioned randomly into a 50/50 split, establishing a training reservoir ($N_{\text{train}} = 0.5N$) and an independent held-out reservoir ($N_{\text{held-out}} = 0.5N$). 
+\item \textbf{Model fitting}: For each candidate functional architecture (varying in polynomial degree or parameter count $p$), parameters $\hat{\boldsymbol{\theta}}$ are estimated on the training reservoir, and $\text{MSE}_{\text{train}}$ is recorded. 
+\item \textbf{Repeated validation subsampling}: A validation subset of $k$ observations (e.g., $k = 20$) is randomly sampled without replacement from the held-out reservoir. The validation error $\text{MSE}_{\text{val}}$ is computed across this subset. The held-out reservoir is shuffled, and the sampling is repeated across multiple permutations to construct a stable average: 
+\begin{equation} 
+\langle \text{MSE}_{\text{val}} \rangle = \frac{1}{M} \sum_{m=1}^{M} \text{MSE}_{\text{val}}^{(m)}. 
+\label{eq:average_mse_val} 
+\end{equation} 
+\item \textbf{Model selection}: Average validation errors $\langle \text{MSE}_{\text{val}} \rangle$ are compared across candidate models. The architecture yielding the lowest $\langle \text{MSE}_{\text{val}} \rangle$ is selected, ensuring that the final model describes the underlying physical process rather than experimental noise. 
+\end{enumerate}
+
+\section{Computational Implementations and Analytical Protocols}
+
+Empirical modeling frequently requires calibrating sensor offsets and evaluating first-order elimination kinetics.
+
+\subsection{Single-Compartment Kinetic Clearance and Half-Life}
+
+Consider a biological sensor or pharmacological compound undergoing single-compartment first-order elimination. The instantaneous rate of clearance is proportional to the remaining concentration:
+\begin{equation} 
+\frac{dC(t)}{dt} = -k \, C(t), 
+\label{eq:first_order_ode} 
+\end{equation} 
+where $k > 0$ represents the \textbf{elimination rate constant} ($[k] = \text{T}^{-1}$). Integrating Equation~\eqref{eq:first_order_ode} from initial boundary conditions $C(0) = C_0$ yields the exponential decay model: 
+\begin{equation} 
+C(t) = C_0 e^{-kt}. 
+\label{eq:exp_decay_integrated} 
+\end{equation}
+
+The \textbf{half-life} ($t_{1/2}$) is defined as the time interval required for the concentration to decrease to exactly half its initial value: 
+\begin{equation} 
+C(t_{1/2}) = \frac{C_0}{2}. 
+\label{eq:halflife_definition} 
+\end{equation} 
+Substituting Equation~\eqref{eq:halflife_definition} into Equation~\eqref{eq:exp_decay_integrated}: 
+\begin{equation} 
+\frac{C_0}{2} = C_0 e^{-k t_{1/2}} \implies \frac{1}{2} = e^{-k t_{1/2}}. 
+\label{eq:halflife_sub} 
+\end{equation} 
+Taking the natural logarithm of both sides:
+\begin{equation} 
+\ln\left( \frac{1}{2} \right) = \ln\left( e^{-k t_{1/2}} \right) \implies -\ln 2 = -k \, t_{1/2}.
+\label{eq:halflife_log} 
+\end{equation} 
+Solving for $t_{1/2}$ yields the exact analytical relationship:
+\begin{equation} 
+t_{1/2} = \frac{\ln 2}{k} \approx \frac{0.69315}{k}. 
+\label{eq:halflife_final} 
+\end{equation}
+
+\noindent\textbf{Numerical Example:} For a therapeutic drug exhibiting an elimination rate constant of $k = 0.20\text{ h}^{-1}$, the physiological half-life evaluates to: 
+\begin{equation} 
+t_{1/2} = \frac{0.69315}{0.20\text{ h}^{-1}} \approx 3.466\text{ h} \approx 3.47\text{ h}. 
+\label{eq:halflife_numerical_worked} 
+\end{equation}
+
+\subsection{Geometric Transformations for Empirical Calibration}
+
+When calibrating sensor curves against standard reference functions, elementary geometric transformations adjust scale, offset, and polarity: 
+\begin{itemize} 
+\item \textbf{Vertical reflection} ($y = -f(x)$): Inverts curve polarity across the abscissa ($y \to -y$). 
+\item \textbf{Horizontal reflection} ($y = f(-x)$): Inverts temporal or spatial direction across the ordinate ($x \to -x$). 
+\item \textbf{Full rectification} ($y = |f(x)|$): Reflects negative response domains into positive values, modeling full-wave rectifying photodetectors. 
+\item \textbf{Domain folding} ($y = f(|x|)$): Symmetrizes the positive domain across the ordinate, reflecting bilateral physical symmetries. 
+\item \textbf{Rigid translation} ($y = f(x + a) + b$): Translates the functional response by the spatial displacement vector $(-a, b)$, aligning instrument thresholds ($a$) and baseline dark-current offsets ($b$). 
+\item \textbf{Axis scaling} ($y = k f(hx)$): Modulates vertical amplification by gain factor $k$, while scaling horizontal frequency or time by factor $\frac{1}{h}$. 
+\end{itemize}
+
+\subsection{Computational Implementation: Local Membrane Fitting}
+
+Extracting curvature profiles from discrete boundary coordinates $(x_i, y_i)_{i=1}^N$ in computational environments (such as MATLAB or Python) follows a structured numerical pipeline: 
+\begin{enumerate} 
+\item \textbf{Local window partitioning}: For each boundary index $j$, a subset of $2m+1$ points spanning $[j-m, j+m]$ is extracted: 
+\begin{equation} 
+\mathcal{W}_j = \left\{ (x_k, y_k) \;\middle|\; k \in [j-m, j+m] \right\}.
+\label{eq:local_window_subset} 
+\end{equation} 
+\item \textbf{Algebraic circle estimation}: The non-linear circular form $(x - x_c)^2 + (y - y_c)^2 = R^2$ is expanded algebraically: 
+\begin{equation} 
+x^2 + y^2 - 2x_c x - 2y_c y + (x_c^2 + y_c^2 - R^2) = 0 \iff 2x_c x + 2y_c y + C = x^2 + y^2, 
+\label{eq:circle_algebraic_expansion} 
+\end{equation} 
+where $C = R^2 - x_c^2 - y_c^2$. This linearizes the parameter estimation into a standard matrix equation: 
+\begin{equation} 
+\begin{bmatrix} 
+2x_1 & 2y_1 & 1 \\ 
+2x_2 & 2y_2 & 1 \\ 
+\vdots & \vdots & \vdots \\ 
+2x_K & 2y_K & 1 
+\end{bmatrix} 
+\begin{bmatrix} 
+x_c \\ y_c \\ C 
+\end{bmatrix} 
+= 
+\begin{bmatrix} 
+x_1^2 + y_1^2 \\ 
+x_2^2 + y_2^2 \\ 
+\vdots \\ 
+x_K^2 + y_K^2 
+\end{bmatrix} 
+\iff \mathbf{A}\mathbf{p} = \mathbf{b}.
+\label{eq:circle_linear_least_squares} 
+\end{equation} 
+Solving Equation~\eqref{eq:circle_linear_least_squares} via the pseudoinverse $\mathbf{p} = (\mathbf{A}^\top\mathbf{A})^{-1}\mathbf{A}^\top\mathbf{b}$ yields the center coordinates $(x_c, y_c)$ and evaluates the local radius: 
+\begin{equation} 
+R = \sqrt{C + x_c^2 + y_c^2}.
+\label{eq:extracted_radius_from_c} 
+\end{equation} 
+\item \textbf{Curvature extraction}: Local scalar curvature is recorded as $\kappa_j = 1/R$. Repeating this operation along the boundary yields the complete spatial trajectory $\kappa(s)$, identifying narrow membrane necks and constriction sites. 
+\end{enumerate}
+
+What distinguishes an informative functional fit from an arbitrary mathematical curve is not whether it achieves zero training residual, but whether its parameters correspond to physical invariants and generalize consistently to independent measurements.
 
 %\backmatter
 
