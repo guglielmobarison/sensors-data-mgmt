@@ -1,0 +1,1316 @@
+% =============================================================================
+% APPENDIX: EXERCISES
+% Included from sensors-data-mgmt.tex via \input{appendix} (after \appendix).
+% =============================================================================
+\chapter{Exercises}
+\label{app:exercises}
+
+This appendix collects the exercises proposed during the lectures, in the slides and in the exercise sheets, grouped by chapter. Each solution points back to the sections and equations of the theory it uses.
+
+% -----------------------------------------------------------------------------
+% APPENDIX: exercises on Chapter 1
+% -----------------------------------------------------------------------------
+\section{Metrology and SI Units}
+\label{app:ex_ch1}
+
+\subsection{Solute transport across a membrane}
+\label{ex:membrane_transport}
+
+The amount of substance transferred per unit time across a membrane is modelled as
+\begin{equation*}
+R = P A \Delta c,
+\end{equation*}
+where $P$ is the membrane permeability, $A$ the membrane area and $\Delta c$ the concentration difference across the membrane. Given
+\begin{equation*}
+[P] = \text{L}\,\text{T}^{-1}, \qquad [A] = \text{L}^2, \qquad [c] = \text{N}\,\text{L}^{-3},
+\end{equation*}
+check whether the equation is dimensionally consistent.
+
+\paragraph{Solution} Following the rules of dimensional analysis (Section~\ref{sec:dimensional_analysis}), we multiply the dimensions of the three factors:
+\begin{equation*}
+[P A \Delta c] = (\text{L}\,\text{T}^{-1})(\text{L}^2)(\text{N}\,\text{L}^{-3}) = \text{N}\,\text{T}^{-1}.
+\end{equation*}
+This is the dimension of an amount of substance per unit time, i.e.\ of $R$, so the equation is dimensionally consistent.
+
+\subsection{Energy of a photon}
+\label{ex:photon_energy}
+
+The energy of a photon is
+\begin{equation*}
+E = \frac{hc}{\lambda},
+\end{equation*}
+where $h$ is Planck's constant, $c$ the speed of light and $\lambda$ the wavelength. Check whether the equation is dimensionally consistent.
+
+\paragraph{Solution} The dimensions of the quantities involved are (for $h$, from its units in Equation~\eqref{eq:planck_def})
+\begin{equation*}
+[E] = \text{M}\,\text{L}^2\,\text{T}^{-2}, \qquad [h] = \text{M}\,\text{L}^2\,\text{T}^{-1}, \qquad [c] = \text{L}\,\text{T}^{-1}, \qquad [\lambda] = \text{L}.
+\end{equation*}
+Therefore
+\begin{equation*}
+\left[\frac{hc}{\lambda}\right] = \frac{(\text{M}\,\text{L}^2\,\text{T}^{-1})(\text{L}\,\text{T}^{-1})}{\text{L}} = \text{M}\,\text{L}^2\,\text{T}^{-2},
+\end{equation*}
+which is exactly the dimension of an energy (Table~\ref{tab:derived_units}): the equation is consistent.
+
+\subsection{Diffusion during image acquisition}
+\label{ex:diffusion}
+
+A fluorescent molecule diffuses during the camera exposure time. The characteristic diffusion distance is approximated by
+\begin{equation*}
+d = \sqrt{2Dt},
+\end{equation*}
+where $D$ is the diffusion coefficient and $t$ is time. Check whether the equation is dimensionally consistent.
+
+\paragraph{Solution} Since $[D] = \text{L}^2\,\text{T}^{-1}$,
+\begin{equation*}
+[Dt] = \text{L}^2\,\text{T}^{-1}\,\text{T} = \text{L}^2 \quad \Longrightarrow \quad [\sqrt{2Dt}] = \text{L},
+\end{equation*}
+since the factor 2 is dimensionless. The distance $d$ has the dimension of a length, so the equation is consistent.
+
+\subsection{Field of view of a microscope}
+\label{ex:fov}
+
+A student sets up a fluorescence microscope equipped with a camera of $N_x \times N_y$ pixels. Each pixel has physical size $p$, and the microscope has total magnification $M$. The student computes the field of view in the sample plane as
+\begin{equation*}
+\text{FOV}_x = \frac{N_x p}{M}, \qquad \text{FOV}_y = \frac{N_y p}{M},
+\end{equation*}
+and then writes the total imaged area as
+\begin{equation*}
+A_{\text{FOV}} = \frac{N_x N_y p^2}{M^2}.
+\end{equation*}
+Use dimensional analysis to check whether this expression is correct.
+
+\paragraph{Solution} The numbers of pixels and the magnification are dimensionless (Section~\ref{sec:derived_units}), $[N_x] = [N_y] = [M] = 1$, while the pixel size is a length, $[p] = \text{L}$. Therefore
+\begin{equation*}
+[A_{\text{FOV}}] = \frac{(1)(1)\,\text{L}^2}{(1)^2} = \text{L}^2,
+\end{equation*}
+and the expression is dimensionally consistent, since a field-of-view area must have the dimension of an area.
+
+\subsection{Scientific notation}
+\label{ex:scientific_notation}
+
+Write in scientific notation: $0.00042$, $7\,300\,000$, $0.00810$, $56.0 \times 10^{-6}$.
+
+\paragraph{Solution} Applying Equation~\eqref{eq:scientific_notation_def} and keeping all the significant digits (Section~\ref{sec:notation}):
+\begin{align*}
+0.00042 &= 4.2 \times 10^{-4}, \\
+7\,300\,000 &= 7.3 \times 10^{6}, \\
+0.00810 &= 8.10 \times 10^{-3} \quad \text{(the trailing zero is significant and must be kept)}, \\
+56.0 \times 10^{-6} &= 5.60 \times 10^{-5} \quad \text{(the coefficient must lie between 1 and 10)}.
+\end{align*}
+
+\subsection{Orders of magnitude}
+\label{ex:orders_of_magnitude}
+
+Compute the order of magnitude of
+\begin{equation*}
+\frac{138.4 \times 37900}{0.002345},
+\end{equation*}
+and the difference in orders of magnitude between $138.4$ and $37900$, and between $138.4$ and $0.002345$.
+
+\paragraph{Solution} The first result was computed in Equation~\eqref{eq:order_practice_calc}: the order of magnitude is $10^9$. For the differences we take the ratios:
+\begin{align*}
+\frac{138.4}{37900} &= \frac{1.384 \times 10^2}{3.790 \times 10^4} \sim 10^{-2}, \\[1ex]
+\frac{138.4}{0.002345} &= \frac{1.384 \times 10^2}{2.345 \times 10^{-3}} \sim 10^{5},
+\end{align*}
+so the two pairs differ by 2 and 5 orders of magnitude respectively.
+
+\subsection{Prefix conversions}
+\label{ex:prefix_conversions}
+
+Convert: $450\text{ nm} \to \mu\text{m}$; $2.6\text{ GHz} \to \text{Hz}$; $0.015\text{ m} \to \text{mm}$; $12\text{ pF} \to \text{F}$. (These were proposed as practice in class.)
+
+\paragraph{Solution} Comparing the exponents of the prefixes in Table~\ref{tab:si_prefixes}:
+\begin{align*}
+450\text{ nm} &= 450 \times 10^{-9}\text{ m} = 0.45 \times 10^{-6}\text{ m} = 0.45\;\mu\text{m}, \\
+2.6\text{ GHz} &= 2.6 \times 10^{9}\text{ Hz}, \\
+0.015\text{ m} &= 15 \times 10^{-3}\text{ m} = 15\text{ mm}, \\
+12\text{ pF} &= 12 \times 10^{-12}\text{ F} = 1.2 \times 10^{-11}\text{ F}.
+\end{align*}
+
+\subsection*{Exercise sheet for Chapter 1}
+
+The following exercises and questions come from the exercise sheet of Classes 1--2, with the instructor's answer key.
+
+\subsection{Microscope scale, prefixes and scientific notation}
+\label{ex:camera_fov}
+
+A fluorescence camera has $2048 \times 1536$ pixels, each $6.5\;\mu\text{m}$ wide, and the total magnification of the microscope is $40\times$.
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate the pixel size in the sample plane, in $\mu$m and in m.
+    \item Calculate the fields of view $\text{FOV}_x$ and $\text{FOV}_y$, in $\mu$m and in m.
+    \item Calculate the field-of-view area in $\text{m}^2$, in normalised scientific notation.
+    \item Compare $\text{FOV}_x$ with a cell diameter of $12\;\mu\text{m}$: approximately how many cell diameters fit across the field?
+\end{enumerate}
+
+\paragraph{Solution} We use the field-of-view relations of Exercise~\ref{ex:fov} and the prefixes of Table~\ref{tab:si_prefixes}.
+
+\textbf{(a)} The pixel size in the sample plane is
+\begin{equation*}
+p_{\text{sample}} = \frac{6.5\;\mu\text{m}}{40} = 0.1625\;\mu\text{m} = 1.625 \times 10^{-7}\text{ m}.
+\end{equation*}
+
+\textbf{(b)} The two fields of view are
+\begin{align*}
+\text{FOV}_x &= 2048 \times 0.1625\;\mu\text{m} = 332.8\;\mu\text{m} = 3.328 \times 10^{-4}\text{ m}, \\
+\text{FOV}_y &= 1536 \times 0.1625\;\mu\text{m} = 249.6\;\mu\text{m} = 2.496 \times 10^{-4}\text{ m}.
+\end{align*}
+
+\textbf{(c)} In normalised scientific notation (Equation~\eqref{eq:scientific_notation_def}), the area is
+\begin{equation*}
+A_{\text{FOV}} = (3.328 \times 10^{-4}\text{ m})(2.496 \times 10^{-4}\text{ m}) = 8.31 \times 10^{-8}\text{ m}^2.
+\end{equation*}
+
+\textbf{(d)} Dividing the field by the cell diameter,
+\begin{equation*}
+\frac{332.8\;\mu\text{m}}{12\;\mu\text{m}} \approx 27.7,
+\end{equation*}
+so about 28 cell diameters fit across $\text{FOV}_x$.
+
+\subsection{Derived units and dimensional analysis of pressure}
+\label{ex:pressure}
+
+A force of $15\text{ mN}$ is applied uniformly over an area of $0.50\text{ mm}^2$.
+\begin{enumerate}[label=(\alph*)]
+    \item Starting from $p = F/A$, derive the SI base-unit expression of the pascal.
+    \item Write the dimension of pressure in terms of M, L and T.
+    \item Convert the data to SI units and calculate the pressure in pascals.
+    \item Check that the dimensions of the numerical expression are consistent with a pressure.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} From Table~\ref{tab:derived_units},
+\begin{equation*}
+\text{Pa} = \frac{\text{N}}{\text{m}^2} = \frac{\text{kg}\,\text{m}\,\text{s}^{-2}}{\text{m}^2} = \text{kg}\,\text{m}^{-1}\,\text{s}^{-2}.
+\end{equation*}
+
+\textbf{(b)} The dimension of pressure is
+\begin{equation*}
+[p] = \text{M}\,\text{L}^{-1}\,\text{T}^{-2}.
+\end{equation*}
+
+\textbf{(c)} Converting to SI units, and remembering that the conversion factor must be squared for an area (as in Equation~\eqref{eq:volume_conversion_calc}),
+\begin{align*}
+F &= 15\text{ mN} = 1.5 \times 10^{-2}\text{ N}, \\
+A &= 0.50\text{ mm}^2 = 0.50 \times (10^{-3}\text{ m})^2 = 5.0 \times 10^{-7}\text{ m}^2,
+\end{align*}
+so that
+\begin{equation*}
+p = \frac{F}{A} = \frac{1.5 \times 10^{-2}\text{ N}}{5.0 \times 10^{-7}\text{ m}^2} = 3.0 \times 10^4\text{ Pa}.
+\end{equation*}
+
+\textbf{(d)} Force over area has dimension
+\begin{equation*}
+\frac{\text{M}\,\text{L}\,\text{T}^{-2}}{\text{L}^2} = \text{M}\,\text{L}^{-1}\,\text{T}^{-2},
+\end{equation*}
+which is the dimension of pressure (Section~\ref{sec:dimensional_analysis}).
+
+\subsection{Can dimensional analysis detect a wrong formula?}
+\label{ex:wrong_formula}
+
+A student writes the characteristic diffusion distance of a fluorescent molecule as $d = 2Dt$, where $D$ is a diffusion coefficient with dimension $\text{L}^2\,\text{T}^{-1}$ and $t$ is time.
+\begin{enumerate}[label=(\alph*)]
+    \item Use dimensional analysis to decide whether $d = 2Dt$ can represent a distance.
+    \item Propose a dimensionally consistent dependence on $D$ and $t$.
+    \item For $D = 0.50\;\mu\text{m}^2/\text{s}$ and $t = 40\text{ ms}$, calculate the one-dimensional diffusion distance $d = \sqrt{2Dt}$.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} The dimension of the product is
+\begin{equation*}
+[Dt] = (\text{L}^2\,\text{T}^{-1})\,\text{T} = \text{L}^2,
+\end{equation*}
+so $2Dt$ is an area-like quantity, not a distance.
+
+\textbf{(b)} A dimensionally valid distance must be proportional to $\sqrt{Dt}$; for one-dimensional diffusion $d = \sqrt{2Dt}$, as in Exercise~\ref{ex:diffusion}.
+
+\textbf{(c)} With $t = 0.040\text{ s}$,
+\begin{equation*}
+2Dt = 2\,(0.50\;\mu\text{m}^2/\text{s})(0.040\text{ s}) = 0.040\;\mu\text{m}^2 \quad \Longrightarrow \quad d = \sqrt{0.040\;\mu\text{m}^2} = 0.20\;\mu\text{m}.
+\end{equation*}
+
+\subsection{Current, elementary charge and number of electrons}
+\label{ex:electrons}
+
+A detector produces a current $I = 3.20\text{ nA}$ for $\Delta t = 2.00\text{ ms}$. Use $e = 1.602\,176\,634 \times 10^{-19}\text{ C}$.
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate the total charge $Q$ that passes through the circuit.
+    \item Estimate the number $N$ of elementary charges corresponding to this charge.
+    \item Express $N$ in scientific notation and identify its scale.
+    \item Connect this calculation, in one sentence, to the quantisation of charge.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} Since current is charge per unit time (Section~\ref{sec:base_units}),
+\begin{equation*}
+Q = I\Delta t = (3.20 \times 10^{-9}\text{ A})(2.00 \times 10^{-3}\text{ s}) = 6.40 \times 10^{-12}\text{ C}.
+\end{equation*}
+
+\textbf{(b)} With the elementary charge of Equation~\eqref{eq:elementary_charge_def},
+\begin{equation*}
+N = \frac{Q}{e} = \frac{6.40 \times 10^{-12}\text{ C}}{1.602\,176\,634 \times 10^{-19}\text{ C}} \approx 4.00 \times 10^{7}.
+\end{equation*}
+
+\textbf{(c)} $N \approx 4.00 \times 10^7$: about forty million elementary charges, order of magnitude $10^7$.
+
+\textbf{(d)} As shown by Millikan (Figure~\ref{fig:millikan_complete}), measurable charges occur as integer multiples of the elementary charge $e$.
+
+\subsection{Open question: from target quantity to measurement result}
+
+\emph{Explain the difference between the target quantity (measurand), the measurement process and the measurement result, using intracellular $\text{Ca}^{2+}$ fluorescence imaging as an example of indirect measurement.}
+
+\paragraph{Expected elements} The measurand is the quantity intended to be measured; the measurement is the experimental process; the result is the value attributed to the measurand, with unit and uncertainty (Section~\ref{sec:physical_quantities}). In $\text{Ca}^{2+}$ imaging, $[\text{Ca}^{2+}]$ is inferred from the indicator fluorescence recorded by a detector and converted through calibration: the optical signal is not the measurand itself.
+
+\subsection{Open question: why do we need metrology and traceability?}
+
+\emph{Explain why a numerical value alone is not enough to make a measurement comparable between laboratories. Define metrological traceability and describe the role of standards and calibration.}
+
+\paragraph{Expected elements} Metrology provides common units, standards, procedures and comparability (Section~\ref{sec:standards}). Traceability is an unbroken, documented calibration chain to a recognised reference, in which each step contributes uncertainty; traceable does not mean error-free (Figure~\ref{fig:traceability_pyramid}).
+
+\subsection{Open question: why was the SI redefined using constants?}
+
+\emph{Explain the idea of the 2019 SI redefinition. Why are exact defining constants preferable to physical artefacts? Use two examples among $\Delta\nu_{\text{Cs}}$, $c$, $h$, $e$, $k_{\text{B}}$, $N_{\text{A}}$ and $K_{\text{cd}}$.}
+
+\paragraph{Expected elements} Since 20 May 2019 the SI fixes the exact numerical values of seven defining constants (Table~\ref{tab:si_constants}). This removes the dependence on unstable or local artefacts and makes the realisations reproducible in different laboratories. Examples: $\Delta\nu_{\text{Cs}}$ fixes the second; $c$ together with the second fixes the metre; $e$ with the second fixes the ampere scale (Figure~\ref{fig:si_dependencies}).
+
+\subsection{Open question: how does the caesium-133 frequency define the second?}
+
+\emph{Starting from $\Delta\nu_{\text{Cs}} = 9\,192\,631\,770\text{ Hz}$ and $\text{Hz} = \text{s}^{-1}$, explain how fixing $\Delta\nu_{\text{Cs}}$ defines the second, describe the physical meaning of the transition and how an atomic clock realises the unit.}
+
+\paragraph{Expected elements} The SI fixes the caesium-133 hyperfine transition frequency exactly (Equation~\eqref{eq:second_def}), with $\text{Hz} = \text{s}^{-1}$. Therefore one second is the duration of exactly $9\,192\,631\,770$ periods of the radiation corresponding to the unperturbed ground-state hyperfine transition of caesium-133. In an atomic clock a microwave oscillator interrogates the caesium atoms; a feedback loop locks the oscillator to the atomic resonance, and the stabilised frequency is divided and counted to produce practical time signals such as $1\text{ Hz}$ (Figure~\ref{fig:cesium_clock}).
+
+% -----------------------------------------------------------------------------
+% APPENDIX: exercises on Chapter 2
+% -----------------------------------------------------------------------------
+\section{Measurements, Datasets and Data Representation}
+\label{app:ex_ch2}
+
+\subsection{Choosing the right representation (Exercise 1)}
+\label{ex:data_representation}
+
+A dataset contains simulated fluorescence-intensity measurements (in a.u.) from cells under two conditions, Control and Treated. For each condition the fluorescence was measured in 30 individual cells at six time points: $0, 2, 4, 6, 8$ and $10\text{ min}$. Control cells remain approximately stable over time, whereas treated cells show an overall increase in fluorescence, with substantial cell-to-cell variability. Decide how to represent the data depending on the scientific question:
+\begin{enumerate}[label=(\arabic*)]
+    \item Are treated cells brighter than controls?
+    \item Is the fluorescence distribution symmetric or bimodal?
+    \item How does fluorescence change after treatment over time?
+\end{enumerate}
+Then test whether Control and Treated differ at $10\text{ min}$, and compute the SEM.
+
+\paragraph{Solution} The choice follows Table~\ref{tab:graphical_paradigms}. Question 1 compares two groups (at $t = 10\text{ min}$), so a dot or scatter plot of the individual cells is appropriate. Question 2 is about the shape of a distribution, so a histogram or a violin plot is needed (Section~\ref{sec:representation}). Question 3 follows a trend over time, which calls for a line plot.
+
+To compare the two groups at $10\text{ min}$ we use Welch's $t$-test (Section~\ref{sec:welch_anticipation}), with null hypothesis $H_0$: $\text{mean}_{\text{control}} = \text{mean}_{\text{treated}}$ (Equation~\eqref{eq:null_hypothesis}). In Excel the test is
+\begin{verbatim}
+=T.TEST(ControlRange,TreatedRange,2,3)
+\end{verbatim}
+where \texttt{ControlRange} and \texttt{TreatedRange} are the 10-min values of the two groups (e.g.\ \texttt{Control!G2:G31} and \texttt{Treated!G2:G31} if they are in cells G2:G31 of two sheets; depending on the regional settings the separator may be ``;'' and the function may be called \texttt{TEST.T}). The argument \texttt{2} means a two-tailed test: we are testing whether the two means differ in either direction, without specifying in advance whether Treated should be higher or lower. The argument \texttt{3} means two independent samples with unequal variances, i.e.\ Welch's test. If the result is $p < 0.05$, the data provide evidence against $H_0$. In MATLAB the same test is
+\begin{verbatim}
+ttest2(control(:,end), treated(:,end), 'Vartype','unequal')
+\end{verbatim}
+The SEM of Equation~\eqref{eq:sem_equation} is computed in Excel as
+\begin{verbatim}
+=STDEV.S(A2:A31)/SQRT(COUNT(A2:A31))
+\end{verbatim}
+
+\subsection*{Exercise sheet for Chapter 2 (data representation)}
+
+The following items come from the exercise sheet of Classes 3--5, with the instructor's answer key. The datasets are deliberately small ($N < 10$): they are too small for reliable statistical conclusions, and their purpose is only to practise the concepts.
+
+\subsection{Well-level fluorescence data and the choice of plot}
+\label{ex:wells}
+
+A fluorescence experiment is performed under Control and Treated conditions. Each value is the mean fluorescence intensity of one independently prepared and treated cell-culture well, with six wells per condition:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Condition & Well-level fluorescence (a.u.) \\
+\midrule
+Control & 98, 100, 102, 98, 100, 102 \\
+Treated & 100, 102, 104, 104, 106, 108 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+    \item Identify the experimental unit and the sample size $n$ for each condition.
+    \item Recommend a plot to compare the groups while showing the independent observations. If 20 cells were imaged in each well, could they be treated as 120 independent treatment replicates?
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} The experimental unit is one independently prepared and treated cell-culture well (Section~\ref{sec:replicates}). Each condition has six independent wells, so
+\begin{equation*}
+n(\text{Control}) = n(\text{Treated}) = 6.
+\end{equation*}
+
+\textbf{(b)} A dot plot showing all six well-level observations per condition is appropriate: unlike a bar chart showing only the mean, it reveals the independent observations and their variability (Section~\ref{sec:representation}). With 20 cells per well there are $6 \times 20 = 120$ cell measurements per condition, but only six independent treatment replicates: cells in the same well share treatment and culture conditions and may be correlated. Treating them as 120 independent replicates would be pseudoreplication.
+
+\subsection{Open question: from a fluorescence dataset to a meaningful figure}
+
+\emph{Explain how the scientific question determines the plot type, contrasting dot/box plots, histograms/violin plots, line plots and scatter plots, and identify the essential measurement metadata.}
+
+\paragraph{Expected elements} The plot depends on the question and on the structure of the data (Table~\ref{tab:graphical_paradigms}). A dot or box plot compares conditions (e.g.\ Control and Treated wells); dot plots are particularly informative for small samples, because individual observations remain visible. Histograms and violin plots describe the shape of a distribution, including spread, skewness or multiple peaks. A line plot shows change over time (e.g.\ fluorescence after treatment), and a scatter plot reveals associations between two quantitative variables (e.g.\ fluorescence and cell area). Every figure should identify the measured quantity, axes and units, experimental groups, number of independent observations and meaning of the error bars. Useful metadata include acquisition settings, calibration, exposure time, sample identity, experiment day and treatment conditions (Section~\ref{sec:datasets}). The plot should not disguise the actual level of replication.
+
+% -----------------------------------------------------------------------------
+% APPENDIX: exercises on Chapter 3
+% -----------------------------------------------------------------------------
+\section{Mathematical Functions and Model Approximation}
+\label{app:ex_ch3}
+
+\subsection{Half-life of a drug}
+\label{ex:half_life}
+
+After a single dose, the concentration of a drug in the blood follows the exponential decay law
+\begin{equation*}
+C(t) = C_0 e^{-kt},
+\end{equation*}
+where $k > 0$ is the elimination-rate constant. For a drug with $k = 0.20\text{ h}^{-1}$, calculate the half-life $t_{1/2}$, i.e.\ the time required for the concentration to decrease to half of its initial value.
+
+\paragraph{Solution} Setting $C(t_{1/2}) = C_0/2$ in the decay law~\eqref{eq:exp_decay_integrated} and taking the natural logarithm, as done in Section~\ref{sec:exp_decay}, gives Equation~\eqref{eq:halflife_final}:
+\begin{equation*}
+t_{1/2} = \frac{\ln 2}{k} = \frac{0.693}{0.20\text{ h}^{-1}} \approx 3.47\text{ h}.
+\end{equation*}
+The final formula is quick to apply, but we should always be able to explain where it comes from.
+
+\subsection{Identifying a functional trend from experimental data (Exercise 2)}
+\label{ex:functional_trend}
+
+A fluorescence signal from a biological sample was measured as a function of time; the underlying mechanism is unknown. Using Excel and MATLAB, plot the data on linear, semi-logarithmic and log-log axes and, for each representation, look for regions where the data follow an approximately straight-line trend. Where appropriate, add a linear trendline with its equation, and plot the data together with the values predicted by the candidate models
+\begin{equation*}
+y = Ae^{-k_1x} + Be^{-k_2x}, \qquad y = k\,a^x, \qquad y = k\,x^n.
+\end{equation*}
+For each model, compute and plot the residuals $R$ (measured value minus predicted value) as a function of $x$. Then answer:
+\begin{enumerate}[label=(\arabic*)]
+    \item What is the overall trend of the data on linear axes?
+    \item Would a single exponential or a power law produce a straight line on a semi-log or log-log scale?
+    \item What is the qualitative trend of the residuals? Which model has the lowest residuals, and which is the most appropriate?
+\end{enumerate}
+
+\paragraph{Solution} The answers follow from Section~\ref{sec:log_scales}. A single exponential becomes a straight line on a semi-log scale, and a power law on a log-log scale (Equations~\eqref{eq:semi_log_linear_form} and~\eqref{eq:log_log_linear_form}):
+\begin{equation*}
+y = ka^x \;\Rightarrow\; \log y = \log k + x\log a, \qquad y = kx^n \;\Rightarrow\; \log y = \log k + n\log x.
+\end{equation*}
+A bi-exponential, instead, gives on a semi-log scale two approximately straight segments with slopes proportional to $-k_1$ and $-k_2$, joined by a transition region (Equations~\eqref{eq:fast_component_asymptote} and~\eqref{eq:slow_component_asymptote}). The model to choose is the one with the smallest residuals~\eqref{eq:residuals_definition}. As revealed at the end of the exercise, the synthetic dataset was generated approximately with the bi-exponential decay
+\begin{equation*}
+y(x) = 90e^{-0.75x} + 18e^{-0.065x},
+\end{equation*}
+so the bi-exponential is the model that describes the data.
+
+\subsection{Membrane curvature and fitting (Exercise 3)}
+\label{ex:membrane_curvature}
+
+Your supervisor studies mitochondrial division and wants to know whether a mitochondrion starts to divide every time its membrane reaches a certain curvature. Starting from the extracted membrane profile, approximate the membrane and compute its local curvature, completing the MATLAB code provided in class (Moodle, ``Exercise 3: geometrical approximation''); the first step is a plot of the approximated membrane profile.
+
+\paragraph{Solution} The tools are those of Section~\ref{sec:geometric_approximation}. The profile can be approximated locally with circles (Equation~\eqref{eq:circle_equation}), whose radius gives the local curvature (Equation~\eqref{eq:curvature_radius_relation}),
+\begin{equation*}
+\kappa = \frac{1}{R}.
+\end{equation*}
+Alternatively, for a profile described by a function $y = f(x)$, the curvature follows from its first and second derivatives through Equation~\eqref{eq:curvature_final_formula}. Moving the fitting window along the profile gives the curvature map. The data and the code were provided on Moodle and are not reproduced here.
+
+\subsection*{Exercise sheet for Chapter 2 (functions, derivatives and curvature)}
+
+The following items come from the exercise sheet of Classes 3--5, with the instructor's answer key.
+
+\subsection{Exponential fluorescence decay on a semi-log plot}
+\label{ex:photobleaching}
+
+Photobleaching makes the measured fluorescence intensity decrease over time:
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Time $t$ (min) & 0 & 3 & 6 & 9 \\
+Intensity $F$ (a.u.) & 160 & 80 & 40 & 20 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+    \item Which representation makes a single exponential decay a straight line, and which axis is logarithmic?
+    \item Assuming $F(t) = F_0e^{-kt}$, determine $F_0$ and the decay constant $k$ in $\text{min}^{-1}$.
+    \item Calculate the half-life and verify it from the data.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} A semi-log plot, with logarithmic vertical axis (fluorescence) and linear horizontal axis (time). Indeed (Equation~\eqref{eq:semi_log_linear_form})
+\begin{equation*}
+F(t) = F_0e^{-kt} \quad \Longrightarrow \quad \ln F(t) = \ln F_0 - kt,
+\end{equation*}
+so the slope of $\ln F$ versus $t$ is $-k$.
+
+\textbf{(b)} At $t = 0$ the intensity is $F_0 = 160\text{ a.u.}$ At $t = 3\text{ min}$, $F = 80\text{ a.u.}$, so
+\begin{equation*}
+80 = 160\,e^{-3k} \;\Longrightarrow\; \frac{1}{2} = e^{-3k} \;\Longrightarrow\; k = \frac{\ln 2}{3\text{ min}} \approx 0.231\text{ min}^{-1},
+\end{equation*}
+and the model is
+\begin{equation*}
+F(t) = 160\,e^{-0.231\,t}\text{ a.u.} \qquad (t \text{ in min}).
+\end{equation*}
+
+\textbf{(c)} By Equation~\eqref{eq:halflife_final},
+\begin{equation*}
+t_{1/2} = \frac{\ln 2}{k} = \frac{0.6931}{0.231\text{ min}^{-1}} = 3.0\text{ min}.
+\end{equation*}
+Indeed the intensity halves in every 3-minute interval: $160 \to 80 \to 40 \to 20\text{ a.u.}$
+
+\subsection{Power-law scaling, log-log plots and inverse prediction}
+\label{ex:power_law_area}
+
+The projected area $A$ of approximately circular fluorescent objects is measured as a function of their characteristic diameter $d$:
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Diameter $d$ ($\mu$m) & 2 & 4 & 8 \\
+Projected area $A$ ($\mu\text{m}^2$) & 3 & 12 & 48 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose $A = Cd^n$. Which plot makes the power law appear linear? Write the logarithmic form of the model.
+    \item Use the first and last measurements to determine the exponent $n$ and the coefficient $C$.
+    \item Predict the projected area for $d = 6\;\mu\text{m}$.
+    \item Invert the model to estimate $d$ when $A = 75\;\mu\text{m}^2$. Is this interpolation or extrapolation?
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} A log-log plot (both axes logarithmic), on which (Equation~\eqref{eq:log_log_linear_form})
+\begin{equation*}
+\log A = \log C + n\log d,
+\end{equation*}
+with slope $n$ and intercept $\log C$.
+
+\textbf{(b)} Taking the ratio of the last and first measurements,
+\begin{equation*}
+\frac{A_2}{A_1} = \left(\frac{d_2}{d_1}\right)^n \;\Longrightarrow\; \frac{48}{3} = \left(\frac{8}{2}\right)^n \;\Longrightarrow\; 16 = 4^n \;\Longrightarrow\; n = 2,
+\end{equation*}
+and then
+\begin{equation*}
+C = \frac{A}{d^2} = \frac{3\;\mu\text{m}^2}{(2\;\mu\text{m})^2} = 0.75,
+\end{equation*}
+dimensionless because area and $d^2$ have the same units. The model is $A = 0.75\,d^2$.
+
+\textbf{(c)} For $d = 6\;\mu\text{m}$,
+\begin{equation*}
+A = 0.75 \times (6\;\mu\text{m})^2 = 27\;\mu\text{m}^2.
+\end{equation*}
+This is an interpolation, because $6\;\mu\text{m}$ lies within the measured range $2$--$8\;\mu\text{m}$ (Section~\ref{sec:why_approximate}).
+
+\textbf{(d)} Inverting the model (Table~\ref{tab:functional_models}),
+\begin{equation*}
+d = \sqrt{\frac{A}{C}} = \sqrt{\frac{75\;\mu\text{m}^2}{0.75}} = 10\;\mu\text{m}.
+\end{equation*}
+This is an inverse prediction (area $\to$ diameter) and an extrapolation, because $10\;\mu\text{m}$ is outside the measured range: the result relies on the model remaining valid beyond the observations.
+
+\subsection{Derivatives and local curvature of a membrane profile}
+\label{ex:membrane_parabola}
+
+Near its lowest point, a membrane imaged optically is approximated by the smooth profile
+\begin{equation*}
+h(x) = \frac{x^2}{8.0\;\mu\text{m}},
+\end{equation*}
+where $x$ and $h$ are lengths in $\mu$m, for $-2\;\mu\text{m} \le x \le +2\;\mu\text{m}$.
+\begin{enumerate}[label=(\alph*)]
+    \item Find $h'(x)$ and $h''(x)$ with their units. Is the profile convex or concave?
+    \item Find the tangent line at $x = 0$ and the slope at $x = +2\;\mu\text{m}$.
+    \item Using $\kappa(x) = |h''(x)|/[1 + h'(x)^2]^{3/2}$, calculate $\kappa$ at $x = 0$ and the local radius of curvature $R = 1/\kappa$.
+    \item Calculate $\kappa$ at $x = +2\;\mu\text{m}$ and compare it with the centre: what does this say about the local shape?
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} The derivatives are
+\begin{equation*}
+h'(x) = \frac{2x}{8.0\;\mu\text{m}} = \frac{x}{4.0\;\mu\text{m}} \;\;\text{(dimensionless)}, \qquad h''(x) = \frac{1}{4.0\;\mu\text{m}} = 0.25\;\mu\text{m}^{-1}.
+\end{equation*}
+Since $h'' > 0$ everywhere, the profile is convex (concave upward), by Equation~\eqref{eq:second_derivative_convexity}.
+
+\textbf{(b)} With Equation~\eqref{eq:tangent_line_equation}, and since $h(0) = 0$ and $h'(0) = 0$,
+\begin{equation*}
+h_{\text{tangent}}(x) = h(0) + h'(0)(x - 0) = 0,
+\end{equation*}
+a horizontal line. At $x = +2\;\mu\text{m}$ the slope is
+\begin{equation*}
+h'(2\;\mu\text{m}) = \frac{2\;\mu\text{m}}{4.0\;\mu\text{m}} = 0.5,
+\end{equation*}
+positive and dimensionless.
+
+\textbf{(c)} By Equations~\eqref{eq:curvature_final_formula} and~\eqref{eq:curvature_radius_relation},
+\begin{equation*}
+\kappa(0) = \frac{0.25\;\mu\text{m}^{-1}}{(1 + 0^2)^{3/2}} = 0.250\;\mu\text{m}^{-1}, \qquad R(0) = \frac{1}{\kappa(0)} = 4.00\;\mu\text{m}.
+\end{equation*}
+
+\textbf{(d)} At $x = +2\;\mu\text{m}$,
+\begin{equation*}
+\kappa(2\;\mu\text{m}) = \frac{0.25\;\mu\text{m}^{-1}}{(1 + 0.5^2)^{3/2}} \approx 0.179\;\mu\text{m}^{-1}, \qquad R(2\;\mu\text{m}) \approx 5.59\;\mu\text{m}.
+\end{equation*}
+The curvature decreases and the radius increases moving away from the lowest point: the profile is more strongly curved at its centre.
+
+\subsection{Open question: functional approximation, interpolation and inverse prediction}
+
+\emph{Explain why a mathematical model is useful to describe experimental data, and how semi-log and log-log plots help identify an exponential or a power-law trend.}
+
+\paragraph{Expected elements} A model summarises the data with a compact relationship (a line, an exponential, a power law); fitting it allows us to extract parameters, interpret trends and estimate values at unmeasured inputs (Section~\ref{sec:why_approximate}). Taking logarithms linearises the two key models (Section~\ref{sec:log_scales}):
+\begin{equation*}
+y = A\exp(Bx) \;\Rightarrow\; \ln y = \ln A + Bx, \qquad y = Cx^n \;\Rightarrow\; \log y = \log C + n\log x,
+\end{equation*}
+so an exponential is linear on a semi-log plot (logarithmic $y$ axis), and a power law on a log-log plot, with slope $n$. Interpolation estimates values within the measured range; inverse prediction uses a measured output to estimate the input, provided the model can be inverted. A good fit alone does not establish physical validity: the model should agree with the experimental system and should not be used uncritically outside the observed range.
+
+% -----------------------------------------------------------------------------
+% APPENDIX: exercises on Chapter 4
+% -----------------------------------------------------------------------------
+\section{Sensors and Measurement Systems}
+\label{app:ex_ch4}
+
+\subsection{Recovering the input from the transfer function}
+\label{ex:recover_input}
+
+A Pt100 behaves as a first-order thermal sensor, and a constant measurement current converts its resistance variation into a voltage variation. For small temperature changes the output voltage variation obeys
+\begin{equation*}
+\tau\frac{d\Delta V(t)}{dt} + \Delta V(t) = A\,\Delta T(t),
+\end{equation*}
+where $\Delta T(t)$ is the change of the surrounding temperature, $\Delta V(t)$ the voltage change, $\tau = 2\text{ s}$ the time constant and $A = 0.385\text{ mV}/^\circ\text{C}$ the static voltage sensitivity. The surrounding temperature suddenly increases by an unknown amount $\Delta T$, and $2\text{ s}$ later the voltage response is $\Delta V(2\text{ s}) = 2.43\text{ mV}$.
+\begin{enumerate}[label=(\alph*)]
+    \item What is the transfer function of the system?
+    \item What is its response to the temperature step?
+    \item What temperature change produced the measured signal?
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} The equation has the first-order form~\eqref{eq:first_order_sensor_ode}, so, as for the RC filter (Section~\ref{sec:rc_filter}), the transfer function is
+\begin{equation*}
+H(s) = \frac{\Delta V(s)}{\Delta T(s)} = \frac{A}{1 + \tau s}.
+\end{equation*}
+
+\textbf{(b)} The response to a temperature step is given by Equation~\eqref{eq:first_order_step_response}:
+\begin{equation*}
+\Delta V(t) = A\,\Delta T\left(1 - e^{-t/\tau}\right).
+\end{equation*}
+
+\textbf{(c)} Inverting the response equation and substituting the measured value,
+\begin{equation*}
+\Delta T = \frac{\Delta V(t)}{A\left(1 - e^{-t/\tau}\right)} = \frac{2.43\text{ mV}}{0.385\text{ mV}/^\circ\text{C}\,\left(1 - e^{-2/2}\right)} \approx 10.0\;^\circ\text{C}.
+\end{equation*}
+The actual temperature change is about $10\;^\circ\text{C}$, even though the sensor has not yet reached its final response. If we ignored the dynamics and used the ideal zero-order response $y = Ax$ (Equation~\eqref{eq:zero_order_sensor}), we would obtain
+\begin{equation*}
+\Delta T_{\text{ideal}} = \frac{\Delta V}{A} = \frac{2.43\text{ mV}}{0.385\text{ mV}/^\circ\text{C}} \approx 6.3\;^\circ\text{C},
+\end{equation*}
+underestimating the change by about 37\%. More generally, inverting the transfer function (Equation~\eqref{eq:input_reconstruction}),
+\begin{equation*}
+\Delta T(s) = \frac{1 + \tau s}{A}\,\Delta V(s) \quad \Longrightarrow \quad \Delta T(t) = \frac{1}{A}\left[\Delta V(t) + \tau\frac{d\Delta V(t)}{dt}\right],
+\end{equation*}
+which reconstructs any changing input from the output and its rate of change.
+
+\subsection{Dynamic response of a fluorescence measurement system}
+\label{ex:fluorescence_dynamics}
+
+In a live-cell fluorescence experiment, a photodetector converts the fluorescence emitted by calcium-sensitive indicators into a voltage. The signal-conditioning electronics behave as a first-order low-pass system with transfer function
+\begin{equation*}
+H(s) = \frac{Y(s)}{X(s)} = \frac{1}{1 + s\tau},
+\end{equation*}
+where $x(t)$ is the input voltage from the photodetector and $y(t)$ the filtered output. The time constant is $\tau = 40.0\text{ ms}$ and the static gain is one. Initially the output is zero; at $t = 0$ a sudden increase in fluorescence produces an input step $\Delta x$ from $0$ to $1.60\text{ V}$, which then remains constant for $t \gg \tau$.
+\begin{enumerate}[label=(\alph*)]
+    \item Write the differential equation relating $x(t)$ and $y(t)$, and the step response for $t \ge 0$.
+    \item Calculate the output at $t = \tau$ and $t = 3\tau$, in volts and as a percentage of the final value.
+    \item Determine the cut-off frequency $f_c$ and the corresponding amplitude-gain ratio. What does $-3\text{ dB}$ mean for the measured fluorescence signal?
+    \item The input contains two sinusoidal components with the same amplitude, $0.80\text{ V}$, at $f_1 = 1.0\text{ Hz}$ and $f_2 = 20.0\text{ Hz}$. Which one is more strongly attenuated, and which one has a larger phase shift?
+    \item Can the system follow much faster fluorescence fluctuations, such as rapid intracellular calcium dynamics? What happens to amplitude and phase as the frequency increases?
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} From the transfer function, $(1 + s\tau)Y(s) = X(s)$; taking the inverse Laplace transform with zero initial conditions gives
+\begin{equation*}
+\tau\frac{dy(t)}{dt} + y(t) = x(t).
+\end{equation*}
+For a step $x(t) = 1.60\text{ V}$ for $t \ge 0$, the step response~\eqref{eq:first_order_step_response} with unit gain is
+\begin{equation*}
+y(t) = \Delta x\left(1 - e^{-t/\tau}\right) = 1.60\left(1 - e^{-t/0.0400}\right)\text{ V},
+\end{equation*}
+and as $t \to \infty$ the output reaches $y(\infty) = 1.60\text{ V}$.
+
+\textbf{(b)} At $t = \tau = 40.0\text{ ms}$ and at $t = 3\tau = 120\text{ ms}$,
+\begin{align*}
+y(\tau) &= 1.60\left(1 - e^{-1}\right) = 1.60 \times 0.6321 \approx 1.01\text{ V} \quad (63.2\%), \\
+y(3\tau) &= 1.60\left(1 - e^{-3}\right) \approx 1.52\text{ V} \quad (95.0\%).
+\end{align*}
+The output does not follow the sudden change instantaneously: it takes about three time constants to reach 95\% of its final value (Section~\ref{sec:frequency_response}).
+
+\textbf{(c)} Substituting $s = i\omega$ (Equation~\eqref{eq:freq_resp_sub}),
+\begin{equation*}
+H(i\omega) = \frac{1}{1 + i\omega\tau}, \qquad |H(i\omega)| = \frac{1}{\sqrt{1 + (\omega\tau)^2}}.
+\end{equation*}
+The cut-off angular frequency is $\omega_c = 1/\tau$, so by Equation~\eqref{eq:cutoff_tau}
+\begin{equation*}
+f_c = \frac{1}{2\pi\tau} = \frac{1}{2\pi(0.0400\text{ s})} \approx 3.98\text{ Hz}, \qquad |H(i\omega_c)| = \frac{1}{\sqrt{2}} \approx 0.707.
+\end{equation*}
+In decibels (Equation~\eqref{eq:minus_3db_derivation}),
+\begin{equation*}
+G_{\text{dB}} = 20\log_{10}\frac{1}{\sqrt{2}} \approx -3.01\text{ dB}.
+\end{equation*}
+At the cut-off frequency the amplitude of a sinusoidal signal is reduced to about 70.7\% of the input amplitude, which, for the same electrical impedance, corresponds to half the signal power.
+
+\textbf{(d)} By Equation~\eqref{eq:magnitude_and_phase_first_order}, the output amplitude and the phase are
+\begin{equation*}
+A_{\text{out}}(f) = \frac{A}{\sqrt{1 + (2\pi f\tau)^2}}, \qquad \phi(f) = -\arctan(2\pi f\tau).
+\end{equation*}
+For the two components,
+\begin{align*}
+f_1 = 1.0\text{ Hz}: &\quad A_{\text{out}} = \frac{0.80\text{ V}}{\sqrt{1 + (2\pi \cdot 1.0 \cdot 0.0400)^2}} \approx 0.80 \times 0.970 \approx 0.78\text{ V}, &\phi_1 &\approx -14^\circ, \\[1ex]
+f_2 = 20.0\text{ Hz}: &\quad A_{\text{out}} = \frac{0.80\text{ V}}{\sqrt{1 + (2\pi \cdot 20.0 \cdot 0.0400)^2}} \approx 0.80 \times 0.195 \approx 0.16\text{ V}, &\phi_2 &\approx -79^\circ.
+\end{align*}
+The $20\text{ Hz}$ component is much more strongly attenuated and has a larger negative phase shift, because $f_1 < f_c < f_2$: the sensor follows the slower fluctuations relatively well, whereas the faster ones are significantly attenuated and phase-shifted.
+
+\textbf{(e)} A first-order low-pass system does not respond equally to all frequencies. As $f$ increases the gain decreases, and for $f \gg f_c$
+\begin{equation*}
+|H(f)| \approx \frac{1}{2\pi f\tau}, \qquad \lim_{f \to \infty}\phi(f) = -90^\circ,
+\end{equation*}
+so high-frequency fluctuations are strongly attenuated and increasingly delayed in phase. Rapid changes of intracellular calcium can produce fast fluorescence fluctuations: if they contain components above the cut-off frequency, the measured signal may underestimate the amplitude of the rapid changes, fast variations may be less visible, and a waveform with several frequency components may be distorted, because each component undergoes a different attenuation and phase shift. A sensor reproduces time-varying signals accurately only when its frequency response is sufficiently flat, with negligible phase distortion, over the relevant frequency range. With a cut-off of only $3.98\text{ Hz}$, this system is not suitable for fluctuations with significant components well above that frequency: the bandwidth of a measurement system limits its ability to follow rapid changes in the QUM.
+
+\subsection{Pt100 calibration, inverse measurement and resolution}
+\label{ex:pt100_calibration}
+
+A student measures the temperature of a sample with a Pt100 described by the linear calibration
+\begin{equation*}
+R(T) = R_0\left[1 + \alpha(T - T_0)\right], \qquad R_0 = 100.00\,\Omega, \quad T_0 = 0\;^\circ\text{C}, \quad \alpha = 0.00385\;^\circ\text{C}^{-1}.
+\end{equation*}
+A constant excitation current $I_{\text{exc}} = 1.00\text{ mA}$ is applied, so the output voltage is $V(T) = I_{\text{exc}}R(T)$, and the voltage is digitised by an ADC with quantisation step $\Delta V_{\text{LSB}} = 0.10\text{ mV}$. The linear model is assumed valid over the whole range.
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate $R(T)$ and $V(T)$ at $T_1 = 0\;^\circ\text{C}$ and $T_2 = 100\;^\circ\text{C}$.
+    \item The recorded voltage is $V = 115.4\text{ mV}$. Find the unknown temperature by inverting the calibration.
+    \item Calculate the static sensitivity $S$ in $\text{mV}/^\circ\text{C}$. Is it constant?
+    \item Calculate the nominal input-equivalent temperature quantisation step, the maximum quantisation error (rounding to the nearest step) and, assuming a uniform error distribution, the standard uncertainty due to resolution $u_{\text{res}} = \Delta T_{\text{LSB}}/\sqrt{12}$. Explain the difference between these three quantities.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} Using Equation~\eqref{eq:pt100_linear_model},
+at $T = 0\;^\circ\text{C}$
+\begin{align*}
+R(0) &= 100.00\,\Omega, \\
+V(0) &= I_{\text{exc}}R(0) = (1.00 \times 10^{-3}\text{ A})(100.00\,\Omega) = 100.0\text{ mV},
+\end{align*}
+and at $T = 100\;^\circ\text{C}$
+\begin{align*}
+R(100) &= 100\,(1 + 0.00385 \times 100)\,\Omega = 138.50\,\Omega, \\
+V(100) &= I_{\text{exc}}R(100) = (1.00 \times 10^{-3}\text{ A})(138.50\,\Omega) = 138.5\text{ mV}.
+\end{align*}
+
+\textbf{(b)} First we convert the voltage into a resistance, then we use the inverse function~\eqref{eq:pt100_inversion}:
+\begin{align*}
+R &= \frac{V}{I_{\text{exc}}} = \frac{115.4\text{ mV}}{1.00\text{ mA}} = 115.4\,\Omega, \\
+T &= T_0 + \frac{R/R_0 - 1}{\alpha} = 0 + \frac{115.4/100 - 1}{0.00385} = 40.0\;^\circ\text{C}.
+\end{align*}
+According to the calibration model, the measured voltage corresponds to $40\;^\circ\text{C}$.
+
+\textbf{(c)} The static sensitivity is the derivative of the output with respect to the input (Equation~\eqref{eq:sensitivity_definition}). From $V(T) = I_{\text{exc}}R_0[1 + \alpha(T - T_0)]$,
+\begin{equation*}
+S = \frac{dV}{dT} = I_{\text{exc}}R_0\alpha = (1.00 \times 10^{-3}\text{ A})(100\,\Omega)(0.00385\;^\circ\text{C}^{-1}) = 0.385\text{ mV}/^\circ\text{C}.
+\end{equation*}
+The sensitivity is constant because the calibration relationship is linear: every increase of $1\;^\circ\text{C}$ produces an increase of $0.385\text{ mV}$.
+
+\textbf{(d)} By Equation~\eqref{eq:resolution_lsb_formula}, the input-equivalent temperature step is
+\begin{equation*}
+\Delta T_{\text{LSB}} = \frac{\Delta V_{\text{LSB}}}{S} = \frac{0.10\text{ mV}}{0.385\text{ mV}/^\circ\text{C}} \approx 0.260\;^\circ\text{C},
+\end{equation*}
+so one quantisation step corresponds to about $0.26\;^\circ\text{C}$. Rounding to the nearest step, the quantisation error is bounded by $\pm\Delta T_{\text{LSB}}/2$ (Equation~\eqref{eq:quantization_bounds}):
+\begin{equation*}
+-0.130\;^\circ\text{C} \le e_q \le +0.130\;^\circ\text{C}.
+\end{equation*}
+Assuming a uniform distribution, Equation~\eqref{eq:standard_uncertainty_resolution_sqrt12} gives
+\begin{equation*}
+u_{\text{res}} = \frac{\Delta T_{\text{LSB}}}{\sqrt{12}} = \frac{0.25974\;^\circ\text{C}}{\sqrt{12}} \approx 0.075\;^\circ\text{C}.
+\end{equation*}
+The quantisation step is the spacing between digital levels, the maximum quantisation error is the largest possible deviation due to rounding, and the standard uncertainty quantifies the statistical spread of that error under the assumed uniform distribution. This is only the quantisation contribution, not the total uncertainty of the sensor. (This exercise is also Exercise~1 of the exercise sheet for Classes 6--8.)
+
+\subsection*{Exercise sheet for Chapter 3 (sensors and measurement systems)}
+
+The following items come from the exercise sheet of Classes 6--8, with the instructor's answer key (its Exercise~1 is Exercise~\ref{ex:pt100_calibration} above).
+
+\subsection{First-order sensor response: step input and bandwidth}
+\label{ex:first_order_bandwidth}
+
+A first-order low-pass measurement system is described by
+\begin{equation*}
+H(s) = \frac{Y(s)}{X(s)} = \frac{1}{1 + s\tau}, \qquad \tau = 20.0\text{ ms},
+\end{equation*}
+with unit static gain. The output is initially zero; at $t = 0$ the input steps from $0$ to $2.00\text{ V}$ and stays constant.
+\begin{enumerate}[label=(\alph*)]
+    \item Write the differential equation relating $x(t)$ and $y(t)$, and the step response for $t \ge 0$.
+    \item Calculate $y(\tau)$ and $y(3\tau)$, in volts and as a percentage of the final value.
+    \item Determine the $-3\text{ dB}$ cut-off frequency $f_c$ and the corresponding amplitude-gain ratio; explain what $-3\text{ dB}$ means.
+    \item The system is driven by a sinusoid of amplitude $2.00\text{ V}$ at $f = f_c$. Calculate the steady-state output amplitude and phase shift, and explain whether the sensor can follow much faster variations without distortion.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} The differential equation has the first-order form~\eqref{eq:first_order_sensor_ode}, and for a $2.00\text{ V}$ step with zero initial output Equation~\eqref{eq:first_order_step_response} gives
+\begin{equation*}
+\tau\frac{dy}{dt} + y(t) = x(t), \qquad y(t) = 2.00\text{ V}\left[1 - e^{-t/\tau}\right] \quad (t \ge 0).
+\end{equation*}
+
+\textbf{(b)} At $t = \tau = 20.0\text{ ms}$ and at $t = 3\tau = 60.0\text{ ms}$,
+\begin{align*}
+y(\tau) &= 2.00\left[1 - e^{-1}\right]\text{ V} \approx 1.26\text{ V} \quad (63.2\%), \\
+y(3\tau) &= 2.00\left[1 - e^{-3}\right]\text{ V} \approx 1.90\text{ V} \quad (95.0\%).
+\end{align*}
+
+\textbf{(c)} By Equation~\eqref{eq:cutoff_tau},
+\begin{equation*}
+f_c = \frac{1}{2\pi\tau} = \frac{1}{2\pi(0.0200\text{ s})} \approx 7.96\text{ Hz}.
+\end{equation*}
+At $f_c$ the amplitude ratio and its value in decibels are (Equation~\eqref{eq:minus_3db_derivation})
+\begin{equation*}
+|H(i2\pi f_c)| = \frac{1}{\sqrt{2}} \approx 0.707, \qquad 20\log_{10}\frac{1}{\sqrt{2}} \approx -3.01\text{ dB};
+\end{equation*}
+for equal impedances the associated power ratio is $1/2$.
+
+\textbf{(d)} By Equation~\eqref{eq:magnitude_and_phase_first_order}, at $f = f_c$ (where $2\pi f_c\tau = 1$)
+\begin{equation*}
+A_{\text{out}} = \frac{2.00\text{ V}}{\sqrt{2}} \approx 1.41\text{ V}, \qquad \phi = -\arctan(2\pi f_c\tau) = -\arctan(1) = -45^\circ.
+\end{equation*}
+Well above $f_c$ the gain decreases and the phase delay increases, so rapid input variations are attenuated and distorted.
+
+\subsection{Open question: sensor, transducer and measurement chain}
+
+\emph{Distinguish a sensor, a transducer and a complete measurement instrument or system, and describe the main stages of a measurement chain, using a temperature or optical measurement as an example.}
+
+\paragraph{Expected elements} A transducer establishes a relationship between input and output quantities and often converts one signal form into another; it need not be a sensor (an actuator is also a transducer). A sensor is the element directly affected by the QUM; the complete measurement system includes the other components needed to produce a usable result (Section~\ref{sec:instruments}). A typical chain is: measurand/stimulus $\to$ sensor $\to$ signal conditioning (amplifier, filter) $\to$ ADC $\to$ digital processing $\to$ display/result with unit and uncertainty. Example: a temperature change modifies the resistance of a Pt100, which is measured through an excitation circuit.
+
+\subsection{Open question: calibration and inverse reconstruction of the QUM}
+
+\emph{Explain how applying known inputs and recording the outputs establishes a calibration characteristic, why the inverse relation is needed during a measurement, and two reasons why calibration does not eliminate the uncertainty.}
+
+\paragraph{Expected elements} Known reference inputs are applied and the corresponding outputs measured; the calibration points are approximated by a transfer characteristic (Section~\ref{sec:calibration}). In use, the output $y$ is observed and the input is unknown, so for a monotonic, invertible calibration we use the inverse relation, for example
+\begin{equation*}
+y = A + Bx \quad \Longrightarrow \quad x = f^{-1}(y) = \frac{y - A}{B}.
+\end{equation*}
+Uncertainty remains because of the reference standards, the uncertainty of the calibration points, inadequacy of the model, changes of operating conditions and sensor drift: calibration can reduce systematic deviations but does not make the instrument perfect.
+
+\subsection{Open question: ideal, first-order and second-order response}
+
+\emph{Explain the difference between zero-order, first-order and second-order sensor models, define linearity and time invariance, and give a physical example of a second-order system, describing the role of damping.}
+
+\paragraph{Expected elements} A zero-order (ideal) model responds instantaneously, with an algebraic input--output relation; first-order dynamics include a time constant and a single first derivative; second-order models include a second derivative and may show inertia, overshoot, damped oscillations or non-oscillatory relaxation (Section~\ref{sec:lti}). Linearity means that responses obey superposition (Equation~\eqref{eq:lti_linearity}); time invariance means that the same input shifted in time gives the same output shifted in time (Equation~\eqref{eq:lti_time_invariance}). A mass--spring--damper force sensor (Section~\ref{sec:second_order}) obeys
+\begin{equation*}
+F(t) = Mx''(t) + dx'(t) + kx(t),
+\end{equation*}
+and its damping dissipates energy and suppresses the oscillations.
+
+\subsection{Open question: frequency response, Laplace transform and transients}
+
+\emph{Explain what amplitude gain and phase shift reveal about the response of an LTI sensor to a sinusoidal input, distinguish Fourier from Laplace analysis, and explain step response, impulse response and time constant.}
+
+\paragraph{Expected elements} The frequency response $H(i\omega)$ gives the amplitude gain $|H(i\omega)|$ and the phase shift $\arg H(i\omega)$ of each sinusoidal component, which can change with frequency (Section~\ref{sec:frequency_response}). Fourier methods express the frequency content (Fourier series for periodic signals, Fourier transform for suitable non-periodic ones); Laplace methods are convenient for transient responses, initial conditions and solving differential equations (Equation~\eqref{eq:laplace_transform_def}). The step response is the output to a sudden sustained change of the input, the impulse response the output to an ideal unit impulse, and $\tau$ the characteristic response time of a first-order system, related to the cut-off frequency of a first-order low-pass sensor by
+\begin{equation*}
+f_c = \frac{1}{2\pi\tau}.
+\end{equation*}
+
+\subsection{Open question: sensor performance and measurement quality}
+
+\emph{Distinguish sensitivity from resolution and explain why noise may limit the smallest detectable change; define hysteresis, repeatability and inaccuracy; explain why a calibration correction improves the result without eliminating all uncertainty.}
+
+\paragraph{Expected elements} Sensitivity is the local slope $dy/dx$, while resolution is the smallest distinguishable input change; one output LSB corresponds nominally to
+\begin{equation*}
+\Delta x \approx \frac{\Delta y_{\text{LSB}}}{|S|},
+\end{equation*}
+and noise and other limitations may worsen the practical resolution (Section~\ref{sec:resolution}). Hysteresis means that the output at a given input depends on whether the input is approached from above or below. Repeatability concerns the agreement between repeated readings under specified conditions; inaccuracy is the departure from a reference or ideal response (Section~\ref{sec:inaccuracy}). Individual calibration can correct the bias, but residual calibration and measurement uncertainties remain.
+
+% -----------------------------------------------------------------------------
+% APPENDIX: exercises on Chapter 5
+% -----------------------------------------------------------------------------
+\section{Measurement Errors, Uncertainty and Statistics}
+\label{app:ex_ch5}
+
+\subsection{Fluorescence background correction}
+\label{ex:background_correction}
+
+In a fluorescence microscopy experiment, the intensity measured in the green channel contains both the fluorescence of a protein of interest and an unwanted background. To estimate the protein fluorescence, the background is corrected using a reference channel, and the corrected intensity is defined as
+\begin{equation*}
+F = G - 0.50\,R,
+\end{equation*}
+where $G$ is the intensity in the green channel, $R$ the intensity in the reference channel and $0.50$ a known (exact) correction coefficient. Repeated measurements give the following sample statistics, and the two quantities are statistically independent:
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Quantity & Sample mean & Sample SD \\
+\midrule
+Green channel $G$ & $150.00\text{ a.u.}$ & $s_G = 12.00\text{ a.u.}$ \\
+Reference channel $R$ & $40.00\text{ a.u.}$ & $s_R = 5.00\text{ a.u.}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate the mean corrected fluorescence intensity.
+    \item Calculate the variance and standard deviation of the corrected intensity.
+    \item Is the standard deviation of the corrected fluorescence smaller or larger than that of the original green signal? Why does subtracting a background not necessarily reduce the variability?
+    \item Calculate the standard error of the corrected mean, knowing that both samples contain $N = 10$ independent observations.
+\end{enumerate}
+
+\paragraph{Solution} $F$ is a linear combination $z = ax + by$ with $a = 1$ and $b = -0.50$, so we use the rules of Section~\ref{sec:linear_combination}.
+
+\textbf{(a)} By Equation~\eqref{eq:mean_linear_combination},
+\begin{equation*}
+\bar{F} = \bar{G} - 0.50\,\bar{R} = 150 - 0.50 \times 40 = 130\text{ a.u.}
+\end{equation*}
+
+\textbf{(b)} By Equation~\eqref{eq:variance_linear_combination},
+\begin{equation*}
+s_F^2 = s_G^2 + (-0.50)^2s_R^2 = 12^2 + 0.25 \times 5^2 = 150.25\text{ a.u.}^2, \qquad s_F = \sqrt{150.25} \approx 12.26\text{ a.u.}
+\end{equation*}
+
+\textbf{(c)} The standard deviation increases slightly, from $12$ to $12.26\text{ a.u.}$, because the reference signal introduces an additional contribution to the variability: variances add (with squared coefficients) even when the quantities are subtracted.
+
+\textbf{(d)} The standard error of the corrected mean is
+\begin{equation*}
+\text{SEM}(\bar{F}) = \sqrt{\frac{s_G^2}{N} + \frac{0.50^2\,s_R^2}{N}} = \sqrt{\frac{150.25}{10}} \approx 3.88\text{ a.u.}
+\end{equation*}
+Remember that the standard deviation describes the variability of the individual measurements, while the standard error describes the uncertainty of the estimated mean (Equation~\eqref{eq:sem_definition}).
+
+\subsection{Fluorescent spots per cell}
+\label{ex:fluorescent_spots}
+
+The number $X$ of fluorescent spots observed in a cell can take the values $x_i = 0, 1, 2$. In a sample of 20 cells the observed relative frequencies are $f_i$, while for the entire cell population the probabilities are $p_i$:
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+$x_i$ & 0 & 1 & 2 \\
+\midrule
+Sample relative frequency $f_i$ & 0.20 & 0.50 & 0.30 \\
+Population probability $p_i$ & 0.10 & 0.60 & 0.30 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Calculate the sample mean and the population mean.
+
+\paragraph{Solution} The sample mean is given by Equation~\eqref{eq:mean_frequencies} and the population mean by Equation~\eqref{eq:expectation_discrete}:
+\begin{align*}
+\bar{x} &= \sum_i f_ix_i = 0.20(0) + 0.50(1) + 0.30(2) = 1.10\text{ spots/cell}, \\
+\mu &= \sum_i p_ix_i = 0.10(0) + 0.60(1) + 0.30(2) = 1.20\text{ spots/cell}.
+\end{align*}
+
+\subsection{Locating a fluorescent marker within a pixel}
+\label{ex:pixel_localisation}
+
+In a simplified fluorescence-imaging measurement, the position of a fluorescent marker is assigned to the centre of a pixel, without sub-pixel localisation. The pixel width in the sample plane is $\Delta x = 0.20\;\mu\text{m}$, and the selected pixel covers the interval
+\begin{equation*}
+4.90\;\mu\text{m} \le x < 5.10\;\mu\text{m}.
+\end{equation*}
+Assume that the marker lies within this pixel and that no further information about its position is available, so that its position is modelled with a uniform distribution over the interval. Estimate the position of the marker and the standard uncertainty due to pixel discretisation.
+
+\paragraph{Solution} By Equation~\eqref{eq:uniform_mean_variance}, the estimated position is the mean of the uniform distribution, i.e.\ the midpoint of the pixel, and the standard uncertainty is its standard deviation:
+\begin{align*}
+\hat{x} &= \frac{a + b}{2} = \frac{4.90 + 5.10}{2}\;\mu\text{m} = 5.00\;\mu\text{m}, \\[1ex]
+u_{\text{res}} &= \frac{b - a}{\sqrt{12}} = \frac{0.20\;\mu\text{m}}{\sqrt{12}} \approx 0.058\;\mu\text{m}.
+\end{align*}
+After rounding (Section~\ref{sec:reporting}),
+\begin{equation*}
+x = (5.00 \pm 0.06)\;\mu\text{m}.
+\end{equation*}
+Note that the maximum deviation from the pixel centre is $0.10\;\mu\text{m}$, whereas the standard uncertainty is about $0.058\;\mu\text{m}$.
+
+\subsection{Cell diameter distribution}
+\label{ex:cell_diameter}
+
+The diameters $X$ of cells of the same population, measured with an optical microscope, follow a normal distribution with mean $12\;\mu\text{m}$ and standard deviation $2\;\mu\text{m}$:
+\begin{equation*}
+X \sim \mathcal{N}(12, 4).
+\end{equation*}
+Using the standardised variable $Z = (X - \mu)/\sigma$ and the CDF $\Phi(z)$ of the standard normal, calculate:
+\begin{enumerate}[label=(\arabic*)]
+    \item the probability that a randomly selected cell has a diameter smaller than $15\;\mu\text{m}$, $P(X < 15)$;
+    \item the probability that the diameter is greater than $10\;\mu\text{m}$, $P(X > 10)$;
+    \item the probability that it lies between $11$ and $14\;\mu\text{m}$, $P(11 < X < 14)$;
+    \item the probability that it differs from the mean by more than $4\;\mu\text{m}$, $P(|X - 12| > 4)$.
+\end{enumerate}
+
+\paragraph{Solution} We standardise with Equation~\eqref{eq:standardisation} and read $\Phi$ from the table (Equation~\eqref{eq:phi_cdf}):
+\begin{equation*}
+Z = \frac{X - \mu}{\sigma} = \frac{X - 12}{2} \sim \mathcal{N}(0, 1).
+\end{equation*}
+
+\textbf{(1)} Diameter smaller than $15\;\mu\text{m}$:
+\begin{equation*}
+P(X < 15) = P\left(Z < \frac{15 - 12}{2}\right) = P(Z < 1.5) = \Phi(1.5) = 0.9332,
+\end{equation*}
+93.32\% of the cells are expected to have a diameter smaller than $15\;\mu\text{m}$.
+
+\textbf{(2)} Diameter greater than $10\;\mu\text{m}$. Using the complement rule and the symmetry~\eqref{eq:phi_symmetry},
+\begin{equation*}
+P(X > 10) = P\left(Z > \frac{10 - 12}{2}\right) = P(Z > -1) = 1 - \Phi(-1) = \Phi(1) = 0.8413,
+\end{equation*}
+84.13\% of the cells.
+
+\textbf{(3)} Diameter between $11$ and $14\;\mu\text{m}$. Standardising both limits and taking the difference of the cumulative probabilities,
+\begin{equation*}
+P(11 < X < 14) = P(-0.5 < Z < 1) = \Phi(1) - \Phi(-0.5) = 0.8413 - 0.3085 = 0.5328,
+\end{equation*}
+53.28\% of the cells.
+
+\textbf{(4)} $|X - 12| > 4$ means $X < 8$ or $X > 16$, i.e.\ $|Z| > 2$. By symmetry,
+\begin{equation*}
+P(|Z| > 2) = P(Z < -2) + P(Z > 2) = 2P(Z > 2) = 2\left[1 - \Phi(2)\right] = 2(1 - 0.97725) = 0.0455,
+\end{equation*}
+4.55\% of the cells, consistently with the fact that about 95.45\% of the values of a normal distribution lie within $\mu \pm 2\sigma$ (Equation~\eqref{eq:sigma_rule}).
+
+\subsection{90th percentile of a protein concentration}
+\label{ex:percentile_protein}
+
+The concentration $X$ of a protein in blood plasma samples from a healthy population follows a normal distribution with mean $50\text{ mg/L}$ and standard deviation $8\text{ mg/L}$:
+\begin{equation*}
+X \sim \mathcal{N}(50, 64).
+\end{equation*}
+Calculate the 90th percentile of the distribution.
+
+\paragraph{Solution} The 90th percentile is the concentration $x_{0.1}$ below which 90\% of the population values fall (Section~\ref{sec:percentiles}),
+\begin{equation*}
+P(X \le x_{0.1}) = 0.90.
+\end{equation*}
+The standardised variable is $Z = (X - 50)/8 \sim \mathcal{N}(0, 1)$. Although $X$ and $Z$ are on different scales, they have the same probability of falling below their corresponding cut-offs, so
+\begin{equation*}
+P(Z \le z_{0.1}) = \Phi(z_{0.1}) = 0.90 \quad \Longrightarrow \quad z_{0.1} \approx 1.28
+\end{equation*}
+from the table. By Equation~\eqref{eq:normal_percentile},
+\begin{equation*}
+x_{0.1} = \mu + \sigma z_{0.1} = 50 + 8(1.28) \approx 60.2\text{ mg/L}.
+\end{equation*}
+
+\subsection{3D localisation error in fluorescence microscopy}
+\label{ex:localisation_3d}
+
+A 3D fluorescence microscope estimates the position of a fluorescently labelled molecule in a cell. The localisation errors $X_1, X_2, X_3$ along $x$, $y$ and $z$ are independent and normally distributed, each with mean 0 and standard deviation $\sigma = 0.020\;\mu\text{m}$. A localisation is acceptable if its distance $D$ from the true position (the 3D localisation error) is no greater than $0.050\;\mu\text{m}$. What is the probability that the localisation falls outside this tolerance?
+
+\paragraph{Solution} The 3D localisation error is
+\begin{equation*}
+D = \sqrt{X_1^2 + X_2^2 + X_3^2},
+\end{equation*}
+and the localisation is outside the tolerance when $D > 0.050\;\mu\text{m}$. To compute this probability we write the squared distance as a $\chi^2$ variable. Each standardised error $Z_i = X_i/\sigma$ follows a standard normal distribution, so by Equation~\eqref{eq:chi2_definition}
+\begin{equation*}
+\frac{D^2}{\sigma^2} = \left(\frac{X_1}{\sigma}\right)^2 + \left(\frac{X_2}{\sigma}\right)^2 + \left(\frac{X_3}{\sigma}\right)^2 \sim \chi_3^2,
+\end{equation*}
+a chi-squared variable with 3 degrees of freedom. Therefore
+\begin{equation*}
+P(D > 0.050) = P\left(\chi_3^2 > \frac{0.050^2}{0.020^2}\right) = P(\chi_3^2 > 6.25) \approx 0.100.
+\end{equation*}
+From the $\chi^2$ table, $6.25$ is the upper-tail critical value for 3 degrees of freedom at $\alpha = 0.10$ (Equation~\eqref{eq:chi2_critical}): the probability that the localisation falls outside the tolerance is 10\%.
+
+\subsection{Estimating mitochondrial abundance from cryo-EM images}
+\label{ex:mitochondria}
+
+A researcher uses cryo-electron microscopy to count the mitochondria in standardised cell volumes. From previous validation measurements the population standard deviation is known, $\sigma = 8$ mitochondria per volume, and the counts are approximately normally distributed. The counts in 20 independently selected volumes are
+\begin{equation*}
+38,\ 45,\ 41,\ 52,\ 36,\ 47,\ 39,\ 44,\ 50,\ 33,\ 46,\ 41,\ 55,\ 37,\ 43,\ 48,\ 40,\ 35,\ 51,\ 39.
+\end{equation*}
+\begin{enumerate}[label=(\arabic*)]
+    \item Calculate the sample mean and the 99\% confidence interval for the population mean.
+    \item Do the same using only the first 10 volumes.
+    \item Compare the two intervals: what happens to the width when the sample size decreases?
+    \item What is the minimum number of independent volumes needed for the 99\% confidence interval to have a total width of less than 3 mitochondria per volume?
+\end{enumerate}
+
+\paragraph{Solution} Since $\sigma$ is known, we use the normal interval~\eqref{eq:ci_known_sigma}. First we identify the cut-off $z_\alpha$ such that
+\begin{equation*}
+P(-z_\alpha \le Z \le z_\alpha) = 0.99.
+\end{equation*}
+The two tails together have probability $1 - 0.99 = 0.01 = 2\alpha$, so each tail has $\alpha = 0.005$, and
+\begin{equation*}
+\Phi(z_{0.005}) = 1 - 0.005 = 0.995 \quad \Longrightarrow \quad z_{0.005} \approx 2.576
+\end{equation*}
+(Table~\ref{tab:z_values}; the $z$ table gives $\approx 2.58$).
+
+\textbf{(1)} The sum of the 20 counts is 860, so the mean and the margin of error are
+\begin{equation*}
+\bar{x} = \frac{860}{20} = 43\text{ mito/vol}, \qquad z_\alpha\frac{\sigma}{\sqrt{N}} = 2.576 \times \frac{8}{\sqrt{20}} \approx 4.61,
+\end{equation*}
+and the 99\% confidence interval is
+\begin{equation*}
+43 \pm 4.61 \quad \Longrightarrow \quad \text{CI} = [38.39,\ 47.61]\text{ mito/vol}.
+\end{equation*}
+
+\textbf{(2)} The first 10 counts sum to 425, so
+\begin{equation*}
+\bar{x}_{10} = \frac{425}{10} = 42.5\text{ mito/vol}, \qquad z_\alpha\frac{\sigma}{\sqrt{N}} = 2.576 \times \frac{8}{\sqrt{10}} \approx 6.52,
+\end{equation*}
+and the 99\% interval is
+\begin{equation*}
+42.5 \pm 6.52 \quad \Longrightarrow \quad \text{CI} = [35.98,\ 49.02]\text{ mito/vol}.
+\end{equation*}
+
+\textbf{(3)} The interval based on 10 volumes is wider: with fewer measurements the sample mean is less precise, so its confidence interval is wider.
+
+\textbf{(4)} The width of the interval is $W = 2z_\alpha\sigma/\sqrt{N}$ (Equation~\eqref{eq:sample_size}). Requiring $W < 3$,
+\begin{equation*}
+\frac{2(2.576)(8)}{\sqrt{N}} < 3 \quad \Longrightarrow \quad N > \left(\frac{2(2.576)(8)}{3}\right)^2 \approx 188.75,
+\end{equation*}
+so the minimum whole number of volumes is $N = 189$.
+
+\subsection{Confidence interval for a fluorescence intensity}
+\label{ex:ci_fluorescence}
+
+A biologist wants to estimate the relative protein content of a cell population with fluorescence microscopy, using the fluorescence intensity of the labelled protein as a proxy for its abundance. With the same labelling and imaging conditions, the intensity is measured in 10 independently selected cells (in a.u.):
+\begin{equation*}
+\{1.8,\ 2.1,\ 2.3,\ 2.0,\ 1.9,\ 2.4,\ 2.2,\ 1.7,\ 2.5,\ 2.1\}.
+\end{equation*}
+Calculate a 99\% confidence interval for the mean fluorescence intensity of the population, assuming independent measurements from an approximately normal population with unknown variance.
+
+\paragraph{Solution} \textbf{Sample mean and standard deviation.} The sum of the 10 values is $21.0\text{ a.u.}$, so
+\begin{equation*}
+\bar{x} = \frac{21.0}{10} = 2.10\text{ a.u.},
+\end{equation*}
+and the sample variance and standard deviation (Equation~\eqref{eq:sample_variance}) are
+\begin{equation*}
+s^2 = \frac{\sum_{i=1}^{10}(x_i - \bar{x})^2}{N - 1} = \frac{0.60}{9} \approx 0.0667\text{ a.u.}^2, \qquad s = \sqrt{0.0667} \approx 0.258\text{ a.u.}
+\end{equation*}
+
+\textbf{Critical value.} Since the variance is unknown, we use the Student's $t$ interval~\eqref{eq:ci_unknown_sigma}. For a 99\% interval the central probability must be 0.99, so with each tail of area $\alpha$
+\begin{equation*}
+1 - 2\alpha = 0.99 \quad \Longrightarrow \quad \alpha = 0.005.
+\end{equation*}
+With $N - 1 = 9$ degrees of freedom,
+\begin{equation*}
+P(T \le t_{9,0.005}) = 1 - 0.005 = 0.995 \quad \Longrightarrow \quad t_{9,0.005} \approx 3.25
+\end{equation*}
+from the Student's $t$ table.
+
+\textbf{Confidence interval.} The margin of error and the interval are
+\begin{equation*}
+t_{9,0.005}\frac{s}{\sqrt{N}} = 3.25 \times \frac{0.258}{\sqrt{10}} \approx 0.27\text{ a.u.}, \qquad \text{99\% CI} = 2.10 \pm 0.27\text{ a.u.} = [1.83,\ 2.37]\text{ a.u.}
+\end{equation*}
+This interval estimates the mean fluorescence intensity of the population, used here as a proxy for its mean relative protein content.
+
+\subsection{Does a treatment increase protein fluorescence?}
+\label{ex:protein_test}
+
+A biologist uses fluorescence microscopy to investigate whether a treatment increases the abundance of a labelled protein in cells, using the fluorescence intensity as a measure of protein abundance. In untreated cells the mean intensity is $\mu_0 = 100\text{ a.u.}$ After treatment, the intensity is measured in 10 independently selected cells (in a.u.):
+\begin{equation*}
+98,\ 101,\ 104,\ 100,\ 103,\ 99,\ 102,\ 105,\ 100,\ 103.
+\end{equation*}
+Assume the measurements are independent and approximately normally distributed. At a (single-tail) significance level $\alpha = 0.05$, test
+\begin{equation*}
+H_0\colon \mu = \mu_0 \qquad \text{versus} \qquad H_1\colon \mu > \mu_0,
+\end{equation*}
+where $H_0$ states that the treatment does not increase the mean intensity and $H_1$ that it increases it, consistently with an increase of the labelled protein. Does the sample provide sufficient evidence?
+
+\paragraph{Solution} We follow the steps of Section~\ref{sec:hypothesis_tests}. Here $\mu_0$ is the mean of untreated cells and $\mu$ the population mean after treatment.
+
+\textbf{Sample statistics.} From the data,
+\begin{equation*}
+\bar{x} = \frac{1}{N}\sum_{i=1}^{N}x_i = \frac{1015}{10} = 101.5\text{ a.u.}, \qquad s = \sqrt{\frac{\sum_i(x_i - \bar{x})^2}{N - 1}} = \sqrt{\frac{46.5}{9}} \approx 2.27\text{ a.u.}
+\end{equation*}
+
+\textbf{Test statistic.} Since the population standard deviation is unknown, we use the Student's $t$ statistic~\eqref{eq:t_test},
+\begin{equation*}
+t_{\text{obs}} = \frac{\bar{x} - \mu_0}{s/\sqrt{N}} = \frac{101.5 - 100}{2.27/\sqrt{10}} \approx 2.09,
+\end{equation*}
+which, if $H_0$ is true, follows a $t$ distribution with $N - 1 = 9$ degrees of freedom.
+
+\textbf{Decision.} The test is one-sided to the right (Table~\ref{tab:one_two_sided}): we find the upper-tail critical value with $P(T > t_{9,\alpha}) = \alpha$. If $t_{\text{obs}} > t_{9,\alpha}$ we reject $H_0$, concluding that the treatment increases the mean fluorescence; otherwise the data do not provide sufficient evidence of an increase. With 9 degrees of freedom,
+\begin{equation*}
+t_{9,0.05} \approx 1.83 < t_{\text{obs}} = 2.09,
+\end{equation*}
+so we reject $H_0$: the sample provides statistically significant evidence at the 5\% level that the treatment increases the mean fluorescence. It would not be significant at the 1\% level, since $t_{9,0.01} \approx 2.821 > 2.09$.
+
+\subsection{Two-sided test on two sample means}
+\label{ex:two_sided_test}
+
+Two independent random samples come from normally distributed populations with unknown but equal variances:
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Sample & Size & Mean & Standard deviation \\
+\midrule
+1 & $n = 10$ & $\bar{x} = 52$ & $s_x = 4$ \\
+2 & $m = 10$ & $\bar{y} = 48$ & $s_y = 4$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Test whether the population means are equal,
+\begin{equation*}
+H_0\colon \mu_1 = \mu_2 \qquad \text{versus} \qquad H_1\colon \mu_1 \neq \mu_2,
+\end{equation*}
+first with a per-tail probability $\alpha = 0.05$ and then with $\alpha = 0.01$ (overall significance level $2\alpha$). Do the samples provide significant evidence that the means differ, and at which level?
+
+\paragraph{Solution} We use the two-sample test of Section~\ref{sec:hypothesis_tests}, with $H_0\colon \mu_1 - \mu_2 = 0$ and $H_1\colon \mu_1 - \mu_2 \neq 0$.
+
+\textbf{Pooled variance.} By Equation~\eqref{eq:pooled_variance},
+\begin{equation*}
+s_p^2 = \frac{(n - 1)s_x^2 + (m - 1)s_y^2}{n + m - 2} = \frac{9(16) + 9(16)}{18} = 16, \qquad s_p = 4.
+\end{equation*}
+
+\textbf{Test statistic.} The standard error of the difference between the sample means and the observed statistic (Equation~\eqref{eq:two_sample_t}) are
+\begin{align*}
+s_p\sqrt{\frac{1}{n} + \frac{1}{m}} &= 4\sqrt{\frac{1}{10} + \frac{1}{10}} \approx 1.789, \\[1ex]
+T_{\text{obs}} &= \frac{\bar{x} - \bar{y}}{1.789} = \frac{52 - 48}{1.789} \approx 2.24, \qquad \text{df} = n + m - 2 = 18.
+\end{align*}
+
+\textbf{Decision.} With $\alpha$ the probability in each tail:
+\begin{align*}
+\alpha = 0.05: &\quad t_{18,0.05} \approx 1.734 < 2.24 \quad \Longrightarrow \quad \text{reject } H_0, \\
+\alpha = 0.01: &\quad t_{18,0.01} \approx 2.552 > 2.24 \quad \Longrightarrow \quad \text{do not reject } H_0.
+\end{align*}
+The result is therefore significant at the 10\% level ($2\alpha = 0.10$), but not at the 2\% overall level ($2\alpha = 0.02$). This does not prove that the population means are equal: at the stricter level, the data simply do not provide enough evidence to reject equality.
+
+\subsection{Propagating uncertainty in a cell-area estimate}
+\label{ex:cell_area}
+
+A cell has an approximately rectangular shape, with measured length and width
+\begin{equation*}
+a = (5.0 \pm 0.1)\;\mu\text{m}, \qquad b = (10.0 \pm 0.2)\;\mu\text{m},
+\end{equation*}
+where the uncertainties $s_a = 0.1\;\mu\text{m}$ and $s_b = 0.2\;\mu\text{m}$ are independent standard uncertainties. Neglecting any uncertainty due to approximating the cell as a rectangle, calculate:
+\begin{enumerate}[label=(\alph*)]
+    \item the area $A$ of the cell and its standard uncertainty, in $\mu\text{m}^2$;
+    \item the relative standard uncertainty of the area, as a percentage.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} The area is
+\begin{equation*}
+A = ab = (5.0 \times 10^{-6}\text{ m})(10.0 \times 10^{-6}\text{ m}) = 50.0 \times 10^{-12}\text{ m}^2 = 50.0\;\mu\text{m}^2.
+\end{equation*}
+For a quantity that depends on two independent measured variables, the propagation formula~\eqref{eq:propagation_general} gives
+\begin{equation*}
+s_A = \sqrt{\left(\frac{\partial A}{\partial a}s_a\right)^2 + \left(\frac{\partial A}{\partial b}s_b\right)^2}.
+\end{equation*}
+Since $A = ab$, the partial derivatives are
+\begin{equation*}
+\frac{\partial A}{\partial a} = b, \qquad \frac{\partial A}{\partial b} = a,
+\end{equation*}
+so
+\begin{align*}
+s_A &= \sqrt{(bs_a)^2 + (as_b)^2} = \sqrt{(10.0 \times 0.1)^2 + (5.0 \times 0.2)^2}\;\mu\text{m}^2 \\
+&= \sqrt{1.0^2 + 1.0^2}\;\mu\text{m}^2 = \sqrt{2}\;\mu\text{m}^2 \approx 1.4\;\mu\text{m}^2 = 1.4 \times 10^{-12}\text{ m}^2.
+\end{align*}
+
+\textbf{(b)} The relative standard uncertainty is
+\begin{equation*}
+\frac{s_A}{A} = \frac{1.4}{50} = 0.028 \approx 2.8\%.
+\end{equation*}
+Alternatively, for the product of two independent quantities we can use Equation~\eqref{eq:propagation_powers} directly:
+\begin{equation*}
+\frac{s_A}{A} = \sqrt{\left(\frac{s_a}{a}\right)^2 + \left(\frac{s_b}{b}\right)^2} = \sqrt{\left(\frac{0.1}{5.0}\right)^2 + \left(\frac{0.2}{10.0}\right)^2} = \sqrt{0.0008} \approx 0.0283.
+\end{equation*}
+Expressing area and uncertainty to the same decimal position (Section~\ref{sec:reporting}), the final result is
+\begin{equation*}
+A = (50.0 \pm 1.4)\;\mu\text{m}^2 = (5.00 \pm 0.14) \times 10^{-11}\text{ m}^2,
+\end{equation*}
+with a relative standard uncertainty of about 2.8\%. The uncertainty of the area depends on the uncertainties of both length and width; since the two measurements are independent, their contributions combine in quadrature rather than simply adding up.
+
+\subsection*{Exercise sheet for Chapter 4 (errors, uncertainty and statistics)}
+
+The following items come from the exercise sheet of Classes 9--11, with the instructor's answer key.
+
+\subsection{Repeated fluorescence measurements: mean, dispersion and SEM}
+\label{ex:repeated_fluorescence}
+
+A fluorescence-imaging experiment is repeated 10 times under nominally identical conditions, giving the intensities (a.u.)
+\begin{equation*}
+98,\ 101,\ 100,\ 99,\ 102,\ 100,\ 101,\ 99,\ 100,\ 100.
+\end{equation*}
+\begin{enumerate}[label=(\alph*)]
+    \item Calculate the arithmetic mean $\bar{x}$.
+    \item Calculate the corrected sample variance $s^2$ and the sample standard deviation $s$, using $N - 1$ in the denominator.
+    \item Calculate $\text{SEM} = s/\sqrt{N}$. Explain what the SEM describes and how it differs physically from $s$.
+    \item A calibration check shows that the instrument has a constant $+3.0\text{ a.u.}$ offset. Does increasing the number of measurements remove this error? Determine the corrected mean.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} By Equation~\eqref{eq:arithmetic_mean},
+\begin{equation*}
+\bar{x} = \frac{1}{N}\sum_{i=1}^{N}x_i = 100.0\text{ a.u.}
+\end{equation*}
+
+\textbf{(b)} The sum of the squared deviations is $\sum_i(x_i - \bar{x})^2 = 12.0\text{ a.u.}^2$, so by Equation~\eqref{eq:sample_variance}
+\begin{equation*}
+s^2 = \frac{12.0\text{ a.u.}^2}{10 - 1} = 1.33\text{ a.u.}^2, \qquad s = \sqrt{1.33\text{ a.u.}^2} = 1.15\text{ a.u.}
+\end{equation*}
+
+\textbf{(c)} By Equation~\eqref{eq:sem_definition},
+\begin{equation*}
+\text{SEM} = \frac{s}{\sqrt{N}} = \frac{1.15\text{ a.u.}}{\sqrt{10}} = 0.365\text{ a.u.} \approx 0.37\text{ a.u.}
+\end{equation*}
+$s$ describes the dispersion of the individual measurements around their sample mean; the SEM estimates the standard deviation of the sample mean across repeated samples of the same size, and for independent measurements it decreases as $1/\sqrt{N}$.
+
+\textbf{(d)} A constant offset is a systematic error (Section~\ref{sec:error_sources}): repeating or averaging measurements does not remove it. Applying the calibration correction,
+\begin{equation*}
+\bar{x}_{\text{corrected}} = 100.0 - 3.0 = 97.0\text{ a.u.}
+\end{equation*}
+The correction changes the mean but does not reduce the random spread represented by $s$.
+
+\subsection{Uniform distribution and pixel-resolution uncertainty}
+\label{ex:pixel_uniform_2}
+
+The position of a fluorescent marker is assigned to the centre of one pixel, without sub-pixel localisation. The selected pixel corresponds to the interval
+\begin{equation*}
+6.15\;\mu\text{m} \le X < 6.45\;\mu\text{m},
+\end{equation*}
+and, with no additional information, $X$ is assumed uniformly distributed in it.
+\begin{enumerate}[label=(\alph*)]
+    \item Determine the pixel width $\Delta x = b - a$ and the height of the uniform PDF $f_X(x)$ in the interval.
+    \item Calculate the best estimate of the marker position, i.e.\ the mean of the uniform distribution.
+    \item Calculate the maximum deviation from the pixel centre and the standard uncertainty due to resolution, $u_{\text{res}} = \Delta x/\sqrt{12}$.
+    \item Report the position as estimate $\pm$ standard uncertainty, with appropriate rounding, and explain why the standard uncertainty is smaller than the maximum possible quantisation error.
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} By Equation~\eqref{eq:uniform_pdf},
+\begin{equation*}
+\Delta x = 6.45 - 6.15 = 0.30\;\mu\text{m}, \qquad f_X(x) = \frac{1}{\Delta x} = \frac{1}{0.30\;\mu\text{m}} = 3.33\;\mu\text{m}^{-1} \quad (6.15 \le x < 6.45\;\mu\text{m}).
+\end{equation*}
+
+\textbf{(b)} By Equation~\eqref{eq:uniform_mean_variance},
+\begin{equation*}
+\hat{x} = \frac{a + b}{2} = \frac{6.15 + 6.45}{2}\;\mu\text{m} = 6.30\;\mu\text{m}.
+\end{equation*}
+
+\textbf{(c)} The maximum deviation and the standard uncertainty are
+\begin{equation*}
+\frac{\Delta x}{2} = 0.15\;\mu\text{m}, \qquad u_{\text{res}} = \frac{\Delta x}{\sqrt{12}} = \frac{0.30\;\mu\text{m}}{\sqrt{12}} = 0.0866\;\mu\text{m} \approx 0.09\;\mu\text{m}.
+\end{equation*}
+
+\textbf{(d)} The result is
+\begin{equation*}
+x = (6.30 \pm 0.09)\;\mu\text{m}.
+\end{equation*}
+The maximum deviation is a bound on the possible error within the pixel, whereas the standard uncertainty is the standard deviation of the assumed uniform distribution, which is smaller than the half-width of the interval (compare Exercise~\ref{ex:pixel_localisation}).
+
+\subsection{Normal distribution of fluorescence lifetimes}
+\label{ex:lifetime_normal}
+
+The fluorescence lifetime $X$ of a population of fluorescent molecules is modelled as a normal random variable with $\mu = 3.00\text{ ns}$ and $\sigma = 0.40\text{ ns}$:
+\begin{equation*}
+X \sim \mathcal{N}\big(3.00\text{ ns},\ (0.40\text{ ns})^2\big).
+\end{equation*}
+Using the standardisation $Z = (X - \mu)/\sigma$ and the cumulative standard normal distribution $\Phi(z)$, calculate:
+\begin{enumerate}[label=(\alph*)]
+    \item $P(X < 3.40\text{ ns})$;
+    \item $P(2.60\text{ ns} < X < 3.80\text{ ns})$;
+    \item $P(|X - \mu| > 0.80\text{ ns})$, interpreting the result in relation to the approximately 95\% probability contained within $\mu \pm 2\sigma$.
+\end{enumerate}
+
+\paragraph{Solution} We standardise with Equation~\eqref{eq:standardisation}.
+
+\textbf{(a)} Probability below $3.40\text{ ns}$:
+\begin{equation*}
+z = \frac{3.40 - 3.00}{0.40} = 1.00 \quad \Longrightarrow \quad P(X < 3.40) = \Phi(1.00) = 0.8413 \approx 84.1\%.
+\end{equation*}
+
+\textbf{(b)} Probability between $2.60$ and $3.80\text{ ns}$, using Equation~\eqref{eq:phi_symmetry} for $\Phi(-1)$:
+\begin{align*}
+z_1 &= \frac{2.60 - 3.00}{0.40} = -1.00, \qquad z_2 = \frac{3.80 - 3.00}{0.40} = 2.00, \\[1ex]
+P(2.60 < X < 3.80) &= \Phi(2.00) - \Phi(-1.00) = 0.9772 - 0.1587 = 0.8185 \approx 81.9\%.
+\end{align*}
+
+\textbf{(c)} Probability of a deviation larger than $0.80\text{ ns}$:
+\begin{equation*}
+|X - \mu| > 0.80\text{ ns} \iff |Z| > 2, \qquad P(|Z| > 2) = 2\left[1 - \Phi(2)\right] = 2(1 - 0.9772) = 0.0456 \approx 4.6\%.
+\end{equation*}
+About 95.4\% of normally distributed values lie within $\mu \pm 2\sigma$, leaving about 4.6\% outside (Equation~\eqref{eq:sigma_rule}).
+
+\subsection{Open question: systematic and random errors; precision, trueness and accuracy}
+
+\emph{Distinguish systematic from random errors and explain how each affects precision, trueness and accuracy. Why can averaging reduce random errors but not a systematic bias? Give an example.}
+
+\paragraph{Expected elements} A systematic error produces a reproducible bias or a scale-dependent deviation; a random error produces unpredictable fluctuations from one measurement to the next (Section~\ref{sec:error_sources}). Precision concerns the spread of repeated measurements, trueness the systematic deviation of the mean from a reference, and good accuracy requires both. Averaging independent measurements reduces the random uncertainty of the mean approximately as $1/\sqrt{N}$, but a systematic bias remains unless it is identified and corrected. Examples: a zero offset or an incorrect calibration factor (systematic); electronic noise or environmental fluctuations (random).
+
+\subsection{Open question: population, sample, frequency and probability}
+
+\emph{Explain the distinction between population and sample; define absolute frequency, relative frequency and probability; describe the role of the law of large numbers; explain why different samples have different means.}
+
+\paragraph{Expected elements} The population is the theoretical set of all possible outcomes under specified conditions; a sample is a finite subset of $N$ observations (Section~\ref{sec:population_sample}). The absolute frequency is a count; the relative frequency is the count divided by $N$, and in a frequentist interpretation it tends statistically to the probability as $N$ increases. The law of large numbers describes a statistical convergence, not an exact equality for any finite $N$ (Equation~\eqref{eq:lln_frequency}). Different random samples contain different observations and therefore generally give different sample means.
+
+\subsection{Open question: best estimate, variance, standard deviation and SEM}
+
+\emph{Explain why the mean is used as best estimate, distinguish variance, sample standard deviation and SEM, explain why $N - 1$ is used, and how increasing $N$ affects the SEM but not the dispersion of individual measurements.}
+
+\paragraph{Expected elements} The mean is a central estimate that reduces the influence of unbiased random errors when independent measurements are averaged (Section~\ref{sec:best_estimate}). The variance is the mean squared deviation; $s$ describes the dispersion of the individual measurements, while
+\begin{equation*}
+\text{SEM} = \frac{s}{\sqrt{N}}
+\end{equation*}
+describes the uncertainty of the estimated mean. Using $N - 1$ gives an unbiased estimate of the population variance when the mean is estimated from the same sample (Section~\ref{sec:n_minus_one}). Increasing $N$ reduces the SEM, while the intrinsic standard deviation of the individual measurements is not reduced by taking more measurements.
+
+\subsection{Open question: PDF, CDF and standardisation}
+
+\emph{For a continuous random variable, explain the meaning of the PDF and of the CDF; for a normal distribution, explain the purpose of $Z = (X - \mu)/\sigma$ and the 68--95--99.7\% rule.}
+
+\paragraph{Expected elements} The PDF $f(x)$ is a probability per unit of $x$, not a probability; the probability over an interval is the area under the PDF (Section~\ref{sec:pdf}). The CDF gives the cumulative probability, the integral of the PDF from $-\infty$ to $x$ (Equation~\eqref{eq:cdf}):
+\begin{equation*}
+F_X(x) = P(X \le x) = \int_{-\infty}^{x}f(t)\,dt.
+\end{equation*}
+For $X \sim \mathcal{N}(\mu, \sigma^2)$, standardisation expresses deviations in units of $\sigma$ and gives the standard normal: $Z = 0$ means $X$ is at the mean, $Z = 1$ one standard deviation above it, $Z = -2$ two standard deviations below. About 68.3\%, 95.5\% and 99.7\% of the values lie within $\pm1\sigma$, $\pm2\sigma$ and $\pm3\sigma$ of the mean. For example, if repeated measurements follow a normal distribution with $\mu = 50$ and $\sigma = 2$, about 68\% fall between 48 and 52, 95\% between 46 and 54 and 99.7\% between 44 and 56.
+
