@@ -38,7 +38,7 @@ A \textbf{physical quantity} is a property of a material body, of a system or of
 
 When we plan a measurement we have to keep three things separate. The \textbf{target quantity} (the \textbf{measurand}) is the quantity we intend to measure, and answers the question \emph{``What do I want to know?''}. The \textbf{measurement} is the experimental process that produces information about the measurand, and answers \emph{``How do I determine it?''}. Finally, the \textbf{result} is the value we attribute to the measurand at the end of the process (Figure~\ref{fig:metrology_chain}).
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[page=1, width=0.7\linewidth, keepaspectratio]{\pdf}
 \caption{From the quantity of interest to the measurement result: the target quantity is measured by an instrument or system, which returns a value with its unit and uncertainty.}
@@ -190,7 +190,7 @@ An electromagnetic wave is the coupled oscillation of an electric field $\mathbf
 \end{equation}
 The main properties of light are its intensity, propagation direction, frequency and wavelength, and polarisation. Light also has a corpuscular behaviour, so it can be described either as a wave or as a stream of discrete particles (quanta) carrying a certain energy. We usually focus on $\mathbf{E}$ because, for ordinary matter at optical frequencies, the dominant light--matter interaction is the electric-dipole interaction.
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.85\linewidth}
         \centering
@@ -259,6 +259,7 @@ Colour is associated with wavelength. In bioimaging we mostly use visible and ne
     \label{fig:bioimaging_spectrum}
 \end{figure}
 
+\clearpage
 \begin{table}[!htbp]
 \centering
 \caption{Excitation and emission wavelengths of common fluorophores.}
@@ -295,7 +296,7 @@ The two levels exist even without an external magnetic field. They come from the
 
 Why caesium? Because it is a practical atomic reference: accessible, reproducible and measurable. It is \emph{accessible} because Cs-133 is the only stable naturally occurring isotope of caesium, so the same isotope can be used by laboratories all over the world. It is \emph{reproducible} because, as an alkali atom with a single valence electron, it has a relatively simple ground-state hyperfine structure; the clock transition $|F = 3, m_F = 0\rangle \to |F = 4, m_F = 0\rangle$ is well defined and, near zero field, insensitive at first order to the magnetic field. Finally, the frequency is \emph{measurable}: the transition lies in the microwave region, where electronics can scan, lock and stabilise an oscillator, and the locked signal can be divided down to $1\text{ Hz}$ with high quality.
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[page=4, width=0.58\linewidth, keepaspectratio]{\pdf}
 \caption{Principle of a caesium atomic clock. A microwave oscillator drives the $F=3 \to F=4$ transition; when its frequency matches the resonance the transition probability is maximal, a feedback loop locks the oscillator, and a frequency divider produces a $1\text{ Hz}$ output.}
@@ -379,7 +380,7 @@ and the uncertainty on $\mu_0$ comes entirely from the uncertainty on $\alpha$.
 
 How do we know that charge comes in discrete units? This was the question of Millikan's oil-drop experiment (1910): is electric charge continuous, or made of identical discrete units? The idea was to measure the charge $q$ carried by tiny oil droplets (Figure~\ref{fig:millikan_complete}). The droplets were charged by ionising radiation and entered the region between two plates, where a voltage $V$ across the distance $d$ created an electric field $E = V/d$.
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
     \centering
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
@@ -690,7 +691,7 @@ Any point beyond these limits is plotted individually as an \textbf{outlier}, in
 
 A histogram is built in two steps (Figure~\ref{fig:histogram_construction}). First, \emph{binning}: the full range of observed values is divided into a series of intervals, called bins. Then, \emph{counting}: we count how many observations fall within each bin. The height of each bar represents the frequency (or count) of observations in that bin.
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[page=18, width=0.6\linewidth, keepaspectratio]{\pdf}
 \caption{Construction of a histogram: the range of values is divided into bins and the observations in each bin are counted.}
@@ -701,6 +702,7 @@ A histogram is built in two steps (Figure~\ref{fig:histogram_construction}). Fir
 
 A violin plot represents the distribution of numerical data with a smooth curve, the probability density estimated by \textbf{kernel density estimation} (KDE). Each data point contributes a small area around its value, whose shape is called the \textbf{kernel function} (often a normal kernel). Where the observations are more concentrated the estimated density is higher, and the violin is wider: the width of the curve corresponds to the estimated probability density in that region. The violin is simply a mirrored KDE (Figure~\ref{fig:violin_density}). How smooth it looks depends on the \textbf{bandwidth} of the kernel, just as the appearance of a histogram depends on the bin width.
 
+\clearpage
 \begin{figure}[h]
 \centering
 \includegraphics[page=19, width=0.5\linewidth, keepaspectratio]{\pdf}
@@ -717,11 +719,12 @@ Individual observations can be overlaid on the violin as \textbf{jittered} point
 \label{fig:violin_jitter}
 \end{figure}
 
+\clearpage
 \subsection{Scatter plots}
 
 A scatter plot represents paired measurements of two quantitative variables: each point corresponds to one observation with coordinates $(x_1, x_2)$ (Figure~\ref{fig:scatter_plot_patterns}). It can reveal the direction of the relationship (positive or negative), the strength of the association, its form (linear or non-linear), clusters and outliers. But we must always remember that \emph{correlation does not imply causation}.
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.19\linewidth}
         \centering
@@ -757,7 +760,6 @@ A scatter plot represents paired measurements of two quantitative variables: eac
     \label{fig:scatter_plot_patterns}
 \end{figure}
 
-\clearpage
 \subsection{Choosing between plots}
 
 It helps to compare these plots directly. A scatter plot involves two quantitative variables and focuses on their relationship or correlation, whereas a violin plot involves one categorical variable (the group) and one quantitative variable, and focuses on the distribution and on the comparison between groups. A histogram and a violin plot describe the same thing, the distribution of the data: the histogram divides the range into discrete bins, while the violin gives a smoothed estimate whose width is proportional to the density. Both the bin width and the KDE bandwidth affect the visual appearance. The violin plot is probably the best choice to compare distributions across several groups, but there is no fixed rule: the advice is to try.
@@ -831,7 +833,7 @@ A measurement dataset often consists of discrete pairs of values, for example an
 \end{equation}
 This brings two advantages. First, the parameters $\theta_i$ characterise the relationship between the variables and the underlying trend: an intercept, a slope, a rate constant, an exponent. Second, the function gives a continuous representation of the data, so we can \textbf{interpolate}, i.e.\ estimate the value of the function at an input within the range of the data where no direct measurement was made. If the function is invertible we can also do the opposite, an \textbf{inverse prediction}: estimate an unknown input $x$ from a known output $y$ (Figure~\ref{fig:functional_approximation_concept}). This is exactly what we will do with calibration functions in Chapter~\ref{ch:sensors}.
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[page=26, width=\linewidth, keepaspectratio]{\pdf}
 \caption{Interpolation (left): estimating the function at a point inside the range of the data. Inverse prediction (right): estimating the input $x$ that corresponds to a measured output $y$.}
@@ -1142,7 +1144,7 @@ Imagine that your supervisor studies mitochondrial division and wants to know wh
 \label{eq:curvature_fundamental_def}
 \end{equation}
 It measures how fast the tangent direction changes along the curve, and it is related to the radius of the local circle by $|\kappa| = 1/R$: higher curvature means a smaller radius.
-\clearpage
+
 \begin{figure}[h]
 \centering
 \includegraphics[page=32, width=\linewidth, keepaspectratio]{\pdf}
@@ -1403,7 +1405,8 @@ Why is this interesting for sensors? Imagine applying a sinusoidal stimulus $x(t
 \label{eq:steady_state_sinusoidal_response}
 \end{equation}
 
-\begin{figure}[!htbp]
+\clearpage
+\begin{figure}[h]
 \centering
 \includegraphics[page=42, width=0.72\linewidth, keepaspectratio]{\pdf}
 \caption{A stable LTI sensor responds to a sinusoidal input $x(t) = A_x\sin(2\pi ft)$ with a sinusoid of the same frequency, but with a different amplitude and phase, $y(t) = A_y\sin(2\pi ft + \phi)$.}
@@ -1608,7 +1611,7 @@ A sensor cannot necessarily provide useful information for every input value (Fi
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[page=44, width=0.8\linewidth, keepaspectratio]{\pdf}
+\includegraphics[page=44, width=0.6\linewidth, keepaspectratio]{\pdf}
 \caption{Threshold and saturation delimit the responsive region of a sensor (top); a dead band is an interval in which the output does not change (bottom).}
 \label{fig:saturation_and_deadband}
 \end{figure}
@@ -1825,7 +1828,7 @@ As $N$ increases, the law of large numbers tells us that the relative frequency 
 \end{equation}
 So a PDF can be seen as the limit of a normalised histogram when the number of measurements becomes very large and the bins small enough (this assumes an underlying continuous distribution and an appropriate relation between sample size and bin width). Three properties are important. The height $f(x)$ is a probability \emph{per unit of $x$}, not a probability. The area under the curve over an interval gives the probability of observing a value in that interval. And the PDF has the units of the inverse of $x$: if $x$ is a length in metres, $f(x)$ is in $\text{m}^{-1}$.
 
-\begin{figure}[!htbp]
+\begin{figure}[!h]
 \centering
 \includegraphics[page=51, width=0.45\linewidth, keepaspectratio]{\pdf}
 \caption{With few measurements ($N = 60$, $\Delta x = 0.8$) the normalised histogram is coarse; with many measurements ($N = 20\,000$, $\Delta x = 0.1$) and narrow bins it approaches the probability density function $f(x)$.}
@@ -2688,7 +2691,8 @@ with none of the variables equal to zero. Its partial derivatives are $\partial 
 \end{equation}
 For products of powers it is the \emph{relative} uncertainties that combine in quadrature, each weighted by its exponent. The most common cases are collected in Table~\ref{tab:propagation_examples}.
 
-\begin{table}[!htbp]
+\clearpage
+\begin{table}[h]
 \centering
 \caption{Examples of uncertainty propagation for independent variables.}
 \label{tab:propagation_examples}
@@ -2853,7 +2857,6 @@ The \textbf{photomultiplier tube} (PMT) is the oldest of the detectors we will s
 
 A PMT is a vacuum tube that hosts an optical window receiving the incoming light (usually borosilicate or UV-transmitting glass), a \textbf{photocathode} where the emission of electrons happens, focusing elements that steer the photoelectrons, an electron multiplier stage made of a series of \textbf{dynodes} (usually 8--12) that multiply the electrons by secondary emission in a cascade, and a final \textbf{anode}, or collector (Figure~\ref{fig:pmt_scheme}). A high voltage (1--2\,kV) is held between the photocathode and the anode, divided into several steps along the dynode chain, so that each dynode is at a negative potential with respect to the following one.
 
-\clearpage
 \begin{figure}[h]
 \centering
 \includegraphics[page=65, width=0.65\linewidth, keepaspectratio]{\pdf}
@@ -2893,7 +2896,6 @@ which is typically about 35\% for a PMT. This definition is universal and holds 
 
 The temporal response of a PMT is described by two parameters (Figure~\ref{fig:pmt_response}). The \textbf{response pulse width} is the full width at half maximum (FWHM) of the anode current pulse delivered in response to an ideal light pulse, and the \textbf{rise time} is the time the output takes to go from 10\% to 90\% of its final value, in response either to a step or to a delta stimulus. PMTs have rise times of the order of nanoseconds, and nowadays even below the nanosecond: this speed is one of the reasons why they are still used in some applications. These curves should look familiar: they are essentially the impulse and step responses of a low-pass filter (Figure~\ref{fig:first_order_transient_responses}), only a bit wider and more S-shaped, because the cascade of electrons needs some time to travel through the tube before the output is collected. What we learnt about low-pass filters applies to almost all sensors.
 
-\clearpage
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{0.38\linewidth}
@@ -2920,7 +2922,6 @@ The \textbf{gain} of a PMT is the ratio between the anode current and the photoc
 \end{equation}
 where $K$ is a constant, $V$ the supply voltage and $\alpha$ a coefficient between $0.6$ and $0.8$ that depends on the dynode material. PMTs provide a substantial gain, up to $10^7$--$10^8$, which is even higher than that of some solid-state detectors; the order of magnitude is what we should remember. The gain grows with the number of dynodes and depends strongly on the supply voltage (Figure~\ref{fig:pmt_gain}): a higher voltage between the electrodes increases the probability of extracting electrons at each step.
 
-\clearpage
 \begin{figure}[h]
 \centering
 \includegraphics[page=70, width=0.7\linewidth, keepaspectratio]{\pdf}
@@ -2978,7 +2979,7 @@ In a \textbf{conductor} a band is partially filled, or two bands overlap (the co
 \end{equation}
 In either case the electron enters the conduction band and leaves behind a hole in the valence band, creating an \textbf{electron--hole pair}. Both carriers can carry current, and this is the basis of semiconductor light detection.
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[page=64, width=0.7\linewidth, keepaspectratio]{\pdf}
 \caption{Energy bands of a conductor, where valence and conduction bands overlap (left), of a semiconductor, where a photon with $h\nu \ge E_G$ can promote an electron across the gap (centre), and of an insulator, with a large band gap (right).}
@@ -3004,7 +3005,6 @@ To reduce the losses from recombination, a photodiode is designed so that the in
 
 A depletion region forms at the junction between two semiconductor regions, one rich in mobile electrons and the other rich in mobile holes. We obtain them by \textbf{doping}, i.e.\ by including in the crystal elements with an excess of negative (n-doping) or positive (p-doping) charges (Figure~\ref{fig:doping}). In the common case of silicon, if we implant boron atoms in one part of the crystal we obtain a \textbf{p-type} material: an electron is missing in one of the bonds with the surrounding silicon atoms, i.e.\ there is a hole of positive charge. If we implant antimony (Sb) atoms in another part we obtain an \textbf{n-type} material, with an additional electron that cannot take part in any bond and carries a negative charge.
 
-\clearpage
 \begin{figure}[h]
 \centering
 \includegraphics[page=73, width=0.75\linewidth, keepaspectratio]{\pdf}
@@ -3054,7 +3054,6 @@ A first evolution of the p--n junction is the \textbf{PIN photodiode}, which has
 
 An \textbf{avalanche photodiode} (APD) adds another region. Like a PIN photodiode, it can have a wide absorption region, intrinsic or lightly doped, but it also has a \textbf{multiplication region} (the avalanche area), where a strong electric field, obtained thanks to a strong reverse bias, accelerates the charge carriers enough to create additional electron--hole pairs by \textbf{impact ionisation}. This brings us back to the photomultiplier: the carriers create an avalanche that multiplies the photocurrent, so the signal is amplified locally, inside the detector and in a very small footprint. The layers must be properly designed to obtain this region, and a fairly strong reverse bias is required, although not as strong as the voltage of a PMT. APDs are more sensitive to weak light and have a higher gain, but they require a higher bias and introduce additional noise.
 
-\clearpage
 \begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.5\linewidth}
@@ -3226,7 +3225,7 @@ These are population quantities, which we would obtain with infinitely many fram
 \end{equation}
 i.e.\ divide by $N - 1$ instead of $N$. The larger the number of frames we average, the better: if we compute the offset variance on an increasing number of frames, it eventually reaches a plateau, because we are approaching the population value (Figure~\ref{fig:offset_variance_frames}).
 
-\begin{figure}[!htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[page=89, width=0.6\linewidth, keepaspectratio]{\pdf}
 \caption{Offset variance as a function of the number of averaged frames: the estimate stabilises as the number of frames grows.}
@@ -3297,7 +3296,6 @@ with the FWC in electrons and the conversion gain $g$ in $\text{ADU}/e^-$. Final
 \end{equation}
 For our camera, with a 16-bit ADC, a mean conversion gain of $2.17\text{ ADU}/e^-$ and a read noise of about $1\,e^-$ RMS, the estimated full-well capacity is about $30\,200\,e^-$, and the specifications declare a dynamic range of $33\,000{:}1$, which corresponds to the maximum value divided by the minimum gain, $65\,536/2 \approx 33\,000$ (Figure~\ref{fig:gain_histogram}).
 
-\clearpage
 \begin{figure}[h]
 \centering
 \includegraphics[page=92, width=\linewidth, keepaspectratio]{\pdf}
