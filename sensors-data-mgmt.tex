@@ -65,7 +65,7 @@ A typical indirect measurement in biology is the concentration of free calcium, 
 \label{fig:calcium_measurement}
 \end{figure}
 
-In this chain the measurand is $[\text{Ca}^{2+}]$ inside the neuron, the signal is the fluorescence intensity (or a ratio of intensities), the measurement is the sequence indicator $\to$ fluorescence $\to$ microscope and detector, and the result is the estimated concentration. Calcium is never ``seen'': it is reconstructed from fluorescence and calibration.
+In this chain the measurand is $[\text{Ca}^{2+}]$ inside the neuron, the signal is the fluorescence intensity (or a ratio of intensities), the measurement is the sequence indicator $\to$ fluorescence $\to$ microscope and detector, and the result is the estimated concentration, which we reconstruct from fluorescence and calibration without ever ``seeing'' the calcium.
 
 \subsection*{What makes a measurement reliable}
 
@@ -74,7 +74,7 @@ To quantify a physical quantity properly we need three ingredients. First, a sha
 \section{Metrology and Measurement Standards}
 \label{sec:standards}
 
-Metrology establishes this common language of units and standards, gives us a degree of confidence in our results and connects measurements to standards, so that they can be reproduced and compared. A measurement is a \emph{comparison with an agreed reference}, and metrology is not just about ``using an instrument'': it is the framework that makes measurements meaningful.
+Metrology establishes this common language of units and standards, gives us a degree of confidence in our results and connects measurements to standards, so that they can be reproduced and compared. A measurement is a \emph{comparison with an agreed reference}, and metrology is the framework that gives this comparison a meaning, well beyond the use of an instrument.
 
 A \textbf{measurement standard} is a reference that allows us to define, reproduce or compare the value of a physical quantity. Standards are organised in levels. \textbf{International standards} provide the global reference framework (units and procedures) that makes measurements performed in different countries comparable. \textbf{National standards} are realised and preserved by the national metrology institutes within each country. \textbf{Working standards} are those used routinely in laboratories, hospitals, industry and research facilities to calibrate everyday instruments. The exact hierarchy depends on the quantity, but the principle is always the comparison with a recognised reference.
 
@@ -420,9 +420,9 @@ The charge is obtained by balancing the forces acting on a single droplet and ob
 q = \frac{F_e}{E}, \qquad E = \frac{V}{d}.
 \label{eq:millikan_balance}
 \end{equation}
-The key result is that different droplets carry different charges, but the values always cluster at integer multiples of one elementary charge, $q = ne$ with $n = 1, 2, 3, \dots$ (Figures~\ref{fig:millikan_discrete} and~\ref{fig:millikan_clusters}). Charge is not arbitrary: it comes in packets, and the size of the packet is the elementary charge, which is directly connected to the definition of the ampere.
+The key result is that different droplets carry different charges, but the values always cluster at integer multiples of one elementary charge, $q = ne$ with $n = 1, 2, 3, \dots$ (Figures~\ref{fig:millikan_discrete} and~\ref{fig:millikan_clusters}). Charge comes in packets, and the size of the packet is the elementary charge, which is directly connected to the definition of the ampere.
 
-This famous measurement also teaches two lessons about how to report data. The first concerns \emph{precision}: a highly precise experiment can still contain a systematic error. Millikan's value of $e$ was slightly displaced from the modern one, despite the precision he reported, mainly because the value he used for the viscosity of air was inaccurate; once the viscosity was corrected, his observations became consistent with later determinations. The final result depends not only on the measured quantities but also on the external constants used in the analysis. The second lesson concerns \emph{data rejection}. The 1913 paper presented 58 oil drops as the data set used to determine $e$, but the laboratory notebooks show that more drops were observed and some runs were not included, possibly because the droplets were too large or too small, the observations incomplete, or the Brownian motion too strong. The controversy is not simply that some data were rejected: rejecting data can be scientifically legitimate, but the criteria must be clear, justified, defined before the analysis and reported transparently.
+This famous measurement also teaches two lessons about how to report data. The first concerns \emph{precision}: a highly precise experiment can still contain a systematic error. Millikan's value of $e$ was slightly displaced from the modern one, despite the precision he reported, mainly because the value he used for the viscosity of air was inaccurate; once the viscosity was corrected, his observations became consistent with later determinations. The final result depends not only on the measured quantities but also on the external constants used in the analysis. The second lesson concerns \emph{data rejection}. The 1913 paper presented 58 oil drops as the data set used to determine $e$, but the laboratory notebooks show that more drops were observed and some runs were not included, possibly because the droplets were too large or too small, the observations incomplete, or the Brownian motion too strong. Rejecting data can be scientifically legitimate, so the controversy is about the criteria: they must be clear, justified, defined before the analysis and reported transparently.
 
 \subsection{The mole}
 
@@ -617,12 +617,12 @@ When a unit is raised to a power, the conversion factor must be raised to the sa
 \end{equation}
 
 % =============================================================================
-% CHAPTER 2: MEASUREMENTS, DATASETS AND DATA REPRESENTATION
+% CHAPTER 2: MEASUREMENTS AND DATA REPRESENTATION
 % =============================================================================
-\chapter{Measurements, Datasets and Data Representation}
+\chapter{Measurements and Data Representation}
 \label{ch:data_representation}
 
-Suppose we have performed many measurements. How should we organise them into a dataset? How should we represent the data so that the relevant information is clear and interpretable? And how should we report and share the results? This chapter deals with these questions, moving from the single measurement of Chapter~\ref{ch:metrology} to datasets, plots and the basic quantities used to describe their variability.
+Suppose we have performed many measurements. How should we organise them into a dataset? How should we represent the data so that the relevant information is clear and interpretable? And how should we report and share the results? This chapter moves from the single measurement of Chapter~\ref{ch:metrology} to datasets and plots, and then to the mathematical functions we use to describe a dataset compactly: exponentials and logarithms, derivatives, curvature, and the risk of choosing a model that is too complex.
 
 \section{From Measurements to Datasets}
 \label{sec:datasets}
@@ -643,7 +643,7 @@ This last kind of information is called \textbf{metadata}, and it is part of the
 \section{Representing Data}
 \label{sec:representation}
 
-The way a dataset is represented determines which patterns, differences and uncertainties become visible, and therefore influences the interpretation. A plot is not decoration: it is part of the result and of the argument. A good representation must make the information \textbf{clear}, \textbf{honest}, \textbf{reproducible} and \textbf{interpretable}.
+The way a dataset is represented determines which patterns, differences and uncertainties become visible, and therefore influences the interpretation. A plot is part of the result and of the argument. A good representation must make the information \textbf{clear}, \textbf{honest}, \textbf{reproducible} and \textbf{interpretable}.
 
 Before choosing a plot we should always ask: what is the main purpose of the figure? Do I want to compare groups, show a distribution, reveal a trend or a relationship, or display images? Different scientific questions require different representations of the same data, as summarised in Table~\ref{tab:graphical_paradigms}.
 
@@ -766,7 +766,10 @@ A word of caution about \textbf{bar charts}, which present categorical data as r
 
 In general, a good plot should let the reader see the data with their units, the related errors, the statistical comparison, the groups or conditions, and the tendency and variability. ``See'' here means that this information must be accessible and clear. In particular, the reader should understand the structure of the dataset (groups, replicates): the number of independent observations, of technical measurements and of biological replicates, and what was used as $n$ in the statistical test. We should also ask ourselves what details the initial plot is hiding: are there outliers? Is there another type of plot that would show information we did not consider?
 
-\section{Error Bars: Standard Deviation and Standard Error}
+\section{Error Bars, Replicates and Group Comparisons}
+\label{sec:error_bars_replicates}
+
+\subsection{What error bars mean}
 \label{sec:sd_sem}
 
 Error bars appear in almost every plot, but they can mean different things. \textbf{Descriptive} error bars show the variation in the observed data, for example the standard deviation or the interquartile range. \textbf{Inferential} error bars show the uncertainty of an estimate, for example the standard error of the mean or a confidence interval. Here we only give a qualitative description; the quantitative treatment will come in Chapter~\ref{ch:errors}.
@@ -790,7 +793,7 @@ The \textbf{standard error of the mean} is instead
 \end{equation}
 The two quantities answer different questions. The SD describes the spread of the individual observations around their mean, and it does not shrink simply because $n$ increases. The SEM describes the precision of the estimated mean, and it shrinks as the sample size grows. So we use the SD when the goal is to describe the variability among observations, and the SEM (or a confidence interval) when the goal is the uncertainty of the mean. In any case, the type of error bar must always be stated.
 
-\section{Experimental Units and Replicates}
+\subsection{Experimental units and replicates}
 \label{sec:replicates}
 
 Biological data are often hierarchical, and to report $n$ correctly we need a precise vocabulary. A \textbf{measurement} is one recorded value, for example the fluorescence intensity of cell 1 at $10\text{ min}$. The \textbf{experimental unit} is the smallest unit that independently receives a treatment or condition, for example one independently treated well or dish containing the cells. An \textbf{independent observation} is a measurement coming from an experimental unit that is independent of the others, such as the mean fluorescence of one independently treated well.
@@ -799,7 +802,7 @@ Repetitions come in different flavours. A \textbf{biological replicate} is an in
 
 Confusing these levels leads to \textbf{pseudoreplication}: treating non-independent measurements as if they were independent replicates. The classic example is measuring 30 cells from a single treated well and treating them as $n = 30$ independent replicates of the treatment. For hierarchical biological data we should show both the cell-level variability and the biological replicates.
 
-\section{Comparing Two Groups: a First Look at the \texorpdfstring{$t$}{t}-Test}
+\subsection{Comparing two groups: a first look at the \texorpdfstring{$t$}{t}-test}
 \label{sec:welch_anticipation}
 
 Often we want to know whether two groups, say control and treated cells at $10\text{ min}$, really differ. More precisely: are the mean values of two independent groups different enough that the difference is unlikely to be explained by random sampling variability alone? Welch's $t$-test answers this question. Its \textbf{null hypothesis} is that the two means are equal,
@@ -814,27 +817,12 @@ and it computes a $t$ statistic
 \end{equation}
 Intuitively, a small $t$ means that the group means are close compared with the variability, and a large $t$ that they are far apart compared with the variability. If the test gives $p < 0.05$, we usually say that the data provide evidence against $H_0$, i.e.\ that the group means are statistically different. This is only an anticipation: hypothesis tests will be treated properly in Chapter~\ref{ch:errors}. How to run the test in Excel and MATLAB is shown in Appendix~\ref{ex:data_representation}.
 
-\section{Reporting a Measurement Result}
-\label{sec:reporting_result}
-
-The result of a series of measurements is the take-home message of the whole procedure. It may be a mean value with its unit and uncertainty, a percentage, or even a simple yes/no outcome. What matters is that it is clearly defined and accompanied by the information needed to interpret it: the measurement conditions, the unit and an estimate of the uncertainty. Take the thickness of a metal bar reported as
-\begin{equation*}
-D = (2.50 \pm 0.03)\text{ mm}.
-\end{equation*}
-Here $2.50$ is the numerical value, $0.03$ the estimated uncertainty and mm the unit, but the result must be read together with the measurement information: it is the mean of 100 repeated measurements on the same sample under the same conditions, taken with a caliper of resolution $0.01\text{ mm}$ at room temperature.
-
-To sum up, when we prepare a figure we should check a few points. What is its main purpose: comparing categories, showing distributions, showing images? What is the structure of the dataset, and are the axis labels, legend and title clear? What information should the reader see, and what does the plot hide? Which mathematical tools could help us show what is happening or extract parameters (the subject of the next chapter)? And does the final result have a clear value, unit and uncertainty, with a description of the underlying criteria? A figure is part of the scientific argument: we should show individual data whenever possible, especially for small $n$, because bar and line graphs can hide the distribution, the outliers and the pairing; every plot needs units, $n$ and the meaning of the error bars.
-
-% =============================================================================
-% CHAPTER 3: MATHEMATICAL FUNCTIONS AND MODEL APPROXIMATION
-% =============================================================================
-\chapter{Mathematical Functions and Model Approximation}
-\label{ch:functions}
-
-Are we using the right mathematical representation for our data? Mathematical tools can reveal trends, rates of change, accumulated effects and periodic behaviour that may be hidden in the raw data. Showing the derivative can highlight the rate of change, showing the integral helps quantify a total amount, identifying a periodic function helps quantify correlated phenomena, and choosing a logarithmic or exponential scale can reveal a hidden trend. We transform data to make patterns visible, extract useful parameters, compare datasets, correlate variables and predict how a physical quantity behaves. Two warnings, though: every transformation must be stated in the caption or in the methods, and a transformed scale changes how differences are perceived.
-
-\section{Why Approximate a Dataset}
+\section{Approximating Data with Functions}
 \label{sec:why_approximate}
+
+Are we using the right mathematical representation for our data? Mathematical tools can reveal trends, rates of change, accumulated effects and periodic behaviour that may be hidden in the raw data. The derivative highlights the rate of change, the integral quantifies a total amount, a periodic function helps quantify correlated phenomena, and a logarithmic or exponential scale can reveal a hidden trend. We transform data to make patterns visible, extract useful parameters, compare datasets, correlate variables and predict how a physical quantity behaves. Two warnings, though: every transformation must be stated in the caption or in the methods, and a transformed scale changes how differences are perceived.
+
+\subsection{Why approximate a dataset}
 
 A measurement dataset often consists of discrete pairs of values, for example an input $x$ and a measured response $y$. To extract useful information it is convenient to describe these observations with a compact mathematical relation, a function whose parameters summarise the behaviour of the data:
 \begin{equation}
@@ -850,7 +838,7 @@ This brings two advantages. First, the parameters $\theta_i$ characterise the re
 \label{fig:functional_approximation_concept}
 \end{figure}
 
-\section{Common Functional Forms}
+\subsection{Common functional forms}
 \label{sec:functional_forms}
 
 When a dataset shows an approximately linear trend, the simplest approximation is the straight line
@@ -880,8 +868,6 @@ Power & $y = A + B x^k$ & $x = \left(\dfrac{y - A}{B}\right)^{1/k}$ & $A$: offse
 \bottomrule
 \end{tabular*}
 \end{table}
-
-\subsection{Polynomial approximation}
 
 Sometimes a single logarithmic, exponential or power law does not reproduce the data well enough. A flexible alternative is a polynomial. Any sufficiently smooth function can be represented locally by a power series, the \textbf{Taylor expansion} around a reference point $x_0$:
 \begin{equation}
@@ -1225,8 +1211,19 @@ Increasing the complexity generally reduces the fitting error. Beyond a certain 
 
 In practice the check works as follows. We use part of the observations (for instance 50 training points) to fit the model and compute the fitting error. Then we randomly select a subset (say 20 observations) from the held-out measurements and compute the validation error; we shuffle the held-out dataset and repeat with different random subsets. Finally, we compare the average validation errors of models with different numbers of free parameters to identify an appropriate complexity and avoid overfitting. A good model should not only fit the training data, but also give consistently accurate predictions across different validation subsets.
 
+\section{Reporting the Result and Checking the Figures}
+\label{sec:reporting_result}
+
+The result of a series of measurements is the take-home message of the whole procedure. It may be a mean value with its unit and uncertainty, a percentage, or even a simple yes/no outcome. What matters is that it is clearly defined and accompanied by the information needed to interpret it: the measurement conditions, the unit and an estimate of the uncertainty. Take the thickness of a metal bar reported as
+\begin{equation*}
+D = (2.50 \pm 0.03)\text{ mm}.
+\end{equation*}
+Here $2.50$ is the numerical value, $0.03$ the estimated uncertainty and mm the unit, but the result must be read together with the measurement information: it is the mean of 100 repeated measurements on the same sample under the same conditions, taken with a caliper of resolution $0.01\text{ mm}$ at room temperature.
+
+To sum up, when we prepare a figure we should check a few points. What is its main purpose: comparing categories, showing distributions, showing images? What is the structure of the dataset, and are the axis labels, legend and title clear? What information should the reader see, and what does the plot hide? Which mathematical tools could help us show what is happening or extract parameters, as discussed in Sections~\ref{sec:why_approximate}--\ref{sec:overfitting}? And does the final result have a clear value, unit and uncertainty, with a description of the underlying criteria? A figure is part of the scientific argument: we should show individual data whenever possible, especially for small $n$, because bar and line graphs can hide the distribution, the outliers and the pairing; every plot needs units, $n$ and the meaning of the error bars.
+
 % =============================================================================
-% CHAPTER 4: SENSORS AND MEASUREMENT SYSTEMS
+% CHAPTER 3: SENSORS AND MEASUREMENT SYSTEMS
 % =============================================================================
 \chapter{Sensors and Measurement Systems}
 \label{ch:sensors}
@@ -1249,17 +1246,13 @@ A \textbf{transducer} is a device that establishes a specified relation between 
 
 There is no unique definition of a sensor. The VIM (International Vocabulary of Metrology) defines it as the element of a measuring system that is directly affected by the phenomenon, body or substance carrying the quantity being measured. More generally, a sensor is the input element of a measurement system: it interacts with the QUM and converts its changes (the information about it) into a signal that can be processed further, typically an electrical signal. Different input quantities mean different stimuli, and therefore different types of sensors. The sensor is often only the first element of a much larger instrument.
 
-\subsection*{Active and passive sensors}
+These three concepts overlap without coinciding. A measurement instrument receives information related to a physical quantity and provides an output that can be interpreted as a measurement result; it may or may not contain a transducer. Sensors are a subset of transducers, those specifically used to detect or measure a physical quantity. Not all transducers are sensors: an incandescent lamp or a laser converts electrical energy into light, so it is a transducer but not a sensor, whereas a photodetector converts incident light into an electrical signal and is both a transducer and a sensor. Transducers can therefore be used both inside and outside measurement chains. When a transducer is part of an instrument, it converts the input quantity into another physical quantity or signal, often electrical, which can then be amplified, conditioned, digitised, processed, and displayed or stored: a transducer converts information.
+
+\subsection{Classifying sensors}
 
 Sensors can be classified according to whether they need an external excitation. A \textbf{passive} (self-generating) sensor produces an electrical output by drawing energy from the QUM itself, with no external excitation. The thermocouple is the classic example: a temperature difference between its two junctions generates a voltage, thanks to the presence of two different conductors, without any external source ($\Delta T \to V_{\text{thermocouple}}$). An \textbf{active} sensor, instead, requires an external excitation. A thermoresistance (RTD) changes its electrical resistance with temperature, but to measure that resistance we need, for instance, an excitation current $I_{\text{exc}}$: $T \to R(T)$, followed by $I_{\text{exc}} \times R(T) \to V_{\text{meas}}$. Note that in remote sensing the words have a different meaning: ``active'' means that the system emits a probing signal, ``passive'' that it only receives radiation or signals.
 
-\subsection*{Absolute and relative measurements}
-
-An \textbf{absolute} measurement uses a defined physical reference or datum: in a thermistor, the resistance is directly related to the thermodynamic temperature of the sensor. A \textbf{relative} measurement determines a difference with respect to another value or reference state: in a thermocouple the voltage depends on the temperature gradient across the sensor, so we get no absolute information on the temperature, only on its difference. Absolute does not mean error-free or perfectly accurate; it only describes the reference convention. An absolute-pressure sensor still needs calibration and has uncertainty, drift, and so on.
-
-\subsection*{Transducers, sensors and instruments}
-
-These three concepts overlap without coinciding. A measurement instrument receives information related to a physical quantity and provides an output that can be interpreted as a measurement result; it may or may not contain a transducer. Sensors are a subset of transducers, those specifically used to detect or measure a physical quantity. Not all transducers are sensors: an incandescent lamp or a laser converts electrical energy into light, so it is a transducer but not a sensor, whereas a photodetector converts incident light into an electrical signal and is both a transducer and a sensor. Transducers can therefore be used both inside and outside measurement chains. When a transducer is part of an instrument, it converts the input quantity into another physical quantity or signal, often electrical, which can then be amplified, conditioned, digitised, processed, and displayed or stored: a transducer converts information.
+Sensors also differ in the reference they use. An \textbf{absolute} measurement uses a defined physical reference or datum: in a thermistor, the resistance is directly related to the thermodynamic temperature of the sensor. A \textbf{relative} measurement determines a difference with respect to another value or reference state: in a thermocouple the voltage depends on the temperature gradient across the sensor, so we get no absolute information on the temperature, only on its difference. Absolute does not mean error-free or perfectly accurate; it only describes the reference convention. An absolute-pressure sensor still needs calibration and has uncertainty, drift, and so on.
 
 \subsection{Measurement systems and measurement chains}
 
@@ -1344,8 +1337,6 @@ Calibration still leaves room for calibration errors, which may be reported by t
 
 \section{Dynamic Response of Linear and Time-Invariant Sensors}
 \label{sec:lti}
-
-\subsection{Linearity and time invariance}
 
 All sensors need some time to respond to a stimulus. What happens if the input changes rapidly, and what does ``rapidly'' mean? A real sensor does not respond instantaneously: its output is delayed by its finite response time. To describe this dynamic behaviour we must consider both the input $x(t)$ and the output $y(t)$ as functions of time, and unlike the ideal response, the dynamic response depends on how fast the input varies.
 
@@ -1455,7 +1446,7 @@ The impulse response and the transfer function are two equivalent descriptions o
 \label{eq:laplace_pair_exp}
 \end{equation}
 
-\subsection{A first-order example: the RC filter}
+\subsection{A first-order example: the RC filter and the reconstruction of the input}
 \label{sec:rc_filter}
 
 \begin{figure}[h]
@@ -1485,8 +1476,6 @@ We decompose the fraction into two simpler terms, $\frac{1}{s(1 + \tau s)} = \fr
 \label{eq:first_order_step_response}
 \end{equation}
 The inverse Laplace transform allows us to predict the time response of the sensor to a known stimulus (Figure~\ref{fig:first_order_transient_responses}). Note that the shape of a transient response alone does not identify the device (low-pass or high-pass filter): the response depends both on the input waveform and on the transfer function.
-
-\subsection{Reconstructing the input}
 
 Often we have the opposite problem: we know the output and want to reconstruct the unknown input. If the transfer function is known we can invert it, $X(s) = Y(s)/H(s)$. For a first-order sensor with $H(s) = A/(1 + \tau s)$ this gives $X(s) = \frac{1 + \tau s}{A}Y(s)$, and in the time domain, with the appropriate initial conditions,
 \begin{equation}
@@ -1527,12 +1516,6 @@ Can we determine the applied force from the measured displacement? At static equ
 F = 0.10 \times 0.50 + 1.0 \times 0.020 + 100 \times 0.002 = 0.27\text{ N},
 \end{equation*}
 whereas the static, zero-order approximation would give $F_{\text{static}} = kx = 0.20\text{ N}$, underestimating the force by $0.07\text{ N}$. (The static estimate does not always underestimate the force: it depends on the signs of velocity and acceleration.)
-
-\subsection{How the frequency response shapes the output}
-
-A time-varying signal can be decomposed into frequency components. When a sensor has a limited frequency response, different components are attenuated and phase-shifted by different amounts, so the output may not reproduce the input waveform faithfully. Consider a sudden step in the stimulus. An \emph{ideal} response follows the input instantaneously. A \emph{low-pass} response attenuates the high frequencies and produces a gradual rise. A \emph{high-pass} response attenuates the low frequencies: the output responds to the change but then returns towards zero. A \emph{band-pass} response attenuates both, giving a transient that eventually returns towards zero.
-
-Many sensors are the rate-limiting element of a measurement system. A sudden change in the QUM may require a settling time before a stable reading is obtained, and if the instrument is read too early the deviation is not a calibration error in the static sense: it is a \emph{dynamic measurement error}, caused by the finite response of the system. The transfer function describes how the sensor responds to time-varying inputs, and accounting for this behaviour is essential to reconstruct rapidly changing stimuli.
 
 \section{Frequency Response and Time Constant}
 \label{sec:frequency_response}
@@ -1584,6 +1567,13 @@ and the time constant $\tau$ characterises how quickly the sensor approaches its
 \label{eq:cutoff_tau}
 \end{equation}
 A smaller time constant therefore means a higher cut-off frequency and a faster sensor.
+
+\subsection{How the frequency response shapes the output}
+\label{sec:dynamic_error}
+
+A time-varying signal can be decomposed into frequency components. When a sensor has a limited frequency response, different components are attenuated and phase-shifted by different amounts, so the output may not reproduce the input waveform faithfully. Consider a sudden step in the stimulus. An \emph{ideal} response follows the input instantaneously. A \emph{low-pass} response attenuates the high frequencies and produces a gradual rise. A \emph{high-pass} response attenuates the low frequencies: the output responds to the change but then returns towards zero. A \emph{band-pass} response attenuates both, giving a transient that eventually returns towards zero.
+
+Many sensors are the rate-limiting element of a measurement system. A sudden change in the QUM may require a settling time before a stable reading is obtained, and if the instrument is read too early we get a \emph{dynamic measurement error}, caused by the finite response of the system, which has nothing to do with a static calibration error. The transfer function describes how the sensor responds to time-varying inputs, and accounting for this behaviour is essential to reconstruct rapidly changing stimuli.
 
 \section{Sensor Characteristics and Specifications}
 \label{sec:sensor_characteristics}
@@ -1642,7 +1632,8 @@ The actual resolution may be worse, because of noise and other limitations. Sens
 
 For example, a temperature sensor with $S = 10\text{ mV}/^\circ\text{C}$ read with $\Delta y_{\text{LSB}} = 1\text{ mV}$ has $\Delta x_{\text{LSB}} = 1\text{ mV}/(10\text{ mV}/^\circ\text{C}) = 0.1\;^\circ\text{C}$: a temperature change of $0.1\;^\circ\text{C}$ produces an output change of one digital step. This is the nominal input-equivalent quantisation step, not necessarily the actual resolution, since noise may make the smallest reliably distinguishable change larger.
 
-\subsection*{Resolution and measurement uncertainty}
+\subsection{Resolution and measurement uncertainty}
+\label{sec:resolution_uncertainty}
 
 How does a finite resolution contribute to the uncertainty? A digital sensor reports values in discrete steps, so even without noise the displayed value may differ slightly from the value before quantisation. If the instrument rounds to the nearest step, the quantisation error $e_q$ is bounded by half the resolution,
 \begin{equation}
@@ -1698,7 +1689,7 @@ The response of a sensor can also depend on the direction from which the input i
 The last characteristic in the list, \textbf{noise}, is postponed to the part of the course on imaging and positioning sensors, where we discuss it for CMOS cameras (Section~\ref{sec:cmos_characterization}).
 
 % =============================================================================
-% CHAPTER 5: MEASUREMENT ERRORS, UNCERTAINTY AND STATISTICS
+% CHAPTER 4: MEASUREMENT ERRORS, UNCERTAINTY AND STATISTICS
 % =============================================================================
 \chapter{Measurement Errors, Uncertainty and Statistics}
 \label{ch:errors}
@@ -1729,15 +1720,7 @@ The two axes are affected by different types of error. The top-left case of Figu
 
 \subsection{Where do systematic errors come from?}
 
-Systematic errors can arise from many sources, and we should absolutely try to avoid them. A non-exhaustive list includes:
-\begin{enumerate}
-    \item \textbf{instrument imperfections or calibration errors}, e.g.\ an incorrect zero offset, a defective or non-uniform scale, ageing of the instrument;
-    \item \textbf{incorrect operating conditions}, e.g.\ using at $30\;^\circ\text{C}$ an instrument that should work at $10\;^\circ\text{C}$, a temperature different from the calibration one;
-    \item \textbf{observer bias}, e.g.\ consistently incorrect scale readings or parallax errors, when we do not look perpendicularly at the scale;
-    \item \textbf{external disturbances}, which may be static, like temperature variations, or dynamic, like mechanical vibrations: if we are acquiring images with nanometric precision next to a passing underground train, we had better wait for the train to pass;
-    \item \textbf{interaction between the instrument and the measured system}, e.g.\ measuring a thickness while pressing too hard with the instrument, which deforms the object and gives a shorter value;
-    \item \textbf{incorrect or approximate mathematical models}, e.g.\ neglecting relevant physical effects in an indirect measurement, or approximating the sensor response with the wrong function.
-\end{enumerate}
+Systematic errors can arise from many sources, and we should absolutely try to avoid them. The first are \textbf{instrument imperfections or calibration errors}: an incorrect zero offset, a defective or non-uniform scale, the ageing of the instrument. Then come \textbf{incorrect operating conditions}, such as using at $30\;^\circ\text{C}$ an instrument that should work at $10\;^\circ\text{C}$, or at a temperature different from the calibration one, and \textbf{observer bias}, such as consistently incorrect scale readings or parallax errors, when we do not look perpendicularly at the scale. \textbf{External disturbances} may be static, like temperature variations, or dynamic, like mechanical vibrations: if we are acquiring images with nanometric precision next to a passing underground train, we had better wait for the train to pass. The \textbf{interaction between the instrument and the measured system} matters too: measuring a thickness while pressing too hard with the instrument deforms the object and gives a shorter value. Finally, we may use \textbf{incorrect or approximate mathematical models}, neglecting relevant physical effects in an indirect measurement or approximating the sensor response with the wrong function.
 Most of the time these problems are not completely decoupled from random errors. Many sources of systematic error can also produce random errors, when their effect varies unpredictably between repeated measurements: mechanical play and friction in the instrument, variable operating conditions (uncontrolled fluctuations of temperature or pressure), observer variability (such as the reaction time when operating a stopwatch), fluctuating external disturbances, variations in the interaction between instrument and object (such as changes in contact force), and intrinsic physical fluctuations (thermal motion, molecular fluctuations, the statistical nature of quantities such as temperature and pressure). The same physical cause may introduce both a systematic component (a reproducible bias) and a random component (unpredictable fluctuations).
 
 \subsection{Systematic versus random errors}
@@ -1753,12 +1736,18 @@ A \textbf{systematic error} produces a consistent deviation of the measured valu
 \label{fig:error_morphologies_and_random}
 \end{figure}
 
-\section{Reporting a Measurement Result}
+\section{Best Estimate, Uncertainty and Significant Figures}
 \label{sec:reporting}
 
 The aim of measuring a physical quantity is to determine both the \textbf{best estimate} of the QUM (its numerical value relative to a chosen unit) and the \textbf{uncertainty} associated with that value. The \textbf{measurement uncertainty} is a non-negative parameter characterising the dispersion of the values, around the true value of the QUM, that can reasonably be attributed to the measured quantity. It expresses how well we know our estimate. Every measurement is affected by uncertainty, which reflects our limited knowledge of the value of the quantity.
 
-\subsection{Significant figures}
+\subsection{Error versus uncertainty}
+
+Uncertainty must not be confused with error. The \textbf{error} is the difference between the measured value and a reference value: it tells us how far the measurement is from the reference, it can be positive or negative, and we can know it only if a suitable reference is available. The \textbf{uncertainty} is a parameter characterising the dispersion of the values reasonably attributable to the measured quantity: it tells us how well we know the value, it is always non-negative, and it can be evaluated from the experimental data and other available information. Errors can sometimes be identified and corrected, but a measurement result always retains some uncertainty.
+
+For example, suppose a calibrated reference has a value of $10.0\text{ mm}$ while an instrument reads $10.2\text{ mm}$. Relative to that reference the error is $e = 10.2 - 10.0 = +0.2\text{ mm}$. Separately, an uncertainty evaluation might give $x = (10.2 \pm 0.1)\text{ mm}$, where $0.1\text{ mm}$ is an illustrative expanded uncertainty (assuming its coverage factor and probability are specified). It is not the measurement error, and it does not guarantee that the true value lies inside the stated interval: the reference comparison reveals an error of $0.2\text{ mm}$, the uncertainty describes the remaining doubt about the result.
+
+\subsection{Significant figures and rounding}
 
 It is meaningless to report a result with more precision or resolution than the measurement process can achieve. \textbf{Significant figures} are the digits retained in a reported value to express it at a level of precision consistent with the available information, and it is the uncertainty that determines which digits are meaningful. In $R = (2.50 \pm 0.03)\text{ mm}$, for example, the final zero is significant: it says that the result is reported to the nearest $0.01\text{ mm}$. A few general rules follow.
 
@@ -1767,8 +1756,6 @@ First, the \textbf{uncertainty} is reported with one or two significant digits. 
 Second, the \textbf{value} is rounded to the same decimal position as its uncertainty. For example, $L = (10.2 \pm 0.05)\text{ m}$ is wrong and should be $L = (10.20 \pm 0.05)\text{ m}$; $T = (25.347 \pm 0.2)\;^\circ\text{C}$ should be $T = (25.3 \pm 0.2)\;^\circ\text{C}$; $V = (3.5 \pm 0.012)\text{ V}$ should be $V = (3.500 \pm 0.012)\text{ V}$; $t = (1.2345 \pm 0.03)\text{ s}$ should be $t = (1.23 \pm 0.03)\text{ s}$.
 
 Third, we use consistent units and scientific notation when appropriate: $d = (0.00345 \pm 0.00012)\text{ m} = (3.45 \pm 0.12)\text{ mm}$, $f = (1\,250\,000 \pm 30\,000)\text{ Hz} = (1.25 \pm 0.03)\text{ MHz}$, $L = (12\,300 \pm 200)\text{ m} = (1.23 \pm 0.02) \times 10^4\text{ m}$.
-
-\subsection{Rounding, not truncating}
 
 How do we eliminate the digits that are not justified by the uncertainty? There are two ways. \textbf{Truncation} discards all the digits beyond a selected decimal place without adjusting the last one; \textbf{rounding} replaces the number with the nearest value at the selected decimal place. If the calculated value is $x = 120.3070065\text{ m}$ with $\Delta x = 0.01\text{ m}$, truncation gives $x = (120.30 \pm 0.01)\text{ m}$, while correct rounding gives $x = (120.31 \pm 0.01)\text{ m}$. We should always round, because truncation can introduce a systematic rounding bias. Moreover, enough digits must be kept during the intermediate calculations, to avoid premature rounding: the result is rounded only at the end, after the final uncertainty has been evaluated.
 
@@ -1852,12 +1839,6 @@ The probability that a continuous random variable lies in an interval $[a, b]$ i
 \end{equation}
 and the integral of the PDF over the whole outcome space is one. A probability distribution thus quantifies how likely it is that the result falls in a given range, and it can be defined for continuous or discrete sets of outcomes. Is it more likely to have births in January or in May? If we measure the temperature of this room, are results colder than the average more likely than those hotter than the average? These are the kinds of question a distribution answers. In what follows we will learn how to define the best estimate and the dispersion of a random variable, first for discrete and then for continuous variables.
 
-\subsection{Error versus uncertainty}
-
-Before going on, let us make sure we do not confuse two words. The \textbf{error} is the difference between the measured value and a reference value: it tells us how far the measurement is from the reference, it can be positive or negative, and we can know it only if a suitable reference is available. The \textbf{uncertainty} is a parameter characterising the dispersion of the values reasonably attributable to the measured quantity: it tells us how well we know the value, it is always non-negative, and it can be evaluated from the experimental data and other available information. Errors can sometimes be identified and corrected, but a measurement result always retains some uncertainty.
-
-For example, suppose a calibrated reference has a value of $10.0\text{ mm}$ while an instrument reads $10.2\text{ mm}$. Relative to that reference the error is $e = 10.2 - 10.0 = +0.2\text{ mm}$. Separately, an uncertainty evaluation might give $x = (10.2 \pm 0.1)\text{ mm}$, where $0.1\text{ mm}$ is an illustrative expanded uncertainty (assuming its coverage factor and probability are specified). It is not the measurement error, and it does not guarantee that the true value lies inside the stated interval: the reference comparison reveals an error of $0.2\text{ mm}$, the uncertainty describes the remaining doubt about the result.
-
 \subsection{Deviations and least squares}
 
 When we measure a constant quantity, repeated measurements generally give slightly different values. The \textbf{true value} $x^*$ is the ideal, generally unknown value of the QUM that a perfect measurement under specified ideal conditions would give. The \textbf{deviation} of a measurement from it (or from a reference value),
@@ -1879,7 +1860,7 @@ The same idea of minimising squared differences is behind \textbf{least-squares 
 \end{equation}
 For a straight line, $y = \beta_0 + \beta_1x$, $\beta_0$ is the intercept and $\beta_1$ the slope. The best-fitting model minimises the overall squared differences between observations and predictions.
 
-\section{Best Estimate and Dispersion of a Discrete Variable}
+\section{Best Estimate and Dispersion of Repeated Measurements}
 \label{sec:best_estimate}
 
 \subsection{Measures of central tendency}
@@ -1893,8 +1874,6 @@ The \textbf{mode} is the value that occurs most frequently, the maximum of the f
 \end{equation}
 and it is the most commonly used measure of central tendency for repeated physical measurements.
 
-\subsection{The mean in terms of frequencies and the expectation value}
-
 Suppose some values in the sample are repeated: $x_1$ occurs $n_1$ times, $x_2$ occurs $n_2$ times, and so on, with $N = n_1 + n_2 + \dots$. Then $\bar{x} = (n_1x_1 + n_2x_2 + \dots)/N$. Calling $x_j$ ($j = 1, \dots, M$) the $M$ distinct values, $n_j$ their absolute frequencies and $f_j = n_j/N$ their relative frequencies, we can write
 \begin{equation}
 \bar{x} = \frac{1}{N}\sum_{i=1}^{N}x_i = \frac{1}{N}\sum_{j=1}^{M}n_jx_j = \sum_{j=1}^{M}\frac{n_j}{N}x_j \quad \Longrightarrow \quad \boxed{\bar{x} = \sum_{j=1}^{M}f_jx_j}
@@ -1906,49 +1885,6 @@ where the sum extends over all possible values of $x$ (values that were not obse
 \label{eq:expectation_discrete}
 \end{equation}
 $\mu$ is the \textbf{mathematical expectation} of the random variable $x$, the extension of the arithmetic mean from a finite sample to the entire population. If probability were defined empirically, it would be the statistical limit of the sample mean as the sample size grows; for this reason it is also called, somewhat less precisely, the \textbf{population mean}. For a population of finite size $P$ (usually $P = \infty$) it is $\mu = \frac{1}{P}\sum_{i=1}^{P}x_i$, while the sample mean of $N$ measurements randomly selected from it is $\bar{x} = \frac{1}{N}\sum_{i=1}^{N}x_i$.
-
-\subsection{Variance, standard deviation and standard error}
-\label{sec:variance_definitions}
-
-We now introduce the dispersion quantities, apply them to an exercise, and only afterwards derive where their expressions come from. The \textbf{variance} measures the average squared deviation of the values of a random variable from its expected value $\mathbb{E}(x) = \mu$, $\text{Var}(x) = \overline{(x - \mu)^2}$, and the \textbf{standard deviation} is its square root. For the population,
-\begin{equation}
-\boxed{\sigma^2 = \frac{1}{P}\sum_{i=1}^{P}(x_i - \mu)^2, \qquad \sigma = \sqrt{\sigma^2}}
-\label{eq:population_variance}
-\end{equation}
-The variance computed from a sample of $N$ measurements estimates the population variance, and the sample standard deviation $s$ (also called SD) measures the dispersion of the individual observations around their mean:
-\begin{equation}
-\boxed{s^2 = \frac{1}{N - 1}\sum_{i=1}^{N}(x_i - \bar{x})^2, \qquad s = \sqrt{s^2}}
-\label{eq:sample_variance}
-\end{equation}
-Finally, the \textbf{standard deviation of the mean}, or \textbf{standard error of the mean} (SEM), estimates the standard deviation of the sample mean across repeated samples of size $N$:
-\begin{equation}
-\boxed{\text{SEM} = \frac{s}{\sqrt{N}}}
-\label{eq:sem_definition}
-\end{equation}
-These are the same quantities met qualitatively in Section~\ref{sec:sd_sem}; we now see why they have this form.
-
-\subsection{Linear combinations of independent variables}
-\label{sec:linear_combination}
-
-Consider two independent random variables $x$ and $y$, with means $\mu_x$, $\mu_y$ and variances $\sigma_x^2$, $\sigma_y^2$, and define a new variable as their linear combination with constant coefficients,
-\begin{equation}
-z = ax + by.
-\end{equation}
-Its mean is the same linear combination of the individual means: from $\mu_z = \frac{1}{N}\sum_i z_i = \frac{1}{N}\sum_i(ax_i + by_i)$, separating the sums, $\mu_z = a\frac{1}{N}\sum_i x_i + b\frac{1}{N}\sum_i y_i$, i.e.
-\begin{equation}
-\boxed{\mu_z = a\mu_x + b\mu_y, \qquad \bar{z} = a\bar{x} + b\bar{y}}
-\label{eq:mean_linear_combination}
-\end{equation}
-Its variance is the average squared deviation from its mean:
-\begin{equation}
-\sigma_z^2 = \overline{(z - \mu_z)^2} = \overline{\big[a(x - \mu_x) + b(y - \mu_y)\big]^2} = a^2\sigma_x^2 + b^2\sigma_y^2 + 2ab\,\overline{(x - \mu_x)(y - \mu_y)}.
-\end{equation}
-For independent variables the average product of the deviations from their respective means is zero, so
-\begin{equation}
-\boxed{\sigma_z^2 = a^2\sigma_x^2 + b^2\sigma_y^2, \qquad s_z^2 = a^2s_x^2 + b^2s_y^2}
-\label{eq:variance_linear_combination}
-\end{equation}
-and in general, for $F = ax + by + cz + \dots$ with independent variables, $\sigma_F^2 = a^2\sigma_x^2 + b^2\sigma_y^2 + c^2\sigma_z^2 + \dots$. Variances add quadratically: the variance of a linear combination is the sum of the individual variances multiplied by the squares of their coefficients. This result is fundamental for the propagation of random uncertainties (Section~\ref{sec:indirect}). Two useful consequences are that adding a constant does not change the variance, $\text{Var}(x + c) = \text{Var}(x)$, while multiplying by a constant multiplies it by the square, $\text{Var}(cx) = c^2\,\text{Var}(x)$. Exercise~\ref{ex:background_correction} applies these rules to a background correction in fluorescence microscopy.
 
 \subsection{Why the mean?}
 
@@ -1980,7 +1916,7 @@ What happens, then, if we take many samples? Consider $M$ randomly selected samp
 \end{equation}
 approaches the population mean, $\bar{\bar{x}} \to \mu$ as $M \to \infty$, regardless of the fixed sample size $N \ge 1$, provided that the samples are selected randomly and without systematic sampling bias.
 
-\subsection{Measures of dispersion}
+\subsection{Measures of dispersion: variance, standard deviation and standard error}
 
 Central tendency gives us a representative value; \textbf{dispersion} describes how widely the measured values are spread around it, and it is closely related to the variability introduced by random errors. The simplest measure is the \textbf{half-range} (maximum semi-dispersion),
 \begin{equation}
@@ -2003,7 +1939,49 @@ where we used $\sum_i x_i = N\bar{x}$. Dividing by $N$,
 \end{equation}
 the variance is the mean of the squares minus the square of the mean.
 
-\subsection{Why averaging reduces the uncertainty}
+\label{sec:variance_definitions}
+
+Let us now fix the definitions we will use from here on. The \textbf{variance} measures the average squared deviation of the values of a random variable from its expected value $\mathbb{E}(x) = \mu$, $\text{Var}(x) = \overline{(x - \mu)^2}$, and the \textbf{standard deviation} is its square root. For the population,
+\begin{equation}
+\boxed{\sigma^2 = \frac{1}{P}\sum_{i=1}^{P}(x_i - \mu)^2, \qquad \sigma = \sqrt{\sigma^2}}
+\label{eq:population_variance}
+\end{equation}
+The variance computed from a sample of $N$ measurements estimates the population variance, and the sample standard deviation $s$ (also called SD) measures the dispersion of the individual observations around their mean:
+\begin{equation}
+\boxed{s^2 = \frac{1}{N - 1}\sum_{i=1}^{N}(x_i - \bar{x})^2, \qquad s = \sqrt{s^2}}
+\label{eq:sample_variance}
+\end{equation}
+Finally, the \textbf{standard deviation of the mean}, or \textbf{standard error of the mean} (SEM), estimates the standard deviation of the sample mean across repeated samples of size $N$:
+\begin{equation}
+\boxed{\text{SEM} = \frac{s}{\sqrt{N}}}
+\label{eq:sem_definition}
+\end{equation}
+These are the same quantities met qualitatively in Section~\ref{sec:sd_sem}; the rest of this section shows why they have this form.
+
+\subsection{Linear combinations of independent variables}
+\label{sec:linear_combination}
+
+Consider two independent random variables $x$ and $y$, with means $\mu_x$, $\mu_y$ and variances $\sigma_x^2$, $\sigma_y^2$, and define a new variable as their linear combination with constant coefficients,
+\begin{equation}
+z = ax + by.
+\end{equation}
+Its mean is the same linear combination of the individual means: from $\mu_z = \frac{1}{N}\sum_i z_i = \frac{1}{N}\sum_i(ax_i + by_i)$, separating the sums, $\mu_z = a\frac{1}{N}\sum_i x_i + b\frac{1}{N}\sum_i y_i$, i.e.
+\begin{equation}
+\boxed{\mu_z = a\mu_x + b\mu_y, \qquad \bar{z} = a\bar{x} + b\bar{y}}
+\label{eq:mean_linear_combination}
+\end{equation}
+Its variance is the average squared deviation from its mean:
+\begin{equation}
+\sigma_z^2 = \overline{(z - \mu_z)^2} = \overline{\big[a(x - \mu_x) + b(y - \mu_y)\big]^2} = a^2\sigma_x^2 + b^2\sigma_y^2 + 2ab\,\overline{(x - \mu_x)(y - \mu_y)}.
+\end{equation}
+For independent variables the average product of the deviations from their respective means is zero, so
+\begin{equation}
+\boxed{\sigma_z^2 = a^2\sigma_x^2 + b^2\sigma_y^2, \qquad s_z^2 = a^2s_x^2 + b^2s_y^2}
+\label{eq:variance_linear_combination}
+\end{equation}
+and in general, for $F = ax + by + cz + \dots$ with independent variables, $\sigma_F^2 = a^2\sigma_x^2 + b^2\sigma_y^2 + c^2\sigma_z^2 + \dots$. Variances add quadratically: the variance of a linear combination is the sum of the individual variances multiplied by the squares of their coefficients. This result is fundamental for the propagation of random uncertainties (Section~\ref{sec:indirect}). Two useful consequences are that adding a constant does not change the variance, $\text{Var}(x + c) = \text{Var}(x)$, while multiplying by a constant multiplies it by the square, $\text{Var}(cx) = c^2\,\text{Var}(x)$. Exercise~\ref{ex:background_correction} applies these rules to a background correction in fluorescence microscopy.
+
+\subsection{Why averaging reduces the uncertainty: Chebyshev and the law of large numbers}
 
 Consider $N$ independent measurements from the same population, each with the same variance $\sigma^2$ (so $\sigma_x = \sigma$). Their mean $\bar{x} = \frac{1}{N}\sum_i x_i$ is a linear combination with coefficients $1/N$, so we can apply Equation~\eqref{eq:variance_linear_combination}:
 \begin{equation*}
@@ -2015,8 +1993,6 @@ and taking the square root,
 \label{eq:sigma_mean}
 \end{equation}
 If we repeatedly draw independent samples of size $N$ and compute their means, these means form a \emph{sampling distribution} whose variance is the variance of the individual measurements divided by $N$. The sample mean therefore has a smaller variance than the individual measurements, increasing the number of independent measurements reduces the random uncertainty of the mean, and the standard deviation of the mean decreases as $1/\sqrt{N}$. The standard deviation of the individual measurements, instead, does not decrease just because we collect more of them: averaging $N$ independent measurements reduces the dispersion of the estimated mean by a factor $\sqrt{N}$, without reducing the variability of the individual measurements.
-
-\subsection{Chebyshev's inequality and the law of large numbers}
 
 The sample mean generally differs from the population mean because of random fluctuations. How does the probability of a large deviation change with $N$? \textbf{Chebyshev's inequality} gives an upper bound to the probability that a random variable differs from its mean by more than a given amount $\varepsilon$:
 \begin{equation}
@@ -2074,7 +2050,7 @@ Averaged over many independent samples, the corrected variance gives exactly $\s
 
 Finally, the theoretical dispersion of the sample means is $\sigma_{\bar{x}} = \sigma/\sqrt{N}$, and the estimate we can obtain from a single sample is the standard error of the mean of Equation~\eqref{eq:sem_definition}, $\text{SEM} = s/\sqrt{N}$, with $s$ computed with $N - 1$.
 
-\subsection{Summary: best estimate and uncertainty}
+\subsection{Summary: best estimate and combined uncertainty}
 \label{sec:summary_discrete}
 
 It is worth summarising how these quantities converge. The mean of a single sample approaches the population mean as the sample size increases, $\bar{x}_j \to \mu$ for $N \to \infty$; the mean of the sample means approaches it as the number of independent samples increases, $\bar{\bar{x}}_M \to \mu$ for $M \to \infty$, even when the size of each sample is fixed. For independent observations with population variance $\sigma^2$, $\text{Var}(\bar{x}_j) = \sigma^2/N$, while for $M$ independent samples of the same size $N$, $\text{Var}(\bar{\bar{x}}_M) = \sigma^2/(MN)$. Both increasing the number of measurements per sample and averaging the means of many samples improve the precision of our estimate of $\mu$; the difference is that increasing $N$ improves each individual sample mean, whereas increasing $M$ improves the average across sample means.
@@ -2088,7 +2064,6 @@ which describes the individual measurements, not the uncertainty of their mean. 
 
 We should keep the two kinds of uncertainty distinct. The uncertainty of an \emph{individual measurement} may include random variability, calibration uncertainty, instrument limitations and other contributions. The uncertainty of the \emph{mean} refers to the average of repeated measurements, and its random component decreases as the number of independent measurements increases. Averaging reduces the random uncertainty, but it does not necessarily eliminate systematic errors or reduce contributions shared by all the measurements; the uncertainty of the mean describes how precisely we estimate a quantity, not how far our estimate actually is from the true value.
 
-\subsection{Combining uncertainty contributions}
 \label{sec:combined_uncertainty}
 
 A result is usually affected by several contributions: the repeatability of the measurements, $u_A = s/\sqrt{N}$; the instrument resolution $r$, $u_{\text{res}} = r/\sqrt{12}$ (Equation~\eqref{eq:standard_uncertainty_resolution_sqrt12}, assuming rounding to the nearest increment and a uniform quantisation error); the calibration, $u_{\text{cal}}$; and possibly others. For uncorrelated contributions of independent variables, expressed in the same units, the \textbf{combined standard uncertainty} is
@@ -2105,8 +2080,6 @@ where $U$ is the \textbf{expanded uncertainty} and $k$ the \textbf{coverage fact
 
 \section{Continuous Random Variables}
 \label{sec:continuous}
-
-\subsection{Cumulative probability}
 
 We defined the probability that a continuous variable lies in an interval $[a, b]$ as the area under the density curve over that interval (Equation~\eqref{eq:probability_interval}). Similarly, the \textbf{cumulative probability}, or \textbf{cumulative distribution function} (CDF), is the probability that the variable takes a value less than or equal to a given number:
 \begin{equation}
@@ -2262,7 +2235,7 @@ Gaussian variables have an important additive property: if $X_1, \dots, X_N$ are
 \end{equation}
 and if they all have the same distribution $\mathcal{N}(\mu, \sigma^2)$, their sum is $\mathcal{N}(N\mu, N\sigma^2)$ and their mean is $\mathcal{N}(\mu, \sigma^2/N)$, consistently with Equation~\eqref{eq:sigma_mean}.
 
-\subsection{The standard normal distribution}
+\subsection{The standard normal distribution and the \texorpdfstring{$z$}{z} table}
 
 A normal random variable $Z$ follows the \textbf{standard normal distribution} if $Z \sim \mathcal{N}(0, 1)$, i.e.\ if its density is
 \begin{equation}
@@ -2281,7 +2254,14 @@ A fundamental consequence is that the probability of obtaining a standardised de
 \boxed{\Pr(|z| \le 1) \approx 0.683, \qquad \Pr(|z| \le 2) \approx 0.955, \qquad \Pr(|z| \le 3) \approx 0.997}
 \label{eq:sigma_rule}
 \end{equation}
-each obtained as $\frac{1}{\sqrt{2\pi}}\int_{-k}^{+k}e^{-z^2/2}\,dz$. Recalling that the deviation $d = x - x^*$ is related to the standardised one by $z = d/\sigma$, this means that for a normal distribution about 68.3\%, 95.5\% and 99.7\% of the values lie within one, two and three standard deviations of the mean (Figure~\ref{fig:normal_sigma}). Geometrically, $\pm\sigma$ are the inflection points of the bell, where $f_X(\mu \pm \sigma) = 0.242/\sigma$.
+each obtained as $\frac{1}{\sqrt{2\pi}}\int_{-k}^{+k}e^{-z^2/2}\,dz$. Recalling that the deviation $d = x - x^*$ is related to the standardised one by $z = d/\sigma$, this means that for a normal distribution about 68.3\%, 95.5\% and 99.7\% of the values lie within one, two and three standard deviations of the mean, whatever the value of $\sigma$ (Figure~\ref{fig:normal_two_sigmas}). Geometrically, $\pm\sigma$ are the inflection points of the bell, where $f_X(\mu \pm \sigma) = 0.242/\sigma$ (Figure~\ref{fig:normal_sigma}).
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=105, width=\linewidth, keepaspectratio]{\pdf}
+\caption{Two normal distributions with the same mean $\mu = 100$ and different standard deviations, $\sigma = 2$ (left) and $\sigma = 5$ (right): in both cases 68.3\%, 95.5\% and 99.7\% of the values lie within $\pm\sigma$, $\pm2\sigma$ and $\pm3\sigma$ of the mean.}
+\label{fig:normal_two_sigmas}
+\end{figure}
 
 \begin{figure}[!htbp]
 \centering
@@ -2289,8 +2269,6 @@ each obtained as $\frac{1}{\sqrt{2\pi}}\int_{-k}^{+k}e^{-z^2/2}\,dz$. Recalling 
 \caption{Geometrical meaning of $\sigma$ for $\mathcal{N}(\mu, \sigma^2)$: the points $\mu \pm \sigma$ are the inflection points of the curve, and the area between them is about 68\%.}
 \label{fig:normal_sigma}
 \end{figure}
-
-\subsection{The cumulative distribution function and the \texorpdfstring{$z$}{z} table}
 
 The cumulative distribution function of the standard normal variable is the probability that $Z$ takes a value less than or equal to $x$:
 \begin{equation}
@@ -2302,6 +2280,15 @@ Because the standard normal distribution is symmetric about the vertical axis, $
 \boxed{\Phi(-x) = 1 - \Phi(x)}
 \label{eq:phi_symmetry}
 \end{equation}
+as shown in Figure~\ref{fig:phi_symmetry}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=106, width=0.75\linewidth, keepaspectratio]{\pdf}
+\caption{The cumulative distribution function of the standard normal is the area under $f(z)$ to the left of a given value. By symmetry, the area to the left of $-x$, $\Phi(-x) = P(Z \le -x)$ (left), equals the area to the right of $x$, $1 - \Phi(x)$, where $\Phi(x) = P(Z \le x)$ (right).}
+\label{fig:phi_symmetry}
+\end{figure}
+
 The values of $\Phi$ are tabulated in the \emph{cumulative standard normal table}, where the entries inside the table are probabilities (areas) and the margins give the value of $z$. To find $\Phi(1.32)$, for example, we split $z = 1.3 + 0.02$ into row and column, and read the intersection of row $1.3$ and column $0.02$: $P(Z \le 1.32) = \Phi(1.32) = 0.9066$, meaning that 90.66\% of the probability lies to the left of $z = 1.32$. Exercise~\ref{ex:cell_diameter} shows how to use the table for a normally distributed biological quantity.
 
 \subsection{The central limit theorem}
@@ -2436,13 +2423,20 @@ Student's $t$ & $X \sim t_N$ & $N$ d.o.f. & $0$ ($N > 1$) & $N/(N - 2)$ ($N > 2$
 \section{Confidence Intervals}
 \label{sec:confidence_intervals}
 
-\subsection{Definition}
-
 A sample mean provides a \emph{point estimate} of the population mean $\mu$, but a different sample would generally give a different mean. A \textbf{confidence interval} communicates the uncertainty of the estimate by giving a range. Let $X_1, \dots, X_N$ be a random sample from a population whose distribution depends on an unknown parameter. From the sample we compute a lower limit $L(X_1, \dots, X_N)$ and an upper limit $U(X_1, \dots, X_N)$, which form the confidence interval $\text{CI} = [L, U]$. With the convention used in the course, in which each of the two tails has probability $\alpha$, the interval has \textbf{confidence level} $1 - 2\alpha$: over repeated samples, the procedure produces intervals that contain the fixed true value $\mu$ with probability
 \begin{equation}
 \boxed{P(L \le \mu \le U) = 1 - 2\alpha}
 \label{eq:ci_definition}
 \end{equation}
+The convention is illustrated in Figure~\ref{fig:ci_tails}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=107, width=0.5\linewidth, keepaspectratio]{\pdf}
+\caption{A confidence interval $[L, U]$ with confidence level $1 - 2\alpha$: the central area under the density is $1 - 2\alpha$, and each of the two tails has probability $\alpha$.}
+\label{fig:ci_tails}
+\end{figure}
+
 
 To construct the interval we need a statistic with a known sampling distribution, and the choice depends on whether the population standard deviation is known. If $\sigma$ is known (case 1), we use the standard normal variable $Z = (\bar{X} - \mu)/(\sigma/\sqrt{N}) \sim \mathcal{N}(0, 1)$ and standard normal critical values. If $\sigma$ is unknown (case 2), we estimate it with $S$ and use $T = (\bar{X} - \mu)/(S/\sqrt{N}) \sim t_{N-1}$, with Student's $t$ critical values, which account for the extra uncertainty of estimating $\sigma$.
 
@@ -2516,8 +2510,6 @@ Normal population, $\sigma$ unknown; $T = \frac{\bar{X} - \mu}{S/\sqrt{N}} \sim 
 
 \section{Hypothesis Tests}
 \label{sec:hypothesis_tests}
-
-\subsection{Statistical hypotheses}
 
 After a measurement we may want to know whether the results support or contradict a hypothesis about the phenomenon that produced them. In other words: would the observed result be plausible if our hypothesis were true? Data from a limited sample can never confirm or reject a hypothesis with absolute certainty, but they can provide evidence for or against it at a specified probability level. Such predictions are called \textbf{statistical hypotheses}: claims about a population, its distribution, or one or more of the parameters describing it, at a probability level defined by us.
 
@@ -2635,10 +2627,8 @@ a weighted average of the two sample variances, each weighted by its degrees of 
 \end{equation}
 where the degrees of freedom are those used to estimate the variance from the samples. The critical region is determined so that the probability of rejecting $H_0$ when it is true is no greater than the overall level $2\alpha$ (Exercise~\ref{ex:two_sided_test}).
 
-\section{Summary for Direct Measurements}
+\section{Treating a Direct Measurement}
 \label{sec:summary_direct}
-
-\subsection{Screening for suspicious values}
 
 Some measurement errors are neither random nor systematic. Two adjacent digits may be transposed when recording a result, for example, producing a value that differs markedly from the others. This motivates the use of a clear rule to flag measurements for further examination. A common screening rule is to flag the values more than three standard deviations from the sample mean:
 \begin{equation}
@@ -2646,8 +2636,6 @@ Some measurement errors are neither random nor systematic. Two adjacent digits m
 \label{eq:three_sigma_rule}
 \end{equation}
 If the measurements follow a normal distribution, about 0.27\% of them are expected to fall beyond this range by chance alone: roughly 0.16 out of 60 measurements, or 2\,700 out of one million. So an extreme value in a small dataset may merit investigation, while large datasets can naturally contain many such values. Being more than $3s$ from the mean is a reason to investigate a measurement, not by itself a proof that it is wrong or a reason to remove it: a value should be excluded only when there is a sound reason, such as an identified recording or measurement error. This is the same lesson we learnt from Millikan's data in Chapter~\ref{ch:metrology}.
-
-\subsection{How to treat a direct measurement}
 
 We can now summarise the procedure for direct measurements. First, check the measurement process and the instruments for possible systematic errors, and correct them by changing the instrument or the procedure, or by applying an appropriate correction. Second, repeat the measurement whenever possible, and use the results to estimate the random uncertainty: more repetitions generally improve the statistical reliability of the estimate. If repetitions are not possible, the smallest scale division of the instrument can serve as a conventional estimate of the uncertainty. Third, estimate the measured quantity with the sample mean $\bar{x}$ and, for $N$ repeated measurements, its uncertainty with
 \begin{equation}
@@ -2737,14 +2725,14 @@ A maximum error such as the half-range of Equation~\eqref{eq:half_range}, like a
 so $\Delta z \approx 50 \times 0.04 = 2$ and $z \approx 50 \pm 2$. The exact range, $9.8 \times 4.9 \le z \le 10.2 \times 5.1$, i.e.\ $48.02 \le z \le 52.02$, confirms the first-order estimate of about $\pm 2$. Exercise~\ref{ex:cell_area} applies the statistical propagation to the area of a cell.
 
 % =============================================================================
-% CHAPTER 6: IMAGING AND POSITIONING SENSORS
+% CHAPTER 5: IMAGING AND POSITIONING SENSORS
 % =============================================================================
 \chapter{Imaging and Positioning Sensors}
 \label{ch:imaging}
 
 In this last chapter we apply what we have learnt about sensors, noise and uncertainty to two families of instruments. The first is that of \textbf{optical sensors}: we follow the historical evolution of light detectors, from the photomultiplier tube to single-pixel solid-state detectors, up to the cameras with millions of pixels that we use every day in the laboratory. The second is that of systems that measure \textbf{position, distance, motion and occupancy}, from satellite navigation to LiDAR, echolocation and simple presence sensors.
 
-\section{Light: a Short Review}
+\section{Light as a Wave and as a Particle}
 \label{sec:light_review}
 
 We introduced light in Section~\ref{sec:light}, and we only recall the essentials here. Light is an electromagnetic wave with a corpuscular behaviour: the electric and magnetic fields oscillate in two mutually perpendicular planes, both perpendicular to the propagation direction ($\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}$). Its main properties are the \textbf{intensity}, the \textbf{propagation direction}, the \textbf{frequency} and \textbf{wavelength}, and the \textbf{polarisation}, and each of them carries information that can be exploited for imaging and to learn something about the sample. Polarisation, for instance, is used to increase the contrast and see the boundary between a membrane and its surroundings.
@@ -2858,26 +2846,6 @@ This should immediately ring a bell: extracting an electron means that we can me
 The most spectacular light sensor in the world, which we are still unable to reproduce, is the \textbf{retina}. Its sensing part is made of rods and cones, which are extremely sensitive (down to single photon detection) and are the basis for differential sensitivity, colour vision and spatial vision. They are followed by the retinal circuitry, which performs signal conditioning and processing before the signal travels along the axons of the ganglion cells and the optic nerve. Part of the visual processing even happens in regions of the brain of which we are not conscious. This is revealed by the so-called \emph{blindsight}: some patients who are blind, because the part of the visual pathway we are aware of is damaged, can still cross a room avoiding every obstacle placed in front of them, because another part of the brain keeps processing the visual information without them knowing it.
 
 Our instruments are far less powerful, but they follow the same logic: a sensing element, a conditioning stage and a processing stage. When a detector absorbs a photon, the photon transfers its energy to the detector material, and the detectors we introduce here use this energy to produce a measurable electrical signal. We will see three families: \textbf{photomultiplier tubes} (PMTs), where the photon is absorbed by a metal (the photocathode); \textbf{photodiodes}, where the photon is absorbed by a semiconductor; and \textbf{image sensors} (CCD and CMOS), where the photon is absorbed by an array of semiconductor light-sensitive pixels.
-
-\subsection{Conductors, semiconductors and insulators}
-
-To understand why some detectors are built from certain materials, we recall how materials are classified according to their electrical conductance. In a solid, where many atoms are placed close together, electrons occupy ranges of allowed energies called \textbf{energy bands}, and the conductivity of the material depends on which bands are occupied and on whether electrons can move into nearby empty states. The \textbf{valence band} is the highest energy band filled with electrons, and its upper edge is $E_v$. A completely filled band carries no net current; when an electron leaves it, it creates a \textbf{hole}, and since other valence electrons can move into the empty state, the hole behaves as a mobile positive charge. The \textbf{conduction band} is the next higher band of allowed energies, empty at absolute zero, with lower edge $E_c$: electrons excited into this band can drift under an applied electric field and contribute to the current. The difference between the two edges is the \textbf{band gap}, $E_g = E_c - E_v$.
-
-In a \textbf{conductor} a band is partially filled, or two bands overlap (the conduction band lies within the valence band), so electrons can readily move into nearby empty states and carry current when an electric field is applied. In an \textbf{insulator} a large band gap separates the two bands, and a lot of energy is needed to excite charges into the conduction band. A \textbf{semiconductor} lies in between: a relatively small band gap separates the valence and conduction bands, about $1.1\text{ eV}$ in silicon at room temperature (Figure~\ref{fig:energy_bands}). Thermal excitation can promote a small fraction of electrons across the gap, and an absorbed photon can do the same if its energy satisfies
-\begin{equation}
-\boxed{E_{\text{ph}} = h\nu \ge E_g}
-\label{eq:bandgap_condition}
-\end{equation}
-In either case the electron enters the conduction band and leaves behind a hole in the valence band, creating an \textbf{electron--hole pair}. Both carriers can carry current, and this is the basis of semiconductor light detection.
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[page=64, width=0.7\linewidth, keepaspectratio]{\pdf}
-\caption{Energy bands of a conductor, where valence and conduction bands overlap (left), of a semiconductor, where a photon with $h\nu \ge E_G$ can promote an electron across the gap (centre), and of an insulator, with a large band gap (right).}
-\label{fig:energy_bands}
-\end{figure}
-
-Semiconductors are the materials of choice for photon detection precisely because their band gap is comparable with the energy of visible photons. The band gap of silicon is $E_{G,\text{Si}} = 1.12\text{ eV}$, while a green photon ($\lambda \approx 500\text{ nm}$) carries $E_{\text{ph}} = hf = 2.50\text{ eV}$: when it hits silicon, it can promote an electron to the conduction band and leave a hole in the valence band. This is also the principle of photovoltaics. Typical semiconductor elements, such as silicon and germanium, are in group 14 (once known as group IV) of the periodic table; alternatively, combinations of groups 13--15 (group III--V) are used, such as GaN or GaAs (for example for LEDs). The choice depends on the application: depending on whether we need to detect photons in the infrared or closer to the UV, we have to choose the right detector, or the right camera, made of the right material.
 
 \subsection{Photomultiplier tubes}
 
@@ -2998,9 +2966,30 @@ Best suited to & Ultra-low-noise photon measurements (mostly discontinued) & Mod
 \section{Photodiodes, APDs, SPADs and SiPMs}
 \label{sec:photodiodes}
 
+\subsection{Conductors, semiconductors and insulators}
+\label{sec:energy_bands}
+
+To understand why solid-state detectors are built from semiconductors, we recall how materials are classified according to their electrical conductance. In a solid, where many atoms are placed close together, electrons occupy ranges of allowed energies called \textbf{energy bands}, and the conductivity of the material depends on which bands are occupied and on whether electrons can move into nearby empty states. The \textbf{valence band} is the highest energy band filled with electrons, and its upper edge is $E_v$. A completely filled band carries no net current; when an electron leaves it, it creates a \textbf{hole}, and since other valence electrons can move into the empty state, the hole behaves as a mobile positive charge. The \textbf{conduction band} is the next higher band of allowed energies, empty at absolute zero, with lower edge $E_c$: electrons excited into this band can drift under an applied electric field and contribute to the current. The difference between the two edges is the \textbf{band gap}, $E_g = E_c - E_v$.
+
+In a \textbf{conductor} a band is partially filled, or two bands overlap (the conduction band lies within the valence band), so electrons can readily move into nearby empty states and carry current when an electric field is applied. In an \textbf{insulator} a large band gap separates the two bands, and a lot of energy is needed to excite charges into the conduction band. A \textbf{semiconductor} lies in between: a relatively small band gap separates the valence and conduction bands, about $1.1\text{ eV}$ in silicon at room temperature (Figure~\ref{fig:energy_bands}). Thermal excitation can promote a small fraction of electrons across the gap, and an absorbed photon can do the same if its energy satisfies
+\begin{equation}
+\boxed{E_{\text{ph}} = h\nu \ge E_g}
+\label{eq:bandgap_condition}
+\end{equation}
+In either case the electron enters the conduction band and leaves behind a hole in the valence band, creating an \textbf{electron--hole pair}. Both carriers can carry current, and this is the basis of semiconductor light detection.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=64, width=0.7\linewidth, keepaspectratio]{\pdf}
+\caption{Energy bands of a conductor, where valence and conduction bands overlap (left), of a semiconductor, where a photon with $h\nu \ge E_G$ can promote an electron across the gap (centre), and of an insulator, with a large band gap (right).}
+\label{fig:energy_bands}
+\end{figure}
+
+Semiconductors are the materials of choice for photon detection precisely because their band gap is comparable with the energy of visible photons. The band gap of silicon is $E_{G,\text{Si}} = 1.12\text{ eV}$, while a green photon ($\lambda \approx 500\text{ nm}$) carries $E_{\text{ph}} = hf = 2.50\text{ eV}$: when it hits silicon, it can promote an electron to the conduction band and leave a hole in the valence band. This is also the principle of photovoltaics. Typical semiconductor elements, such as silicon and germanium, are in group 14 (once known as group IV) of the periodic table; alternatively, combinations of groups 13--15 (group III--V) are used, such as GaN or GaAs (for example for LEDs). The choice depends on the application: depending on whether we need to detect photons in the infrared or closer to the UV, we have to choose the right detector, or the right camera, made of the right material.
+
 \subsection{Photon detection with a semiconductor}
 
-When a semiconductor absorbs a photon with energy higher than the band gap, $h\nu \ge E_g$, an electron moves from the valence band to the conduction band and leaves behind a positive hole: an electron--hole pair is created. If we apply a voltage across the semiconductor, the resulting electric field drives the photogenerated electrons and holes toward opposite contacts, producing a \textbf{photocurrent} (Figure~\ref{fig:semiconductor_detection}). If we simply take a piece of semiconductor and do nothing else, however, some carriers recombine with carriers of the opposite charge before reaching the contacts, reducing the amount of collected charge, and we may see nothing at all.
+We have just seen that a photon with $h\nu \ge E_g$, absorbed in a semiconductor, creates an electron--hole pair. If we apply a voltage across the semiconductor, the resulting electric field drives the photogenerated electrons and holes toward opposite contacts, producing a \textbf{photocurrent} (Figure~\ref{fig:semiconductor_detection}). If we simply take a piece of semiconductor and do nothing else, however, some carriers recombine with carriers of the opposite charge before reaching the contacts, reducing the amount of collected charge, and we may see nothing at all.
 
 \begin{figure}[!htbp]
 \centering
@@ -3209,8 +3198,6 @@ CMOS technology has since advanced impressively fast. The best CMOS cameras toda
 
 In Section~\ref{sec:sensor_characteristics} we postponed the discussion of noise. We can now take it up again on a concrete example, which is also a good way to review what we learnt about variances. Characterising a CMOS camera means finding, for each pixel, its \textbf{gain} $g$ and its \textbf{read noise} $\sigma_R$, and locating the hot pixels.
 
-\subsection{Noise sources}
-
 The signal of each pixel is affected by three main noise sources. The \textbf{shot noise} $\sigma_S$ is linked to the fact that photons arrive on the detector following a Poisson statistic (Figure~\ref{fig:poisson_gauss}). The \textbf{read noise} $\sigma_R$, also called the ``offset variance'', follows a Gaussian statistic. The \textbf{dark noise} $\sigma_D$, the dark-current shot noise, is a random fluctuation caused by thermally generated electrons. To a first approximation, especially when the exposure time is not very long, as in microscopy, where it is typically of the order of a millisecond or below, the dark noise can be neglected. The electronic \textbf{offset} (or bias), instead, is not a noise but a systematic contribution to the measured signal.
 
 Since the noise sources are independent, the total variance is the variance of a sum of independent random variables, which equals the sum of their variances (Equation~\eqref{eq:variance_linear_combination}):
@@ -3318,9 +3305,11 @@ For our camera, with a 16-bit ADC, a mean conversion gain of $2.17\text{ ADU}/e^
 \label{fig:gain_histogram}
 \end{figure}
 
-\subsection{Hot pixels}
+\subsection{Hot pixels and the use of the characterisation}
 
 Looking at the gain map, we immediately notice that the image is mostly green, i.e.\ around $2$, but there are some very dark blue spots, with a gain close to zero, which correspond to a small separate group in the gain histogram (Figure~\ref{fig:hot_pixels}). In Chapter~\ref{ch:errors} we saw that a value more than three standard deviations from the mean deserves to be investigated (Equation~\eqref{eq:three_sigma_rule}). Here we are at probably ten standard deviations, and there are too many of these values compared with what the statistics would predict: something does not belong to what we are trying to describe. Indeed, these pixels coincide exactly with the defective pixels declared by the manufacturer. They are \textbf{hot pixels}: they are always switched on, with a very high current, so they look bright, but in a fake way, not because photons arrived. What we can do is to remove their information, which has no meaning, and replace it with the mean value of the pixels around each hot pixel.
+
+The parameters obtained from the characterisation can be used, for example, to be really precise in the localisation of single molecules. The localisation depends on the distribution of the intensity recorded by the pixels, and if this distribution is distorted by pixel-to-pixel differences, the localisation is not precise. Huang et al.\ (\emph{Nature Methods} 10, 653) developed a CMOS-specific algorithm that accounts for the pixel-dependent readout noise and gain. It is based on a maximum likelihood estimator (MLE), a kind of evolution of least squares minimisation that accounts for the noise, whose likelihood function is the convolution of a Poisson distribution, representing the shot noise, with a Gaussian distribution, representing the read noise. Plugging the gain and the noise of each pixel into the algorithm improves the localisation of every single molecule.
 
 \begin{figure}[h]
 \centering
@@ -3329,18 +3318,12 @@ Looking at the gain map, we immediately notice that the image is mostly green, i
 \label{fig:hot_pixels}
 \end{figure}
 
-\subsection{Using the characterisation}
-
-The parameters obtained from the characterisation can be used, for example, to be really precise in the localisation of single molecules. The localisation depends on the distribution of the intensity recorded by the pixels, and if this distribution is distorted by pixel-to-pixel differences, the localisation is not precise. Huang et al.\ (\emph{Nature Methods} 10, 653) developed a CMOS-specific algorithm that accounts for the pixel-dependent readout noise and gain. It is based on a maximum likelihood estimator (MLE), a kind of evolution of least squares minimisation that accounts for the noise, whose likelihood function is the convolution of a Poisson distribution, representing the shot noise, with a Gaussian distribution, representing the read noise. Plugging the gain and the noise of each pixel into the algorithm improves the localisation of every single molecule.
-
 \section{Camera Specifications in Practice}
 \label{sec:camera_specs}
 
-\subsection{Quantum efficiency}
+\subsection{Quantum efficiency, sensitivity, threshold and saturation}
 
 Besides gain and noise, another key characteristic of a camera is its \textbf{quantum efficiency} (Equation~\eqref{eq:quantum_efficiency}), which tells us how well the sensor converts light of different wavelengths into signal. The spectral response can be quite different from one camera to another, so it is important to check where our fluorophore emits: if it emits far in the red, where a camera has a low quantum efficiency, we may be losing most of our photons and we should probably choose another camera. The maximum quantum efficiency is always around 80--85\%, so some photons are always lost, whatever the wavelength.
-
-\subsection{Sensitivity, resolution, threshold and saturation}
 
 The general characteristics we defined for sensors in Section~\ref{sec:sensor_characteristics} (sensitivity, resolution, threshold, saturation, dead band) can be identified for cameras too, and many of them can be computed from the specifications given by the manufacturer. Consider a Basler a2A5328-35cm CMOS camera at $541\text{ nm}$. A CMOS pixel collects charge during an exposure, and in its linear range the mean digital output increases in proportion to the number of incident photons $N_\gamma$: the slope of this response curve is the sensitivity (Figure~\ref{fig:basler_sensitivity}). The chain goes from photons to electrons to digital counts. The quantum efficiency is $\eta = 67.3\%$, so $N_e = \eta N_\gamma$, and the camera gain is $G = 0.413$ digital counts per electron. After subtracting the dark signal, the mean output is $\text{ADU} = G\eta N_\gamma$, and the sensitivity is therefore
 \begin{equation}
@@ -3462,7 +3445,7 @@ The very first system was the GPS, developed, like many advanced technologies, f
 
 A GNSS consists of three main segments. The \textbf{space segment} is the constellation of satellites orbiting Earth, which continuously transmit radio signals containing precise timing information and orbital data. The \textbf{control segment} is a network of ground stations that monitor and manage the constellation: they track the satellite orbits, monitor the onboard clocks, and upload updated navigation data, the \textbf{ephemerides} (an ephemeris is a set of orbital data that allows a satellite's position to be calculated at a given time) and clock corrections. Finally, the \textbf{user segment} is made of us, the GNSS receivers, which collect and process the satellite signals to determine position, velocity and time.
 
-\subsection{Operating principle}
+\subsection{Operating principle and sources of error}
 
 In a simplified explanation (a whole course would be needed to explain how geolocalisation really works), positioning relies on three steps. The first is \textbf{precise timing}: GNSS satellites carry highly stable atomic clocks, continuously monitored and corrected by the ground stations, and each satellite broadcasts radio-frequency signals containing the precise transmission time and its orbital data. The second is \textbf{distance estimation}: the receiver estimates the signal travel time $\Delta t$ from each satellite, and since the signals are electromagnetic waves travelling at the speed of light, the corresponding apparent distance, called the \textbf{pseudorange}, is
 \begin{equation}
@@ -3478,9 +3461,7 @@ where $t_R$ is the reception time (receiver clock) and $t_T$ the transmission ti
 \label{fig:gnss_trilateration}
 \end{figure}
 
-\subsection{GNSS as an indirect measurement}
-
-The position is not measured directly: it is reconstructed from signal travel-time measurements through the model of Equation~\eqref{eq:pseudorange}, so GNSS is an example of indirect measurement, and errors propagate into the result. Timing errors are due to clock errors, since the receiver and satellite clocks are not perfectly synchronised, and the measured time difference does not correspond exactly to the actual propagation time. Atmospheric delays, which change from place to place, and interference with the many other signals continuously sent by all these satellite systems also affect the reconstructed position, so the apparent distance is not identical to the geometric distance. Timing is crucial, and it has to be extremely precise: GNSS radio signals travel at about $3 \times 10^8\text{ m/s}$, i.e.\ $30\text{ cm/ns}$, so
+The position is not measured directly: it is reconstructed from signal travel-time measurements through the model of Equation~\eqref{eq:pseudorange}, so GNSS is an example of indirect measurement, and errors propagate into the result. Timing errors are due to clock errors, since the receiver and satellite clocks are not perfectly synchronised, and the measured time difference does not correspond exactly to the actual propagation time. Atmospheric delays, which change from place to place, and interference with the many other signals continuously sent by all these satellite systems also affect the reconstructed position, so the apparent distance is not identical to the geometric distance. Timing has to be extremely precise: GNSS radio signals travel at about $3 \times 10^8\text{ m/s}$, i.e.\ $30\text{ cm/ns}$, so
 \begin{equation}
 1\text{ ns of timing error} \approx 0.30\text{ m},
 \end{equation}
@@ -3495,14 +3476,12 @@ To mitigate these errors and be even more precise, the \textbf{differential GPS}
 \label{fig:dgps}
 \end{figure}
 
-\subsection{Applications: animal tracking}
-
 Beyond navigation, GPS can help us to study animal behaviour. Modern receivers are compact and light enough to be attached to animals, allowing their movements to be tracked over time, and combined with wireless communication technologies the tracking devices can also transmit the location data remotely. GPS tracking is widely used to investigate animal migration routes and movement patterns, foraging strategies and habitat use, interactions and social behaviour, human--wildlife interactions and conflicts, and for wildlife conservation and management.
 
 \section{Sensing Distance: LiDAR, Echolocation and Ultrasound}
 \label{sec:distance}
 
-Distance measurement plays a fundamental role in engineering, environmental monitoring and life sciences. Different technologies use the propagation of electromagnetic or acoustic waves to obtain spatial information over distances ranging from centimetres to kilometres. Two common approaches are \textbf{optical ranging} (LiDAR), which uses light, and \textbf{acoustic ranging} (sonar and ultrasound), which uses sound waves, mechanical rather than electromagnetic waves. In both cases the distance is estimated from the propagation time of a signal, and both rely on \textbf{active sensing}: unlike GNSS, the same system generates the signal, emits it, and analyses its interaction with the environment.
+Distance measurements are used in engineering, environmental monitoring and life sciences. Different technologies use the propagation of electromagnetic or acoustic waves to obtain spatial information over distances ranging from centimetres to kilometres. Two common approaches are \textbf{optical ranging} (LiDAR), which uses light, and \textbf{acoustic ranging} (sonar and ultrasound), which uses sound waves, mechanical rather than electromagnetic waves. In both cases the distance is estimated from the propagation time of a signal, and both rely on \textbf{active sensing}: unlike GNSS, the same system generates the signal, emits it, and analyses its interaction with the environment.
 
 \subsection{LiDAR}
 

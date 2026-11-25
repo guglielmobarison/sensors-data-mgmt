@@ -278,7 +278,7 @@ N = \frac{Q}{e} = \frac{6.40 \times 10^{-12}\text{ C}}{1.602\,176\,634 \times 10
 % -----------------------------------------------------------------------------
 % APPENDIX: exercises on Chapter 2
 % -----------------------------------------------------------------------------
-\section{Measurements, Datasets and Data Representation}
+\section{Measurements and Data Representation}
 \label{app:ex_ch2}
 
 \subsection{Choosing the right representation (Exercise 1)}
@@ -306,48 +306,6 @@ The SEM of Equation~\eqref{eq:sem_equation} is computed in Excel as
 \begin{verbatim}
 =STDEV.S(A2:A31)/SQRT(COUNT(A2:A31))
 \end{verbatim}
-
-\subsection*{Exercise sheet for Chapter 2 (data representation)}
-
-The following items come from the exercise sheet of Classes 3--5, with the instructor's answer key. The datasets are deliberately small ($N < 10$): they are too small for reliable statistical conclusions, and their purpose is only to practise the concepts.
-
-\subsection{Well-level fluorescence data and the choice of plot}
-\label{ex:wells}
-
-A fluorescence experiment is performed under Control and Treated conditions. Each value is the mean fluorescence intensity of one independently prepared and treated cell-culture well, with six wells per condition:
-\begin{center}
-\begin{tabular}{ll}
-\toprule
-Condition & Well-level fluorescence (a.u.) \\
-\midrule
-Control & 98, 100, 102, 98, 100, 102 \\
-Treated & 100, 102, 104, 104, 106, 108 \\
-\bottomrule
-\end{tabular}
-\end{center}
-\begin{enumerate}[label=(\alph*)]
-    \item Identify the experimental unit and the sample size $n$ for each condition.
-    \item Recommend a plot to compare the groups while showing the independent observations. If 20 cells were imaged in each well, could they be treated as 120 independent treatment replicates?
-\end{enumerate}
-
-\paragraph{Solution} \textbf{(a)} The experimental unit is one independently prepared and treated cell-culture well (Section~\ref{sec:replicates}). Each condition has six independent wells, so
-\begin{equation*}
-n(\text{Control}) = n(\text{Treated}) = 6.
-\end{equation*}
-
-\textbf{(b)} A dot plot showing all six well-level observations per condition is appropriate: unlike a bar chart showing only the mean, it reveals the independent observations and their variability (Section~\ref{sec:representation}). With 20 cells per well there are $6 \times 20 = 120$ cell measurements per condition, but only six independent treatment replicates: cells in the same well share treatment and culture conditions and may be correlated. Treating them as 120 independent replicates would be pseudoreplication.
-
-\subsection{Open question: from a fluorescence dataset to a meaningful figure}
-
-\emph{Explain how the scientific question determines the plot type, contrasting dot/box plots, histograms/violin plots, line plots and scatter plots, and identify the essential measurement metadata.}
-
-\paragraph{Expected elements} The plot depends on the question and on the structure of the data (Table~\ref{tab:graphical_paradigms}). A dot or box plot compares conditions (e.g.\ Control and Treated wells); dot plots are particularly informative for small samples, because individual observations remain visible. Histograms and violin plots describe the shape of a distribution, including spread, skewness or multiple peaks. A line plot shows change over time (e.g.\ fluorescence after treatment), and a scatter plot reveals associations between two quantitative variables (e.g.\ fluorescence and cell area). Every figure should identify the measured quantity, axes and units, experimental groups, number of independent observations and meaning of the error bars. Useful metadata include acquisition settings, calibration, exposure time, sample identity, experiment day and treatment conditions (Section~\ref{sec:datasets}). The plot should not disguise the actual level of replication.
-
-% -----------------------------------------------------------------------------
-% APPENDIX: exercises on Chapter 3
-% -----------------------------------------------------------------------------
-\section{Mathematical Functions and Model Approximation}
-\label{app:ex_ch3}
 
 \subsection{Half-life of a drug}
 \label{ex:half_life}
@@ -399,9 +357,41 @@ Your supervisor studies mitochondrial division and wants to know whether a mitoc
 \end{equation*}
 Alternatively, for a profile described by a function $y = f(x)$, the curvature follows from its first and second derivatives through Equation~\eqref{eq:curvature_final_formula}. Moving the fitting window along the profile gives the curvature map. The data and the code were provided on Moodle and are not reproduced here.
 
-\subsection*{Exercise sheet for Chapter 2 (functions, derivatives and curvature)}
+\subsection*{Exercise sheet for Chapter 2}
 
-The following items come from the exercise sheet of Classes 3--5, with the instructor's answer key.
+The following items come from the exercise sheet of Classes 3--5, with the instructor's answer key: first the questions on data representation, then those on functions, derivatives and curvature. The datasets are deliberately small ($N < 10$): they are too small for reliable statistical conclusions, and their purpose is only to practise the concepts.
+
+\subsection{Well-level fluorescence data and the choice of plot}
+\label{ex:wells}
+
+A fluorescence experiment is performed under Control and Treated conditions. Each value is the mean fluorescence intensity of one independently prepared and treated cell-culture well, with six wells per condition:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Condition & Well-level fluorescence (a.u.) \\
+\midrule
+Control & 98, 100, 102, 98, 100, 102 \\
+Treated & 100, 102, 104, 104, 106, 108 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+    \item Identify the experimental unit and the sample size $n$ for each condition.
+    \item Recommend a plot to compare the groups while showing the independent observations. If 20 cells were imaged in each well, could they be treated as 120 independent treatment replicates?
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} The experimental unit is one independently prepared and treated cell-culture well (Section~\ref{sec:replicates}). Each condition has six independent wells, so
+\begin{equation*}
+n(\text{Control}) = n(\text{Treated}) = 6.
+\end{equation*}
+
+\textbf{(b)} A dot plot showing all six well-level observations per condition is appropriate: unlike a bar chart showing only the mean, it reveals the independent observations and their variability (Section~\ref{sec:representation}). With 20 cells per well there are $6 \times 20 = 120$ cell measurements per condition, but only six independent treatment replicates: cells in the same well share treatment and culture conditions and may be correlated. Treating them as 120 independent replicates would be pseudoreplication.
+
+\subsection{Open question: from a fluorescence dataset to a meaningful figure}
+
+\emph{Explain how the scientific question determines the plot type, contrasting dot/box plots, histograms/violin plots, line plots and scatter plots, and identify the essential measurement metadata.}
+
+\paragraph{Expected elements} The plot depends on the question and on the structure of the data (Table~\ref{tab:graphical_paradigms}). A dot or box plot compares conditions (e.g.\ Control and Treated wells); dot plots are particularly informative for small samples, because individual observations remain visible. Histograms and violin plots describe the shape of a distribution, including spread, skewness or multiple peaks. A line plot shows change over time (e.g.\ fluorescence after treatment), and a scatter plot reveals associations between two quantitative variables (e.g.\ fluorescence and cell area). Every figure should identify the measured quantity, axes and units, experimental groups, number of independent observations and meaning of the error bars. Useful metadata include acquisition settings, calibration, exposure time, sample identity, experiment day and treatment conditions (Section~\ref{sec:datasets}). The plot should not disguise the actual level of replication.
 
 \subsection{Exponential fluorescence decay on a semi-log plot}
 \label{ex:photobleaching}
@@ -542,10 +532,10 @@ y = A\exp(Bx) \;\Rightarrow\; \ln y = \ln A + Bx, \qquad y = Cx^n \;\Rightarrow\
 so an exponential is linear on a semi-log plot (logarithmic $y$ axis), and a power law on a log-log plot, with slope $n$. Interpolation estimates values within the measured range; inverse prediction uses a measured output to estimate the input, provided the model can be inverted. A good fit alone does not establish physical validity: the model should agree with the experimental system and should not be used uncritically outside the observed range.
 
 % -----------------------------------------------------------------------------
-% APPENDIX: exercises on Chapter 4
+% APPENDIX: exercises on Chapter 3
 % -----------------------------------------------------------------------------
 \section{Sensors and Measurement Systems}
-\label{app:ex_ch4}
+\label{app:ex_ch3}
 
 \subsection{Recovering the input from the transfer function}
 \label{ex:recover_input}
@@ -703,7 +693,7 @@ u_{\text{res}} = \frac{\Delta T_{\text{LSB}}}{\sqrt{12}} = \frac{0.25974\;^\circ
 \end{equation*}
 The quantisation step is the spacing between digital levels, the maximum quantisation error is the largest possible deviation due to rounding, and the standard uncertainty quantifies the statistical spread of that error under the assumed uniform distribution. This is only the quantisation contribution, not the total uncertainty of the sensor. (This exercise is also Exercise~1 of the exercise sheet for Classes 6--8.)
 
-\subsection*{Exercise sheet for Chapter 3 (sensors and measurement systems)}
+\subsection*{Exercise sheet for Chapter 3}
 
 The following items come from the exercise sheet of Classes 6--8, with the instructor's answer key (its Exercise~1 is Exercise~\ref{ex:pt100_calibration} above).
 
@@ -795,10 +785,10 @@ f_c = \frac{1}{2\pi\tau}.
 and noise and other limitations may worsen the practical resolution (Section~\ref{sec:resolution}). Hysteresis means that the output at a given input depends on whether the input is approached from above or below. Repeatability concerns the agreement between repeated readings under specified conditions; inaccuracy is the departure from a reference or ideal response (Section~\ref{sec:inaccuracy}). Individual calibration can correct the bias, but residual calibration and measurement uncertainties remain.
 
 % -----------------------------------------------------------------------------
-% APPENDIX: exercises on Chapter 5
+% APPENDIX: exercises on Chapter 4
 % -----------------------------------------------------------------------------
 \section{Measurement Errors, Uncertainty and Statistics}
-\label{app:ex_ch5}
+\label{app:ex_ch4}
 
 \subsection{Fluorescence background correction}
 \label{ex:background_correction}
@@ -1173,7 +1163,7 @@ A = (50.0 \pm 1.4)\;\mu\text{m}^2 = (5.00 \pm 0.14) \times 10^{-11}\text{ m}^2,
 \end{equation*}
 with a relative standard uncertainty of about 2.8\%. The uncertainty of the area depends on the uncertainties of both length and width; since the two measurements are independent, their contributions combine in quadrature rather than simply adding up.
 
-\subsection*{Exercise sheet for Chapter 4 (errors, uncertainty and statistics)}
+\subsection*{Exercise sheet for Chapter 4}
 
 The following items come from the exercise sheet of Classes 9--11, with the instructor's answer key.
 
@@ -1316,10 +1306,10 @@ For $X \sim \mathcal{N}(\mu, \sigma^2)$, standardisation expresses deviations in
 
 
 % -----------------------------------------------------------------------------
-% APPENDIX: exercises on Chapter 6
+% APPENDIX: exercises on Chapter 5
 % -----------------------------------------------------------------------------
 \section{Imaging and Positioning Sensors}
-\label{app:ex_ch6}
+\label{app:ex_ch5}
 
 \subsection{LiDAR uncertainty}
 \label{ex:lidar_uncertainty}
