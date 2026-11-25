@@ -1695,7 +1695,7 @@ The response of a sensor can also depend on the direction from which the input i
 \label{fig:sensor_hysteresis_loop}
 \end{figure}
 
-The last characteristic in the list, \textbf{noise}, is postponed to the part of the course on imaging and positioning sensors.
+The last characteristic in the list, \textbf{noise}, is postponed to the part of the course on imaging and positioning sensors, where we discuss it for CMOS cameras (Section~\ref{sec:cmos_characterization}).
 
 % =============================================================================
 % CHAPTER 5: MEASUREMENT ERRORS, UNCERTAINTY AND STATISTICS
@@ -2735,6 +2735,912 @@ A maximum error such as the half-range of Equation~\eqref{eq:half_range}, like a
 \frac{\Delta z}{z} \approx \frac{\Delta x}{x} + \frac{\Delta y}{y} = \frac{0.2}{10} + \frac{0.1}{5} = 0.04,
 \end{equation*}
 so $\Delta z \approx 50 \times 0.04 = 2$ and $z \approx 50 \pm 2$. The exact range, $9.8 \times 4.9 \le z \le 10.2 \times 5.1$, i.e.\ $48.02 \le z \le 52.02$, confirms the first-order estimate of about $\pm 2$. Exercise~\ref{ex:cell_area} applies the statistical propagation to the area of a cell.
+
+% =============================================================================
+% CHAPTER 6: IMAGING AND POSITIONING SENSORS
+% =============================================================================
+\chapter{Imaging and Positioning Sensors}
+\label{ch:imaging}
+
+In this last chapter we apply what we have learnt about sensors, noise and uncertainty to two families of instruments. The first is that of \textbf{optical sensors}: we follow the historical evolution of light detectors, from the photomultiplier tube to single-pixel solid-state detectors, up to the cameras with millions of pixels that we use every day in the laboratory. The second is that of systems that measure \textbf{position, distance, motion and occupancy}, from satellite navigation to LiDAR, echolocation and simple presence sensors.
+
+\section{Light: a Short Review}
+\label{sec:light_review}
+
+We introduced light in Section~\ref{sec:light}, and we only recall the essentials here. Light is an electromagnetic wave with a corpuscular behaviour: the electric and magnetic fields oscillate in two mutually perpendicular planes, both perpendicular to the propagation direction ($\mathbf{E} \perp \mathbf{B} \perp \mathbf{k}$). Its main properties are the \textbf{intensity}, the \textbf{propagation direction}, the \textbf{frequency} and \textbf{wavelength}, and the \textbf{polarisation}, and each of them carries information that can be exploited for imaging and to learn something about the sample. Polarisation, for instance, is used to increase the contrast and see the boundary between a membrane and its surroundings.
+
+We usually describe light only through its electric field, a sinusoidal signal $E(x,t) = E_0\cos(kx - \omega t + \phi)$ (Equation~\eqref{eq:wave_harmonics}), with wave number $k = 2\pi/\lambda$ and angular frequency $\omega = 2\pi f = 2\pi/T$. We will mostly write the frequency as $f$ rather than $\nu$, because in handwriting $\nu$ is easily confused with the speed $v$; and we must not confuse the frequency with the period $T$, which is its inverse. When light enters a medium with refractive index $n$, its frequency stays fixed while its wavelength and phase velocity change, $\lambda = \lambda_0/n$ and $v_{\text{p}} = c/n$ (Equation~\eqref{eq:phase_velocity}). Since $n$ depends on the wavelength, Snell's law bends each colour by a different angle, and a prism disperses white light into its components.
+
+\subsection{Phase and polarisation}
+
+The \textbf{phase} of a light wave is the angle-like quantity that represents the fraction of the cycle covered up to time $t$. Two waves can be in phase, or out of phase by any amount, for example by $180^\circ$ or by $40^\circ$ (Figure~\ref{fig:phase_polarisation}, top). Phase is widely used in microscopy, as in phase-contrast microscopy, or to distinguish two different fluorophores in a sample by measuring the phase difference between their signals.
+
+The \textbf{polarisation} is the orientation of the oscillation of the electric field as the wave travels through space, i.e.\ the plane in which $\mathbf{E}$ oscillates. Since $\mathbf{E}$ is a vector, we can write it through its components in the $xy$ plane perpendicular to the propagation. In \textbf{linear polarisation} the field oscillates along a single direction, so only one component is present (for example $E_x$, with $E_y = 0$). In \textbf{circular polarisation} both components are present, with the same amplitude and shifted by a quarter of a cycle ($\pi/2$), so that the tip of the field rotates along a circle. The general case is \textbf{elliptical polarisation} (Figure~\ref{fig:phase_polarisation}, bottom). For our purposes it is enough to remember that polarisation tells us the plane in which the electric field oscillates.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=58, width=0.8\linewidth, keepaspectratio]{\pdf}
+\caption{Top: a sine wave with its period, frequency and amplitude, and pairs of waves in phase, $180^\circ$ and $40^\circ$ out of phase. Bottom: linear, circular and elliptical polarisation of the electric field.}
+\label{fig:phase_polarisation}
+\end{figure}
+
+\subsection{Wavefronts and Huygens' principle}
+
+Consider a monochromatic wave propagating in space. A \textbf{wavefront} is a surface on which the wave has the same phase at a given instant: for example, all the points of a crest reach their maximum electric field at the same time. In a \textbf{plane wave} the wavefronts are parallel planes that advance perpendicularly to their surfaces (Figure~\ref{fig:wavefronts}). This is an idealisation, which holds only if we imagine the wave as infinitely extended. In practice we often deal with point sources of light, and a fluorophore is exactly that: light from a point source in a uniform, isotropic medium spreads radially outward, exactly as sound does, and its wavefronts are concentric spheres, shown as circles in cross-section. This is a \textbf{spherical wave}.
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[page=59, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Plane wave.}
+        \label{fig:plane_wave}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[b]{0.3\linewidth}
+        \centering
+        \includegraphics[page=60, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Spherical wave.}
+        \label{fig:spherical_wave}
+    \end{subfigure}
+    \caption{Wavefronts of a plane wave, parallel planes advancing perpendicularly to their surfaces (A), and of a spherical wave emitted by a point source, concentric spheres (B).}
+    \label{fig:wavefronts}
+\end{figure}
+
+How the wavefront evolves is described by \textbf{Huygens' principle}: every point of a wavefront acts as a source of secondary spherical wavelets. After a time $\Delta t$ each wavelet has expanded by a distance $v\Delta t$, where $v$ is the wave speed in the medium, and the new wavefront is the surface tangent to the forward edges of these wavelets, where they interfere constructively. This picture is important in practice: when we design an optical system, or simply choose a lens to control where and how light is focused, we are actually shaping the wavefront. A lens does nothing but curve the wavefront so that the light converges to a spot.
+
+\subsection{Diffraction}
+
+\textbf{Diffraction} is the spreading of light as it passes through an opening or around the edge of an obstacle. The Huygens--Fresnel principle explains how this happens: each point of the wavefront within the opening acts as a source of secondary wavelets, the contributions of the points outside the opening are lost, and beyond the opening the wavelets overlap and interfere, determining how the intensity varies with direction (Figure~\ref{fig:diffraction_slits}).
+
+With a single slit of width $d$, in the forward direction ($\vartheta = 0$) all contributions arrive in phase and form a bright central maximum. At certain angles, instead, the contributions from different points of the slit cancel in pairs and produce dark fringes, whose positions are given by
+\begin{equation}
+\boxed{d\sin\vartheta_{\min} = m\lambda, \qquad m = \pm1, \pm2, \dots}
+\label{eq:single_slit_minima}
+\end{equation}
+The position of the minima depends on the size of the slit and on the wavelength. As with the prism, then, different wavelengths are bent at different angles. With two slits separated by a distance $p$ the picture is slightly more complicated: fringes appear, with a maximum at zero angle and further maxima at the angles
+\begin{equation}
+\boxed{p\sin\vartheta_{\max} = m\lambda, \qquad m = 0, \pm1, \pm2, \dots}
+\label{eq:grating_equation}
+\end{equation}
+where the integer $m$ is the \textbf{diffraction order}. The zero order is always a maximum, and in practice we typically see the first few orders.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=61, width=\linewidth, keepaspectratio]{\pdf}
+\caption{Diffraction of a plane monochromatic wave by one slit (left), with minima at $d\sin\vartheta_{\min} = m\lambda$, and by two slits (right), with maxima at $p\sin\vartheta_{\max} = m\lambda$.}
+\label{fig:diffraction_slits}
+\end{figure}
+
+A \textbf{diffraction grating} generalises this idea: it has many parallel grooves separated by a fixed distance $p$, the \textbf{grating period} (often given as lines per millimetre). Light from neighbouring grooves interferes constructively when the difference in path length is a whole number of wavelengths, and for light arriving perpendicular to the grating the bright maxima are again given by Equation~\eqref{eq:grating_equation}, with the angles $\vartheta_m$ measured from the grating normal. At the zero order all wavelengths overlap at $\vartheta = 0$, so the central maximum appears white. Each higher order $m = \pm1, \pm2, \dots$ spreads white light into a spectrum, and within the same order red light appears farther from the central maximum than blue light, because its wavelength is longer and, by Equation~\eqref{eq:grating_equation}, $\sin\vartheta_{\max}$ grows with $\lambda$ (Figure~\ref{fig:diffraction_grating}). This is very useful: if we have a source of light and we do not know which wavelengths it contains, we can place a diffraction grating in front of it and spread the light out on a screen or on a detector. We will come back to this in Section~\ref{sec:camera_specs}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=62, width=\linewidth, keepaspectratio]{\pdf}
+\caption{A diffraction grating spreads white light into its spectrum. Each order beyond the zero order contains all colours, with red diffracted at larger angles than blue.}
+\label{fig:diffraction_grating}
+\end{figure}
+
+\subsection{Light as a particle and the photoelectric effect}
+
+When we discussed the kilogram (Equation~\eqref{eq:planck_energy_quantum}) we saw that a quantum of light of frequency $f$ carries an energy proportional to $f$,
+\begin{equation}
+\boxed{E = hf}
+\label{eq:photon_energy_hf}
+\end{equation}
+so light can be regarded not only as a wave but also as a stream of particles, the \textbf{photons}, whose energy comes in discrete packets. For visible light it is convenient to express this energy in electronvolts, and with $\lambda$ in nanometres the relation becomes
+\begin{equation}
+\boxed{E[\text{eV}] = \frac{1240\text{ eV nm}}{\lambda[\text{nm}]}}
+\label{eq:photon_energy_ev}
+\end{equation}
+so visible photons carry a few electronvolts.
+
+The corpuscular nature of light shows up clearly in the \textbf{photoelectric effect} (Figure~\ref{fig:photoelectric_effect}). When light impinges on a conductor (a metal), the energy of a photon can be enough to extract an electron. This happens when the photon energy $hf$ is larger than the energy $W$ that binds the electron, called the \textbf{work function}, which depends on the material. If $hf > W$, the electron is emitted with kinetic energy
+\begin{equation}
+\boxed{hf = W + K = W + \frac{1}{2}m_ev^2}
+\label{eq:photoelectric_effect}
+\end{equation}
+For potassium, for instance, $2.0\text{ eV}$ are needed to eject an electron: red light at $700\text{ nm}$ ($1.77\text{ eV}$) extracts no electrons, whatever its intensity, while green light at $550\text{ nm}$ ($2.25\text{ eV}$) and violet light at $400\text{ nm}$ ($3.1\text{ eV}$) do, and the higher the photon energy, the faster the emitted electrons.
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[page=63, width=\linewidth, keepaspectratio]{\pdf}
+\caption{The photoelectric effect. A photon with energy larger than the work function extracts an electron from a metal, and the excess energy becomes kinetic energy. The extracted electrons can be collected as a current (from Prof.\ Pisano's slides).}
+\label{fig:photoelectric_effect}
+\end{figure}
+
+This should immediately ring a bell: extracting an electron means that we can measure a current, and this is an opportunity for sensing light. For imaging we can therefore use both faces of light. Its wave properties (intensity, phase, wavelength, polarisation) carry information about the sample, while its particle nature allows us to convert light into an electrical signal. All the detectors we are going to see exploit this conversion, each in a different way.
+
+\section{Light Sensors and the Photomultiplier Tube}
+\label{sec:light_sensors}
+
+The most spectacular light sensor in the world, which we are still unable to reproduce, is the \textbf{retina}. Its sensing part is made of rods and cones, which are extremely sensitive (down to single photon detection) and are the basis for differential sensitivity, colour vision and spatial vision. They are followed by the retinal circuitry, which performs signal conditioning and processing before the signal travels along the axons of the ganglion cells and the optic nerve. Part of the visual processing even happens in regions of the brain of which we are not conscious. This is revealed by the so-called \emph{blindsight}: some patients who are blind, because the part of the visual pathway we are aware of is damaged, can still cross a room avoiding every obstacle placed in front of them, because another part of the brain keeps processing the visual information without them knowing it.
+
+Our instruments are far less powerful, but they follow the same logic: a sensing element, a conditioning stage and a processing stage. When a detector absorbs a photon, the photon transfers its energy to the detector material, and the detectors we introduce here use this energy to produce a measurable electrical signal. We will see three families: \textbf{photomultiplier tubes} (PMTs), where the photon is absorbed by a metal (the photocathode); \textbf{photodiodes}, where the photon is absorbed by a semiconductor; and \textbf{image sensors} (CCD and CMOS), where the photon is absorbed by an array of semiconductor light-sensitive pixels.
+
+\subsection{Conductors, semiconductors and insulators}
+
+To understand why some detectors are built from certain materials, we recall how materials are classified according to their electrical conductance. In a solid, where many atoms are placed close together, electrons occupy ranges of allowed energies called \textbf{energy bands}, and the conductivity of the material depends on which bands are occupied and on whether electrons can move into nearby empty states. The \textbf{valence band} is the highest energy band filled with electrons, and its upper edge is $E_v$. A completely filled band carries no net current; when an electron leaves it, it creates a \textbf{hole}, and since other valence electrons can move into the empty state, the hole behaves as a mobile positive charge. The \textbf{conduction band} is the next higher band of allowed energies, empty at absolute zero, with lower edge $E_c$: electrons excited into this band can drift under an applied electric field and contribute to the current. The difference between the two edges is the \textbf{band gap}, $E_g = E_c - E_v$.
+
+In a \textbf{conductor} a band is partially filled, or two bands overlap (the conduction band lies within the valence band), so electrons can readily move into nearby empty states and carry current when an electric field is applied. In an \textbf{insulator} a large band gap separates the two bands, and a lot of energy is needed to excite charges into the conduction band. A \textbf{semiconductor} lies in between: a relatively small band gap separates the valence and conduction bands, about $1.1\text{ eV}$ in silicon at room temperature (Figure~\ref{fig:energy_bands}). Thermal excitation can promote a small fraction of electrons across the gap, and an absorbed photon can do the same if its energy satisfies
+\begin{equation}
+\boxed{E_{\text{ph}} = h\nu \ge E_g}
+\label{eq:bandgap_condition}
+\end{equation}
+In either case the electron enters the conduction band and leaves behind a hole in the valence band, creating an \textbf{electron--hole pair}. Both carriers can carry current, and this is the basis of semiconductor light detection.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=64, width=0.7\linewidth, keepaspectratio]{\pdf}
+\caption{Energy bands of a conductor, where valence and conduction bands overlap (left), of a semiconductor, where a photon with $h\nu \ge E_G$ can promote an electron across the gap (centre), and of an insulator, with a large band gap (right).}
+\label{fig:energy_bands}
+\end{figure}
+
+Semiconductors are the materials of choice for photon detection precisely because their band gap is comparable with the energy of visible photons. The band gap of silicon is $E_{G,\text{Si}} = 1.12\text{ eV}$, while a green photon ($\lambda \approx 500\text{ nm}$) carries $E_{\text{ph}} = hf = 2.50\text{ eV}$: when it hits silicon, it can promote an electron to the conduction band and leave a hole in the valence band. This is also the principle of photovoltaics. Typical semiconductor elements, such as silicon and germanium, are in group 14 (once known as group IV) of the periodic table; alternatively, combinations of groups 13--15 (group III--V) are used, such as GaN or GaAs (for example for LEDs). The choice depends on the application: depending on whether we need to detect photons in the infrared or closer to the UV, we have to choose the right detector, or the right camera, made of the right material.
+
+\subsection{Photomultiplier tubes}
+
+The \textbf{photomultiplier tube} (PMT) is the oldest of the detectors we will see. PMTs are no longer very widespread, but they help to visualise the detection process and to understand how the technology evolved. A PMT exploits the photoelectric effect to detect light, and amplifies the signal through a chain of multiplications of the photoelectrons. PMTs provide high sensitivity (down to single photons), high speed (nanosecond response to an impulse) and low noise.
+
+A PMT is a vacuum tube that hosts an optical window receiving the incoming light (usually borosilicate or UV-transmitting glass), a \textbf{photocathode} where the emission of electrons happens, focusing elements that steer the photoelectrons, an electron multiplier stage made of a series of \textbf{dynodes} (usually 8--12) that multiply the electrons by secondary emission in a cascade, and a final \textbf{anode}, or collector (Figure~\ref{fig:pmt_scheme}). A high voltage (1--2\,kV) is held between the photocathode and the anode, divided into several steps along the dynode chain, so that each dynode is at a negative potential with respect to the following one.
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[page=65, width=0.65\linewidth, keepaspectratio]{\pdf}
+\caption{Scheme of a photomultiplier tube: the incoming photon hits the photocathode, and the photoelectron is multiplied along the dynode chain, kept at increasing potentials by a voltage-dropping resistor chain, before being collected at the anode (from Prof.\ Pisano's slides).}
+\label{fig:pmt_scheme}
+\end{figure}
+
+The detection process works as follows. Photons enter the tube through the input window and strike the photocathode, which emits electrons into the vacuum through the photoelectric effect: these are the \textbf{photoelectrons}. A focusing electrode directs them toward the first dynode, and the potential difference accelerates them so much that, when they strike the dynode, they release additional electrons by secondary emission; this is why a very high voltage is needed. The process repeats across the dynodes, each electron extracting more electrons at every step, so that the number of electrons is multiplied into an amplified cascade, hence the name \emph{photomultiplier}. Finally, the anode collects the electrons from the last dynode, generating an electrical pulse, a current spike, which the detection electronics register and process.
+
+The photocathode is usually made of alkali antimonides, which release the first electron easily. Its spectral response and its noise depend on the material: SbKCs, for instance, is used for the visible and GaAs for the near infrared (Figure~\ref{fig:pmt_photocathode}). This is why, every time we buy a sensor, we should not be scared to open its \emph{specifications} (the ``spec sheet''): they tell us how the sensor responds depending on the wavelength, and if our light falls where the response is low, we know that we should change sensor. The figure of merit here is the \textbf{quantum efficiency}, the fraction of incoming photons that produce a photoelectron:
+\begin{equation}
+\boxed{\text{Q.E.} = \frac{\text{photoelectrons}}{\text{incoming photons}}}
+\label{eq:quantum_efficiency}
+\end{equation}
+which is typically about 35\% for a PMT. This definition is universal and holds for any photodetector, from PMTs to photodiodes to cameras. For PMTs the response is also often reported as \textbf{radiant sensitivity} (mA/W), the current produced per unit of incident light power. The dynodes, in turn, provide on average $\delta$ secondary electrons for each impinging electron; $\delta$ depends on the energy of the impinging electron, and therefore on the voltage division. Dynodes are made of metal alloys (e.g.\ beryllium--copper) coated with alkali antimonides, materials that easily release electrons when struck by other electrons.
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[b]{0.55\linewidth}
+        \centering
+        \includegraphics[page=66, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Radiant sensitivity of different photocathodes.}
+        \label{fig:pmt_spectral_response}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.38\linewidth}
+        \centering
+        \includegraphics[page=67, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Secondary emission ratio $\delta$.}
+        \label{fig:pmt_dynode_delta}
+    \end{subfigure}
+    \caption{The spectral response of a PMT depends on the photocathode material and window (A); the number of secondary electrons $\delta$ released by a dynode grows with the energy of the impinging electron (B) (from Prof.\ Pisano's slides).}
+    \label{fig:pmt_photocathode}
+\end{figure}
+
+\subsection{Response, gain and noise of a PMT}
+
+The temporal response of a PMT is described by two parameters (Figure~\ref{fig:pmt_response}). The \textbf{response pulse width} is the full width at half maximum (FWHM) of the anode current pulse delivered in response to an ideal light pulse, and the \textbf{rise time} is the time the output takes to go from 10\% to 90\% of its final value, in response either to a step or to a delta stimulus. PMTs have rise times of the order of nanoseconds, and nowadays even below the nanosecond: this speed is one of the reasons why they are still used in some applications. These curves should look familiar: they are essentially the impulse and step responses of a low-pass filter (Figure~\ref{fig:first_order_transient_responses}), only a bit wider and more S-shaped, because the cascade of electrons needs some time to travel through the tube before the output is collected. What we learnt about low-pass filters applies to almost all sensors.
+
+\clearpage
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[b]{0.38\linewidth}
+        \centering
+        \includegraphics[page=68, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Anode current upon a pulse.}
+        \label{fig:pmt_anode_pulse}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.55\linewidth}
+        \centering
+        \includegraphics[page=69, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Pulse width and rise times.}
+        \label{fig:pmt_rise_time}
+    \end{subfigure}
+    \caption{Temporal response of a PMT: an example of anode current in response to a light pulse (A), and the definitions of response pulse width to a delta stimulus, rise time to a step and rise time to a delta stimulus (B) (from Prof.\ Pisano's slides).}
+    \label{fig:pmt_response}
+\end{figure}
+
+The \textbf{gain} of a PMT is the ratio between the anode current and the photocathode current. If each of the $N$ dynodes multiplies the electrons by $\delta$, then
+\begin{equation}
+\boxed{G = \delta^N \approx K\,V^{\alpha N}}
+\label{eq:pmt_gain}
+\end{equation}
+where $K$ is a constant, $V$ the supply voltage and $\alpha$ a coefficient between $0.6$ and $0.8$ that depends on the dynode material. PMTs provide a substantial gain, up to $10^7$--$10^8$, which is even higher than that of some solid-state detectors; the order of magnitude is what we should remember. The gain grows with the number of dynodes and depends strongly on the supply voltage (Figure~\ref{fig:pmt_gain}): a higher voltage between the electrodes increases the probability of extracting electrons at each step.
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[page=70, width=0.7\linewidth, keepaspectratio]{\pdf}
+\caption{The gain of a PMT grows strongly with the supply voltage and with the number of dynode stages (from Prof.\ Pisano's slides).}
+\label{fig:pmt_gain}
+\end{figure}
+
+Like every photodetector, a PMT also has a \textbf{dark current}: a small current that flows even in the dark, and that is not linked to the arrival of photons. It is mainly due to thermal energy, which occasionally excites an electron and produces a fake pulse. Its causes include thermionic emission from the photocathode and dynode surfaces, ohmic leakage between the anode and the other electrodes or pins, scintillation from the glass envelope or the electrode supports, field emission, ionisation of residual gases (ion feedback), and scintillation of the glass caused by cosmic rays, radioisotopes contained in the glass or environmental gamma rays. The average dark current of any detector can be measured simply by acquiring in a room where all lights are switched off.
+
+Can we detect any wavelength with a PMT? It depends on the photocathode. Very high-energy photons, such as the gamma rays (above about $100\text{ keV}$) of medical applications, fall outside the spectral sensitivity of the PMT, and a higher energy is not necessarily better. In this case the PMT is coupled with a \textbf{scintillator}, a material that produces luminescence when it receives ionising radiation and converts the high-energy photons into lower-energy photons that the photocathode can detect (Figure~\ref{fig:pmt_scintillator}). Scintillators come in many forms: crystals (e.g.\ bismuth germanate, BGO), organic materials (polyethylene naphthalate), gases (N, Xe) and glasses (borosilicate). An important application is \textbf{positron emission tomography} (PET), where scintillators are used to detect the gamma rays emitted by the tracer. The same idea can be used even when the light is within the sensitivity range, simply to bring it to the interval where the photocathode is optimal and increase the quantum efficiency.
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[page=71, width=0.7\linewidth, keepaspectratio]{\pdf}
+\caption{A scintillator converts high-energy gamma radiation into scintillation photons, which are then detected by the photomultiplier (from Prof.\ Pisano's slides).}
+\label{fig:pmt_scintillator}
+\end{figure}
+
+\subsection{From PMTs to solid-state detectors}
+
+PMTs, then, are very sensitive and very fast, but they are expensive, bulky and fragile (they contain a vacuum tube), they need a very high voltage to accelerate the electrons, and they are sensitive to magnetic fields, which deflect the moving electrons: they cannot be used where strong magnetic fields are present. These drawbacks explain the move to detectors based on semiconductors, which offer a \textbf{lower cost}, a \textbf{reduced footprint} and an \textbf{easier use}, without the need for a very high voltage. Table~\ref{tab:pmt_vs_photodiode} compares a PMT with a conventional photodiode.
+
+\begin{table}[!htbp]
+\centering
+\caption{Comparison between photomultiplier tubes and conventional photodiodes.}
+\label{tab:pmt_vs_photodiode}
+\begin{tabular*}{\textwidth}{p{3.2cm}@{\extracolsep\fill}p{5.4cm}p{5.4cm}}
+\toprule
+Feature & PMT & Conventional photodiode \\
+\midrule
+Sensitivity to very weak light & Very high: internal electron multiplication can make single-photon detection possible & Lower: the signal is small, so detecting very weak light depends more on the readout amplifier \\
+Output & Amplified current or pulses & Current proportional to the incident light, without internal gain \\
+Size and robustness & Usually larger and more fragile; contains a vacuum tube & Compact, solid-state and generally robust \\
+Operating voltage & Requires high voltage & Usually requires low voltage \\
+Magnetic fields & Sensitive to magnetic fields & Generally much less sensitive \\
+Cost & Often more expensive & Typically simpler to operate and less expensive \\
+Best suited to & Ultra-low-noise photon measurements (mostly discontinued) & Moderate or bright light, compact instruments and imaging arrays \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\section{Photodiodes, APDs, SPADs and SiPMs}
+\label{sec:photodiodes}
+
+\subsection{Photon detection with a semiconductor}
+
+When a semiconductor absorbs a photon with energy higher than the band gap, $h\nu \ge E_g$, an electron moves from the valence band to the conduction band and leaves behind a positive hole: an electron--hole pair is created. If we apply a voltage across the semiconductor, the resulting electric field drives the photogenerated electrons and holes toward opposite contacts, producing a \textbf{photocurrent} (Figure~\ref{fig:semiconductor_detection}). If we simply take a piece of semiconductor and do nothing else, however, some carriers recombine with carriers of the opposite charge before reaching the contacts, reducing the amount of collected charge, and we may see nothing at all.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=72, width=0.75\linewidth, keepaspectratio]{\pdf}
+\caption{An absorbed photon creates an electron--hole pair in a semiconductor; an applied voltage drives the two carriers toward opposite contacts, producing the photocurrent $I_{\text{ph}}$.}
+\label{fig:semiconductor_detection}
+\end{figure}
+
+\subsection{The depletion region and the p--n junction}
+
+To reduce the losses from recombination, a photodiode is designed so that the incoming photons can reach, and be absorbed in, a \textbf{depletion region}: a region that contains very few mobile charge carriers in the dark and a built-in electric field, which quickly drives the electron and the hole toward opposite contacts, helping them reach the contacts before they recombine. The depletion region is the sensitive region of the detector.
+
+A depletion region forms at the junction between two semiconductor regions, one rich in mobile electrons and the other rich in mobile holes. We obtain them by \textbf{doping}, i.e.\ by including in the crystal elements with an excess of negative (n-doping) or positive (p-doping) charges (Figure~\ref{fig:doping}). In the common case of silicon, if we implant boron atoms in one part of the crystal we obtain a \textbf{p-type} material: an electron is missing in one of the bonds with the surrounding silicon atoms, i.e.\ there is a hole of positive charge. If we implant antimony (Sb) atoms in another part we obtain an \textbf{n-type} material, with an additional electron that cannot take part in any bond and carries a negative charge.
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[page=73, width=0.75\linewidth, keepaspectratio]{\pdf}
+\caption{Crystal lattice of pure silicon, of p-type silicon doped with boron (a missing electron, i.e.\ a hole) and of n-type silicon doped with antimony (an additional electron).}
+\label{fig:doping}
+\end{figure}
+
+When the two materials are put in contact to form a \textbf{p--n junction}, the free charges diffuse across the interface: the free electrons of the n side move toward the p side and recombine with the holes. Near the junction we are left with fixed ions, negative on the p side and positive on the n side, and with very few mobile carriers (Figure~\ref{fig:depletion_region}). These fixed charges of opposite sign create a \textbf{built-in electric field} $\vec{E}$, and the process reaches an equilibrium in which diffusion is counterbalanced by a voltage difference, the \textbf{built-in voltage}. This is very convenient: when an absorbed photon creates an electron--hole pair in this region, the field immediately drives the electron and the hole toward opposite contacts. The separation reduces the chance of recombination, and the motion of the charges produces a photocurrent.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=74, width=0.38\linewidth, keepaspectratio]{\pdf}
+\caption{At the p--n junction, fixed ions of opposite sign leave a depletion region with a built-in electric field (top); an electron--hole pair created there by a photon is separated by the field (bottom).}
+\label{fig:depletion_region}
+\end{figure}
+
+At the end of the story the p--n junction is a diode, and it can be operated in two ways (Figure~\ref{fig:pn_bias}). In \textbf{forward bias} the applied voltage narrows the depletion region, and the forward current rises rapidly as the voltage increases. In \textbf{reverse bias} the depletion region widens and, in the dark, only a small reverse current (the dark, or leakage, current) flows below the breakdown voltage. Reverse bias is the operating mode used for detection: the diode ordinarily does not conduct, but when a photon of sufficient energy enters the depletion region it creates an electron--hole pair, and the reverse-bias field sweeps the carriers out of the region, creating a current. When we operate one of these detectors, therefore, we must make sure that the electrodes are connected in the right direction and that we apply the right voltage.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=75, width=\linewidth, keepaspectratio]{\pdf}
+\caption{A p--n junction in reverse bias (left), where the depletion region widens, and in forward bias (right), where it narrows; in the centre, the I--V curve of the diode in the dark.}
+\label{fig:pn_bias}
+\end{figure}
+
+The location where the photon is absorbed determines whether the pair contributes to the photocurrent (Figure~\ref{fig:pn_absorption}). Inside the depletion region the built-in field separates the pair: the electron drifts toward the n side and the hole toward the p side, producing a photocurrent in the external circuit. In the neutral p and n regions, a minority carrier can diffuse to the depletion region and then be swept across by the field, but the farther from the junction it is generated, the more likely it is to recombine before reaching it.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=76, width=0.85\linewidth, keepaspectratio]{\pdf}
+\caption{Electron--hole pairs generated in the neutral regions may recombine (left), whereas those generated in the depletion region are separated by the field (right).}
+\label{fig:pn_absorption}
+\end{figure}
+
+The same principle has two applications (Figure~\ref{fig:photodiode_solar_cell}). A \textbf{photodiode} uses the photocurrent as a signal to measure the incident light, while a \textbf{solar cell} uses the illuminated junction to deliver electrical power to a load. All the light detectors and solar cells we see around are based on the p--n junction or on its variations.
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=77, width=0.8\linewidth, keepaspectratio]{\pdf}
+\caption{Two applications of the same principle: in a photodiode the meter measures the photocurrent (left), in a solar cell the junction powers a load (right).}
+\label{fig:photodiode_solar_cell}
+\end{figure}
+
+\subsection{PIN photodiodes and avalanche photodiodes}
+
+A first evolution of the p--n junction is the \textbf{PIN photodiode}, which has an intrinsic (undoped) semiconductor region between the p-type and the n-type regions, creating a wider depletion region (Figure~\ref{fig:pin_apd}). In a wider depletion region, electron--hole pairs generated deeper in the silicon can also be collected before they recombine: the intrinsic region helps to absorb light and collect charge, and improves the quantum efficiency, especially at longer wavelengths, which penetrate deeper into silicon. The photocurrent is produced without internal multiplication, so a downstream amplification step is needed. The operation is simple and low-noise, and PIN photodiodes are suited to moderate light levels.
+
+An \textbf{avalanche photodiode} (APD) adds another region. Like a PIN photodiode, it can have a wide absorption region, intrinsic or lightly doped, but it also has a \textbf{multiplication region} (the avalanche area), where a strong electric field, obtained thanks to a strong reverse bias, accelerates the charge carriers enough to create additional electron--hole pairs by \textbf{impact ionisation}. This brings us back to the photomultiplier: the carriers create an avalanche that multiplies the photocurrent, so the signal is amplified locally, inside the detector and in a very small footprint. The layers must be properly designed to obtain this region, and a fairly strong reverse bias is required, although not as strong as the voltage of a PMT. APDs are more sensitive to weak light and have a higher gain, but they require a higher bias and introduce additional noise.
+
+\clearpage
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[page=78, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{PIN photodiode.}
+        \label{fig:pin_photodiode}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[b]{0.3\linewidth}
+        \centering
+        \includegraphics[page=79, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Avalanche photodiode.}
+        \label{fig:apd}
+    \end{subfigure}
+    \caption{A PIN photodiode has an intrinsic region that widens the depletion region (A); an APD also has a multiplication region, where impact ionisation creates an avalanche of carriers (B).}
+    \label{fig:pin_apd}
+\end{figure}
+
+A standard photodiode (p--n or PIN) therefore converts light directly into a current with no internal gain, whereas an APD uses a high reverse voltage to multiply the charge carriers internally, for a much higher sensitivity to weak light. A few specifications are central to understanding the performance of a photodiode, and we find them in any catalogue: the \textbf{spectral sensitivity}, which depends on the material and on its coating; the \textbf{noise equivalent power} (NEP), the minimum detectable signal; and the \textbf{junction capacitance}, which inversely influences the frequency response, i.e.\ how fast the detector responds. For an APD, the spectral sensitivity is given as the photocurrent produced per watt of light incident on the active area at each wavelength (in A/W), and the datasheet also reports the \textbf{breakdown voltage}: APDs operate below it, and we need to know it to set the bias properly.
+
+\subsection{Single-photon avalanche diodes}
+
+PMTs and APDs detect light with a certain probability: the more photons arrive, the higher the probability of detecting them, and typically many photons are needed. What if we want to see a single photon? Then we need a \textbf{single-photon avalanche diode} (SPAD), a photodiode designed to detect individual photons. The difference with an APD lies in the operating voltage (Figure~\ref{fig:spad_operating_modes}): a photodiode works at low reverse voltage, an APD at higher reverse voltage in the so-called linear mode, and a SPAD beyond the breakdown voltage, in \textbf{Geiger mode}. The applied reverse bias creates such an intense electric field in the depletion region that a single absorbed photon can trigger a rapid, self-sustaining avalanche of charge carriers, producing a fast-rising, readily measurable current pulse.
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=80, width=0.6\linewidth, keepaspectratio]{\pdf}
+\caption{Operating regions on the I--V curve: a photodiode works at low reverse bias, an APD at higher reverse bias (linear mode) and a SPAD beyond the breakdown voltage $V_{\text{BD}}$ (Geiger mode).}
+\label{fig:spad_operating_modes}
+\end{figure}
+
+The operation of a SPAD has three steps. In the \textbf{avalanche}, the electric field accelerates a photogenerated carrier, which creates additional electron--hole pairs through impact ionisation and triggers a self-sustaining avalanche. In the \textbf{quenching and reset} step, the circuit lowers the bias below breakdown to stop the avalanche, and then restores the operating bias. The interval after a detection during which the SPAD cannot register another event is the \textbf{dead time}. As always there is a trade-off: we gain sensitivity to single photons, but we pay with a dead time due to quenching and reset. Note also that when several photons arrive together, a single SPAD produces at most one pulse: more photons increase the probability of a pulse, while its height remains approximately constant. A SPAD can only tell us whether a photon arrived or not.
+
+Still, we are on nanosecond time scales, and SPADs are extremely fast: they can record individual photon arrivals with \textbf{subnanosecond timing precision}. In \textbf{fluorescence lifetime imaging}, this allows each detected fluorescence photon to be timed relative to the excitation pulse. The fluorescence signal of a fluorophore decays exponentially in time, and different fluorophores typically have different decay rates: measuring the fluorescence at different time points with a SPAD, we can tell which fluorophore we are seeing, even for lifetimes below the nanosecond.
+
+\subsection{From one pixel to many: SPAD arrays and SiPMs}
+
+All the solid-state detectors seen so far are made of a single pixel; even PMTs, with a large or small window, see only through one window. If we want spatial information, i.e.\ to know whether a photon arrived here or there, we need many pixels. SPADs can be arranged in an array, and how the array is read out determines what it measures (Figure~\ref{fig:spad_array_sipm} and Table~\ref{tab:spad_array_sipm}). In a \textbf{SPAD imaging array} each pixel is read out separately, so the detector records where a photon was detected, and combining the detections across pixels produces an image. In a \textbf{silicon photomultiplier} (SiPM), instead, many SPADs, called microcells, are connected in parallel to a common output. Each microcell can fire independently, and when several fire together their current pulses add, so the area of the output pulse indicates how many microcells fired. A SiPM cannot tell us where the photons arrived, but it can tell us whether one, two, three or four photons arrived, i.e.\ it measures the intensity as a number of photons.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=81, width=0.75\linewidth, keepaspectratio]{\pdf}
+\caption{Readout of a SPAD array, where each pixel has its own output (left), and of a SiPM, where all microcells are connected in parallel to a shared output (right).}
+\label{fig:spad_array_sipm}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\caption{SPAD arrays and silicon photomultipliers.}
+\label{tab:spad_array_sipm}
+\begin{tabular*}{\textwidth}{p{2.6cm}@{\extracolsep\fill}p{5.7cm}p{5.7cm}}
+\toprule
+ & SPAD array & SiPM \\
+\midrule
+Readout & Pixels are usually read individually, or in small groups & Many microcells are connected in parallel to a shared output \\
+What it measures & Where photons arrive, and often when each arrives: useful for imaging and time-resolved measurements & The combined response of many microcells: useful for detecting weak light and estimating how many photons arrived together \\
+Typical trade-off & Preserves pixel-level spatial information, but requires a more complex readout & Provides a strong, simple output, but usually loses information about which microcell detected each photon \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+Each fully charged microcell of a SiPM releases approximately the same charge when it fires. The SiPM produces a current pulse $I(t)$, and the readout electronics convert it into a voltage pulse $V(t)$, so if we connect the SiPM to an oscilloscope we see voltage (mV) versus time (ns) (Figure~\ref{fig:sipm_example}). Each trace is one event recorded under focused laser illumination, and the traces group into discrete levels, because statistically one, two, three\dots{} photons arrive. The area under each trace is proportional to the released charge, and the histogram of the pulse areas shows peaks labelled 1, 2, 3 and 4 p.e.\ (photoelectron equivalents), corresponding to one, two, three and four fired microcells; the horizontal distance between neighbouring peaks is the pulse area produced by a single microcell. The histogram is essentially the oscilloscope picture turned by ninety degrees: we can really count how many photons arrived.
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=82, width=0.85\linewidth, keepaspectratio]{\pdf}
+\caption{Oscilloscope traces of an FBK SiPM (left) and histogram of the pulse areas (right), with peaks corresponding to one to four fired microcells (Yang et al., \emph{Sci.\ Rep.}\ 12, 15060, 2022).}
+\label{fig:sipm_example}
+\end{figure}
+
+\section{Imaging Sensors: CCD, EMCCD and CMOS Cameras}
+\label{sec:cameras}
+
+Building a detector with the sensitivity of a SPAD array or of a SiPM is expensive and complicated, and very often we do not need to count photons one by one: we have plenty of photons, and we only care about knowing precisely where they arrived. An image shows where light falls and how bright it is at each location, and a camera samples the light with a grid of pixels: a $1024 \times 1024$ sensor, for example, measures the light at more than one million locations. To place so many pixels we have to change technology, and use either \textbf{CCD} (charge-coupled device) or \textbf{CMOS} (complementary metal--oxide--semiconductor) sensors. In both, during an exposure each pixel collects the charge generated by the absorbed photons, and the camera converts that charge into a digital brightness value for that position in the image. Some modern, advanced CMOS cameras can detect single photons, but when the goal is to measure \emph{when} individual photons arrive, SPAD arrays with timing electronics remain the preferred choice: they record both the detection position and the arrival time with subnanosecond precision, as needed, for example, in fluorescence lifetime imaging.
+
+\subsection{CCD and EMCCD cameras}
+
+In a CCD the charges generated during the \textbf{acquisition} (or exposure) \textbf{time}, from milliseconds to seconds, are accumulated next to the pixel, and each pixel behaves as a potential well. At the end of the acquisition, the charges are gradually moved along the chip, row by row, until they reach a readout and amplification stage, where the analog signal is converted into a digital one. One amplification is performed for all pixels, with a time-encoded strategy governed by a clocking circuit, so every pixel is read in the same way. A useful picture is that of buckets collecting rain, which are then carried one after the other on a conveyor belt to a single weighing scale (Figure~\ref{fig:ccd_readout}).
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=83, width=\linewidth, keepaspectratio]{\pdf}
+\caption{In a CCD each pixel is a potential well arranged in rows and columns (left); the charges are shifted along the chip by clocked electrodes (centre) to a single readout stage, like buckets of rain carried by a conveyor belt to a weighing scale (right).}
+\label{fig:ccd_readout}
+\end{figure}
+
+Conventional CCD cameras achieve a low read noise by reading out slowly: a faster readout requires a wider amplifier bandwidth, which increases the read noise and can obscure weak signals. \textbf{Electron-multiplying CCDs} (EMCCDs) solve this problem by amplifying the signal charge in a multiplication stage \emph{before} it reaches the readout amplifier. This reduces the relative impact of the read noise and allows weak signals to be detected even at high readout speeds. Practically all the CCDs we find in microscopy are EMCCDs.
+
+\subsection{CMOS cameras}
+
+A \textbf{CMOS camera} is a device in which each individual pixel possesses its own readout amplifier transistor, which performs a first stage of conversion, and the pixels are output with a separate analog-to-digital converter for each column. For this reason, in CMOS cameras we speak of \textbf{active pixels}. CMOS sensors are easier and cheaper to fabricate, and they have advantages in readout speed and digitisation; all smartphone cameras are CMOS sensors. Early CMOS sensors had a higher noise than CCD sensors, but recent CMOS sensors provide comparable, or even better, performance. Inside each pixel there are microlenses that collect as many photons as possible and, in the most advanced sensors, a \textbf{trench structure} between the photodiodes, which prevents a photoelectron generated in one pixel from leaking into, or exciting, a neighbouring pixel (crosstalk; Figure~\ref{fig:cmos_trench}).
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=84, width=0.65\linewidth, keepaspectratio]{\pdf}
+\caption{Cross-section of a qCMOS image sensor: microlenses focus the light on the photodiodes, and a trench structure suppresses the flow of photoelectrons to neighbouring pixels (Hamamatsu).}
+\label{fig:cmos_trench}
+\end{figure}
+
+The architecture of a CMOS camera has a price: part of the signal chain is pixel-dependent and part is column-dependent, and we can see it simply by acquiring a dark image with the sensor (Figure~\ref{fig:cmos_dark_noise}). The image should be uniformly black, but it shows vertical stripes, the \emph{bar-code} effect, linked to the column-wise analog-to-digital conversion, and a \emph{salt-and-pepper} noise, due to the pixel-dependent behaviour of the first amplification stage.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=86, width=0.6\linewidth, keepaspectratio]{\pdf}
+\caption{Dark image of a Zyla 4.2 CMOS camera, showing the salt-and-pepper noise and the bar-code effect.}
+\label{fig:cmos_dark_noise}
+\end{figure}
+
+\subsection{EMCCD versus CMOS}
+
+Up to about ten years ago, CCDs typically had a lower read noise than CMOS sensors and were the best choice for very weak signals. This is why, if we open an older spectroscopy instrument, we usually find an EMCCD or a CCD camera inside. Commercial EMCCDs, however, typically have far fewer pixels. Thanks to the way they are built, with each pixel read out (almost) independently, commercial CMOS cameras have been developed with an extremely high readout speed (up to $560\text{ MHz}$). Manufacturers can therefore put many more pixels on the sensor while keeping the same frame rate as a CCD, or reach a higher frame rate. In microscopy, at a fixed resolution (i.e.\ pixel size at the sample), more pixels translate into a more extended field of view (Figure~\ref{fig:fov_comparison}), and CMOS cameras offer a better signal-to-noise ratio at very high frame rates. Their disadvantages are a pixel-dependent noise, a pixel-dependent gain and the presence of \textbf{hot pixels}. These can create artefacts and, because of the readout noise, reduce the localisation precision wherever pixels with high noise are involved, which is a problem, for example, when localising single molecules.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=85, width=0.75\linewidth, keepaspectratio]{\pdf}
+\caption{Field of view of an EMCCD camera ($1024 \times 1024$), of a second-generation sCMOS camera ($2048 \times 2048$) and of the ORCA-Quest 2 ($4096 \times 2304$), at the same pixel size.}
+\label{fig:fov_comparison}
+\end{figure}
+
+The debate between the two technologies was particularly lively when super-resolution microscopy was emerging. A comparison published about ten years ago (Figure~\ref{fig:snr_emccd_cmos}) showed that sCMOS read noise is very low compared to that of CCDs, but EMCCD technology was able to effectively overcome the read noise, rendering EMCCDs sensitive to single photons: for very few photons (below about four photoelectrons) the EMCCD performed better, above that the CMOS. A few years later, comparisons at the same speed, i.e.\ at the same readout rate per pixel, showed that CMOS cameras were already performing better than CCDs in terms of signal-to-noise ratio.
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=87, width=0.75\linewidth, keepaspectratio]{\pdf}
+\caption{Simplified image SNR as a function of the signal for two generations of sCMOS cameras (Flash 2.8 and Flash 4.0), an EMCCD (iXon 897, gain 120) and a CCD (HQ2) (Long et al., \emph{Optics Express} 20, 17759, 2012).}
+\label{fig:snr_emccd_cmos}
+\end{figure}
+
+CMOS technology has since advanced impressively fast. The best CMOS cameras today reach a read noise below one photoelectron, which makes it possible to distinguish one, two, three photoelectrons, almost as with a SiPM (Figure~\ref{fig:cmos_single_photon}). With a modern CMOS camera single molecules appear as clearer spots than with an EMCCD, both for the better signal-to-noise ratio and for the larger active area and resolution. This is why CMOS cameras are now the most widely used, and it makes no sense anymore to choose an EMCCD, not even for spectroscopy. Their remaining problem is the pixel-dependent noise and gain, together with the hot pixels, and the solution is to \textbf{characterise the camera}.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=88, width=0.6\linewidth, keepaspectratio]{\pdf}
+\caption{Probability of detecting a given number of photoelectrons for different values of the readout noise: with a read noise of $0.3$ electrons the individual photoelectron levels become distinguishable.}
+\label{fig:cmos_single_photon}
+\end{figure}
+
+\section{Characterising a CMOS Camera}
+\label{sec:cmos_characterization}
+
+In Section~\ref{sec:sensor_characteristics} we postponed the discussion of noise. We can now take it up again on a concrete example, which is also a good way to review what we learnt about variances. Characterising a CMOS camera means finding, for each pixel, its \textbf{gain} $g$ and its \textbf{read noise} $\sigma_R$, and locating the hot pixels.
+
+\subsection{Noise sources}
+
+The signal of each pixel is affected by three main noise sources. The \textbf{shot noise} $\sigma_S$ is linked to the fact that photons arrive on the detector following a Poisson statistic (Figure~\ref{fig:poisson_gauss}). The \textbf{read noise} $\sigma_R$, also called the ``offset variance'', follows a Gaussian statistic. The \textbf{dark noise} $\sigma_D$, the dark-current shot noise, is a random fluctuation caused by thermally generated electrons. To a first approximation, especially when the exposure time is not very long, as in microscopy, where it is typically of the order of a millisecond or below, the dark noise can be neglected. The electronic \textbf{offset} (or bias), instead, is not a noise but a systematic contribution to the measured signal.
+
+Since the noise sources are independent, the total variance is the variance of a sum of independent random variables, which equals the sum of their variances (Equation~\eqref{eq:variance_linear_combination}):
+\begin{equation}
+\sigma_{\text{tot}}^2 = \text{Var}\left(\sum_{i=1}^{N}X_i\right) = \sum_{i=1}^{N}\text{Var}(X_i),
+\end{equation}
+so that the total noise of a pixel is
+\begin{equation}
+\boxed{\sigma_{\text{tot}} = \sqrt{\sigma_S^2 + \sigma_R^2}}
+\label{eq:cmos_total_noise}
+\end{equation}
+
+\subsection{Offset and read noise}
+
+What can we actually measure with a camera? Two things: dark images, collected when no photons arrive, and images at different light intensities. From the dark images we obtain the \textbf{offset} of each pixel: we put the camera in the dark, collect many frames, compute the average offset of each pixel, and subtract it from every future image. The offset is just a systematic contribution and is removed this way. The noise, however, cannot be cancelled, and we have to estimate it: the variance of the offset is exactly the read noise. From the images at different intensities, which require a fairly uniform source whose intensity can be tuned, we obtain the variance of the signal, $\sigma_{\text{tot}}$, and the gain.
+
+If $x_i$ is the value of a pixel in frame $i$, acquired in the dark, the offset mean value of that pixel and the offset variance are
+\begin{equation}
+\mu = \frac{1}{N}\sum_{i=1}^{N}x_i, \qquad \sigma^2 = \sigma_R^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)^2.
+\label{eq:offset_mean_variance}
+\end{equation}
+These are population quantities, which we would obtain with infinitely many frames; we cannot stay in front of the camera for the age of the universe, so we only have a sample. As we demonstrated in Section~\ref{sec:n_minus_one}, the sample variance $\sigma^2_{\text{sample}}$ computed with $N$ in the denominator is biased, $\mathbb{E}[\sigma^2_{\text{sample}}] = \frac{N - 1}{N}\sigma^2$, and we must use the unbiased sample variance
+\begin{equation}
+\boxed{s^2 = \frac{N}{N - 1}\,\sigma^2_{\text{sample}}}
+\label{eq:offset_unbiased_variance}
+\end{equation}
+i.e.\ divide by $N - 1$ instead of $N$. The larger the number of frames we average, the better: if we compute the offset variance on an increasing number of frames, it eventually reaches a plateau, because we are approaching the population value (Figure~\ref{fig:offset_variance_frames}).
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=89, width=0.6\linewidth, keepaspectratio]{\pdf}
+\caption{Offset variance as a function of the number of averaged frames: the estimate stabilises as the number of frames grows.}
+\label{fig:offset_variance_frames}
+\end{figure}
+
+\subsection{Gain}
+
+The output signal $s$ of a pixel, the number we read in analog-to-digital units (ADU) when we switch on the camera, is linked to the number of photoelectrons $n_e$ through the gain,
+\begin{equation}
+\boxed{s = g\,n_e, \qquad [g] = \frac{\text{ADU}}{e^-}}
+\label{eq:cmos_gain}
+\end{equation}
+where, in this whole discussion, we neglect the quantum efficiency (i.e.\ we set it to one). The photoelectrons inherit the shot noise of the photon flux, and since the shot noise is Poissonian, and the mean and the variance of a Poisson distribution are equal, $\sigma_e^2 = n_e$. The shot noise in the output signal is $\sigma_S = g\,\sigma_e$, so the total noise of Equation~\eqref{eq:cmos_total_noise} becomes
+\begin{equation}
+\sigma_{\text{tot}}^2 = \sigma_S^2 + \sigma_R^2 = (g\,\sigma_e)^2 + \sigma_R^2 = g^2n_e + \sigma_R^2.
+\end{equation}
+Substituting $n_e = s/g$ we obtain a relation that contains only measurable quantities and the gain:
+\begin{equation}
+\boxed{\sigma_{\text{tot}}^2 - \sigma_R^2 = g\,s}
+\label{eq:gain_relation}
+\end{equation}
+Here $s$ is the average signal measured in ADU minus the offset. Measuring $\sigma_{\text{tot}}$, $\sigma_R$ and $s$ for each pixel at $K$ different light intensity levels, the gain of each pixel is the value that minimises the squared residuals of Equation~\eqref{eq:gain_relation}:
+\begin{equation}
+g = \underset{g}{\arg\min}\sum_{k=1}^{K}\left[\left(\sigma_{\text{tot},k}^2 - \sigma_{R,k}^2\right) - s_kg\right]^2.
+\label{eq:gain_least_squares}
+\end{equation}
+This is a least squares minimisation. Thanks to the least squares solution theorem, using the pseudo-inverse matrix, it can be rewritten as
+\begin{equation}
+\boxed{g = \left(S^TS\right)^{-1}S^TV}, \qquad S = \begin{pmatrix} s_1 \\ \vdots \\ s_K \end{pmatrix}, \qquad V = \begin{pmatrix} \sigma_{\text{tot},1}^2 - \sigma_{R,1}^2 \\ \vdots \\ \sigma_{\text{tot},K}^2 - \sigma_{R,K}^2 \end{pmatrix}.
+\label{eq:gain_pseudoinverse}
+\end{equation}
+Since every image is a matrix, it is convenient to work with matrices and compute the gain of all pixels simultaneously; with MATLAB or Python this is very fast, once the stack of dark images and the stacks of images at different intensities have been collected. We do not need to remember the matrix formulation, but it is not really difficult. An equivalent strategy is to plot, for every pixel, $\sigma_{\text{tot}}^2 - \sigma_R^2$ against the signal $s$: the gain is simply the slope of this line, obtained with a fit for every single pixel.
+
+\subsection{An example: the Zyla 4.2 camera}
+
+Figure~\ref{fig:read_noise_histogram} shows the result of this characterisation for a Zyla 4.2 (Andor) CMOS camera, about ten years ago: the histogram of the number of pixels as a function of the offset variance. The distribution is not Gaussian, with a long tail toward high variances. From its most probable value, about $8\text{ ADU}^2$, and the gain, we obtain the read noise in electrons, $\sqrt{8}/2.2 \approx 1.3\,e^-$, comparable with the $1.1\,e^-$ declared in the camera specifications. At that time this was a very good camera; nowadays the best cameras have, on average, a read noise below one electron.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=90, width=0.75\linewidth, keepaspectratio]{\pdf}
+\caption{Number of pixels as a function of the offset variance (exposure time $10\text{ ms}$) for a Zyla 4.2 camera. The read noise in electrons is obtained by dividing the square root of the offset variance by the gain.}
+\label{fig:read_noise_histogram}
+\end{figure}
+
+The gain can be mapped pixel by pixel, since the camera is a matrix (Figure~\ref{fig:gain_map}), and its histogram (Figure~\ref{fig:gain_histogram}) tells us that the gain of this camera is about $2.2\text{ ADU}/e^-$ (mean $2.17$, standard deviation $0.33\text{ ADU}/e^-$). The measured characteristics of the camera, at $50\text{ ms}$ integration time and $560\text{ MHz}$ readout clock, are an average offset of about $100\text{ ADU}$, an average offset variance of about $17\text{ ADU}^2$, an average gain of about $2.2\text{ ADU}/e^-$ and a gain variance of about $0.3\text{ ADU}/e^-$.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=91, width=0.7\linewidth, keepaspectratio]{\pdf}
+\caption{Map of the gain of each pixel of the Zyla 4.2 camera.}
+\label{fig:gain_map}
+\end{figure}
+
+\subsection{Bit depth, full-well capacity and dynamic range}
+
+The specifications of a CMOS camera always report its \textbf{bit depth} $n$, the number of digital values available to represent the signal: an $n$-bit analog-to-digital converter has $2^n$ digital levels, but the maximum digital value is $2^n - 1$, since counting starts at zero. Typical values are 8, 12 and 16 bits, the latter being the highest found in commercial cameras, with $2^{16} = 65\,536$ levels. In some cameras the bit depth can be changed, and it should be chosen properly. We open the camera, look at the sample in the standard conditions of our acquisition, and check the counts at the minimum and at the maximum signal. If the signal varies, say, between $50$ and $300\text{ ADU}$, it makes no sense to keep the bit depth at 16 bits: choosing 8-bit instead of 12- or 16-bit acquisition can increase the frame rate (frames per second) of a CMOS camera, and give us more freedom from that point of view.
+
+The bit depth and the \textbf{full-well capacity} (FWC), the maximum charge that can be stored in a pixel, are linked. Assuming that the full ADC range maps to the full-well capacity, with zero electronic offset,
+\begin{equation}
+\boxed{\text{FWC} \approx \frac{2^n - 1}{g}}
+\label{eq:full_well_capacity}
+\end{equation}
+with the FWC in electrons and the conversion gain $g$ in $\text{ADU}/e^-$. Finally, the \textbf{dynamic range} is the ratio between the full-well capacity and the read noise:
+\begin{equation}
+\boxed{\text{DR} = \frac{\text{FWC}}{\sigma_{\text{read}}}}
+\label{eq:camera_dynamic_range}
+\end{equation}
+For our camera, with a 16-bit ADC, a mean conversion gain of $2.17\text{ ADU}/e^-$ and a read noise of about $1\,e^-$ RMS, the estimated full-well capacity is about $30\,200\,e^-$, and the specifications declare a dynamic range of $33\,000{:}1$, which corresponds to the maximum value divided by the minimum gain, $65\,536/2 \approx 33\,000$ (Figure~\ref{fig:gain_histogram}).
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[page=92, width=\linewidth, keepaspectratio]{\pdf}
+\caption{Histogram of the gain of the Zyla 4.2 camera, together with the definitions of bit depth, full-well capacity and dynamic range and the corresponding camera specifications.}
+\label{fig:gain_histogram}
+\end{figure}
+
+\subsection{Hot pixels}
+
+Looking at the gain map, we immediately notice that the image is mostly green, i.e.\ around $2$, but there are some very dark blue spots, with a gain close to zero, which correspond to a small separate group in the gain histogram (Figure~\ref{fig:hot_pixels}). In Chapter~\ref{ch:errors} we saw that a value more than three standard deviations from the mean deserves to be investigated (Equation~\eqref{eq:three_sigma_rule}). Here we are at probably ten standard deviations, and there are too many of these values compared with what the statistics would predict: something does not belong to what we are trying to describe. Indeed, these pixels coincide exactly with the defective pixels declared by the manufacturer. They are \textbf{hot pixels}: they are always switched on, with a very high current, so they look bright, but in a fake way, not because photons arrived. What we can do is to remove their information, which has no meaning, and replace it with the mean value of the pixels around each hot pixel.
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=93, width=0.6\linewidth, keepaspectratio]{\pdf}
+\caption{Number of pixels as a function of the gain: the hot pixels form a small group far from the main distribution.}
+\label{fig:hot_pixels}
+\end{figure}
+
+\subsection{Using the characterisation}
+
+The parameters obtained from the characterisation can be used, for example, to be really precise in the localisation of single molecules. The localisation depends on the distribution of the intensity recorded by the pixels, and if this distribution is distorted by pixel-to-pixel differences, the localisation is not precise. Huang et al.\ (\emph{Nature Methods} 10, 653) developed a CMOS-specific algorithm that accounts for the pixel-dependent readout noise and gain. It is based on a maximum likelihood estimator (MLE), a kind of evolution of least squares minimisation that accounts for the noise, whose likelihood function is the convolution of a Poisson distribution, representing the shot noise, with a Gaussian distribution, representing the read noise. Plugging the gain and the noise of each pixel into the algorithm improves the localisation of every single molecule.
+
+\section{Camera Specifications in Practice}
+\label{sec:camera_specs}
+
+\subsection{Quantum efficiency}
+
+Besides gain and noise, another key characteristic of a camera is its \textbf{quantum efficiency} (Equation~\eqref{eq:quantum_efficiency}), which tells us how well the sensor converts light of different wavelengths into signal. The spectral response can be quite different from one camera to another, so it is important to check where our fluorophore emits: if it emits far in the red, where a camera has a low quantum efficiency, we may be losing most of our photons and we should probably choose another camera. The maximum quantum efficiency is always around 80--85\%, so some photons are always lost, whatever the wavelength.
+
+\subsection{Sensitivity, resolution, threshold and saturation}
+
+The general characteristics we defined for sensors in Section~\ref{sec:sensor_characteristics} (sensitivity, resolution, threshold, saturation, dead band) can be identified for cameras too, and many of them can be computed from the specifications given by the manufacturer. Consider a Basler a2A5328-35cm CMOS camera at $541\text{ nm}$. A CMOS pixel collects charge during an exposure, and in its linear range the mean digital output increases in proportion to the number of incident photons $N_\gamma$: the slope of this response curve is the sensitivity (Figure~\ref{fig:basler_sensitivity}). The chain goes from photons to electrons to digital counts. The quantum efficiency is $\eta = 67.3\%$, so $N_e = \eta N_\gamma$, and the camera gain is $G = 0.413$ digital counts per electron. After subtracting the dark signal, the mean output is $\text{ADU} = G\eta N_\gamma$, and the sensitivity is therefore
+\begin{equation}
+\boxed{S = \frac{\Delta\text{ADU}}{\Delta N_\gamma} = G\eta} = 0.413 \times 0.673 \approx 0.28\text{ counts per photon}.
+\label{eq:camera_sensitivity}
+\end{equation}
+On average, 100 additional photons increase the output by about 28 counts. If the quantum efficiency were one, as we assumed in the characterisation, the sensitivity would coincide with the gain.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=94, width=0.5\linewidth, keepaspectratio]{\pdf}
+\caption{Response of a Basler a2A5328-35cm camera at $541\text{ nm}$: in the linear range, the mean output (in digital numbers) grows with the mean number of photons per pixel, with slope equal to the sensitivity, and flattens at saturation.}
+\label{fig:basler_sensitivity}
+\end{figure}
+
+What input change corresponds to one digital count? The smallest output increment is one ADU (also called digital count, or digital number), so using the resolution formula of Equation~\eqref{eq:resolution_lsb_formula} with $\Delta y_{\text{LSB}} = 1\text{ ADU}$,
+\begin{equation}
+\Delta N_\gamma = \frac{\Delta y_{\text{LSB}}}{S} = \frac{1}{0.28} \approx 3.6\text{ incident photons per pixel}.
+\end{equation}
+This is the \textbf{intensity resolution}: on average, we can distinguish two signals differing by about $3.6$ photons per pixel, although noise limits how reliably such a small change can be distinguished in a single exposure.
+
+The \textbf{detection threshold} is reached when the mean signal due to light equals the typical fluctuation of the pixel output, i.e.\ when the signal-to-noise ratio is $\text{SNR} = 1$. For this camera the threshold corresponds to an average of $2.7$ collected electrons per pixel, and accounting for the quantum efficiency the corresponding light level is
+\begin{equation}
+N_{\gamma,\text{threshold}} = \frac{2.7\text{ electrons}}{0.67\text{ electrons/photon}} \approx 4.1\text{ photons}.
+\end{equation}
+When we buy a camera we should therefore be aware of the experiment we have to do, check the quantum efficiency at the wavelength of our fluorophore, and ask ourselves how many photons we expect. For most biological applications four photons are not a problem: we have many more. It may become an issue in the quantum world, for instance in quantum biology, where we usually want to see single photons.
+
+What is more typical in our experiments is the opposite problem, \textbf{saturation}: we increase the laser power, but the signal of the camera does not go up, as it should. In that condition the output no longer tells us what is happening on the sensor, and we have to check that we are not saturating the camera. The same table of specifications gives a saturation capacity of $9\,661$ collected electrons per pixel, and applying the same conversion we find the incident light level at saturation:
+\begin{equation}
+N_{\gamma,\text{sat}} = \frac{9\,661\text{ electrons}}{0.67\text{ electrons/photon}} \approx 14\,350\text{ photons per exposure}.
+\end{equation}
+
+\subsection{Dead time and readout speed}
+
+Cameras are fast, but not infinitely fast: they also have a \textbf{dead time}, during which they reset and read the information and cannot see anything. A fast signal falling in this interval is lost. In the Hamamatsu ORCA-Flash4.0 V3, for example, at 100 frames per second with a Camera Link interface, each row starts a new exposure every $10\text{ ms}$: with an $8\text{ ms}$ exposure, the row collects light for $8\text{ ms}$ and is inactive for the remaining $2\text{ ms}$, and a flash falling entirely in that gap is missed by that row. We therefore need to know the readout time and the maximum speed of the camera.
+
+Table~\ref{tab:orca_quest_specs} shows some of the features we find when we open the specifications of a camera, and what they mean for imaging. The \textbf{pixel size} is fundamental, because it is related to the resolution we want at the sample, and the magnification of the objective must be chosen according to the pixel size of the camera. The readout mode is another important choice. We can read every pixel very fast, at the price of a higher read noise, or more slowly, with a lower read noise. There is always a trade-off, and with really weak signals we have to accept a slower readout.
+
+\begin{table}[h]
+\centering
+\caption{Some specifications of the Hamamatsu ORCA-Quest CMOS camera and their meaning for imaging.}
+\label{tab:orca_quest_specs}
+\begin{tabular*}{\textwidth}{p{2.8cm}@{\extracolsep\fill}p{4.6cm}p{6.4cm}}
+\toprule
+Feature & Specification & What it means for imaging \\
+\midrule
+Pixel array and size & $4096 \times 2304$ pixels (9.4\,MP), each $4.6\,\mu\text{m}$ square & At a given magnification, pixel size determines specimen sampling, and array size determines the field of view \\
+Quantum efficiency & 85\% at $460\text{ nm}$ (peak) & At this wavelength, 100 incident photons produce about 85 collected electrons on average \\
+Standard scan (fast readout) & $0.43\,e^-$ RMS read noise at 120 full frames/s & A new frame every $8.3\text{ ms}$ makes this mode useful for following rapid changes \\
+Ultra-quiet scan (slow readout) & $0.27\,e^-$ RMS read noise at 5 full frames/s & Slower readout makes adjacent photoelectron levels easier to distinguish in faint signals \\
+Full-well capacity & $7\,000\,e^-$ per pixel & Sets the upper limit on the charge a pixel can collect before saturation \\
+Dark current & $0.016\,e^-/\text{pixel/s}$ at $-20\;^\circ\text{C}$ & During a $10\text{ s}$ exposure, a pixel accumulates only $0.16$ electrons on average from dark current \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Colour cameras}
+
+So far we have treated cameras as if they collected a single colour. Our smartphone, however, takes colour pictures: how is colour measured? In a rather unsophisticated way, because so far no better way has been found. The cheapest method is to place optical filters on the pixels, with a \textbf{colour filter array} (CFA); the typical arrangement is the \textbf{Bayer filter} (Figure~\ref{fig:bayer_filter}). In this way each pixel detects only one wavelength band (red, green or blue), and the full colour image is reconstructed in post-processing. The trade-off is a lower spatial resolution, and also a loss of photons, since every filter discards part of the light.
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[b]{0.32\linewidth}
+        \centering
+        \includegraphics[page=95, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Bayer filter.}
+        \label{fig:bayer_pattern}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.62\linewidth}
+        \centering
+        \includegraphics[page=96, width=\linewidth, keepaspectratio]{\pdf}
+        \caption{Colour filters on a CMOS sensor.}
+        \label{fig:bayer_sensor}
+    \end{subfigure}
+    \caption{A Bayer colour filter array: each pixel receives only red, green or blue light (A); the filters sit between the microlens and the photodiode of each active pixel of a CMOS sensor (B).}
+    \label{fig:bayer_filter}
+\end{figure}
+
+In microscopy colour cameras are never used, even for multichannel (multicolour) imaging. We keep using monochrome cameras and select the colours with the microscope. One possibility is to alternate the collection of the different colours in time, placing the appropriate filters in the optical path. Another is to collect the channels simultaneously with two cameras and a splitter: for green and red, for example, a mirror that reflects red and transmits green sends the red light to one camera and the green light to the other. Finally, since different colours in biology usually mean different labelled proteins, which are often located in different positions, we can use a filter that passes both signals, image the two channels simultaneously and distinguish them because we know what we are labelling.
+
+\subsection{Cameras for spectroscopy}
+
+A sensor made of many pixels is also useful for spectroscopy, because pixelated detectors can capture a spectrum of light, detecting multiple wavelengths at once. The different wavelengths of an optical stimulus are usually separated with a diffraction grating (Section~\ref{sec:light_review}) and then focused on an image sensor, so that every pixel receives a different set of wavelengths and the ``image'' encodes a spectrum: entering with white light, we find the blue in a certain range of pixels, the green in another and the red in another (Figure~\ref{fig:spectrometer}). The spectral resolution (in nm) depends on the grating periodicity, on the length of the spectrometer and on the pixel size of the camera.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=97, width=0.5\linewidth, keepaspectratio]{\pdf}
+\caption{Scheme of a spectrometer: the light entering through a slit is collimated, separated by a grating and focused on an image sensor, where each pixel receives a different wavelength.}
+\label{fig:spectrometer}
+\end{figure}
+
+\section{Satellite-Based Positioning Systems}
+\label{sec:gnss}
+
+How do we measure position, motion and occupancy? Different technologies infer them from different physical signals: radio-signal timing in satellite-based positioning systems, optical distance measurement in LiDAR, acoustic echoes in echolocation and ultrasound, and a variety of signals in occupancy and motion sensors. We give an overview of what exists, starting from satellite positioning.
+
+\subsection{GPS and the GNSS constellations}
+
+All of us use the GPS without any issues. The \textbf{Global Positioning System} (GPS) determines the three-dimensional position of a receiver on Earth using radio signals transmitted by satellites (at least four). Each satellite transmits its position and precise timing information, and the receiver measures the signal travel time to estimate its distance from each satellite. We commonly call all these systems GPS, but the technically correct name is \textbf{GNSS} (Global Navigation Satellite Systems), the general term for satellite-based systems that provide worldwide positioning, navigation and timing (PNT) services. Each GNSS consists of a constellation of satellites orbiting Earth on different orbital planes, designed so that multiple satellites are simultaneously visible from almost any location. The four main constellations, controlled by different organisations, are summarised in Table~\ref{tab:gnss_constellations}.
+
+\begin{table}[!htbp]
+\centering
+\caption{The main GNSS constellations.}
+\label{tab:gnss_constellations}
+\begin{tabular*}{\textwidth}{p{2.6cm}@{\extracolsep\fill}p{3.6cm}p{4.4cm}p{3cm}}
+\toprule
+System & Origin & Orbital planes and satellites & Altitude \\
+\midrule
+GPS (NAVSTAR), United States & Originally developed for military applications & 6 planes; at least 24 satellites & $\sim 20\,200\text{ km}$ \\
+GLONASS, Russia & Originally developed by the Soviet Union & 3 planes; 24 satellites & $\sim 19\,100\text{ km}$ \\
+Galileo, European Union & Developed primarily for civilian applications & 3 planes; 24 operational satellites $+$ 6 spares & $\sim 23\,222\text{ km}$ \\
+BeiDou (BDS), China & Civilian and military applications & 3 planes for the MEO; 30 satellites: 24 MEO, 3 IGSO, 3 GEO & $\sim 21\,528\text{ km}$ (MEO), $\sim 35\,786\text{ km}$ (IGSO/GEO) \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+The very first system was the GPS, developed, like many advanced technologies, for military purposes. Europe arrived quite late: Galileo has been operating only for a few years. The Chinese system is the most articulated, combining satellites on orbits at different altitudes.
+
+A GNSS consists of three main segments. The \textbf{space segment} is the constellation of satellites orbiting Earth, which continuously transmit radio signals containing precise timing information and orbital data. The \textbf{control segment} is a network of ground stations that monitor and manage the constellation: they track the satellite orbits, monitor the onboard clocks, and upload updated navigation data, the \textbf{ephemerides} (an ephemeris is a set of orbital data that allows a satellite's position to be calculated at a given time) and clock corrections. Finally, the \textbf{user segment} is made of us, the GNSS receivers, which collect and process the satellite signals to determine position, velocity and time.
+
+\subsection{Operating principle}
+
+In a simplified explanation (a whole course would be needed to explain how geolocalisation really works), positioning relies on three steps. The first is \textbf{precise timing}: GNSS satellites carry highly stable atomic clocks, continuously monitored and corrected by the ground stations, and each satellite broadcasts radio-frequency signals containing the precise transmission time and its orbital data. The second is \textbf{distance estimation}: the receiver estimates the signal travel time $\Delta t$ from each satellite, and since the signals are electromagnetic waves travelling at the speed of light, the corresponding apparent distance, called the \textbf{pseudorange}, is
+\begin{equation}
+\boxed{\rho = c\,\Delta t = c\,(t_R - t_T)}
+\label{eq:pseudorange}
+\end{equation}
+where $t_R$ is the reception time (receiver clock) and $t_T$ the transmission time (satellite clock). One pseudorange tells us how far we are from one satellite, but it is not enough. The third step is \textbf{position determination}: the receiver combines the pseudoranges from multiple satellites (\textbf{trilateration}), and the position is calculated from the intersection of the spherical wavefronts (Figure~\ref{fig:gnss_trilateration}). The illustration with three intersecting spheres represents idealised trilateration; in practice the receiver must estimate four unknowns, the three spatial coordinates $(x, y, z)$ and the receiver clock offset $\Delta t_{\text{clock}}$, so it needs at least four equations, i.e.\ at least four satellites.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=98, width=0.45\linewidth, keepaspectratio]{\pdf}
+\caption{Idealised trilateration: the receiver lies at the intersection of the spheres centred on the satellites, with radii equal to the measured distances. A fourth satellite is needed in practice to estimate the receiver clock offset.}
+\label{fig:gnss_trilateration}
+\end{figure}
+
+\subsection{GNSS as an indirect measurement}
+
+The position is not measured directly: it is reconstructed from signal travel-time measurements through the model of Equation~\eqref{eq:pseudorange}, so GNSS is an example of indirect measurement, and errors propagate into the result. Timing errors are due to clock errors, since the receiver and satellite clocks are not perfectly synchronised, and the measured time difference does not correspond exactly to the actual propagation time. Atmospheric delays, which change from place to place, and interference with the many other signals continuously sent by all these satellite systems also affect the reconstructed position, so the apparent distance is not identical to the geometric distance. Timing is crucial, and it has to be extremely precise: GNSS radio signals travel at about $3 \times 10^8\text{ m/s}$, i.e.\ $30\text{ cm/ns}$, so
+\begin{equation}
+1\text{ ns of timing error} \approx 0.30\text{ m},
+\end{equation}
+and a timing error of only about $3\text{ ns}$ already gives an error of one metre. Relying on quartz oscillators, consumer-grade GPS receivers such as smartphones typically achieve positioning accuracies of 5--10\,m under favourable conditions.
+
+To mitigate these errors and be even more precise, the \textbf{differential GPS} (DGPS) uses a reference station at a precisely known location (Figure~\ref{fig:dgps}). The reference station receives the same satellite signals as the nearby GPS receivers; by comparing its measured position with its known position, it estimates the positioning errors, which are used to generate corrections for nearby receivers. Differential measurements reduce the errors shared by nearby receivers, and DGPS can achieve sub-metre accuracy under suitable conditions.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=99, width=0.65\linewidth, keepaspectratio]{\pdf}
+\caption{Differential GPS: a reference station at a known position compares its measured position with the true one, and the resulting corrections are applied to nearby receivers.}
+\label{fig:dgps}
+\end{figure}
+
+\subsection{Applications: animal tracking}
+
+Beyond navigation, GPS can help us to study animal behaviour. Modern receivers are compact and light enough to be attached to animals, allowing their movements to be tracked over time, and combined with wireless communication technologies the tracking devices can also transmit the location data remotely. GPS tracking is widely used to investigate animal migration routes and movement patterns, foraging strategies and habitat use, interactions and social behaviour, human--wildlife interactions and conflicts, and for wildlife conservation and management.
+
+\section{Sensing Distance: LiDAR, Echolocation and Ultrasound}
+\label{sec:distance}
+
+Distance measurement plays a fundamental role in engineering, environmental monitoring and life sciences. Different technologies use the propagation of electromagnetic or acoustic waves to obtain spatial information over distances ranging from centimetres to kilometres. Two common approaches are \textbf{optical ranging} (LiDAR), which uses light, and \textbf{acoustic ranging} (sonar and ultrasound), which uses sound waves, mechanical rather than electromagnetic waves. In both cases the distance is estimated from the propagation time of a signal, and both rely on \textbf{active sensing}: unlike GNSS, the same system generates the signal, emits it, and analyses its interaction with the environment.
+
+\subsection{LiDAR}
+
+\textbf{LiDAR} (Light Detection and Ranging) is an active optical sensing technique that uses laser light to measure distances to surrounding objects. It is based on the \textbf{time-of-flight} (ToF) principle: a short laser pulse is emitted toward a target, part of the light is reflected or scattered back to the detector, and the distance is calculated from the measured round-trip travel time $\Delta t$:
+\begin{equation}
+\boxed{D = \frac{c\,\Delta t}{2}}
+\label{eq:lidar_distance}
+\end{equation}
+where $c$ is the speed of light. LiDAR often uses near-infrared lasers (e.g.\ $905$ or $1550\text{ nm}$), and the reflected light is detected with the very fast photodetectors we met in Section~\ref{sec:photodiodes}, APDs or, for very weak signals, SPADs, both with response times around or below one nanosecond. The distance resolution depends on the pulse duration and on the timing resolution, while the spatial sampling density depends on the scanning and pulse repetition rates (Figure~\ref{fig:lidar_tof}).
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[page=100, width=0.25\linewidth, keepaspectratio]{\pdf}
+\caption{Time-of-flight principle of a scanning LiDAR: the laser pulse is sent toward the targets, and the distance is computed from the round-trip time of the reflected light.}
+\label{fig:lidar_tof}
+\end{figure}
+
+The difference with GNSS is immediately clear. In GNSS the signal travels one way, from the satellite to the receiver, and $D = c\Delta t$; in LiDAR the signal makes a round trip, and $D = c\Delta t/2$.
+
+LiDAR is widely used for atmospheric and environmental monitoring. In atmospheric applications the laser light is scattered by molecules, aerosols and cloud particles, so the scattered light is informative in itself: the analysis of the backscattered signal provides information on their spatial distribution and altitude, and allows aerosols, clouds and atmospheric pollution to be monitored. In oceanographic applications, underwater LiDAR uses wavelengths that can penetrate water (typically green light), for shallow-water bathymetry and marine habitat mapping; scattering and absorption attenuate the signal and limit the measurement range.
+
+The context in which we hear about LiDAR most often is \textbf{autonomous driving}. Scanning laser beams, often many of them to improve the spatial resolution, measure the distances to the surrounding objects, and the multiple measurements are combined into a three-dimensional point cloud of the environment (Figure~\ref{fig:lidar_car}). LiDAR complements cameras and radar for obstacle detection, localisation and navigation. Why, then, is reliable autonomous driving still challenging, if LiDAR can be so fast and precise? Its limitations come from the variability of the outside world: adverse weather conditions (fog, rain, snow), which can create very strong artefacts; reflective or poorly reflecting surfaces, for which the system is blind; occlusions and a limited field of view; and the real-time processing and interpretation of complex environments, where very close targets may appear in very short times. The technology keeps improving, but the reliance on reflection is intrinsic to the physics of the method. On top of the technical limitations there are also ethical questions: would we accept that a car decides for us, for example, which way to steer when every choice harms someone?
+
+\begin{figure}[h]
+\centering
+\includegraphics[page=101, width=0.6\linewidth, keepaspectratio]{\pdf}
+\caption{A vehicle-mounted LiDAR scans the environment with several laser beams to build a three-dimensional map of the surroundings.}
+\label{fig:lidar_car}
+\end{figure}
+
+As for any sensor, we can define the performance of a LiDAR. Its \textbf{resolution} includes a spatial (angular) resolution in the $x$ and $y$ directions, which determines how closely spaced two objects can be while remaining distinguishable; a range resolution along the propagation direction $z$, which depends on the laser pulse duration and on the temporal response of the detector; and a temporal resolution, which determines how frequently the environment is sampled or updated. Its \textbf{sensitivity} depends on the target reflectivity, distance and speed and on the signal-to-noise ratio: very close or very fast objects can be hard to detect, as can weak or partially obstructed ones. Its \textbf{reliability} depends on external conditions: fog, rain and snow attenuate and scatter the laser light, and the surface reflectivity and geometry affect the returned signal. Finally, the laser power cannot be increased at will, because eye-safety requirements limit the permissible emission: we cannot shine a laser into people's eyes.
+
+To get a feeling for the time scales, how long does it take for a laser pulse to travel to an obstacle $1\text{ m}$ away and return (Figure~\ref{fig:lidar_one_metre})? From Equation~\eqref{eq:lidar_distance},
+\begin{equation}
+\Delta t = \frac{2D}{c} = \frac{2 \times 1\text{ m}}{3 \times 10^8\text{ m/s}} \approx 6.7\text{ ns},
+\end{equation}
+so the system must be able to resolve times of a few nanoseconds. Exercise~\ref{ex:lidar_uncertainty} shows how a timing uncertainty translates into a distance uncertainty.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=102, width=0.4\linewidth, keepaspectratio]{\pdf}
+\caption{A LiDAR pulse travelling to an obstacle $1\text{ m}$ away and back takes about $6.7\text{ ns}$.}
+\label{fig:lidar_one_metre}
+\end{figure}
+
+\subsection{Echolocation}
+
+In the animal kingdom there are many examples of the use of sound waves to obtain information about location. \textbf{Echolocation} (biosonar) is an active sensing mechanism that uses reflected sound waves to obtain spatial information about the surrounding environment: bats and toothed whales (e.g.\ dolphins) use it for navigation, obstacle detection and locating prey. Dolphins emit short, high-frequency acoustic clicks; the sound waves propagate through water, are reflected by the surrounding objects, and the returning echoes provide information about the distance, direction and characteristics of the objects (Figure~\ref{fig:echolocation}). The same physical principle is used in artificial \textbf{SONAR} (Sound Navigation and Ranging), as in submarines, and in ultrasonic distance sensors. Sperm whales produce the strongest sounds in nature: their extremely brief acoustic pulses can reach instantaneous intensities millions of times greater than those experienced at a loud rock concert, yet they last only about $100\,\mu\text{s}$.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=103, width=0.5\linewidth, keepaspectratio]{\pdf}
+\caption{Dolphins locate objects from the echoes of their acoustic clicks; the same principle is used in artificial SONAR.}
+\label{fig:echolocation}
+\end{figure}
+
+Humans, too, can develop echolocation skills, producing clicks and interpreting their echoes. In a study with functional magnetic resonance imaging (Thaler, Arnott and Goodale, \emph{PLOS ONE}, 2011), expert human echolocators, compared with control participants, activated brain regions typically associated with visual processing rather than auditory ones. This is a fascinating example of neuroplasticity: people who have developed echolocation can use reflected sounds to build spatial representations of their environment, recruiting brain regions normally associated with vision. It does not mean that they literally see with their ears, but it shows how auditory information can be processed to support spatial perception.
+
+As in LiDAR, the distance is estimated from the round-trip travel time of the waves, with the speed of sound in place of the speed of light:
+\begin{equation}
+\boxed{d = \frac{v_{\text{sound}}\,\Delta t}{2}}
+\label{eq:echo_distance}
+\end{equation}
+The approximate speeds are $3 \times 10^8\text{ m/s}$ for light, $343\text{ m/s}$ for sound in air and $1500\text{ m/s}$ for sound in seawater, where it is much faster.
+
+\subsection{Ultrasound}
+
+\textbf{Ultrasound} consists of mechanical sound waves with frequencies above the human hearing range (typically above $20\text{ kHz}$). In an ultrasound sensor a piezoelectric transducer converts electrical signals into ultrasonic pulses, and the returning echoes back into electrical signals. Ultrasound waves are reflected and scattered by objects and by interfaces between materials with different acoustic properties, and the distance to a reflecting object is again estimated from the round-trip travel time, Equation~\eqref{eq:echo_distance}, with the speed of sound in the propagation medium. The spatial resolution depends on the pulse duration, the wavelength and the beam width. Higher frequencies generally improve the spatial resolution but increase the attenuation, reducing the penetration depth. Applications include \textbf{ultrasonic ranging} for distance and obstacle detection, typically at frequencies around $40\text{ kHz}$ in air, and \textbf{medical ultrasound}, the non-invasive imaging of internal structures at frequencies in the MHz range: at $2\text{ MHz}$, for example, the approximate resolution is $0.8\text{ mm}$ axially and $1\text{ mm}$ laterally. Table~\ref{tab:sound_frequencies} compares the frequencies used by animals and by medical imaging.
+
+\begin{table}[!htbp]
+\centering
+\caption{Frequencies of echolocation and medical ultrasound.}
+\label{tab:sound_frequencies}
+\begin{tabular*}{\textwidth}{l@{\extracolsep\fill}cc}
+\toprule
+Sound source & Frequency (kHz) & Frequency (MHz) \\
+\midrule
+Sperm whale (echolocation) & 2--30 & 0.002--0.030 \\
+Bottlenose dolphin (echolocation) & 40--150 & 0.04--0.15 \\
+Bat (echolocation) & 20--200 & 0.02--0.2 \\
+Medical ultrasound imaging & 2\,000--15\,000 & 2--15 \\
+Human hearing (upper limit) & 20 & 0.02 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\section{Occupancy and Motion Sensors}
+\label{sec:occupancy}
+
+\textbf{Occupancy sensors} detect the presence or absence of people or animals within a monitored area, whereas \textbf{motion sensors} detect movement, but may fail to detect occupants who remain stationary. The two are not the same: a sensor can detect occupancy without detecting motion, and it can detect motion without identifying the object. Everyday applications include automatic lighting and heating control, vehicle seat occupancy detection (for safety in the car) and touchless faucets; scientific applications include animal behaviour and movement studies, wildlife monitoring with camera traps and the monitoring of activity near water sources.
+
+\subsection{Capacitive sensors}
+
+The human body interacts with electric fields because of its electrical conductivity and dielectric properties. In a \textbf{capacitive sensor}, an electrode, always on, generates an electric field in the surrounding region; the presence of a person or an object, such as a hand, modifies the field and changes the measured capacitance (Figure~\ref{fig:capacitive_sensor}). By detecting the capacitance variation
+\begin{equation}
+\Delta C = C_{\text{measured}} - C_{\text{reference}},
+\end{equation}
+the sensor identifies proximity or occupancy.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[page=104, width=0.7\linewidth, keepaspectratio]{\pdf}
+\caption{Field lines of a capacitive sensor without (left) and with (right) a finger nearby: the presence of the body modifies the electric field and the measured capacitance (Srivatava et al., \emph{J.\ Mater.\ Sci.: Mater.\ Electron.}\ 36, 664, 2025).}
+\label{fig:capacitive_sensor}
+\end{figure}
+
+\subsection{Camera-based sensors}
+
+The most widespread sensors are camera-based. Camera sensors (CCD or CMOS) acquire images at successive time intervals, and motion is detected by comparing consecutive frames, or by identifying changes relative to a reference background image: software compares the image at time $t_1$ with the image at time $t_2$ and decides whether something moved,
+\begin{equation}
+\Delta I(x,y) = I(x,y,t_2) - I(x,y,t_1).
+\end{equation}
+Image processing can also identify objects, estimate occupancy and track their movements. The camera measures light intensity, while motion is inferred from changes in the acquired images: this is another example of indirect measurement. The advantages are a high spatial resolution, detailed scene information and the possibility of detecting, classifying and tracking multiple objects and distinguishing one from another. The limitations are that performance depends on illumination, visibility and occlusions, that image processing is demanding in terms of computation and memory, and that privacy and data management may be important concerns.
+
+\subsection{Photoelectric and passive optical sensors}
+
+Simpler systems detect presence or proximity with a light source and a detector. \textbf{Photoelectric sensors} detect the presence or movement of objects by measuring changes in the received light intensity: a light source (e.g.\ an LED) illuminates the monitored region, a photodetector converts the received light into an electrical signal, and the presence or movement of an object modifies the light reaching the detector, either by interrupting the beam between an emitter and a receiver (\emph{through-beam} detection) or by changing the amount of light reflected toward the receiver (\emph{reflective} detection). A change in the detector output triggers an action when a predefined threshold is crossed. This is again active sensing, because the system itself generates the optical signal used for detection. Applications include touchless faucets, automatic doors, object counters and proximity switches.
+
+An even simpler approach uses the changes in ambient illumination. A \textbf{light-dependent resistor} (LDR), or photoresistor, changes its electrical resistance according to the incident light intensity; when an object blocks or modifies the incoming light, the resistance changes, and the resulting electrical signal can trigger an action when a threshold is crossed. Such a sensor operates with ambient light, without a dedicated light source, but it cannot reliably distinguish the movement of an object from changes in the environmental illumination, and it typically has a slower response than photodiodes or phototransistors. It is used in light-activated switches, simple object detectors and interactive toys.
+
+Table~\ref{tab:occupancy_summary} summarises these techniques, together with \textbf{passive infrared} (PIR) sensors, which detect the changes in thermal infrared radiation in the environment.
+
+\begin{table}[!htbp]
+\centering
+\caption{Summary of occupancy and motion sensing techniques.}
+\label{tab:occupancy_summary}
+\begin{tabular*}{\textwidth}{p{3.6cm}@{\extracolsep\fill}p{5cm}p{5cm}}
+\toprule
+Sensing technique & Measured quantity & Inferred information \\
+\midrule
+Capacitive sensor & Capacitance change, $\Delta C$ & Presence or proximity \\
+Camera-based sensor & Spatial light-intensity distribution, $I(x,y,t)$ & Occupancy, motion, object identity \\
+Photoelectric sensor & Received light intensity & Object presence or passage \\
+Passive infrared (PIR) sensor & Changes in thermal infrared radiation & Motion of thermally contrasting objects \\
+\bottomrule
+\end{tabular*}
+\end{table}
 
 % =============================================================================
 % APPENDIX (exercises): see appendix.tex

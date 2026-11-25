@@ -1314,3 +1314,31 @@ F_X(x) = P(X \le x) = \int_{-\infty}^{x}f(t)\,dt.
 \end{equation*}
 For $X \sim \mathcal{N}(\mu, \sigma^2)$, standardisation expresses deviations in units of $\sigma$ and gives the standard normal: $Z = 0$ means $X$ is at the mean, $Z = 1$ one standard deviation above it, $Z = -2$ two standard deviations below. About 68.3\%, 95.5\% and 99.7\% of the values lie within $\pm1\sigma$, $\pm2\sigma$ and $\pm3\sigma$ of the mean. For example, if repeated measurements follow a normal distribution with $\mu = 50$ and $\sigma = 2$, about 68\% fall between 48 and 52, 95\% between 46 and 54 and 99.7\% between 44 and 56.
 
+
+% -----------------------------------------------------------------------------
+% APPENDIX: exercises on Chapter 6
+% -----------------------------------------------------------------------------
+\section{Imaging and Positioning Sensors}
+\label{app:ex_ch6}
+
+\subsection{LiDAR uncertainty}
+\label{ex:lidar_uncertainty}
+
+For a time-of-flight LiDAR, the distance is calculated from the measured round-trip travel time as $D = c\Delta t/2$ (Equation~\eqref{eq:lidar_distance}).
+\begin{enumerate}[label=(\alph*)]
+\item Assuming a negligible uncertainty in the speed of light, show that the uncertainty in the measured distance is $\sigma_D = \frac{c}{2}\sigma_t$, where $\sigma_t$ is the uncertainty in the measured round-trip time.
+\item If the timing uncertainty is $1\text{ ns}$, what is the equivalent distance uncertainty?
+\item Why does the same timing error correspond to a different distance error in GNSS and in LiDAR?
+\end{enumerate}
+
+\paragraph{Solution} \textbf{(a)} With $c$ treated as exact, $D$ is a linear function of the single measured quantity $\Delta t$, with coefficient $c/2$. By the propagation formula for linear combinations (Equation~\eqref{eq:propagation_linear}),
+\begin{equation*}
+\sigma_D^2 = \left(\frac{c}{2}\right)^2\sigma_t^2 \quad\Longrightarrow\quad \sigma_D = \frac{c}{2}\,\sigma_t.
+\end{equation*}
+\textbf{(b)} With $\sigma_t = 1\text{ ns}$,
+\begin{equation*}
+\sigma_D = \frac{3 \times 10^8\text{ m/s}}{2} \times 10^{-9}\text{ s} = 0.15\text{ m} = 15\text{ cm}:
+\end{equation*}
+a $1\text{ ns}$ uncertainty in the measured round-trip time corresponds to a $15\text{ cm}$ uncertainty in distance, neglecting other error sources.
+
+\textbf{(c)} In GNSS the signal propagates one way and $\rho = c\Delta t$ (Equation~\eqref{eq:pseudorange}), so $1\text{ ns}$ corresponds to about $30\text{ cm}$; in LiDAR the signal makes a round trip and the measured time is divided by two, so the same $1\text{ ns}$ corresponds to about $15\text{ cm}$.
